@@ -1,0 +1,215 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  18 FEB 2026 23:04
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**c:/Users/admin/Dropbox/teaching/02MECH/syllabus/main.tex
+(c:/Users/admin/Dropbox/teaching/02MECH/syllabus/main.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+(c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(c:/texlive/2025/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count283
+\Gm@cntv=\count284
+\c@Gm@tempcnt=\count285
+\Gm@bindingoffset=\dimen149
+\Gm@wd@mp=\dimen150
+\Gm@odd@mp=\dimen151
+\Gm@even@mp=\dimen152
+\Gm@layoutwidth=\dimen153
+\Gm@layoutheight=\dimen154
+\Gm@layouthoffset=\dimen155
+\Gm@layoutvoffset=\dimen156
+\Gm@dimlist=\toks18
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
+) (c:/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip51
+\multirow@cntb=\count286
+\multirow@dima=\skip52
+\bigstrutjot=\dimen159
+) (c:/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+) (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count287
+) (./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count288
+\scratchdimen=\dimen160
+\scratchbox=\box53
+\nofMPsegments=\count289
+\nofMParguments=\count290
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count291
+\MPscratchDim=\dimen161
+\MPnumerator=\count292
+\makeMPintoPDFobject=\count293
+\everyMPtoPDFconversion=\toks20
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+<logo_cvut_en.jpg, id=1, 850.17625pt x 414.54875pt>
+File: logo_cvut_en.jpg Graphic file (type jpg)
+<use logo_cvut_en.jpg>
+Package pdftex.def Info: logo_cvut_en.jpg  used on input line 14.
+(pdftex.def)             Requested size: 117.83038pt x 57.45451pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 15.
+<fjfi.png, id=2, 513.92pt x 469.755pt>
+File: fjfi.png Graphic file (type png)
+<use fjfi.png>
+Package pdftex.def Info: fjfi.png  used on input line 22.
+(pdftex.def)             Requested size: 71.15628pt x 65.04256pt.
+
+Overfull \hbox (5.86221pt too wide) in paragraph at lines 13--25
+[]$[]$  $[]$ $[]$ 
+ []
+
+<pp.png, id=4, 219.82124pt x 343.2825pt>
+File: pp.png Graphic file (type png)
+<use pp.png>
+Package pdftex.def Info: pp.png  used on input line 30.
+(pdftex.def)             Requested size: 69.41512pt x 108.405pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 38.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 38.
+
+Overfull \hbox (10.22928pt too wide) in paragraph at lines 34--41
+[][] 
+ []
+
+
+
+[1
+
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo_cvut_en.jpg> <./fjfi.png> <./pp.png>]
+
+[2{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[3]
+
+[4]
+
+[5]
+
+[6] (./main.aux)
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 2026 strings out of 467748
+ 32360 string characters out of 5431138
+ 445696 words of memory out of 5000000
+ 30731 multiletter control sequences out of 15000+600000
+ 633620 words of font info for 59 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,16n,65p,668b,332s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on main.pdf (6 pages, 437905 bytes).
+PDF statistics:
+ 95 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,63 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{amsmath}
+\usepackage[a4paper, margin=0.8in, top=0.1in]{geometry} % Adjust the margin here
+\usepackage{multirow}
+\usepackage{nopageno}
+\usepackage{graphicx} % Add this line to include graphics
+\usepackage{wrapfig}
+\usepackage{tikz}
+
+\setlength{\parindent}{0pt} % Set global no indent
+    
+\title{{\large Department of Physics, FNSPE, CTU in Prague} \\
+                  02YMECHZ - Mechanics \\ 
+          {\Large \textbf{Exam}}\vspace{-1cm}}
+\date{12.2.2026 / 13:00 - 15:00}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Q1:} A particle of mass $m$ can move without friction along the  $x$-axis. At time $t = 0$, it is at rest at position $x = 0$. A force $F_x(t) = k\cos(\omega t)$ acts on it, where $k$ and $\omega$ are constants. 
+\begin{itemize}
+    \item[(a)] Determine the acceleration $a(t)$, the velocity $v(t)$, the displacement $x(t)$. --- \textit{0.6 points}
+    \item[(b)] Determine the power $P(t)$ delivered by the force as a function of time $t$. --- \textit{0.4 points}
+\end{itemize}
+
+\vspace*{0.1cm}
+\textbf{Q2:} Three point particles with masses $m_1 = 1\,\mathrm{kg}$, $m_2 = 2\,\mathrm{kg}$, $m_3 = 3\,\mathrm{kg}$ collide instantaneously at the origin with no external force with pre-collision velocities $\vec{v}_{1i} = (2,0,1)\,\mathrm{m/s}$, $\vec{v}_{2i} = (-1,1,0)\,\mathrm{m/s}$, and
+$\vec{v}_{3i} = (0,-2,3)\,\mathrm{m/s}$. Immediately \emph{after} the collision, the particles seperate, with particle~1 moves along $\hat{\imath}$, particle~2 along 
+\(-\hat{\jmath}\), and particle~3 along \(+\hat{k}\).  
+\begin{enumerate}
+\item[(a)] Determine the velocities after the collision: 
+\(\vec{v}_{1f}, \vec{v}_{2f}, \vec{v}_{3f}\). --- \textit{0.6 points}
+\item[(b)] Determine whether the collision is elastic or not. --- \textit{0.4 points}
+\end{enumerate}
+
+\vspace*{0.1cm}
+\textbf{Q3:} The equation of motion for a driven oscillator is given as $m \ddot{x} + b \dot{x} + k x = F_0 \cos(\omega t),$ where $m$ is the mass, $b$ is the damping coefficient, $k$ is the spring constant, and $F_0 \cos(\omega t)$ is the driving force. The solution for the displacement $x(t)$ of the oscillator is given by $x(t) = x_c(t) + x_p(t)$, where $x_c(t)$ is the complementary solution and $x_p(t) = A \cos(\omega t - \delta)$ is the particular solution. 
+
+\begin{itemize}
+    \item[\textbf{a.}] Describe the oscillator's behavior in the short-time ($t\approx 0$) and long-time limit ($t \to \infty$). --- \textit{0.3 point}
+    \item[\textbf{b.}] What is the amplitude of oscillation in terms of $k$ and $F_0$ when the system is driven with frequency $\omega \ll \omega_0$? What is the physical meaning of this? --- \textit{0.3 point}
+    \item[\textbf{c.}] What is the amplitude of oscillation in terms of $k$, $F_0$ and $Q$ when the system is driven in resonance frequency? Compared to what you found in part \textbf{b.} and considering the fact that for most of the oscillators $Q\gg 1$, what does driving the system with the resonance frequency do to the amplitude? --- \textit{0.4 points}
+\end{itemize}
+Given: $A = \frac{F_0/m}{\sqrt{\left(\omega_0^2 - \omega^2\right)^2 + \left(\frac{b \omega}{m}\right)^2}}$, $Q = \frac{m \omega_0}{b}$, $\omega_0 = \sqrt{\frac{k}{m}}$
+
+
+\vspace*{0.1cm}
+\textbf{Q4:} The earth rotates about its axis with angular velocity $\vec{\omega}$. The unit vectors $\hat{e}_1$, $\hat{e}_2$, and $\hat{e}_3$ are local unit vectors on the Earth's surface, where $\hat{e}_3$ is perpendicular to the surface, while $\hat{e}_1$ and $\hat{e}_2$ lie on the surface. The component of $\vec{\omega}$ along the $\hat{e}_3$ direction is $\omega_z$. A very fast particle of mass $m$ is projected on a frictionless horizontal surface with an initial velocity $\vec{v_0}=v_0\hat{e}_2$. Assume the Earth is a perfect sphere with radius $R$ and neglect air resistance.
+
+\begin{itemize}
+    \item[\textbf{a.}] Determine the Coriolis force by considering the general velocity of the particle $\vec{v}=v_1\hat{e}_1+v_2\hat{e}_2$. Describe qualitatively the deflection due to the Coriolis force. --- \textit{0.6 points}
+    \item[\textbf{b.}] Write the coupled equations of motion for $\hat{e}_1$ and $\hat{e}_2$ directions, and solve them for $v_1$ and $v_2$. Does this result satisfy your initial expectations for the trajectory? --- \textit{0.4 points}
+\end{itemize}
+
+
+(Given: Coriolis force $\vec{F}_c = -2m \vec{\Omega} \times \vec{v}$)
+
+\end{document}
+

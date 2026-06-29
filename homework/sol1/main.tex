@@ -1,0 +1,500 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 1}
+\date{Assigned for the week of Sep 22, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+% 1
+\item \textbf{Indefinite integrals.}
+
+\begin{enumerate}
+    \item Compute
+    \[
+      \int \frac{dx}{a+x}.
+    \]
+    Let $u = a+x$, so that $du = dx$. Then
+    \[
+      \int \frac{dx}{a+x}
+      = \int \frac{du}{u}
+      = \ln|u| + C
+      = \ln|a+x| + C.
+    \]
+
+    \item Compute
+    \[
+      \int \left(3x^2 e^{x^3} + \frac{4x}{1+x^2}\right) \, dx.
+    \]
+
+    We split the integral:
+    \[
+      \int 3x^2 e^{x^3} \, dx + \int \frac{4x}{1+x^2} \, dx.
+    \]
+
+    For the first term, set $u = x^3$, $du = 3x^2 \, dx$, so
+    \[
+      \int 3x^2 e^{x^3} \, dx = \int e^u \, du = e^u + C = e^{x^3} + C.
+    \]
+
+    For the second term, set $v = 1+x^2$, $dv = 2x \, dx$, so $4x \, dx = 2\, dv$. Then
+    \[
+      \int \frac{4x}{1+x^2} \, dx
+      = \int \frac{2\, dv}{v}
+      = 2 \ln|v| + C
+      = 2 \ln(1+x^2) + C,
+    \]
+    since $1+x^2>0$.
+
+    Therefore,
+    \[
+      \int \left(3x^2 e^{x^3} + \frac{4x}{1+x^2}\right) \, dx
+      = e^{x^3} + 2 \ln(1+x^2) + C.
+    \]
+
+\end{enumerate}
+
+
+% 2
+\item \textbf{Definite integral.}
+
+Compute
+\[
+  \int_{1}^{4} (2x+3)\,dx.
+\]
+
+An antiderivative of $2x+3$ is
+\[
+  \int (2x+3)\,dx = x^2 + 3x + C.
+\]
+
+Evaluate at the limits:
+\begin{align*}
+\int_{1}^{4} (2x+3)\,dx
+&= \left[ x^2 + 3x \right]_{1}^{4} \\
+&= \left(4^2 + 3\cdot 4\right) - \left(1^2 + 3\cdot 1\right) \\
+&= (16+12) - (1+3) \\
+&= 28 - 4 \\
+&= 24.
+\end{align*}
+
+Interpretation: this is the area under the straight line $2x+3$ between $x=1$ and $x=4$.
+
+
+% 3
+\item \textbf{Derivative of a function.}
+
+Given
+\[
+  f(x) = \frac{x^3 \ln(x)}{e^{2x}} = x^3 \ln(x)\, e^{-2x}, \qquad x>0.
+\]
+
+We differentiate using the product rule on $x^3 \ln(x)$ and $e^{-2x}$, or equivalently use the product rule plus chain rule.
+
+First compute
+\[
+g(x) = x^3 \ln(x), \qquad h(x) = e^{-2x}, \qquad f(x)=g(x)h(x).
+\]
+
+Then
+\[
+  g'(x) = \dv{x} \left( x^3 \ln x \right)
+  = 3x^2 \ln x + x^3 \cdot \frac{1}{x}
+  = 3x^2 \ln x + x^2
+  = x^2 (3\ln x + 1).
+\]
+
+Also
+\[
+  h'(x) = \dv{x}\left(e^{-2x}\right) = (-2)e^{-2x}.
+\]
+
+Product rule:
+\begin{align*}
+f'(x)
+&= g'(x)h(x) + g(x)h'(x) \\
+&= \left[x^2 (3\ln x + 1)\right] e^{-2x} + \left[x^3 \ln x\right] (-2 e^{-2x}) \\
+&= e^{-2x} \left[ x^2 (3\ln x + 1) - 2 x^3 \ln x \right].
+\end{align*}
+
+Factor $x^2$:
+\[
+f'(x)
+= x^2 e^{-2x} \left[ (3\ln x + 1) - 2x \ln x \right].
+\]
+
+So
+\[
+  f'(x) = x^2 e^{-2x} \left( 3\ln x + 1 - 2x \ln x \right), \qquad x>0.
+\]
+
+Explanation: we used product rule and the fact that $\dv{}{x}(\ln x)=1/x$ for $x>0$.
+
+
+% 4
+\item \textbf{Local extrema via first and second derivative tests.}
+
+Let
+\[
+  f(x) = x^3 - 6x^2 + 9x + 1.
+\]
+
+First derivative:
+\[
+  f'(x) = 3x^2 -12x + 9.
+\]
+
+Set $f'(x)=0$:
+\[
+  3x^2 -12x + 9 = 0
+  \quad\Longrightarrow\quad
+  x^2 -4x +3=0
+  \quad\Longrightarrow\quad
+  (x-1)(x-3)=0.
+\]
+So critical points are $x=1$ and $x=3$.
+
+Second derivative:
+\[
+  f''(x) = 6x -12.
+\]
+
+Evaluate $f''$:
+\[
+  f''(1)=6(1)-12 = -6 <0,
+\]
+which means $f$ is concave down at $x=1$, so $x=1$ is a local maximum.
+
+\[
+  f''(3)=6(3)-12 = 6>0,
+\]
+which means $f$ is concave up at $x=3$, so $x=3$ is a local minimum.
+
+Now compute the function values:
+\begin{align*}
+f(1) &= 1^3 -6(1)^2 + 9(1) +1
+= 1 -6 +9 +1
+= 5, \\
+f(3) &= 3^3 -6(3)^2 + 9(3) +1
+= 27 -54 +27 +1
+= 1.
+\end{align*}
+
+Conclusion:
+\[
+  \text{local maximum: } f(1)=5 \text{ at } x=1,
+  \qquad
+  \text{local minimum: } f(3)=1 \text{ at } x=3.
+\]
+
+Explanation: the sign of $f''$ at the critical point determines if the point is a max ($f''<0$) or a min ($f''>0$).
+
+
+% 5
+\item \textbf{Taylor series of $\sin x$, $\cos x$, $e^x$ about $0$ up to $x^5$.}
+
+Maclaurin series (Taylor about $0$):
+
+\[
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + \mathcal{O}(x^7)
+= x - \frac{x^3}{6} + \frac{x^5}{120} + \mathcal{O}(x^7).
+\]
+
+\[
+\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \mathcal{O}(x^6)
+= 1 - \frac{x^2}{2} + \frac{x^4}{24} + \mathcal{O}(x^6).
+\]
+
+\[
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \frac{x^5}{5!} + \mathcal{O}(x^6)
+= 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} + \frac{x^5}{120} + \mathcal{O}(x^6).
+\]
+
+Explanation: we truncated after the $x^5$ term or the highest power $\le 5$ that actually appears.
+
+
+% 6
+\item \textbf{Partial derivatives and total differential.}
+
+Given
+\[
+  f(x,y) = x^2 y + e^{xy}.
+\]
+
+Partial derivative with respect to $x$:
+\[
+  f_x = \pdv{f}{x}
+  = 2x y + e^{xy} \cdot \pdv{}{x}(xy)
+  = 2xy + e^{xy} \cdot y
+  = 2xy + y e^{xy}.
+\]
+
+Partial derivative with respect to $y$:
+\[
+  f_y = \pdv{f}{y}
+  = x^2 + e^{xy} \cdot \pdv{}{y}(xy)
+  = x^2 + e^{xy} \cdot x
+  = x^2 + x e^{xy}.
+\]
+
+The total differential is
+\[
+  df = f_x \, dx + f_y \, dy
+  = (2xy + y e^{xy})\,dx + (x^2 + x e^{xy})\,dy.
+\]
+
+Explanation: $df$ gives the linear change in $f$ under small changes $dx,dy$.
+
+
+% 7
+\item \textbf{Particle motion on a helix.}
+
+The position is
+\[
+  \mathbf{r}(t) = a\cos t \,\hat{\imath} + a\sin t \,\hat{\jmath} + ct \,\hat{k},
+\]
+where $a$ has units of length and $c$ has units of velocity.
+
+\begin{enumerate}
+    \item \textit{Type of trajectory.}
+
+    The $x$-$y$ coordinates satisfy
+    \[
+      x(t)=a\cos t, \qquad y(t)=a\sin t.
+    \]
+    Then
+    \[
+      x^2 + y^2 = a^2(\cos^2 t + \sin^2 t)=a^2,
+    \]
+    which is a circle of radius $a$ in the $xy$-plane. Meanwhile $z(t)=ct$ increases linearly in time. Therefore the path is a helix of radius $a$ rising at constant rate $c$ along the $z$-axis.
+
+    \item \textit{Velocity, acceleration, and speed.}
+
+    Velocity:
+    \[
+      \mathbf{v}(t) = \dv{\mathbf{r}}{t}
+      = -a\sin t \,\hat{\imath} + a\cos t \,\hat{\jmath} + c\,\hat{k}.
+    \]
+
+    Acceleration:
+    \[
+      \mathbf{a}(t) = \dv{\mathbf{v}}{t}
+      = -a\cos t \,\hat{\imath} - a\sin t \,\hat{\jmath} + 0\,\hat{k}
+      = -a\cos t \,\hat{\imath} - a\sin t \,\hat{\jmath}.
+    \]
+
+    Speed (magnitude of velocity):
+    \begin{align*}
+      v(t) &= \|\mathbf{v}(t)\|
+      = \sqrt{(-a\sin t)^2 + (a\cos t)^2 + c^2} \\
+      &= \sqrt{a^2(\sin^2 t + \cos^2 t) + c^2} \\
+      &= \sqrt{a^2 + c^2}.
+    \end{align*}
+    The speed is constant in time.
+
+    \item \textit{Directions of $\mathbf{v}$ and $\mathbf{a}$.}
+
+    In the $xy$-plane, $(-a\sin t, a\cos t)$ is tangent to the circle $x^2+y^2=a^2$, and $(-a\cos t, -a\sin t)$ points radially inward toward the center $(0,0)$.
+
+    So:
+    \[
+      \mathbf{v}(t) \text{ is tangent to the circular motion in the } xy\text{-plane (plus upward motion in } \hat{k}),
+    \]
+    while
+    \[
+      \mathbf{a}(t) \text{ points toward the axis of the circle in the } xy\text{-plane (centripetal)}, \text{ with no }\hat{k}\text{ component.}
+    \]
+    This matches uniform circular motion of radius $a$ in the horizontal projection: velocity is tangent, acceleration is inward.
+
+    \item \textit{Projection of $\mathbf{a}$ onto $\mathbf{v}$. Physical meaning.}
+
+    The projection of $\mathbf{a}$ onto $\mathbf{v}$ is the component of acceleration along the direction of motion. It measures tangential acceleration (change in speed). Compute
+    \[
+      \text{proj}_{\mathbf{v}}\mathbf{a}
+      = \frac{\mathbf{a}\cdot \mathbf{v}}{\|\mathbf{v}\|^2} \,\mathbf{v}.
+    \]
+
+    First compute the dot product:
+    \begin{align*}
+      \mathbf{a}(t)\cdot \mathbf{v}(t)
+      &= (-a\cos t)(-a\sin t) + (-a\sin t)(a\cos t) + (0)(c) \\
+      &= a^2 \cos t \sin t - a^2 \sin t \cos t \\
+      &= 0.
+    \end{align*}
+
+    Therefore
+    \[
+      \text{proj}_{\mathbf{v}}\mathbf{a} = \mathbf{0}.
+    \]
+
+    Interpretation: there is no acceleration component along the velocity direction, so the speed is constant. The acceleration is purely normal (centripetal), changing only the direction of the velocity, not its magnitude.
+\end{enumerate}
+
+
+% 8
+\item \textbf{Flux through a surface in a vector field.}
+
+Given a flat rectangle in the $xy$-plane with side lengths
+\[
+a = 0.20~\mathrm{m} \quad \text{(along $x$)}, \qquad
+b = 0.30~\mathrm{m} \quad \text{(along $y$)},
+\]
+and flux density field
+\[
+\mathbf{F} = 200\,\hat{\imath} + 300\,\hat{\jmath} + 400\,\hat{k}
+\quad
+\left[\frac{\mathrm{L}}{\mathrm{m}^2\cdot \mathrm{s}}\right].
+\]
+
+\begin{enumerate}
+    \item \textit{Area vector $\mathbf{A}$.}
+
+
+    \[
+      \mathbf{A} = (a\hat{\imath})\times(b\hat{\jmath}) = (0.20~\mathrm{m})(0.30~\mathrm{m})\hat{k} = (0.060)\hat{k} \quad [\mathrm{m}^2].
+    \]
+
+    Its normal vector is in the $+\hat{k}$ direction perpendicular to the surface lying in the $xy$-plane.
+    
+    \item \textit{Flow rate $Q = \mathbf{F} \cdot \mathbf{A}$.}
+
+    Compute the dot product:
+    \begin{align*}
+      Q &= \mathbf{F} \cdot \mathbf{A} \\
+        &= (200\,\hat{\imath} + 300\,\hat{\jmath} + 400\,\hat{k}) \cdot (0.060\,\hat{k}) \\
+        &= 400 \cdot 0.060 \quad \left[\frac{\mathrm{L}}{\mathrm{m}^2\cdot \mathrm{s}}\right] \cdot [\mathrm{m}^2] \\
+        &= 24~\mathrm{L/s}.
+    \end{align*}
+
+    Units: $\mathbf{F}$ is volume flux per area per time, $\mathbf{A}$ is area, so the product is volume per time.
+
+    \item \textit{Effect of orientation.}
+
+    In general,
+    \[
+      Q = \mathbf{F} \cdot \mathbf{A}
+      = |\mathbf{F}|\,|\mathbf{A}|\cos\theta,
+    \]
+    where $\theta$ is the angle between $\mathbf{F}$ and the surface normal.
+    If you tilt the surface, its area vector $\mathbf{A}$ tilts. The effective flux is reduced by $\cos\theta$.
+    \begin{itemize}
+        \item If the surface is perpendicular to the flow (normal aligned with $\mathbf{F}$), $\theta=0$, $\cos\theta=1$, and $Q$ is maximal.
+        \item If the surface is parallel to the flow (normal perpendicular to $\mathbf{F}$), $\theta=90^\circ$, $\cos\theta=0$, and $Q=0$.
+    \end{itemize}
+    Here the surface normal is $\hat{k}$, so only the $k$-component of $\mathbf{F}$ contributes to the flux.
+\end{enumerate}
+
+
+% 9
+\item \textbf{Velocity, acceleration, and their angle.}
+
+Given
+\[
+  \mathbf{r}(t) = a t^2 \,\hat{\imath} + b t^3 \,\hat{\jmath}.
+\]
+
+\begin{enumerate}
+    \item \textit{Velocity and acceleration.}
+
+    Velocity:
+    \[
+      \mathbf{v}(t) = \dv{\mathbf{r}}{t}
+      = 2at \,\hat{\imath} + 3 b t^2 \,\hat{\jmath}.
+    \]
+
+    Acceleration:
+    \[
+      \mathbf{a}(t) = \dv{\mathbf{v}}{t}
+      = 2a \,\hat{\imath} + 6 b t \,\hat{\jmath}.
+    \]
+
+    \item \textit{Angle between $\mathbf{v}$ and $\mathbf{a}$ at $t=1$.}
+
+    At $t=1$:
+    \[
+      \mathbf{v}(1) = 2a\,\hat{\imath} + 3b\,\hat{\jmath}, \qquad
+      \mathbf{a}(1) = 2a\,\hat{\imath} + 6b\,\hat{\jmath}.
+    \]
+
+    The angle $\theta$ between two vectors $\mathbf{u}$ and $\mathbf{w}$ is given by
+    \[
+      \cos\theta = \frac{\mathbf{u}\cdot\mathbf{w}}{\|\mathbf{u}\|\,\|\mathbf{w}\|}.
+    \]
+
+    Compute the dot product:
+    \[
+      \mathbf{v}(1)\cdot \mathbf{a}(1)
+      = (2a)(2a) + (3b)(6b)
+      = 4a^2 + 18 b^2.
+    \]
+
+    Compute magnitudes:
+    \[
+      \|\mathbf{v}(1)\| = \sqrt{(2a)^2 + (3b)^2}
+      = \sqrt{4a^2 + 9b^2},
+    \]
+    \[
+      \|\mathbf{a}(1)\| = \sqrt{(2a)^2 + (6b)^2}
+      = \sqrt{4a^2 + 36b^2}.
+    \]
+
+    Therefore
+    \[
+      \cos\theta
+      = \frac{4a^2 + 18b^2}{\sqrt{4a^2 + 9b^2}\,\sqrt{4a^2 + 36b^2}}.
+    \]
+
+    So the angle $\theta$ is
+    \[
+      \theta = \arccos\!\left(
+        \frac{4a^2 + 18b^2}{\sqrt{4a^2 + 9b^2}\,\sqrt{4a^2 + 36b^2}}
+      \right).
+    \]
+
+    Interpretation: the angle depends on $a$ and $b$; if $\mathbf{a}$ is parallel to $\mathbf{v}$, then the direction of motion is speeding up with no change in direction. If not parallel, part of $\mathbf{a}$ turns the velocity.
+\end{enumerate}
+
+
+% 10
+\item \textbf{Cross product.}
+
+Given
+\[
+\mathbf{A} = 2\,\hat{\imath} - 3\,\hat{\jmath} + 1\,\hat{k},
+\qquad
+\mathbf{B} = -1\,\hat{\imath} + 4\,\hat{\jmath} + 2\,\hat{k}.
+\]
+
+
+The cross product $\mathbf{A}\times\mathbf{B}$ is
+
+
+\[
+\begin{aligned}
+\mathbf{A}\times\mathbf{B}
+&= (2\hat{\imath}-3\hat{\jmath}+\hat{k})\times(-\hat{\imath}+4\hat{\jmath}+2\hat{k}) \\
+&= 2\hat{\imath}\times(-\hat{\imath}) + 2\hat{\imath}\times 4\hat{\jmath} + 2\hat{\imath}\times 2\hat{k}
+  -3\hat{\jmath}\times(-\hat{\imath}) -3\hat{\jmath}\times 4\hat{\jmath} -3\hat{\jmath}\times 2\hat{k} \\
+&\quad + \hat{k}\times(-\hat{\imath}) + \hat{k}\times 4\hat{\jmath} + \hat{k}\times 2\hat{k} \\
+&= 0 + 8\hat{k} - 4\hat{\jmath} - 3\hat{k} + 0 - 6\hat{\imath} - \hat{\jmath} - 4\hat{\imath} + 0 \\
+&= -10\,\hat{\imath} - 5\,\hat{\jmath} + 5\,\hat{k}.
+\end{aligned}
+\]
+
+Explanation: $\mathbf{A}\times\mathbf{B}$ is perpendicular to both $\mathbf{A}$ and $\mathbf{B}$ and its magnitude is $|\mathbf{A}||\mathbf{B}|\sin\phi$, where $\phi$ is the angle between them.
+\end{enumerate}
+
+
+\end{document}

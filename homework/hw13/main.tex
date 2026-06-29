@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{tikz}
+\geometry{a4paper, margin=1in}
+\pagenumbering{gobble}
+
+
+\setlength\parindent{0pt}
+
+\title{02YMECH - Homework 13}
+\date{Assigned for the week of Dec 15, 2025}
+\author{}
+\begin{document}
+\maketitle
+
+\section*{Question}
+
+Consider a rigid body with principal moments of inertia
+\[
+I_1<I_2<I_3,
+\]
+and body-fixed principal axes
+\((\mathbf e_1,\mathbf e_2,\mathbf e_3)\).
+The motion is torque-free.
+
+At time \(t=0\), the components of the angular velocity in the body frame
+are
+\[
+\omega_1(0)=\omega_0,
+\qquad
+\omega_2(0)=\omega_0,
+\qquad
+\omega_3(0)=0,
+\]
+with \(\omega_0>0\).
+
+\begin{enumerate}
+  \item[(a)] Write Euler’s equations for this system and show that both the
+        kinetic energy \(T\) and the squared angular momentum \(L^2\) are
+        conserved.
+
+  \item[(b)] Using only these two conserved quantities, eliminate
+        \(\omega_2\) and \(\omega_3\) to obtain a first-order differential
+        equation for \(\omega_1(t)\) of the form
+        \[
+        \dot{\omega}_1^{\,2}=f(\omega_1),
+        \]
+        and determine the explicit polynomial \(f\).
+
+  \item[(c)] Determine the range of allowed values of \(\omega_1(t)\) and show
+        that the motion of \(\omega_1\) is periodic.
+
+  \item[(d)] Express the period of \(\omega_1(t)\) as an integral,
+        clearly stating the change of variables used. Do not evaluate the
+        integral.
+\end{enumerate}
+
+
+\end{document}

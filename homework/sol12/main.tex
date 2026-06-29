@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{parskip}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 12}
+\date{Assigned for the week of Dec 8, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+\item Consider a uniform square plate of side length $b$ and mass $M$, lying in the $xy$--plane with its center of mass at the origin.  
+The surface mass density is
+\[
+\sigma=\frac{M}{b^2}.
+\]
+The moment of inertia about an axis through the center and perpendicular to the plate (the $z$--axis) is
+\[
+I_z=\int (x^2+y^2)\,dm
+=\sigma\int_{-b/2}^{b/2}\int_{-b/2}^{b/2}(x^2+y^2)\,dx\,dy.
+\]
+Evaluating,
+\[
+I_z=\sigma\left(\frac{b^4}{12}+\frac{b^4}{12}\right)
+=\frac{M}{b^2}\cdot\frac{b^4}{6}
+=\frac{1}{6}Mb^2.
+\]
+
+
+\item Consider a uniform solid cube of side length $b$ and mass $M$, with its center of mass at the origin and axes aligned with the edges.
+
+\begin{enumerate}
+
+\item \textbf{Inertia tensor about the center of mass}
+
+The mass density is
+\[
+\rho=\frac{M}{b^3}.
+\]
+By symmetry, the products of inertia vanish and the inertia tensor is diagonal:
+\[
+\mathbf I=
+\begin{pmatrix}
+I_{xx} & 0 & 0\\
+0 & I_{yy} & 0\\
+0 & 0 & I_{zz}
+\end{pmatrix}.
+\]
+For example,
+\[
+I_{xx}=\int (y^2+z^2)\,dm
+=\rho\int_{-b/2}^{b/2}\!\!\int_{-b/2}^{b/2}\!\!\int_{-b/2}^{b/2}(y^2+z^2)\,dx\,dy\,dz.
+\]
+This gives
+\[
+I_{xx}=I_{yy}=I_{zz}=\frac{1}{6}Mb^2.
+\]
+Hence,
+\[
+\mathbf I_{\text{CM}}=\frac{Mb^2}{6}
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}.
+\]
+
+If the origin were chosen at a corner of the cube, the inertia tensor would contain nonzero off-diagonal terms and larger diagonal elements, related to the above result by the parallel-axis theorem.
+
+\item \textbf{Condition for $\boldsymbol L \parallel \boldsymbol\omega$}
+
+Since the inertia tensor is diagonal and all diagonal elements are equal, the cube is dynamically isotropic.  
+Therefore, the angular momentum vector $\boldsymbol L$ is parallel to the angular velocity vector $\boldsymbol\omega$ for \emph{any} direction of rotation.
+
+\item \textbf{Physical meaning of the diagonal elements}
+
+Each diagonal element represents the moment of inertia about an axis through the center of mass and parallel to a cube edge.  
+The value
+\[
+I=\frac{1}{6}Mb^2
+\]
+is consistent with the result of Question~1: a square plate of side $b$ has the same moment of inertia about its perpendicular central axis as a cube has about any principal axis through its center. The plate result can be recovered by integrating only over one dimension of the cube.
+
+\item \textbf{Free rotation and choice of origin}
+
+With no external torques, a freely rotating cube will rotate about any axis through its center of mass, with constant angular velocity.  
+Choosing the center of mass as the origin eliminates spurious coupling terms in the inertia tensor and ensures that rotational dynamics are independent of translational motion. This makes the physical interpretation of the rotation transparent and simplifies the equations of motion.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,438 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 3}
+\date{Assigned for the week of Oct 6, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+% 1
+\item \textbf{Child throwing a package from a moving boat.}
+
+We have three masses: child $m_c$, boat $m_b$, and package $m_p$. The water is assumed frictionless in the horizontal directions during the throw. We take the water as an inertial lab frame.
+
+Let $\vec{v}_0$ be the initial velocity of the entire system (boat + child + package) before the throw. After the throw, the package has velocity $\vec{v}_p$ (given in the lab frame), and the boat+child system moves with velocity $\vec{v}_b$. We are asked to solve for $\vec{v}_b$ immediately after the throw.
+
+Total mass before the throw:
+\[
+M_{\text{tot}} = m_b + m_c + m_p.
+\]
+
+Because there are no external horizontal forces, linear momentum is conserved in the horizontal direction(s). (Vertically, gravity and normal force act, so we do not impose $p_y$ conservation unless we assume no net external vertical impulse. We will keep both $x$ and $y$ components in the final answer, but note that strictly speaking only horizontal momentum is conserved. The standard idealization here assumes the throw is brief and any vertical impulse from the water on the boat averages to zero over the instant, so we treat total momentum as conserved as a vector in 2D.)
+
+Initial momentum:
+\[
+\vec{p}_i = M_{\text{tot}} \, \vec{v}_0.
+\]
+
+Final momentum:
+\[
+\vec{p}_f = (m_b + m_c)\, \vec{v}_b + m_p \, \vec{v}_p.
+\]
+
+Conservation of momentum:
+\[
+M_{\text{tot}} \, \vec{v}_0 = (m_b + m_c)\, \vec{v}_b + m_p \, \vec{v}_p.
+\]
+
+Solve for $\vec{v}_b$:
+\[
+\vec{v}_b
+= \frac{M_{\text{tot}} \, \vec{v}_0 - m_p \, \vec{v}_p}{m_b + m_c}
+= \frac{(m_b + m_c + m_p)\vec{v}_0 - m_p \vec{v}_p}{m_b + m_c}.
+\]
+
+Writing components explicitly, if
+\[
+\vec{v}_0 = (v_{0x}, v_{0y}), 
+\qquad
+\vec{v}_p = (v_{px}, v_{py}),
+\qquad
+\vec{v}_b = (v_{bx}, v_{by}),
+\]
+then
+\[
+v_{bx}
+= \frac{(m_b + m_c + m_p) v_{0x} - m_p v_{px}}{m_b + m_c},
+\qquad
+v_{by}
+= \frac{(m_b + m_c + m_p) v_{0y} - m_p v_{py}}{m_b + m_c}.
+\]
+
+If the package is thrown at speed $|\vec{v}_p|$ and angle $\theta$ above the horizontal, then
+\[
+v_{px} = |\vec{v}_p| \cos\theta,
+\qquad
+v_{py} = |\vec{v}_p| \sin\theta.
+\]
+
+Physically: the boat recoils so that the center of mass of (boat+child+package) keeps the same velocity that it had just before the throw.
+
+
+% 2
+\item \textbf{1D motion with position-dependent force.}
+
+A particle of mass $m$ moves along $x$ under force
+\[
+F(x) = - \frac{k x}{(x^2 + a^2)^{3/2}},
+\quad k>0,\ a>0.
+\]
+Initially, at $x=x_0>0$, the particle is at rest.
+
+\begin{enumerate}
+    \item \textit{Work done by the force from $x_0$ to $x$.}
+
+    The work done by a (possibly non-constant) force in 1D is
+    \[
+    W(x_0 \to x) = \int_{x_0}^{x} F(u)\,du
+    = \int_{x_0}^{x} 
+    \left[- \frac{k u}{(u^2 + a^2)^{3/2}} \right] du.
+    \]
+
+    Compute the integral. Let
+    \[
+    I = \int \frac{u}{(u^2 + a^2)^{3/2}} \, du.
+    \]
+    Substitute $w = u^2 + a^2$, so $dw = 2u\,du$, i.e. $u\,du = \frac{1}{2}dw$. Then
+    \[
+    I = \int \frac{1}{2} w^{-3/2} dw
+    = \frac{1}{2} \int w^{-3/2} dw
+    = \frac{1}{2} \left( \frac{w^{-1/2}}{-1/2} \right)
+    = - w^{-1/2}.
+    \]
+    So
+    \[
+    I = - \frac{1}{\sqrt{u^2 + a^2}} + C.
+    \]
+
+    Therefore,
+    \[
+    \int_{x_0}^{x} 
+    \left[- \frac{k u}{(u^2 + a^2)^{3/2}} \right] du
+    = -k \int_{x_0}^{x} \frac{u}{(u^2 + a^2)^{3/2}} du
+    = -k \left[ - \frac{1}{\sqrt{u^2 + a^2}} \right]_{u=x_0}^{u=x}.
+    \]
+
+    This gives
+    \[
+    W(x_0 \to x)
+    = k \left[ \frac{1}{\sqrt{u^2 + a^2}} \right]_{x_0}^{x}
+    = k \left( \frac{1}{\sqrt{x^2 + a^2}} - \frac{1}{\sqrt{x_0^2 + a^2}} \right).
+    \]
+
+    Sign check: if $x < x_0$ (the particle moves toward the origin), then typically the work is positive because the force points toward $x=0$ for $x>0$.
+
+    \item \textit{Velocity as a function of $x$ (work-energy theorem).}
+
+    The work-energy theorem in 1D:
+    \[
+    W(x_0 \to x) = \Delta K = \frac{1}{2} m v^2(x) - \frac{1}{2} m v^2(x_0).
+    \]
+    We are told the particle starts from rest, so $v(x_0)=0$. Then
+    \[
+    \frac{1}{2} m v^2(x)
+    = W(x_0 \to x)
+    = k \left( \frac{1}{\sqrt{x^2 + a^2}} - \frac{1}{\sqrt{x_0^2 + a^2}} \right).
+    \]
+
+    Solve for $v(x)$:
+    \[
+    v^2(x)
+    = \frac{2k}{m} \left( \frac{1}{\sqrt{x^2 + a^2}} - \frac{1}{\sqrt{x_0^2 + a^2}} \right),
+    \]
+    \[
+    v(x)
+    = \sqrt{ \frac{2k}{m} \left( \frac{1}{\sqrt{x^2 + a^2}} - \frac{1}{\sqrt{x_0^2 + a^2}} \right) }.
+    \]
+
+    Note: the expression in parentheses must be nonnegative for real $v$. Since the particle starts at $x_0>0$ and is attracted toward $x=0$, $x$ will decrease from $x_0$ toward $0$, and $1/\sqrt{x^2+a^2}$ increases as $|x|$ decreases.
+
+    \item \textit{Maximum speed.}
+
+    The speed increases as the particle moves to where the kinetic energy is largest. From the expression above, $v^2(x)$ is largest when
+    \[
+    \frac{1}{\sqrt{x^2 + a^2}}
+    \quad\text{is largest.}
+    \]
+    That happens at the smallest possible $\sqrt{x^2+a^2}$, i.e. at $x=0$ (symmetric force will then decelerate it once it passes through and climbs ``up'' on the other side).
+
+    Thus the maximum speed $v_{\max}$ occurs at $x=0$:
+    \[
+    v_{\max}^2
+    = \frac{2k}{m} \left(
+    \frac{1}{\sqrt{0 + a^2}} - \frac{1}{\sqrt{x_0^2 + a^2}}
+    \right)
+    = \frac{2k}{m} \left(
+    \frac{1}{a} - \frac{1}{\sqrt{x_0^2 + a^2}}
+    \right).
+    \]
+
+    Therefore
+    \[
+    v_{\max}
+    = \sqrt{
+    \frac{2k}{m} \left(
+    \frac{1}{a} - \frac{1}{\sqrt{x_0^2 + a^2}}
+    \right)
+    }.
+    \]
+
+    Interpretation: the force pulls the particle toward the origin like a softened $1/r^2$-type attraction; the speed peaks at the center.
+\end{enumerate}
+
+
+% 3
+\item \textbf{Inelastic capture on a rotating disk.}
+
+A disk of mass $M$ and radius $R$, initially at rest, can rotate freely about its symmetry axis (perpendicular to its plane). A particle of mass $m$ moves tangentially with speed $v_0$ and sticks to the rim. The disk's moment of inertia about its axis is
+\[
+I_{\text{disk}} = \frac{1}{2} M R^2.
+\]
+
+We assume no external torque about the axis during the sticking, so angular momentum about the axis is conserved.
+
+Before collision:
+\begin{itemize}
+\item Disk is at rest $\Rightarrow$ zero angular momentum.
+\item Particle of mass $m$ moves tangentially at radius $R$, so its angular momentum about the disk center is
+\[
+L_i = m v_0 R.
+\]
+(Sign chosen so that positive corresponds to the direction of rotation induced by the incoming particle.)
+\end{itemize}
+
+After collision:
+\begin{itemize}
+\item The particle sticks at the rim, becoming part of the rotating system.
+\item The final system is: disk + point mass $m$ at radius $R$, both rotating with common angular velocity $\omega$.
+\end{itemize}
+
+The final moment of inertia is
+\[
+I_f
+= I_{\text{disk}} + I_{\text{particle}}
+= \frac{1}{2} M R^2 + m R^2
+= R^2 \left( \frac{1}{2} M + m \right).
+\]
+
+\begin{enumerate}
+    \item \textit{Final angular velocity $\omega$.}
+
+    Angular momentum conservation:
+    \[
+    L_i = L_f
+    \quad\Rightarrow\quad
+    m v_0 R = I_f \,\omega
+    = R^2 \left( \frac{1}{2} M + m \right) \omega.
+    \]
+
+    Solve for $\omega$:
+    \[
+    \omega
+    = \frac{m v_0 R}{ R^2 \left( \frac{1}{2} M + m \right) }
+    = \frac{m v_0}{ R \left( \frac{1}{2} M + m \right) }.
+    \]
+
+    \item \textit{Rotational kinetic energy after the collision.}
+
+    The final rotational kinetic energy is
+    \[
+    T_\text{rot}
+    = \frac{1}{2} I_f \omega^2
+    = \frac{1}{2}
+    \left[ R^2 \left( \frac{1}{2} M + m \right) \right]
+    \left[
+    \frac{m v_0}{ R \left( \frac{1}{2} M + m \right) }
+    \right]^2.
+    \]
+
+    Simplify:
+    \[
+    T_\text{rot}
+    = \frac{1}{2}
+    R^2 \left( \frac{1}{2} M + m \right)
+    \frac{m^2 v_0^2}{
+    R^2 \left( \frac{1}{2} M + m \right)^2 }
+    = \frac{1}{2}
+    \frac{m^2 v_0^2}{
+    \left( \frac{1}{2} M + m \right) }.
+    \]
+
+    So
+    \[
+    T_\text{rot}
+    = \frac{1}{2}
+    \frac{m^2 v_0^2}{\left( \frac{1}{2} M + m \right)}.
+    \]
+
+    As expected for a perfectly inelastic capture, mechanical energy is not conserved: the final kinetic energy is less than the initial kinetic energy $\tfrac{1}{2} m v_0^2$, with the difference converted into internal energy/heat/deformation.
+\end{enumerate}
+
+
+% 4
+\item \textbf{Motion in a quartic potential.}
+
+The potential energy is
+\[
+U(x) = U_0 \left( \frac{x^4}{a^4} - 2 \frac{x^2}{a^2} \right)
+= U_0 \left( \frac{x^4}{a^4} - \frac{2x^2}{a^2} \right)
+,
+\quad U_0>0.
+\]
+
+\begin{enumerate}
+    \item \textit{Force as a function of $x$.}
+
+    For 1D conservative motion,
+    \[
+    F(x) = - \dv{U}{x}.
+    \]
+
+    First compute $\dv{U}{x}$:
+    \[
+    \dv{U}{x}
+    = U_0 \left(
+    \dv{x} \frac{x^4}{a^4}
+    - 2 \dv{x} \frac{x^2}{a^2}
+    \right)
+    = U_0 \left(
+    \frac{4x^3}{a^4}
+    - \frac{4x}{a^2}
+    \right).
+    \]
+
+    Therefore
+    \[
+    F(x) = -\dv{U}{x}
+    = - U_0 \left(
+    \frac{4x^3}{a^4}
+    - \frac{4x}{a^2}
+    \right)
+    = - \frac{4U_0}{a^4} x^3 + \frac{4U_0}{a^2} x.
+    \]
+
+    Factor if desired:
+    \[
+    F(x) = \frac{4U_0}{a^4} \, x \left( a^2 - x^2 \right).
+    \]
+
+    \item \textit{Equilibrium points and their stability.}
+
+    Equilibrium occurs where $F(x)=0$:
+    \[
+    \frac{4U_0}{a^4} \, x \left( a^2 - x^2 \right) = 0
+    \quad\Longrightarrow\quad
+    x=0 \quad \text{or} \quad a^2-x^2 = 0.
+    \]
+
+    So the equilibrium positions are
+    \[
+    x = 0, \qquad x = +a, \qquad x = -a.
+    \]
+
+    Stability can be determined from the curvature of $U(x)$: stable equilibrium at local minima of $U$, unstable at local maxima.
+
+    We inspect $U(x)$:
+    \[
+    U(x) = U_0 \left(\frac{x^4}{a^4} - \frac{2x^2}{a^2}\right).
+    \]
+    Evaluate at the three critical points:
+    \[
+    U(0) = 0,
+    \qquad
+    U(\pm a) = U_0 \left( \frac{a^4}{a^4} - 2\frac{a^2}{a^2} \right)
+    = U_0 (1 - 2)
+    = -U_0.
+    \]
+
+    Since $U(\pm a) = -U_0 < 0 = U(0)$, $x=\pm a$ are lower than $x=0$. So $x=\pm a$ are minima (stable equilibria), and $x=0$ is a maximum (unstable equilibrium).
+
+    More formally, one could check $\dv[2]{U}{x}$ at those points; $\dv[2]{U}{x} >0$ implies stable.
+
+    \item \textit{Speed at $x=a$ if released from rest at $x=0$.}
+
+    Mechanical energy is conserved:
+    \[
+    E = K + U = \text{constant}.
+    \]
+
+    Initially ($x=0$): released from rest $\Rightarrow v=0$,
+    \[
+    E = K_i + U_i = 0 + U(0) = U(0) = 0.
+    \]
+
+    At $x=a$:
+    \[
+    E = K_f + U(a)
+    = \frac{1}{2} m v^2(a) + U(a).
+    \]
+
+    Conservation $E_i=E_f$:
+    \[
+    0
+    = \frac{1}{2} m v^2(a) + U(a).
+    \]
+
+    We already have
+    \[
+    U(a) = -U_0.
+    \]
+
+    So
+    \[
+    0
+    = \frac{1}{2} m v^2(a) - U_0
+    \quad\Longrightarrow\quad
+    \frac{1}{2} m v^2(a) = U_0.
+    \]
+
+    Solve for $v(a)$:
+    \[
+    v(a) = \sqrt{\frac{2U_0}{m}}.
+    \]
+
+    Note: the particle moves from an unstable equilibrium at $x=0$ down to a stable equilibrium at $x=a$, losing potential energy (from $0$ to $-U_0$) and gaining kinetic energy.
+
+    \item \textit{Work done by the force from $x=0$ to $x=a$.}
+
+    The work done by a conservative force when moving from $x=0$ to $x=a$ equals the negative change in potential energy:
+    \[
+    W(0 \to a) = U(0) - U(a).
+    \]
+
+    We have
+    \[
+    U(0) = 0,
+    \qquad
+    U(a) = -U_0.
+    \]
+
+    Therefore
+    \[
+    W(0 \to a)
+    = 0 - (-U_0)
+    = U_0.
+    \]
+
+    This agrees with the kinetic energy gain:
+    \[
+    \Delta K = \frac{1}{2}m v^2(a) - 0 = U_0,
+    \]
+    consistent with $v(a)=\sqrt{2U_0/m}$ found above.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

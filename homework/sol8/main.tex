@@ -1,0 +1,188 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{parskip}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 8}
+\date{Assigned for the week of Nov 10, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+\item Let
+\[
+V(r)=-\frac{k}{r}, \qquad f(r)=-\frac{k}{r^2},
+\]
+and the orbit be an ellipse with semi–major axis \(a\) and eccentricity \(e\).
+The polar equation is
+\[
+r(\theta)=\frac{a(1-e^2)}{1+e\cos\theta}.
+\]
+
+The angular momentum per unit mass is
+\[
+h=r^2\dot\theta=\sqrt{k a(1-e^2)}.
+\]
+
+The time average of any quantity \(A\) over one period \(T\) is
+\[
+\langle A\rangle=\frac{1}{T}\int_0^T A\,dt
+=\frac{1}{T}\int_0^{2\pi} A\,\frac{r^2}{h}\,d\theta .
+\]
+
+\textbf{Average potential energy}
+
+\[
+\langle V\rangle
+=-\frac{k}{Th}\int_0^{2\pi} r\,d\theta .
+\]
+
+Using the orbit equation,
+\[
+\int_0^{2\pi} r\,d\theta
+=a(1-e^2)\int_0^{2\pi}\frac{d\theta}{1+e\cos\theta}
+=2\pi a\sqrt{1-e^2}.
+\]
+
+Thus
+\[
+\langle V\rangle
+=-\frac{2\pi k a\sqrt{1-e^2}}{Th}.
+\]
+
+The period is
+\[
+T=\frac{2\pi a^{3/2}}{\sqrt{k}},
+\]
+so
+\[
+\boxed{\langle V\rangle=-\frac{k}{a}}.
+\]
+
+\newpage
+
+\textbf{Average kinetic energy}
+
+The total energy of a Kepler orbit is
+\[\ 
+E=-\frac{k}{2a}.
+\]
+
+Since \(E=\langle T\rangle+\langle V\rangle\),
+\[
+\boxed{\langle T\rangle=\frac{k}{2a}}.
+\]
+
+\textbf{Comparison}
+
+\[
+\boxed{\langle T\rangle=-\tfrac12\langle V\rangle},
+\]
+which agrees with the virial relation, obtained here purely from explicit
+time–average integrals.
+
+
+\item Two masses \(m_1,m_2\) move in a circular orbit of radius \(a\) and period \(\tau\).
+Using the reduced mass \(\mu\),
+
+\[
+\mu a\omega^2=\frac{G m_1 m_2}{a^2}, 
+\qquad 
+\omega=\frac{2\pi}{\tau},
+\qquad
+\frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2}.
+\]
+
+Hence
+\[
+a=\left(\frac{G m_1 m_2\,\tau^2}{4\pi^2\mu}\right)^{1/3}.
+\]
+
+After the motion is stopped, the reduced mass falls radially from rest at \(x=a\).
+Energy conservation gives
+\[
+-\frac{G m_1 m_2}{a}
+=\frac12\mu \dot x^2-\frac{G m_1 m_2}{x},
+\]
+so
+\[
+\dot x=\sqrt{\frac{2G m_1 m_2}{\mu}\left(\frac1x-\frac1a\right)}.
+\]
+
+The collision time is
+\[
+t=-\int_a^0
+\frac{dx}{\sqrt{\tfrac{2G m_1 m_2}{\mu}\left(\frac1x-\frac1a\right)}}.
+\]
+
+Rewrite the integrand:
+\[
+t=-\sqrt{\frac{a\mu}{2G m_1 m_2}}
+\int_a^0 \frac{\sqrt{x}}{\sqrt{a-x}}\,dx.
+\]
+
+Let \(x=y^2\) (\(dx=2y\,dy\)):
+\[
+\int_a^0 \frac{\sqrt{x}}{\sqrt{a-x}}\,dx
+=2\int_{\sqrt a}^0 \frac{y^2}{\sqrt{a-y^2}}\,dy
+=-\frac{\pi a}{2}.
+\]
+
+Therefore
+\[
+t=\frac{\pi a}{2}\sqrt{\frac{\mu}{2G m_1 m_2}}.
+\]
+
+Substitute \(a\) from above:
+\[
+t=\frac{\pi}{2\sqrt2}\sqrt{\frac{a^3}{G m_1 m_2/\mu}}
+=\frac{\pi}{2\sqrt2}\frac{\tau}{2\pi}.
+\]
+
+\[
+\boxed{\,t=\dfrac{\tau}{4\sqrt2}\,}
+\]
+
+Thus, after stopping the circular motion, the two particles collide after a time
+\(\tau/(4\sqrt2)\).
+
+
+\item Given
+\[
+\lambda(x)=k x^n,\qquad 0\le x\le L,\quad n>-1.
+\]
+
+\begin{enumerate}
+\item[(a)] Total mass:
+\[
+M=\int_0^L kx^n\,dx=\frac{kL^{n+1}}{n+1}.
+\]
+
+\item[(b)] Center of mass:
+\[
+x_{\mathrm{CM}}=\frac{1}{M}\int_0^L x\,\lambda(x)\,dx
+=\frac{n+1}{n+2}L.
+\]
+
+\item[(c)] Requiring \(x_{\mathrm{CM}}=\tfrac{3L}{4}\):
+\[
+\frac{n+1}{n+2}=\frac34 \;\Rightarrow\; n=2.
+\]
+
+For \(n=2\), the mass density increases quadratically with \(x\); the rod is strongly weighted toward the right end.
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass{homework}
+
+\title{02MECH - Makeup test \\ 20.01.2023}
+\author{}
+
+\date{\vspace{-11ex}}
+
+\begin{document}
+
+\maketitle
+
+\exercise
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1.3]{figures/q1.pdf}
+\end{figure}
+
+A homogeneous cube of density $\rho$, mass $M$, and equal side lengths $b$  is given as shown in the figure.
+\begin{itemize}
+    \item [\textbf{(a)}] Calculate the inertia tensor $[\mathbf{J}]$ by using $J_{ij}=\int{\rho(r)\left(\delta_{ij}\sum_k x_k^2-x_ix_j\right)dV}$ by letting the corner $O$ be the origin and three adjacent edges lie along the coordinate axes $X_1$, $X_2$, $X_3$.
+    \item[\textbf{(b)}] Write down the components of center of mass vector $\mathbf{a}$ with respect to $X_i$ axes.
+    \item[\textbf{(c)}] By using parallel axes theorem $I_{ij}=J_{ij}-M\left(\delta_{ij}a^2-a_ia_j\right)$ calculate the inertia tensor $[\mathbf{I}]$ when we choose the origin as the center of mass.
+    \item[\textbf{(d)}] What are the principle moments of inertia $I_i$? Without calculating, can you predict what principle axes associated with $I_i$ look like? Try to draw them on the figure.
+\end{itemize}
+
+\textit{Each option is worth 0.3 points - Total: 1.2 points} 
+
+\exercise
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1.3]{figures/q2.pdf}
+\end{figure}
+
+$m_1$ and $m_2$ are fixed on a rigid rod of length $b$. $\hat{\mathbf{e}_i}$ are the body coordinates. The mass of the rod is negligible.
+\begin{itemize}
+    \item[\textbf{(a)}] Calculate the inertia tensor $[\mathbf{I}]$ of the rigid body by using $I_{ij}=\sum_\alpha m_\alpha{\left(\delta_{ij}\sum_k x_{\alpha,k}^2-x_{\alpha,i}x_{\alpha,j}\right)}$.
+    \item[\textbf{(b)}] Calculate the angular momentum vector $\mathbf{L}$.
+    \item[\textbf{(c)}] Write down Newton's second law for rotations.
+    \item[\textbf{(d)}] Find the square of the angular frequency of small oscillations $\omega^2$ if the pendulum swings in a plane.
+\end{itemize}
+
+\textit{Each option is worth 0.3 points - Total: 1.2 points} 
+
+\exercise
+
+For a given central force $f(r)$ the orbit of a particle of mass $\mu$ can be calculated by integrating the following differential equation,
+\begin{equation*}
+    \dfrac{d^2}{d\theta^2}\left(\frac{1}{r}\right)+\frac{1}{r}=-\frac{\mu}{l^2}r^2f(r)
+\end{equation*}
+where $l$ is the angular momentum of the particle.
+
+\begin{itemize}
+    \item[\textbf{(a)}] Find the force law for a central-force field that allows a particle to move in an orbit given by $1+\epsilon\cos\theta=\alpha/r$, where $\alpha\equiv \frac{l^2}{\mu k}$ and $\epsilon \equiv \sqrt{1+\frac{2El^2}{\mu k^2}}$ are constants. Write down the central force in terms of $k$ and $r$.
+    \item[\textbf{(b)}] The effective potential energy is given as $V(r)=U(r)+\frac{l^2}{2\mu r^2}$, where $U(r)$ is the potential energy. First show that $U(r)=-\frac{k}{r}$, and then prove that the particle follows a circular orbit when $E=V_{\text{min}}$, where $V_{\text{min}}$ is the minimum effective potential energy. (Hint: First think of what $\epsilon$ has to be for a circular orbit. Then calculate the $r$ value making $V(r)$ minimum. Show that $\epsilon$ satisfies circular orbit condition when you set $E=V_{\text{min}}$ for $\epsilon$.)
+
+\end{itemize}
+
+\textit{Each option is worth 0.6 points - Total: 1.2 points} 
+
+\exercise
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{figures/q4.pdf}
+\end{figure}
+In the figure the effective potential energy of a particle moving in an inverse-square-law central-force field $f(r)=-k/r^2$ is given. One of the gray curves behaving proportional to $r^\alpha$ is the centrifugal potential energy. The other curve behaving proportional to $r^\beta$ is the potential energy in the central-force problem.
+
+\begin{itemize}
+    \item[\textbf{(a)}] Given that the speed is expressed by $v^2=\Dot{r}^2+r^2\Dot{\theta}^2$ in polar coordinates, and that the angular momentum is $l=\mu r^2\Dot{\theta}$, write down the total energy of the particle in terms of $\Dot{r}$, $l$, $\mu$, $r$ and $k$.
+    \item[\textbf{(b)}] Which term in total energy is called the centrifugal potential energy, and how the effective potential $V_{\text{eff}}$ is defined? According to this, determine $\alpha$ and $\beta$ in the figure.
+    \item[\textbf{(c)}] Describe briefly how a particle would possibly move in this central-force field when it had total energies $E_1$, $E_2$ and $E_3$.
+\end{itemize}
+
+\textit{Each option is worth 0.4 points - Total: 1.2 points} 
+
+\end{document}

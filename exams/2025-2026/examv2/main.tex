@@ -1,0 +1,60 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{amsmath}
+\usepackage[a4paper, margin=0.8in, top=0.1in]{geometry} % Adjust the margin here
+\usepackage{multirow}
+\usepackage{nopageno}
+\usepackage{graphicx} % Add this line to include graphics
+\usepackage{wrapfig}
+\usepackage{tikz}
+
+\setlength{\parindent}{0pt} % Set global no indent
+    
+\title{{\large Department of Physics, FNSPE, CTU in Prague} \\
+                  02YMECHZ - Mechanics \\ 
+          {\Large \textbf{Exam}}\vspace{-1cm}}
+\date{6.2.2026 / 10:00 - 12:00}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Q1:} Calculate the gravitational potential and gravitational field due to a uniform ring of radius $a$ and mass $m$ at a point on the axis of the ring a distance $z$ from its center. Are your results consistent with the limits for $z\gg a$ and $z = 0$? Justify your answer. --- \textit{1 point}
+
+\vspace*{0.1cm}
+\textbf{Q2:} A rigid body consists of two identical point masses, each of mass $m$, connected by a massless rod. They are located at fixed positions $\mathbf{r}_1 = (a, a, 0)$ and $\mathbf{r}_2 = (-a, -a, 0)$ in a Cartesian coordinate system. The body rotates with a constant angular velocity $\boldsymbol{\omega} = (\omega, 0, 0)$ about the $x$-axis.
+
+\begin{itemize}
+    \item[\textbf{a.}] Compute the inertia tensor $\mathbf{I}$ of the system in the $(x,y,z)$ basis. --- \textit{0.4 point}
+    \item[\textbf{b.}] Compute the total angular momentum vector $\mathbf{L}$ of the body. --- \textit{0.4 point}
+    \item[\textbf{c.}] Find the angle $\theta$ between $\boldsymbol{\omega}$ and $\mathbf{L}$. --- \textit{0.2 point}
+\end{itemize}
+\textbf{Given:} The components of the inertia tensor: $I_{ij} = \sum_k m_k\left(\delta_{ij} r_k^2 - r_{k,i} r_{k,j}\right)$.
+
+\vspace*{0.1cm}
+\textbf{Q3:} The equation of motion for a driven oscillator is given as $m \ddot{x} + b \dot{x} + k x = F_0 \cos(\omega t),$ where $m$ is the mass, $b$ is the damping coefficient, $k$ is the spring constant, and $F_0 \cos(\omega t)$ is the driving force. The solution for the displacement $x(t)$ of the oscillator is given by $x(t) = x_c(t) + x_p(t)$, where $x_c(t)$ is the complementary solution and $x_p(t) = A \cos(\omega t - \delta)$ is the particular solution. 
+
+\begin{itemize}
+    \item[\textbf{a.}] Describe the oscillator's behavior in the long-time limit, i.e., $t \to \infty$. --- \textit{0.3 point}
+    \item[\textbf{b.}] What is the amplitude of oscillation in terms of $k$ and $F_0$ when the system is driven with frequency $\omega \ll \omega_0$? What is the physical meaning of this? --- \textit{0.3 point}
+    \item[\textbf{c.}] What is the amplitude of oscillation in terms of $k$, $F_0$ and $Q$ when the system is driven in resonance frequency? Compared to what you found in part \textbf{b.} and considering the fact that for most of the oscillators $Q\gg 1$, what does driving the system with the resonance frequency do to the amplitude? --- \textit{0.4 points}
+\end{itemize}
+Given: $A = \frac{F_0/m}{\sqrt{\left(\omega_0^2 - \omega^2\right)^2 + \left(\frac{b \omega}{m}\right)^2}}$, $Q = \frac{m \omega_0}{b}$, $\omega_0 = \sqrt{\frac{k}{m}}$
+
+
+\vspace*{0.1cm}
+\textbf{Q4:} A child stands on the \underline{center} of a horizontal merry-go-round that rotates with constant angular velocity $\boldsymbol{\Omega}=\Omega \,\hat{z}$. The surface is frictionless. At time \(t=0\), a child gently pushes a small puck of mass $m$ so that, relative to the rotating platform, the puck’s initial velocity is purely radial and directed outward. Work entirely in the rotating (non-inertial) frame of the merry-go-round.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Write the equation of motion of the puck in the rotation frame including all fictitious (inertial) forces. --- \textit{0.4 point}
+    \item[\textbf{b.}] Identify explicitly the centrifugal and Coriolis forces acting on the puck and explain qualitatively why the puck’s trajectory does not remain purely radial. --- \textit{0.3 point}
+    \item[\textbf{c.}] Determine the direction of the deflection (clockwise or counterclockwise when viewed from above) and describe the trajectory of the puck qualitatively as it moves outward. --- \textit{0.3 point}
+\end{enumerate}
+
+Given: Coriolis force $\vec{F}_c = -2m \vec{\Omega} \times \vec{v}$, Centrifugal force $\vec{F}_{\text{cf}} = -m \vec{\Omega} \times (\vec{\Omega} \times \vec{r})$.
+    
+
+\end{document}
+

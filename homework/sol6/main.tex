@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 6}
+\date{Assigned for the week of Oct 27, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+\item \textbf{Phase--space diagrams}
+
+\begin{itemize}
+\item \textbf{Left diagram:} Trajectories form closed orbits around the origin. Motion is bounded in time. The equilibrium at the origin is stable.
+\item \textbf{Right diagram:} Trajectories move away from the origin. The equilibrium at the origin is \emph{unstable}.
+\end{itemize}
+
+\item \textbf{Particle motion in polar coordinates}
+
+Given
+\[
+r(t)=r_0+v_r t, \qquad \theta(t)=\Omega t+\tfrac12 \alpha t^2 .
+\]
+
+\begin{enumerate}
+\item[(a)] General expressions:
+\[
+\vec{v}=\dot r\,\hat{r} + r\dot\theta\,\hat{{\theta}},
+\]
+\[
+\vec{a}=(\ddot r-r\dot\theta^2)\hat{r}+(r\ddot\theta+2\dot r\dot\theta)\hat{{\theta}} .
+\]
+
+\item[(b)] Components:
+\[
+v_r=v_r,\qquad v_\theta=(r_0+v_r t)(\Omega+\alpha t),
+\]
+\[
+a_r=-(r_0+v_r t)(\Omega+\alpha t)^2,
+\]
+\[
+a_\theta=(r_0+v_r t)\alpha+2v_r(\Omega+\alpha t).
+\]
+
+\item[(c)] Speed and its derivative:
+\[
+v(t)=\sqrt{v_r^2+(r_0+v_r t)^2(\Omega+\alpha t)^2},
+\]
+\[
+\dot v=\frac{(r_0+v_r t)(\Omega+\alpha t)\left[\alpha(r_0+v_r t)+v_r(\Omega+\alpha t)\right]}{v(t)}.
+\]
+The sign of $\dot v$ is determined by the numerator.
+
+\item[(d)] Radial acceleration vanishes when
+\[
+a_r=0 \;\Rightarrow\; t^*=-\frac{r_0}{v_r}\quad \text{or}\quad t^*=-\frac{\Omega}{\alpha}.
+\]
+Such times exist for $t^*\ge0$ if $v_r<0$ and/or $\Omega\alpha<0$.
+\end{enumerate}
+\end{enumerate}
+
+
+\end{document}

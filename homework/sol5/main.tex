@@ -1,0 +1,328 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 5}
+\date{Assigned for the week of Oct 20, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+We consider a standard driven damped harmonic oscillator of mass $m$, spring constant $k$, and damping coefficient $b$ (linear viscous damping force $-b\dot{x}$), driven by an external force
+\[
+F_\text{drive}(t) = F_0 \cos(\omega t).
+\]
+The equation of motion is
+\begin{equation}
+m \ddot{x} + b \dot{x} + k x = F_0 \cos(\omega t).
+\label{eq:eom}
+\end{equation}
+The natural angular frequency is
+\[
+\omega_0 = \sqrt{\frac{k}{m}},
+\]
+and the damping rate is
+\[
+\gamma = \frac{b}{2m}.
+\]
+
+In steady state (after transients die out), the motion is sinusoidal at the driving frequency:
+\begin{equation}
+x(t) = X \cos(\omega t - \delta),
+\label{eq:x_of_t}
+\end{equation}
+where the steady-state amplitude $X$ and phase $\delta$ are
+\begin{align}
+X &= \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\gamma \omega)^2}}, \\
+\tan \delta &= \frac{2\gamma \omega}{\omega_0^2 - \omega^2}.
+\end{align}
+
+We will work in this steady-state regime.
+
+\begin{enumerate}
+
+% 1
+\item \textbf{Average total mechanical energy over one cycle. Resonant case.}
+
+The instantaneous mechanical energy of the mass-spring system is
+\begin{equation}
+E(t) = K(t) + U(t)
+= \frac{1}{2} m \dot{x}^2(t) + \frac{1}{2} k x^2(t).
+\label{eq:Et}
+\end{equation}
+
+Using \eqref{eq:x_of_t}:
+\[
+x(t) = X \cos(\omega t - \delta),
+\qquad
+\dot{x}(t) = -X \omega \sin(\omega t - \delta).
+\]
+
+Then
+\begin{align}
+U(t) &= \frac{1}{2} k X^2 \cos^2(\omega t - \delta), \\
+K(t) &= \frac{1}{2} m \omega^2 X^2 \sin^2(\omega t - \delta).
+\end{align}
+
+Average over one period $T = 2\pi/\omega$.
+We use
+\[
+\langle \cos^2(\omega t - \delta) \rangle = \langle \sin^2(\omega t - \delta) \rangle = \frac{1}{2}.
+\]
+
+Therefore,
+\begin{align}
+\langle U \rangle 
+&= \frac{1}{2} k X^2 \cdot \frac{1}{2}
+= \frac{1}{4} k X^2, \\
+\langle K \rangle
+&= \frac{1}{2} m \omega^2 X^2 \cdot \frac{1}{2}
+= \frac{1}{4} m \omega^2 X^2.
+\end{align}
+
+Thus, the \emph{cycle-averaged} total mechanical energy is
+\begin{equation}
+\langle E \rangle
+= \langle K \rangle + \langle U \rangle
+= \frac{1}{4} k X^2 + \frac{1}{4} m \omega^2 X^2.
+\label{eq:avgE_general}
+\end{equation}
+
+Using $k = m \omega_0^2$:
+\begin{equation}
+\langle E \rangle
+= \frac{1}{4} m \omega_0^2 X^2 + \frac{1}{4} m \omega^2 X^2
+= \frac{m X^2}{4} (\omega_0^2 + \omega^2).
+\label{eq:avgE_simplified}
+\end{equation}
+
+\textbf{Now evaluate at resonance.}
+
+At \emph{driving frequency equal to the natural frequency}, i.e. $\omega = \omega_0$, the steady-state amplitude becomes
+\[
+X_\text{res}
+= \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega_0^2)^2 + (2\gamma \omega_0)^2}}
+= \frac{F_0/m}{2\gamma \omega_0}
+= \frac{F_0}{2 m \gamma \omega_0}.
+\]
+
+At $\omega = \omega_0$, \eqref{eq:avgE_simplified} gives
+\[
+\langle E \rangle_{\omega=\omega_0}
+= \frac{m X_\text{res}^2}{4} (\omega_0^2 + \omega_0^2)
+= \frac{m X_\text{res}^2}{4} (2\omega_0^2)
+= \frac{m \omega_0^2 X_\text{res}^2}{2}.
+\]
+
+Insert $X_\text{res}$:
+\[
+\langle E \rangle_{\omega=\omega_0}
+= \frac{m \omega_0^2}{2}
+\left(\frac{F_0}{2 m \gamma \omega_0}\right)^2
+= \frac{m \omega_0^2}{2}
+\frac{F_0^2}{4 m^2 \gamma^2 \omega_0^2}
+= \frac{F_0^2}{8 m \gamma^2}.
+\]
+
+So, at resonance,
+\begin{equation}
+\boxed{
+\langle E \rangle_{\omega=\omega_0}
+= \frac{F_0^2}{8 m \gamma^2}
+= \frac{F_0^2}{8 m} \left(\frac{2m}{b}\right)^2
+= \frac{F_0^2 m}{2 b^2}.
+}
+\end{equation}
+
+This shows that the average stored mechanical energy at resonance grows as damping becomes smaller (since $\gamma = b/(2m)$).
+
+
+% 2
+\item \textbf{Power delivered by the driving force, and balance with dissipation.}
+
+The instantaneous power delivered by the driving force is
+\[
+P_\text{drive}(t) = \frac{dW}{dt}=\frac{F_\text{drive}(t)\,dx }{dt} = F_\text{drive}(t)\dot{x}(t)
+= F_0 \cos(\omega t)\, \dot{x}(t).
+\]
+
+The instantaneous rate of energy loss due to damping is the power associated with the friction force $F_\text{damp} = -b \dot{x}$:
+\[
+P_\text{damp}(t) = F_\text{damp} \, \dot{x}(t)
+= (-b \dot{x}) \dot{x}
+= - b \dot{x}^2(t).
+\]
+This is always $\le 0$: damping removes energy.
+
+We now show that \emph{over one cycle in steady state}, the average power input from the driver equals the average power dissipated by damping.
+
+First, write $\dot{x}(t)$ explicitly in steady state using \eqref{eq:x_of_t}:
+\[
+x(t) = X \cos(\omega t - \delta),
+\quad
+\dot{x}(t) = -X \omega \sin(\omega t - \delta).
+\]
+
+Thus,
+\begin{align}
+P_\text{drive}(t)
+&= F_0 \cos(\omega t)\, \big[-X \omega \sin(\omega t - \delta)\big].
+\end{align}
+
+We can rewrite $\sin(\omega t - \delta)$ in terms of $\sin(\omega t)$ and $\cos(\omega t)$:
+\[
+\sin(\omega t - \delta)
+= \sin(\omega t)\cos\delta - \cos(\omega t)\sin\delta.
+\]
+
+Then
+\begin{align}
+P_\text{drive}(t)
+&= -F_0 X \omega \cos(\omega t)\,
+\big[ \sin(\omega t)\cos\delta - \cos(\omega t)\sin\delta \big] \\
+&= -F_0 X \omega
+\left[
+\cos(\omega t)\sin(\omega t)\cos\delta
+- \cos^2(\omega t)\sin\delta
+\right].
+\end{align}
+
+Average over one period. We use:
+\[
+\langle \cos(\omega t)\sin(\omega t) \rangle = 0,
+\qquad
+\langle \cos^2(\omega t) \rangle = \frac{1}{2}.
+\]
+
+So
+\begin{align}
+\langle P_\text{drive} \rangle
+&= -F_0 X \omega
+\left[
+0 \cdot \cos\delta
+- \frac{1}{2}\sin\delta
+\right] \\
+&= \frac{1}{2} F_0 X \omega \sin\delta.
+\label{eq:Pdrive_avg}
+\end{align}
+
+Now compute the average power dissipated:
+\[
+P_\text{damp}(t) = - b \dot{x}^2(t)
+= - b X^2 \omega^2 \sin^2(\omega t - \delta).
+\]
+
+Then
+\[
+\langle P_\text{damp} \rangle
+= - b X^2 \omega^2 \, \langle \sin^2(\omega t - \delta) \rangle
+= - b X^2 \omega^2 \cdot \frac{1}{2}
+= -\frac{1}{2} b X^2 \omega^2.
+\label{eq:Pdamp_avg_prelim}
+\]
+
+We must show that $\langle P_\text{drive} \rangle + \langle P_\text{damp} \rangle = 0$ in steady state (no net change of energy over a cycle).
+
+From steady-state phasor relations, one can show
+\[
+\sin\delta = \frac{2\gamma \omega}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2 \gamma \omega)^2}}
+= \frac{2\gamma \omega}{(F_0/m)/X}.
+\]
+Equivalently,
+\[
+F_0 \sin\delta
+= 2 m \gamma \omega X
+= b \omega X,
+\]
+since $b = 2 m \gamma$.
+
+Plugging into \eqref{eq:Pdrive_avg}:
+\begin{align}
+\langle P_\text{drive} \rangle
+&= \frac{1}{2} F_0 X \omega \sin\delta \\
+&= \frac{1}{2} (b \omega X) X \omega \\
+&= \frac{1}{2} b X^2 \omega^2.
+\end{align}
+
+So
+\[
+\boxed{
+\langle P_\text{drive} \rangle
+= \frac{1}{2} b X^2 \omega^2,
+\qquad
+\langle P_\text{damp} \rangle
+= -\frac{1}{2} b X^2 \omega^2,
+}
+\]
+and therefore
+\[
+\langle P_\text{drive} \rangle + \langle P_\text{damp} \rangle = 0.
+\]
+
+Interpretation: in steady state, over each cycle, the driver supplies exactly the energy that the damper removes. The oscillator's averaged mechanical energy is constant in time even though energy is continuously flowing in and being dissipated as heat.
+
+
+% 3
+\item \textbf{Energy decay, $Q$ factor, and interpretation.}
+
+Now consider a \emph{free} damped harmonic oscillator (no driving force), with weak damping ($\gamma \ll \omega_0$). The displacement is
+\[
+x(t) = A_0 e^{-\gamma t} \cos(\omega_1 t + \phi),
+\]
+where $\omega_1 \approx \omega_0$ for light damping, and $\gamma = b/(2m)$.
+
+The mechanical energy of the oscillator at time $t$ is
+\[
+E(t) = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k x^2.
+\]
+
+For light damping, the energy decays exponentially as
+\begin{equation}
+E(t) = E_0 \, e^{-2 \gamma t},
+\label{eq:Et_decay}
+\end{equation}
+where $E_0$ is the initial energy.
+
+The \emph{quality factor} $Q$ of a lightly damped oscillator is defined as
+\begin{equation}
+Q = \frac{\omega_0}{2\gamma}
+= \frac{m \omega_0}{b}.
+\label{eq:Qdef}
+\end{equation}
+
+Solve \eqref{eq:Qdef} for $\gamma$:
+\[
+\gamma = \frac{\omega_0}{2Q}.
+\]
+
+Insert into \eqref{eq:Et_decay}:
+\[
+E(t) = E_0 \exp\!\left[-2 \left(\frac{\omega_0}{2Q}\right) t \right]
+= E_0 \exp\!\left[- \frac{\omega_0 t}{Q} \right].
+\]
+
+Thus,
+\begin{equation}
+\boxed{
+E(t) = E_0 \, \exp\!\left( - \frac{\omega_0 t}{Q} \right).
+}
+\end{equation}
+
+Interpretation:
+
+\begin{itemize}
+    \item The total mechanical energy of a lightly damped oscillator decays exponentially in time.
+    \item The decay rate is set by $\omega_0/Q$. Large $Q$ means slow energy loss (weak damping); small $Q$ means fast energy loss (strong damping).
+    \item Over a timescale $\Delta t \sim Q/\omega_0$, the energy drops by a factor of $1/e$. This timescale is often called the ``ringdown time''.
+\end{itemize}
+
+\end{enumerate}
+\end{document}

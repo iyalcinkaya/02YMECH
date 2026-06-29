@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{parskip}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 10}
+\date{Assigned for the week of Nov 24, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+\item At the equator, the Coriolis acceleration is
+\[
+\mathbf a_C = -2\,\boldsymbol{\Omega}\times\mathbf v,
+\]
+with \(\boldsymbol{\Omega}\) horizontal and pointing north.
+
+The apple falls vertically with
+\[
+v_z(t)=-gt.
+\]
+Thus the Coriolis acceleration is purely horizontal (eastward) with magnitude
+\[
+a_C = 2\Omega g t.
+\]
+
+Horizontal velocity:
+\[
+v_x(t)=\int_0^t 2\Omega g \tau\,d\tau=\Omega g t^2.
+\]
+
+Horizontal displacement:
+\[
+x(t)=\int_0^t \Omega g \tau^2\,d\tau=\frac{1}{3}\Omega g t^3.
+\]
+
+The fall time from height \(h\) is
+\[
+t_f=\sqrt{\frac{2h}{g}}.
+\]
+
+Hence
+\[
+x=\frac{1}{3}\Omega g\left(\frac{2h}{g}\right)^{3/2}
+=\frac{2\sqrt{2}}{3}\,\Omega\,\frac{h^{3/2}}{\sqrt{g}}.
+\]
+
+With \(h=4~\mathrm{m}\), \(\Omega=7.29\times10^{-5}~\mathrm{s^{-1}}\),
+\[
+x \approx 2\times10^{-4}\ \mathrm{m} = 0.2\ \mathrm{mm}.
+\]
+
+The deviation is negligible.  
+The phrase “the apple does not fall far from the tree” remains valid :)
+
+\newpage
+
+\item 
+\begin{enumerate}
+\item[(a)] In the rotating frame, the forces along the pipe are due to the centrifugal force.
+The equation of motion is
+\[
+m\ddot r = m\Omega^2 r.
+\]
+
+(Coriolis force is perpendicular to the pipe and constrained by the walls.)
+
+\item[(b)] Solution:
+\[
+r(t)=A e^{\Omega t}+B e^{-\Omega t}.
+\]
+Using \(r(0)=r_0\), \(\dot r(0)=0\),
+\[
+r(t)=r_0\cosh(\Omega t).
+\]
+
+\item[(c)] Time to reach \(r=R\):
+\[
+R=r_0\cosh(\Omega t)
+\;\Rightarrow\;
+t=\frac{1}{\Omega}\cosh^{-1}\!\left(\frac{R}{r_0}\right).
+\]
+
+\item[(d)] Although the particle is initially at rest in the rotating frame, it experiences a centrifugal force \(m\Omega^2 r\) directed outward. This force does work on the particle, causing radial acceleration and increasing kinetic energy in the rotating frame.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

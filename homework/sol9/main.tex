@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{parskip}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 9}
+\date{Assigned for the week of Nov 17, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+\item Integrating the velocities,
+\[
+\mathbf r_1(t)=(1+t,\tfrac12 t^2),\quad
+\mathbf r_2(t)=(-1-t,\tfrac12 t^2),\quad
+\mathbf r_3(t)=(0,\tfrac12 t^2).
+\]
+
+\begin{enumerate}
+\item[(a)] Center of mass:
+\[
+\mathbf R_{\rm CM}(t)=\frac{1}{3}\sum_{i=1}^3 \mathbf r_i(t)
+=(0,\tfrac12 t^2).
+\]
+Velocity and acceleration:
+\[
+\mathbf V_{\rm CM}(t)=(0,t),\qquad
+\mathbf A_{\rm CM}=(0,1).
+\]
+The center of mass does \emph{not} move with constant velocity.
+
+\item[(b)] Total linear momentum:
+\[
+\mathbf P=\sum m\mathbf v_i
+=(1-1+0,\; t+t+t)=(0,3t).
+\]
+Since \(\dot{\mathbf P}=(0,3)\neq 0\), linear momentum is \emph{not conserved}.
+
+\item[(c)] Total angular momentum about the origin:
+\[
+L_z=\sum m(x_i v_{iy}-y_i v_{ix}).
+\]
+For each particle,
+\[
+L_{1z}=t,\quad L_{2z}=t,\quad L_{3z}=0,
+\]
+so
+\[
+L_z=2t.
+\]
+Since \(dL_z/dt=2\neq0\), angular momentum is \emph{not conserved}.
+\end{enumerate}
+
+\item
+\begin{enumerate}
+\item[(a)] Total mass:
+\[
+M=\int_0^a\!\!\int_0^b \sigma_0\frac{x}{a}\,dy\,dx
+=\frac{\sigma_0 ab}{2}.
+\]
+
+\item[(b)] Center of mass:
+\[
+x_{\rm cm}=\frac{1}{M}\int_0^a\!\!\int_0^b x\,\sigma_0\frac{x}{a}\,dy\,dx
+=\frac{2a}{3},
+\]
+\[
+y_{\rm cm}=\frac{1}{M}\int_0^a\!\!\int_0^b y\,\sigma_0\frac{x}{a}\,dy\,dx
+=\frac{b}{2}.
+\]
+
+Thus
+\[
+(x_{\rm cm},y_{\rm cm})=\left(\frac{2a}{3},\frac{b}{2}\right).
+\]
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

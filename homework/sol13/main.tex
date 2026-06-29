@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{parskip}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 13}
+\date{Assigned for the week of Dec 15, 2025}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section*{Solution}
+
+(a) For torque-free motion, Euler's equations are
+\[
+\begin{aligned}
+I_1\dot{\omega}_1 &= (I_2-I_3)\omega_2\omega_3,\\
+I_2\dot{\omega}_2 &= (I_3-I_1)\omega_3\omega_1,\\
+I_3\dot{\omega}_3 &= (I_1-I_2)\omega_1\omega_2.
+\end{aligned}
+\]
+
+The kinetic energy is
+\[
+T=\frac12\left(I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2\right).
+\]
+Differentiating and using Euler’s equations gives
+\[
+\dot T = I_1\omega_1\dot{\omega}_1 + I_2\omega_2\dot{\omega}_2 + I_3\omega_3\dot{\omega}_3,
+\]
+and substituting Euler's equations yields
+\[
+\dot T = \omega_1(I_2-I_3)\omega_2\omega_3 + \omega_2(I_3-I_1)\omega_3\omega_1 + \omega_3(I_1-I_2)\omega_1\omega_2 = 0,
+\]
+\[
+\dot T=0,
+\]
+so \(T\) is conserved.
+
+The angular momentum in the body frame is
+\[
+\mathbf L=(I_1\omega_1,I_2\omega_2,I_3\omega_3),
+\]
+and its squared magnitude is
+\[
+L^2=I_1^2\omega_1^2+I_2^2\omega_2^2+I_3^2\omega_3^2.
+\]
+Differentiating,
+\[
+\dot L^2 = 2I_1^2\omega_1\dot{\omega}_1 + 2I_2^2\omega_2\dot{\omega}_2 + 2I_3^2\omega_3\dot{\omega}_3,
+\]
+and substituting Euler's equations yields
+\[
+\dot L^2 = 2I_1\omega_1(I_2-I_3)\omega_2\omega_3 + 2I_2\omega_2(I_3-I_1)\omega_3\omega_1 + 2I_3\omega_3(I_1-I_2)\omega_1\omega_2 = 0,
+\]
+satisfies \(\dot L^2=0\). Hence \(L^2\) is conserved. \emph{Even though \(\mathbf L\) itself is not conserved in the body frame, its magnitude is.}
+
+
+(b) From the initial conditions,
+\[
+T=\frac12(I_1+I_2)\omega_0^2,
+\qquad
+L^2=(I_1^2+I_2^2)\omega_0^2.
+\]
+
+Thus, for all \(t\),
+\begin{align}
+I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2
+&=(I_1+I_2)\omega_0^2, \label{E}\\
+I_1^2\omega_1^2+I_2^2\omega_2^2+I_3^2\omega_3^2
+&=(I_1^2+I_2^2)\omega_0^2. \label{L}
+\end{align}
+
+Solving \eqref{E}--\eqref{L} for \(\omega_2^2\) and \(\omega_3^2\) yields
+\[
+\omega_3^2
+=
+\frac{I_2-I_1}{I_3-I_1}\,(\omega_1^2-\omega_0^2),
+\qquad
+\omega_2^2
+=
+\frac{I_1(I_3-I_2)}{I_2(I_2-I_1)}(\omega_0^2-\omega_1^2).
+\]
+
+From the first Euler equation,
+\[
+\dot{\omega}_1=\frac{I_2-I_3}{I_1}\omega_2\omega_3.
+\]
+Squaring and substituting the expressions above gives
+\[
+\boxed{
+\dot{\omega}_1^{\,2}
+=
+\frac{(I_3-I_2)(I_2-I_1)}{I_1^2(I_3-I_1)}
+\,\omega_1^2(\omega_0^2-\omega_1^2)
+}.
+\]
+
+
+
+(c) Since \(\dot{\omega}_1^{\,2}\ge0\),
+\[
+0\le \omega_1^2\le \omega_0^2,
+\quad\text{or}\quad
+-\omega_0\le\omega_1\le\omega_0.
+\]
+The motion is bounded between turning points and therefore periodic.
+
+
+(d) Let
+\[
+C=\frac{(I_3-I_2)(I_2-I_1)}{I_1^2(I_3-I_1)}.
+\]
+Then
+\[
+\frac{d\omega_1}{dt}
+=
+\sqrt{C}\,\omega_1\sqrt{\omega_0^2-\omega_1^2}.
+\]
+Separating variables,
+\[
+dt
+=
+\frac{d\omega_1}{\sqrt{C}\,\omega_1\sqrt{\omega_0^2-\omega_1^2}}.
+\]
+
+One quarter of the period corresponds to \(\omega_1:0\to\omega_0\):
+\[
+\frac{T}{4}
+=
+\frac{1}{\sqrt{C}}
+\int_0^{\omega_0}
+\frac{d\omega_1}{\omega_1\sqrt{\omega_0^2-\omega_1^2}}.
+\]
+
+With the substitution \(\omega_1=\omega_0\sin\theta\),
+\[
+\boxed{
+T
+=
+\frac{4}{\omega_0\sqrt{C}}
+\int_0^{\pi/2}\frac{d\theta}{\sin\theta}
+},
+\]
+which is an integral representation of the motion.
+\end{document}

@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{tikz}
+\geometry{a4paper, margin=0.7in}
+
+
+\title{02YMECH - Solution 4}
+\date{Assigned for the week of Oct 13, 2025}
+\author{}
+\begin{document}
+\maketitle
+
+\section*{Solutions}
+
+\begin{enumerate}
+
+% 1
+\item \textbf{Time to first maximum displacement (undamped oscillator).}
+
+The motion is
+\[
+x(t) = A \cos(\omega_0 t + \phi),
+\]
+where $A$, $\omega_0$, and $\phi$ are constants. The velocity is
+\[
+v(t) = \dot{x}(t) = -A \omega_0 \sin(\omega_0 t + \phi).
+\]
+
+Maximum displacement in simple harmonic motion occurs when $|x(t)| = A$, i.e. when the cosine is $\pm 1$. At those instants, the velocity is zero.
+
+We are told the initial position and velocity:
+\[
+x(0) = x_0 = A \cos \phi,
+\qquad
+v(0) = v_0 = -A \omega_0 \sin \phi.
+\]
+
+From these,
+\[
+\cos \phi = \frac{x_0}{A},
+\qquad
+\sin \phi = - \frac{v_0}{A \omega_0}.
+\]
+
+We want the first time $t>0$ such that $x(t)$ reaches an \emph{extreme} (turning point), i.e. when $v(t)=0$ \emph{and} $x$ is a maximum in magnitude.
+
+The condition $v(t)=0$ gives
+\[
+\sin(\omega_0 t + \phi) = 0
+\quad \Longrightarrow \quad
+\omega_0 t + \phi = n\pi,
+\quad n \in \mathbb{Z}.
+\]
+
+Thus the candidate times are
+\[
+t_n = \frac{n\pi - \phi}{\omega_0}.
+\]
+
+At those instants,
+\[
+x(t_n) = A \cos(n\pi) = A(-1)^n.
+\]
+So for even $n$ ($n=0,2,4,\dots$), $x = +A$; for odd $n$ ($n=1,3,5,\dots$), $x = -A$. Both $\pm A$ are extrema of equal magnitude.
+
+We want the \emph{first} $t>0$. The smallest $t_n>0$ is obtained by choosing the smallest integer $n$ such that
+\[
+t_n = \frac{n\pi - \phi}{\omega_0} > 0.
+\]
+
+This gives the rule:
+\[
+t_{\text{first}} = \min_{n \in \mathbb{Z}} \left\{ \frac{n\pi - \phi}{\omega_0} \, \Big| \, \frac{n\pi - \phi}{\omega_0} > 0 \right\}.
+\]
+
+In words: find the next zero of the sine after $t=0$. Equivalently, if $\phi \in (-\pi,\pi]$,
+\[
+t_{\text{first}} =
+\begin{cases}
+\displaystyle \frac{-\phi}{\omega_0}, & \text{if } \phi < 0, \\[1em]
+\displaystyle \frac{\pi - \phi}{\omega_0}, & \text{if } \phi \ge 0~.
+\end{cases}
+\]
+
+We can also express $\phi$ in terms of $x_0,v_0$ using
+\[
+\phi = \arctan2\!\left(-\frac{v_0}{A\omega_0}, \frac{x_0}{A}\right),
+\]
+where $\arctan2(y,x)$ is the correct quadrant angle with $\cos\phi = x_0/A$ and $\sin\phi = -v_0/(A\omega_0)$.
+
+Summary: the first time the oscillator reaches an endpoint ($|x|=A$) after $t=0$ is given by the smallest positive member of $t_n = (n\pi-\phi)/\omega_0$.
+
+Physically: the oscillator reaches maximum displacement whenever its velocity first becomes zero.
+
+
+% 2
+\item \textbf{Average kinetic and potential energy over one cycle.}
+
+For a harmonic oscillator of mass $m$ and angular frequency $\omega_0$, we can write
+\[
+x(t) = A \cos(\omega_0 t + \phi).
+\]
+Then
+\[
+v(t) = \dot{x}(t) = -A \omega_0 \sin(\omega_0 t + \phi).
+\]
+
+The kinetic energy is
+\[
+K(t) = \frac{1}{2} m v^2(t)
+= \frac{1}{2} m A^2 \omega_0^2 \sin^2(\omega_0 t + \phi).
+\]
+
+The potential energy (spring potential) is
+\[
+U(t) = \frac{1}{2} k x^2(t)
+= \frac{1}{2} k A^2 \cos^2(\omega_0 t + \phi),
+\]
+with $k = m \omega_0^2$ for a simple harmonic oscillator. Thus
+\[
+U(t) = \frac{1}{2} m \omega_0^2 A^2 \cos^2(\omega_0 t + \phi).
+\]
+
+The total mechanical energy is constant:
+\[
+E = K(t)+U(t)
+= \frac{1}{2} m \omega_0^2 A^2.
+\]
+
+We now compute time averages over one full period $T = \frac{2\pi}{\omega_0}$:
+\[
+\langle K \rangle
+= \frac{1}{T} \int_0^T K(t)\, dt,
+\qquad
+\langle U \rangle
+= \frac{1}{T} \int_0^T U(t)\, dt.
+\]
+
+We use the facts that over any full period,
+\[
+\langle \sin^2(\omega_0 t + \phi) \rangle = \frac{1}{2},
+\qquad
+\langle \cos^2(\omega_0 t + \phi) \rangle = \frac{1}{2}.
+\]
+
+Therefore,
+\[
+\langle K \rangle
+= \frac{1}{2} m A^2 \omega_0^2 \cdot \frac{1}{2}
+= \frac{1}{4} m A^2 \omega_0^2,
+\]
+\[
+\langle U \rangle
+= \frac{1}{2} m A^2 \omega_0^2 \cdot \frac{1}{2}
+= \frac{1}{4} m A^2 \omega_0^2.
+\]
+
+But $E = \tfrac{1}{2} m \omega_0^2 A^2$, so
+\[
+\langle K \rangle = \frac{E}{2},
+\qquad
+\langle U \rangle = \frac{E}{2}.
+\]
+
+Conclusion: over one complete cycle, the oscillator spends half its energy in kinetic form (on average) and half in potential form. The averages are equal and each is $E/2$.
+
+
+% 3
+\item \textbf{Pendulum with a horizontally accelerating support.}
+
+We have a pendulum of length $L$ and bob mass $m$. Initially it hangs straight down. Then the support point begins accelerating horizontally with constant acceleration $a$ (say to the right). After transients, the pendulum reaches a new equilibrium at some constant angle $\theta$ from the vertical, and then small oscillations about that equilibrium are possible.
+
+We will work in the non-inertial frame accelerating with the support. In that frame, there is an effective ``pseudo-force'' of magnitude $ma$ acting on the bob opposite the acceleration of the support (i.e. to the left if the support accelerates to the right). Gravity $mg$ acts downward.
+
+\begin{enumerate}
+    \item \textit{New equilibrium angle $\theta$.}
+
+    In the accelerating frame, equilibrium means the tension $\vec{T}$ in the string balances the vector sum of gravity and the horizontal pseudo-force. Let $\theta$ be the angle the string makes with the vertical, displaced in the \emph{opposite} direction of the pseudo-force so that the bob is ``behind'' the accelerating support.
+
+    Force balance requires that the string aligns with the resultant of $mg$ downward and $ma$ horizontally. Geometrically,
+    \[
+    \tan \theta = \frac{\text{horizontal pseudo-force}}{\text{gravity}} = \frac{ma}{mg} = \frac{a}{g}.
+    \]
+
+    Thus
+    \[
+    \theta = \arctan\!\left(\frac{a}{g}\right).
+    \]
+
+    \item \textit{Period of small oscillations about this equilibrium.}
+
+    For small oscillations about the new equilibrium, the pendulum behaves like a simple pendulum of length $L$ in a uniform effective gravitational field $\vec{g}_\text{eff}$ equal to the vector sum of the real gravity and the pseudo-gravity from acceleration.
+
+    The magnitude of this effective gravitational field is
+    \[
+    g_\text{eff} = \sqrt{g^2 + a^2}.
+    \]
+
+    The restoring torque for small angular displacements $\delta\theta$ about equilibrium is proportional to $mg_\text{eff} L \, \delta\theta$, so the small-angle equation of motion is that of a simple pendulum with $g$ replaced by $g_\text{eff}$.
+
+    Therefore, the small-oscillation angular frequency is
+    \[
+    \omega_{\text{small}} = \sqrt{\frac{g_\text{eff}}{L}}
+    = \sqrt{\frac{\sqrt{g^2 + a^2}}{L}}.
+    \]
+
+    The corresponding period is
+    \[
+    T = \frac{2\pi}{\omega_{\text{small}}}
+    = 2\pi \sqrt{\frac{L}{g_\text{eff}}}
+    = 2\pi \sqrt{\frac{L}{\sqrt{g^2 + a^2}}}.
+    \]
+
+    Check limiting cases:
+    \begin{itemize}
+        \item If $a=0$, then $g_\text{eff}=g$ and $T=2\pi \sqrt{L/g}$, which is the usual pendulum period.
+        \item If $a$ is large, the effective gravity increases, so the period decreases.
+    \end{itemize}
+\end{enumerate}
+
+
+% 4
+\item \textbf{Damped harmonic oscillator amplitude decay.}
+
+The position of a damped oscillator is
+\[
+x(t) = A e^{-\beta t} \cos(\omega_1 t + \phi),
+\]
+where $A$ is the initial amplitude factor, $\beta>0$ is the damping coefficient (with units of 1/time), and $\omega_1$ is the damped angular frequency.
+
+The amplitude envelope of the oscillation is
+\[
+A_{\text{env}}(t) = A e^{-\beta t}.
+\]
+
+We are asked: how long until the amplitude decreases to half its initial value?
+
+We want $t = t_{1/2}$ such that
+\[
+A_{\text{env}}(t_{1/2}) = \frac{A}{2}.
+\]
+
+That is,
+\[
+A e^{-\beta t_{1/2}} = \frac{A}{2}
+\quad\Longrightarrow\quad
+e^{-\beta t_{1/2}} = \frac{1}{2}.
+\]
+
+Take the natural logarithm:
+\[
+-\beta t_{1/2} = \ln\!\left(\frac{1}{2}\right) = -\ln 2,
+\]
+so
+\[
+t_{1/2} = \frac{\ln 2}{\beta}.
+\]
+
+This $t_{1/2}$ is the amplitude ``half-life'' for the damped oscillator. Note that it depends only on $\beta$, not on $\omega_1$ or $A$.
+\end{enumerate}
+
+
+\end{document}

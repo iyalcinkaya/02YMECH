@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{amsmath}
+\usepackage[a4paper, margin=0.8in, top=0.1in]{geometry} % Adjust the margin here
+\usepackage{multirow}
+\usepackage{nopageno}
+\usepackage{graphicx} % Add this line to include graphics
+\usepackage{wrapfig}
+\usepackage{tikz}
+
+\setlength{\parindent}{0pt} % Set global no indent
+    
+\title{{\large Department of Physics, FNSPE, CTU in Prague} \\
+                  02YMECH - Mechanics \\ 
+          {\Large \textbf{Midterm 2}}\vspace{-1cm}}
+\date{19.12.2025 / 14:00 - 15:30}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Q1:} Consider a system of three point particles, each having an identical mass $m$, with their positions defined by time-dependent vectors,
+\begin{equation*}
+    \vec r_{1}~=~(at^2,~vt,~0),~\vec r_{2}~=~(vt,~at^2,~b),~\vec r_{3}~=~(0,~b,~at^2), 
+\end{equation*}
+where $a$, $b$, and $v$ are positive constants.
+\begin{itemize}
+    \item[\textbf{a.}] Find the total force required to produce the motion. --- \textit{0.2 points}
+    \item[\textbf{b.}] Find the total angular momentum and torque concerning the origin of the coordinate system. --- \textit{0.3 points}
+    \item[\textbf{c.}] Based on the results from parts (a) and (b), determine if total linear momentum and total angular momentum are conserved. --- \textit{0.2 points}
+    \item[\textbf{d.}] Find the total kinetic energy in the LAB frame and in the center of mass frame. --- \textit{0.3 points}
+\end{itemize}
+
+\vspace*{0.2cm}
+\textbf{Q2:} The equation of motion of a damped oscillator is given as $x(t)=e^{-\beta t}x_0\cos{\left(\omega_1 t\right)}$. How long does it take for the damped oscillator to halve the amplitude of the oscillation? 
+(Givens: $\ln2\approx 0.7$, $m=~1\text{kg}$, $b=1.4~\text{kg/s}$) --- \textit{1 point}
+
+\vspace*{0.2cm}
+\textbf{Q3:} For a given central force $f(r)$ the orbit of a particle of mass $\mu$ can be calculated by integrating the following differential equation,
+\begin{equation*}
+    \dfrac{d^2}{d\theta^2}\left(\frac{1}{r}\right)+\frac{1}{r}=-\frac{\mu}{l^2}r^2f(r)
+\end{equation*}
+where $l$ is the angular momentum of the particle. The particle follows an orbit given by $1+\epsilon\cos\theta=\alpha/r$, where $\alpha\equiv \frac{l^2}{\mu k}$ and $\epsilon \equiv \sqrt{1+\frac{2El^2}{\mu k^2}}$ are constants.
+
+\begin{itemize}
+    \item[\textbf{a.}] Find the force law $f(r)$ for the central force in terms of $k$ and $r$. --- \textit{0.6 points}
+    \item[\textbf{b.}] Find the potential $U(r)$ associated with $f(r)$. --- \textit{0.4 points}
+\end{itemize}
+
+\vspace*{0.2cm}
+\textbf{Q4:} The earth rotates about its axis with angular velocity $\vec{\omega}$. The unit vectors $\hat{e}_1$, $\hat{e}_2$, and $\hat{e}_3$ are local unit vectors on the Earth's surface, where $\hat{e}_3$ is perpendicular to the surface, while $\hat{e}_1$ and $\hat{e}_2$ lie on the surface. The component of $\vec{\omega}$ along the $\hat{e}_3$ direction is $\omega_z$. A very fast particle of mass $m$ is projected on a horizontal surface with an initial velocity $\vec{v_0}=v_0\hat{e}_2$. Assume the Earth is a perfect sphere with radius $R$ and neglect air resistance.
+
+\begin{itemize}
+    \item[\textbf{a.}] Determine the Coriolis force by considering the general velocity of the particle $\vec{v}=v_1\hat{e}_1+v_2\hat{e}_2$. Describe qualitatively the deflection due to the Coriolis force. --- \textit{0.6 points}
+    \item[\textbf{b.}] Write the coupled equations of motion for $\hat{e}_1$ and $\hat{e}_2$ directions, and solve them for $v_1$ and $v_2$. Does this result satisfy your initial expectations for the trajectory? --- \textit{0.4 points}
+\end{itemize}
+
+
+(Given: Coriolis force $\vec{F}_c = -2m \vec{\Omega} \times \vec{v}$)
+
+\end{document}
+
