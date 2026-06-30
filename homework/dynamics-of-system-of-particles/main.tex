@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{a4paper, margin=0.8in}
+\pagenumbering{gobble}
+
+\title{Homework assignment for 02YMECH \\ Chapter: Dynamics of System of Particles}
+\begin{document}
+\date{}
+\maketitle
+\vspace{-0.8in}
+
+\begin{enumerate}
+
+\item A thin rod of length $L$ lies along the $x$–axis from $x = 0$ to $x = L$.  
+Its linear mass density is not uniform; instead, it varies as a power of the distance from the left end:
+\[
+\lambda(x) = k\,x^{n}, \qquad 0 \le x \le L,
+\]
+where $k>0$ is a constant and $n>-1$ is a real parameter.
+
+\begin{enumerate}
+    \item Compute the total mass $M$ of the rod in terms of $k$, $n$, and $L$.
+    \item Find the position of the center of mass $x_{\mathrm{CM}}$ as a function of $n$ and $L$.
+    \item Suppose that the center of mass is required to be located at $x_{\mathrm{CM}} = \frac{3L}{4}$. Determine the value of $n$ for which this holds. Describe qualitatively how the mass is distributed along the rod for this value of $n$.
+\end{enumerate}
+
+\item Three particles move in the $xy$-plane. Each particle has mass $m = 1~\mathrm{kg}$. Their initial positions at $t=0$ are
+\[
+\mathbf r_1(0) = (1,0), \qquad
+\mathbf r_2(0) = (-1,0), \qquad
+\mathbf r_3(0) = (0,0),
+\]
+and their velocities for $t\ge 0$ are
+\[
+\mathbf v_1(t) = (1, t), \qquad
+\mathbf v_2(t) = (-1, t), \qquad
+\mathbf v_3(t) = (0, t).
+\]
+
+The positions of the particles at later times are obtained by integrating the velocities:
+\[
+\mathbf r_i(t) = \mathbf r_i(0) + \int_0^t \mathbf v_i(\tau)\, d\tau.
+\]
+
+Using the given time-dependent velocities and positions, determine whether:
+
+\begin{enumerate}
+    \item[(a)] Determine the position of the center of mass as a function of time. Compute its velocity and acceleration. Is the center of mass moving with constant velocity?
+    \item[(b)] Determine whether the total linear momentum of the system is conserved.
+    \item[(c)] Determine whether the total angular momentum of the system about the origin is conserved.
+\end{enumerate}
+
+
+\item A thin rectangular plate occupies the region \(0 \le x \le a\), \(0 \le y \le b\). Its surface mass density varies with \(x\) as 
+\[
+\sigma(x, y) = \sigma_0 \frac{x}{a},
+\] 
+where \(\sigma_0\) is a constant.  
+
+\begin{enumerate}
+    \item[(a)] Find the total mass of the plate.
+    \item[(b)] Determine the coordinates of the center of mass \((x_{\rm cm}, y_{\rm cm})\).
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
