@@ -1,0 +1,285 @@
+\documentclass{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+
+
+\title{Chapter 1: Mathematical Tools}
+\author{İskender Yalçınkaya, PhD}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Scalars}
+\emph{Scalars} are quantities that are fully described by a magnitude (or numerical value) alone. Examples of scalars in physics include mass, temperature, and energy:
+\begin{itemize}
+    \item 1 kilogram (mass)
+    \item 20 degrees Celsius (temperature)
+    \item 100 Joules (energy)
+\end{itemize}
+ 
+Scalars can be \emph{added}, \emph{subtracted}, \emph{multiplied}, and \emph{divided} using the standard rules of arithmetic. 
+
+Scalars can only be added or subtracted when they share the same physical dimension. For example, 1 kg + 2 kg = 3 kg is valid, but 1 kg + 20°C is meaningless. However, scalars of different dimensions can be multiplied or divided, yielding a new unit.
+\section{Vectors}
+\emph{Vectors} are quantities that have both a magnitude and a direction. They can be represented graphically as arrows, where the length of the arrow represents the magnitude and the direction of the arrow indicates the direction of the vector. 
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=stealth, scale=1.2]
+
+  % Vector
+  \draw[->, thick] (0,0) -- (2,1) node[midway, above] {$|\mathbf{A}|$};
+
+  % Origin
+  \fill (0,0) circle (1.5pt) node[below left] {$O$};
+
+  % Vector label
+  \node[above right] at (2,1) {$\mathbf{A}$};
+
+\end{tikzpicture}
+\end{figure}
+
+We will represent vectors using boldface letters in these notes, such as \(\mathbf{A}\), or with an arrow above the letter on the blackboard, such as \(\vec{A}\). The magnitude of a vector \(\mathbf{A}\) is denoted by \(|\mathbf{A}|\) or \(A\).
+
+\section{Components of Vectors}
+A vector can be broken down into its components along the coordinate axes. For example, a vector \(\mathbf{A}\) in two-dimensional space can be expressed in terms of its components along the \(x\)-axis and \(y\)-axis by two numbers \(A_x\) and \(A_y\) as it can be seen in the figure below.
+
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=stealth, scale=1.2]
+
+  % Axes
+  \draw[->] (-0.2,0) -- (4,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,3) node[above] {$y$};
+
+  % Components
+  \draw[dashed, thick] (0,0) -- (3,0) node[midway, below] {$A_x$};
+  \draw[dashed] (0,2) -- (3,2);
+  \draw[dashed, thick] (0,0) -- (0,2) node[midway, left] {$A_y$};
+  \draw[dashed] (3,0) -- (3,2);
+  \fill (3,0) circle (2pt);
+  \fill (0,2) circle (2pt);
+  
+  % Vector
+  \draw[->, very thick] (0,0) -- (3,2) node[above right] {$\mathbf{A}$};
+
+\end{tikzpicture}
+\end{figure}
+
+It is conventional to express a vector in terms of a column vector of its components along the coordinate axes. For example, a vector \(\mathbf{A}\) in two-dimensional space can be expressed as:
+\[
+\mathbf{A} = \begin{bmatrix} A_x \\ A_y \end{bmatrix}.
+\]  
+
+
+The real world is three-dimensional, and when it comes to draw vectors in three-dimensional space on a paper, we need to use a three coordinate system. The way we draw a three-dimensional coordinate system on a paper is shown in the figure below:
+
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1.2]
+
+    % Coordinate axes
+    \draw[->] (0,0) -- (1.5,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,1.5) node[above] {$y$};
+    \draw[->] (0,0) -- (-1.2,-0.9) node[left] {$z$};
+
+\end{tikzpicture}
+\end{center}
+
+One can think of these axes as the edges of a cube. The \(x\)-axis points to the right, the \(y\)-axis points up, and the \(z\)-axis points out of the page towards you. The positive direction of each axis is indicated by an arrowhead. A vector is in three-dimensional space then can be expressed as:
+\[
+\mathbf{A} = \begin{bmatrix} A_x \\ A_y \\ A_z \end{bmatrix}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1.2]
+
+    % Coordinate axes
+    \draw[->] (0,0) -- (3.5,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,3.5) node[above] {$y$};
+    \draw[->] (0,0) -- (-1.8,-1.4) node[left] {$z$};
+
+    % Vector endpoint
+    \coordinate (A) at (1.8,2.2);
+    \coordinate (Az) at (0.3,1.0);
+
+    % Vector
+    \draw[->, thick] (0,0) -- (A) node[above right] {$\mathbf{A}$};
+
+    % Projections
+    \draw[dashed] (A) -- (1.8,0);
+    \draw[dashed] (A) -- (0.3,1.0);
+    \draw[dashed] (Az) -- (0,0);
+    
+    % Labels
+    \node[below] at (1.8,0) {$A_x$};
+    \node[left] at (0.3,1.0) {$A_z$};
+    \node[above left] at (0,2.2) {$A_y$};
+
+\end{tikzpicture}
+\end{center}
+
+The magnitude of a vector \(\mathbf{A}\) in three-dimensional space can therefore be calculated using the Pythagorean theorem:
+\[
+|\mathbf{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}.
+\]
+
+
+\section{Unit Vectors}
+A \emph{unit vector} is a vector with a magnitude of 1. It is used to indicate direction without specifying magnitude. A unit vector can be obtained by dividing a vector by its magnitude:
+\[
+\mathbf{a} = \frac{\mathbf{A}}{|\mathbf{A}|} = \begin{bmatrix} \frac{A_x}{|\mathbf{A}|} \\ \frac{A_y}{|\mathbf{A}|}  \\ \frac{A_z}{|\mathbf{A}|}  \end{bmatrix}.
+\]
+
+We can define \emph{special unit vectors} along the coordinate axes. In three-dimensional space, we define the unit vectors $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$ as follows:
+\[
+\mathbf{i} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+\mathbf{j} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad
+\mathbf{k} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+\] 
+On the paper, we use hat notation for unit vectors, such as \(\hat{\imath}\), \(\hat{\jmath}\), and \(\hat{k}\). The unit vectors are shown in the figure below:
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=stealth, scale=1.2]
+    % Coordinate axes
+    \draw[->] (0,0) -- (2.0,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,2.0) node[above] {$y$};
+    \draw[->] (0,0) -- (-1.4,-1.1) node[left] {$z$};
+    
+    % Unit vectors
+    \draw[->, thick, red] (0,0) -- (1,0) node[midway, below] {$\hat{\imath}$};
+    \draw[->, thick, green] (0,0) -- (0,1) node[midway, left] {$\hat{\jmath}$};
+    \draw[->, thick, blue] (0,0) -- (-0.5,-0.4) node[midway, right] {$\hat{k}$};
+    
+\end{tikzpicture}
+\end{figure}
+
+Once we define the unit vectors, we can express any vector in three-dimensional space as a linear combination of the unit vectors:
+\[
+\mathbf{A} = A_x \mathbf{i} + A_y \mathbf{j} + A_z \mathbf{k}.
+\]
+
+
+\section{Operations on Vectors}
+Like scalars, vectors can be added, subtracted, multiplied, and divided.
+
+\subsection{Scalar Multiplication}
+
+\emph{Scalar multiplication} only changes the magnitude of a vector, not its direction. If the scalar is negative, it also reverses the direction of the vector:
+
+\[
+c\mathbf{A} = cA_x\mathbf{i} + cA_y\mathbf{j} + cA_z\mathbf{k}.
+\]
+
+\subsection{Dot Product}
+
+The \emph{dot product} of two vectors is defined as the product of their magnitudes and the cosine of the angle between them:
+
+\[
+\mathbf{A}\cdot\mathbf{B}
+= |\mathbf{A}||\mathbf{B}|\cos\theta
+= A_xB_x + A_yB_y + A_zB_z.
+\]
+
+The dot product is useful for finding the component of one vector along another and for calculating angles between vectors.
+
+\subsection{Cross Product}
+
+The \emph{cross product} of two vectors produces a vector perpendicular to both:
+
+\[
+\mathbf{A}\times\mathbf{B}
+= |\mathbf{A}||\mathbf{B}|\sin\theta\,\hat{\mathbf{n}},
+\]
+
+where $\hat{\mathbf{n}}$ is determined by the right-hand rule. In three dimensions,
+
+\begin{align*}
+\mathbf{A}\times\mathbf{B}
+&= (A_x\mathbf{i} + A_y\mathbf{j} + A_z\mathbf{k}) \times (B_x\mathbf{i} + B_y\mathbf{j} + B_z\mathbf{k})\\
+&= A_xB_x(\mathbf{i}\times\mathbf{i}) + A_xB_y(\mathbf{i}\times\mathbf{j}) + A_xB_z(\mathbf{i}\times\mathbf{k}) \\
+&\quad + A_yB_x(\mathbf{j}\times\mathbf{i}) + A_yB_y(\mathbf{j}\times\mathbf{j}) + A_yB_z(\mathbf{j}\times\mathbf{k}) \\
+&\quad + A_zB_x(\mathbf{k}\times\mathbf{i}) + A_zB_y(\mathbf{k}\times\mathbf{j}) + A_zB_z(\mathbf{k}\times\mathbf{k}) \\
+&= (A_yB_z - A_zB_y)\mathbf{i} + (A_zB_x - A_xB_z)\mathbf{j} + (A_xB_y - A_yB_x)\mathbf{k}.  
+\end{align*}
+
+\section{Basic Calculus}
+
+\subsection{Function}
+A \emph{function} is a rule that assigns a unique output to each input. For example, the function \(f(x) = x^2\) assigns the square of \(x\) to each value of \(x\). The value $x$ is called the \emph{parameter} of function $f$ and the value $f(x)$ is called the \emph{output} of the function for that parameter. It is conventional to draw a figure to represent a function to have a better understanding of its behavior, where the horizontal axis represents the input values and the vertical axis represents the output values. For example, the function \(f(x) = x^2\) can be represented as follows:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.8]
+  % Axes
+  \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$f(x)$};
+  % Function curve
+  \draw[domain=-2:2,smooth,variable=\x,blue] plot ({\x},{\x*\x});
+    % Labels
+    \node[below left] at (0,0) {$0$};
+    \node[below] at (1,0) {$1$};
+    \node[below] at (-1,0) {$-1$};
+    \node[left] at (0,1) {$1$};
+    \node[left] at (0,4) {$4$};
+\end{tikzpicture}
+\end{figure}
+
+\subsection{Derivative}
+
+For a function \(f(x)\), its \emph{derivative} is the ratio of the change in the output of the function to the change in the input as the change in the input approaches zero. This depicted in the following figure:
+
+
+
+
+
+The derivative of a function \(f(x)\) with respect to \(x\) is denoted by \(\frac{df}{dx}\) or \(f'(x)\). It 
+
+is defined as the limit of the average rate of change of the function as the interval approaches zero:
+
+\[
+\frac{df}{dx}
+=
+\lim_{\Delta x\to0}
+\frac{f(x+\Delta x)-f(x)}{\Delta x}.
+\]
+
+\subsection{Integral}
+
+\section{Taylor Series}
+The \emph{Taylor series} of a function $f(x)$ about a point $x_0$ is an infinite sum of terms that approximates the function near that point. The reason we use Taylor series is that it allows us to approximate complicated functions with polynomials, which are easier to work with. 
+
+\textbf{Theorem:} An \emph{analytic function} can be written as a convergent power series. An analytic function is a function that can be infinitely differentiable. The examples of analytic functions include polynomials, exponential functions, and trigonometric functions. Therefore, if $f(x)$ is analytic about $x_0$, then
+
+\[
+f(x) = c_0 + c_1(x-x_0) + c_2(x-x_0)^2 + c_3(x-x_0)^3 + \cdots
+\]
+
+To determine the coefficients \(c_n\), let us consider the derivatives of \(f(x)\):
+\begin{align*}
+f'(x) &= c_1 + 2c_2(x-x_0) + 3c_3(x-x_0)^2 + 4c_4(x-x_0)^3 + \cdots \\
+f''(x) &= 2c_2 + 3 \cdot 2c_3(x-x_0) + 4 \cdot 3c_4(x-x_0)^2 + \cdots \\
+f'''(x) &= 3 \cdot 2c_3 + 4 \cdot 3 \cdot 2c_4(x-x_0) + \cdots \\
+f^{(4)}(x) &= 4 \cdot 3 \cdot 2c_4 + \cdots \\
+\end{align*}
+Therefore, by evaluating these derivatives at \(x = x_0\), we can find the coefficients \(c_n\):
+\begin{align*}
+    f(x_0) &= c_0 \implies c_0 = f(x_0) \\
+    f'(x_0) &= c_1 \implies c_1 = f'(x_0) \\
+    f''(x_0) &= 2c_2 \implies c_2 = \frac{f''(x_0)}{2} \\
+    f'''(x_0) &= 3 \cdot 2c_3 \implies c_3 = \frac{f'''(x_0)}{3 \cdot 2} \\
+    f^{(4)}(x_0) &= 4 \cdot 3 \cdot 2c_4 \implies c_4 = \frac{f^{(4)}(x_0)}{4 \cdot 3 \cdot 2}
+\end{align*}
+
+\[
+f(x) = c_0 + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2}(x-x_0)^2 + \frac{f'''(x_0)}{3 \cdot 2}(x-x_0)^3 + \frac{f^{(4)}(x_0)}{4 \cdot 3 \cdot 2}(x-x_0)^4 + \cdots
+\]
+This is called the Taylor series of \(f(x)\) about \(x_0\). The Taylor series can be expressed in a more compact form as follows:
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\]
+
+\end{document}

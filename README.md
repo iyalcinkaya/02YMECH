@@ -1,4 +1,4 @@
-# 02YMECH: Mechanics (!Under Construction!)
+# 02YMECH: Mechanics 
 
 ![Mechanics](./img/mechanics.png)
 
@@ -16,15 +16,15 @@ If you wish to download all materials at once, click the green `<> Code` button 
 | Chapter                                        |                       Lecture Notes                       |                            Homework                            |                               Solutions                               |
 | :----------------------------------------------- | :---------------------------------------------------------: | :--------------------------------------------------------------: | :----------------------------------------------------------------------: |
 | **1. Mathematical Tools**                      |      [📝 View Notes](./notes/mathematical-tools.pdf)      |      [📄 View HW](./homework/mathematical-tools/main.pdf)      |      [📝 View Solutions](./solutions/mathematical-tools/main.pdf)      |
-| **2. Kinematics**                              |        [📝 View Notes](./notes/electrostatics.pdf)        |        [📄 View HW](./homework/electrostatics/main.pdf)        |        [📝 View Solutions](./solutions/electrostatics/main.pdf)        |
-| **3. Dynamics**                                |  [📝 View Notes](./notes/electric-fields-in-matter.pdf)  |  [📄 View HW](./homework/electric-fields-in-matter/main.pdf)  |  [📝 View Solutions](./solutions/electric-fields-in-matter/main.pdf)  |
-| **4. Conservation Theorems**                   |        [📝 View Notes](./notes/magnetostatics.pdf)        |        [📄 View HW](./homework/magnetostatics/main.pdf)        |        [📝 View Solutions](./solutions/magnetostatics/main.pdf)        |
-| **5. Small Oscillations**                      |  [📝 View Notes](./notes/magnetic-fields-in-matter.pdf)  |                               -                               |                                   -                                   |
-| **6. Central Force Motion**                    |       [📝 View Notes](./notes/electrodynamics.pdf)       |       [📄 View HW](./homework/electrodynamics/main.pdf)       |       [📝 View Solutions](./solutions/electrodynamics/main.pdf)       |
-| **7. Dynamics of System of Particles**         |    [📝 View Notes](./notes/electromagnetic-waves.pdf)    |    [📄 View HW](./homework/electromagnetic-waves/main.pdf)    |    [📝 View Solutions](./solutions/electromagnetic-waves/main.pdf)    |
-| **8. Motion in a Noninertial Reference Frame** | [📝 View Notes](./notes/special-theory-of-relativity.pdf) | [📄 View HW](./homework/special-theory-of-relativity/main.pdf) | [📝 View Solutions](./solutions/special-theory-of-relativity/main.pdf) |
-| **9. Gravitation**                       | [📝 View Notes](./notes/special-theory-of-relativity.pdf) | [📄 View HW](./homework/special-theory-of-relativity/main.pdf) | [📝 View Solutions](./solutions/special-theory-of-relativity/main.pdf) |
-| **10. Rigid Body Motion**                       | [📝 View Notes](./notes/special-theory-of-relativity.pdf) | [📄 View HW](./homework/special-theory-of-relativity/main.pdf) | [📝 View Solutions](./solutions/special-theory-of-relativity/main.pdf) |
+| **2. Kinematics**                              |        [📝 View Notes](./notes/kinematics.pdf)        |        [📄 View HW](./homework/kinematics/main.pdf)        |        [📝 View Solutions](./solutions/electrostatics/main.pdf)        |
+| **3. Dynamics**                                |  [📝 View Notes](./notes/dynamics.pdf)  |  [📄 View HW](./homework/dynamics/main.pdf)  |  [📝 View Solutions](./solutions/dynamics/main.pdf)  |
+| **4. Conservation Theorems**                   |        [📝 View Notes](./notes/conservation-theorems.pdf)        |        [📄 View HW](./homework/magnetostatics/main.pdf)        |        [📝 View Solutions](./solutions/magnetostatics/main.pdf)        |
+| **5. Small Oscillations**                      |  [📝 View Notes](./notes/small-oscillations.pdf)  |                               -                               |                                   -                                   |
+| **6. Central Force Motion**                    |       [📝 View Notes](./notes/central-force-motion.pdf)       |       [📄 View HW](./homework/central-force-motion/main.pdf)       |       [📝 View Solutions](./solutions/electrodynamics/main.pdf)       |
+| **7. Dynamics of System of Particles**         |    [📝 View Notes](./notes/dynamics-of-system-of-particles.pdf)    |    [📄 View HW](./homework/dynamics-of-system-of-particles/main.pdf)    |    [📝 View Solutions](./solutions/electromagnetic-waves/main.pdf)    |
+| **8. Motion in a Noninertial Reference Frame** | [📝 View Notes](./notes/motion-in-a-noninertial-reference-frame.pdf) | [📄 View HW](./homework/motion-in-a-noninertial-reference-frame/main.pdf) | [📝 View Solutions](./solutions/motion-in-a-noninertial-reference-frame/main.pdf) |
+| **9. Gravitation**                             | [📝 View Notes](./notes/gravitation.pdf) | [📄 View HW](./homework/gravitation/main.pdf) | [📝 View Solutions](./solutions/gravitation/main.pdf) |
+| **10. Rigid Body Motion**                      | [📝 View Notes](./notes/rigid-body-motion.pdf) | [📄 View HW](./homework/rigid-body-motion/main.pdf) | [📝 View Solutions](./solutions/rigid-body-motion/main.pdf) |
 
 ## Recordings
 
