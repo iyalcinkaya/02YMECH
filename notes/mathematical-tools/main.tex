@@ -163,8 +163,13 @@ Once we define the unit vectors, we can express any vector in three-dimensional 
 \]
 
 
+
+
+
 \section{Operations on Vectors}
 Like scalars, vectors can be added, subtracted, multiplied, and divided.
+\subsection{Addition and Subtraction}
+
 
 \subsection{Scalar Multiplication}
 
@@ -228,26 +233,289 @@ A \emph{function} is a rule that assigns a unique output to each input. For exam
 \end{tikzpicture}
 \end{figure}
 
+
 \subsection{Derivative}
 
-For a function \(f(x)\), its \emph{derivative} is the ratio of the change in the output of the function to the change in the input as the change in the input approaches zero. This depicted in the following figure:
+For a function \(f(x)\), its \emph{derivative} describes the rate at which the output of the function changes with respect to its input. It is defined as the ratio of the change in the output to the change in the input as the change in the input approaches zero. This is depicted in the following figure:
 
+\begin{figure}[h]
+    \centering
+    % Insert figure here
+    \caption{Geometrical interpretation of the derivative.}
+    \label{fig:derivative}
+\end{figure}
 
-
-
-
-The derivative of a function \(f(x)\) with respect to \(x\) is denoted by \(\frac{df}{dx}\) or \(f'(x)\). It 
-
-is defined as the limit of the average rate of change of the function as the interval approaches zero:
+The derivative of a function \(f(x)\) with respect to \(x\) is denoted by
+\(\frac{df}{dx}\) or \(f'(x)\). It is defined as the limit of the average rate of change of the function as the interval approaches zero:
 
 \[
 \frac{df}{dx}
 =
-\lim_{\Delta x\to0}
+\lim_{\Delta x \to 0}
 \frac{f(x+\Delta x)-f(x)}{\Delta x}.
 \]
 
-\subsection{Integral}
+Geometrically, the derivative \(f'(x)\) gives the slope of the tangent to the graph of \(f(x)\) at a given point.
+
+
+\subsection{Different Notations for Derivatives}
+
+There are several common ways to denote the derivative of a function:
+
+\begin{itemize}
+
+\item $\frac{df}{dx}$: This is the \emph{Leibniz notation}. It explicitly indicates that the derivative is taken with respect to \(x\).
+
+\item $f'(x)$: This is the \emph{Lagrange notation}, also called \emph{prime notation}. It is a concise notation commonly used when working with functions.
+
+\item $\dot{f}$: This is the \emph{Newton notation}, also called \emph{dot notation}. It denotes differentiation with respect to time and is particularly common in physics and mechanics. For example,
+
+$$
+\dot{f} = \frac{df}{dt}.
+$$
+
+\end{itemize}
+
+
+
+\subsection{Derivatives of Common Functions}
+
+The derivatives of some common functions are as follows:
+
+\begin{align*}
+\frac{d}{dx}(c) &= 0, \\
+\frac{d}{dx}(x^n) &= nx^{n-1}, \\
+\frac{d}{dx}(e^x) &= e^x, \\
+\frac{d}{dx}(\ln x) &= \frac{1}{x}, \\
+\frac{d}{dx}(\sin x) &= \cos x, \\
+\frac{d}{dx}(\cos x) &= -\sin x, \\
+\frac{d}{dx}(\tan x) &= \sec^2 x, \\
+\frac{d}{dx}(\arcsin x) &= \frac{1}{\sqrt{1-x^2}}, \\
+\frac{d}{dx}(\arccos x) &= -\frac{1}{\sqrt{1-x^2}}, \\
+\frac{d}{dx}(\arctan x) &= \frac{1}{1+x^2}.
+\end{align*}
+
+Some useful rules for differentiating functions \(f(x)\) and \(g(x)\) are
+
+\begin{align*}
+\frac{d}{dx}[f(x)+g(x)]
+&= f'(x)+g'(x), \\
+\frac{d}{dx}[c f(x)]
+&= c f'(x), \\
+\frac{d}{dx}[f(x)g(x)]
+&= f'(x)g(x)+f(x)g'(x), \\
+\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right]
+&=
+\frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}.
+\end{align*}
+
+For a composite function \(f(g(x))\), the chain rule gives
+
+\[
+\frac{d}{dx}f(g(x))
+=
+f'(g(x))g'(x).
+\]
+
+\subsection{Multivariable Functions and Partial Derivatives}
+$f=f(x,y,z,\hdots)$ is a \emph{multivariable function} if it depends on more than one variable. For example, the surface $f(x,y)=x^2+y^2$ is shown below.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.9]
+    % Wireframe curves in the x direction.
+    \foreach \y in {-2,-1.5,...,2} {
+        \draw[blue!60, thin]
+            plot[domain=-2:2, samples=35, variable=\x]
+            ({\x+0.45*\y},{0.28*\y+0.10*(\x*\x+\y*\y)});
+    }
+    % Wireframe curves in the y direction.
+    \foreach \x in {-2,-1.5,...,2} {
+        \draw[blue!60, thin]
+            plot[domain=-2:2, samples=35, variable=\y]
+            ({\x+0.45*\y},{0.28*\y+0.10*(\x*\x+\y*\y)});
+    }
+    \draw[->] (-2.8,-0.6) -- (2.8,-0.6) node[right] {$x$};
+    \draw[->] (-1.2,-1.3) -- (1.2,0.25) node[right] {$y$};
+    \draw[->] (0,-0.6) -- (0,2.0) node[above] {$f(x,y)$};
+\end{tikzpicture}
+\caption{The surface $f(x,y)=x^2+y^2$.}
+\end{figure}
+
+The \emph{partial derivative} of a multivariable function with respect to one of its variables is the derivative of the function while treating all other variables as constants. For example, the partial derivative of \(f(x,y)\) with respect to \(x\) is denoted by \(\frac{\partial f}{\partial x}\) and is defined as
+
+\[
+\frac{\partial f}{\partial x}
+=
+\lim_{\Delta x \to 0}
+\frac{f(x+\Delta x,y)-f(x,y)}{\Delta x}.
+\]
+
+For example, for the function \(f(x,y)=x^2+y^2\), the partial derivatives are
+\[
+\frac{\partial f}{\partial x} = 2x, \quad
+\frac{\partial f}{\partial y} = 2y.
+\]
+
+For example, the partial derivative of \(g(x,y)=x^2+xy^2\) with respect to \(x\) is
+\[
+\frac{\partial g}{\partial x} = 2x+y^2,
+\]
+and the partial derivative with respect to \(y\) is
+\[
+\frac{\partial g}{\partial y} = 2xy.    
+\]
+
+\subsection{Differential and Total Differentials}
+The smallest change in the value of a function when we change all of its input variables is called the \emph{differential} of the function. For a function $f=f(x,y)$, the differential \(df\) is given by
+\[
+df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy,
+\]
+where \(dx\) and \(dy\) are the small changes in the input variables \(x\) and \(y\), respectively. The differential provides an approximation of the change in the function's value based on the changes in its input variables. In general, for a function \(f=f(x_1,x_2,\hdots,x_n)\), the differential is given by
+\[
+df = \frac{\partial f}{\partial x_1}dx_1 + \frac{\partial f}{\partial x_2}dx_2 + \cdots + \frac{\partial f}{\partial x_n}dx_n.
+\]  
+In a compact form, the differential can be expressed as
+\[
+df = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}dx_i.
+\]
+
+\subsection{Total derivative}
+
+The \emph{total derivative} of a function $f=f(x_1,x_2,\ldots,x_n,t)$ and $x_i(t)=x_i$ where $i=1,2,\ldots,n$ is given by
+\[
+\frac{df}{dt} = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}\frac{dx_i}{dt} + \frac{\partial f}{\partial t}.
+\]
+
+\subsection{Maxima and Minima of Functions}
+If we have a function $f(x)$, we can find its maxima and minima by taking its derivative and setting it equal to zero:
+\[
+f'(x) = 0.
+\]
+We solve this equation for $x$.
+
+\subsection{Concave and Convex Functions}
+A function \(f(x)\) is \emph{concave} if its second derivative is negative for all \(x\) in its domain:
+\[
+f''(x) < 0.
+\]
+
+A function \(f(x)\) is \emph{convex} if its second derivative is positive for all \(x\) in its domain:
+\[
+f''(x) > 0.
+\]  
+
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1]
+
+    % Concave function
+    \draw[->] (-2.2,0) -- (2.2,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,2.5) node[above] {$f(x)$};
+    \draw[thick, domain=-1.8:1.8, samples=100]
+        plot (\x,{2-0.5*\x*\x});
+    \node at (0,2.2) {Concave};
+
+    % Convex function
+    \begin{scope}[xshift=5cm]
+        \draw[->] (-2.2,0) -- (2.2,0) node[right] {$x$};
+        \draw[->] (0,-0.3) -- (0,2.5) node[above] {$f(x)$};
+        \draw[thick, domain=-1.8:1.8, samples=100]
+            plot (\x,{0.3+0.5*\x*\x});
+        \node at (0,2.2) {Convex};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+
+\subsection{Antiderivatives}
+
+The \emph{antiderivative} of a function \(f(x)\) is a function \(F(x)\) whose derivative is \(f(x)\):
+
+\[
+F'(x) = f(x).
+\]
+
+For example, since
+
+\[
+\frac{d}{dx}(x^3) = 3x^2,
+\]
+
+\(x^3\) is an antiderivative of \(3x^2\).
+
+However, \(x^3+C\) is also an antiderivative, where \(C\) is an arbitrary constant, because
+
+\[
+\frac{d}{dx}(x^3+C) = 3x^2.
+\]
+
+Therefore, an antiderivative is not unique: any two antiderivatives of the same function differ by a constant.
+
+\subsection{Indefinite Integrals}
+
+The \emph{indefinite integral} represents the family of all antiderivatives of a function:
+
+\[
+\int f(x)\,dx = F(x)+C,
+\]
+
+where
+
+\[
+F'(x)=f(x).
+\]
+
+For example,
+
+\[
+\int 3x^2\,dx = x^3+C.
+\]
+
+Some common indefinite integrals are
+
+\begin{align*}
+\int c\,dx &= cx+C, \\
+\int x^n\,dx &= \frac{x^{n+1}}{n+1}+C,
+\qquad n\neq -1, \\
+\int e^x\,dx &= e^x+C, \\
+\int \frac{1}{x}\,dx &= \ln|x|+C, \\
+\int \cos x\,dx &= \sin x+C, \\
+\int \sin x\,dx &= -\cos x+C.
+\end{align*}
+
+The constant \(C\) appears because the derivative of a constant is zero.
+
+\subsection{Definite Integrals}
+
+A \emph{definite integral} has specified lower and upper limits:
+
+\[
+\int_a^b f(x)\,dx.
+\]
+
+Unlike an indefinite integral, a definite integral has a numerical value. It represents the signed area between the graph of \(f(x)\) and the \(x\)-axis from \(x=a\) to \(x=b\). Regions where \(f(x)<0\) contribute negatively to the integral.
+
+If \(F(x)\) is an antiderivative of \(f(x)\), then the Fundamental Theorem of Calculus gives
+
+\[
+\int_a^b f(x)\,dx
+=
+F(b)-F(a).
+\]
+
+For example,
+
+\[
+\int_0^2 x^2\,dx
+=
+\left[\frac{x^3}{3}\right]_0^2
+=
+\frac{8}{3}.
+\]
+
+Thus, differentiation and integration are inverse operations. Differentiation describes the instantaneous rate of change of a function, while integration can be used to accumulate a quantity or calculate the signed area under a curve.
+
 
 \section{Taylor Series}
 The \emph{Taylor series} of a function $f(x)$ about a point $x_0$ is an infinite sum of terms that approximates the function near that point. The reason we use Taylor series is that it allows us to approximate complicated functions with polynomials, which are easier to work with. 
@@ -281,5 +549,474 @@ This is called the Taylor series of \(f(x)\) about \(x_0\). The Taylor series ca
 \[
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
 \]
+
+\section{Worked Examples}
+
+\subsection{Example 1: Scalars, Units, and the Anatomy of a Vector}
+
+\textbf{(a)} A student writes $m = 2\,\text{kg} + 20\,^\circ\text{C}$. Why is this meaningless? Then, for a metal block of mass $m = 2.7\,\text{kg}$ and volume $V = 1.0\times 10^{-3}\,\text{m}^3$, compute the density.
+
+\textbf{(b)} Show by dimensional analysis that $T = 2\pi\sqrt{L/g}$ can be a time.
+
+\textbf{(c)} For $\mathbf{A} = 2\hat{\imath} + 3\hat{\jmath} + 6\hat{k}$, find $|\mathbf{A}|$, the unit vector $\hat{a}$, and the angle $\alpha$ between $\mathbf{A}$ and the $x$-axis.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)} Addition requires the same physical dimension; mass and temperature have different dimensions, so the sum has no meaning. Multiplication and division are always allowed and create a new unit:
+\[
+\rho = \frac{m}{V} = \frac{2.7\,\text{kg}}{1.0\times 10^{-3}\,\text{m}^3} = 2700\ \text{kg/m}^3 .
+\]
+
+\textbf{(b)}
+\[
+\left[\sqrt{L/g}\right] = \sqrt{\frac{\text{m}}{\text{m/s}^2}} = \sqrt{\text{s}^2} = \text{s},
+\]
+and $2\pi$ is a dimensionless scalar.
+
+\textbf{(c)}
+\[
+|\mathbf{A}| = \sqrt{2^2+3^2+6^2} = \sqrt{49} = 7,
+\]
+\[
+\hat{a} = \frac{\mathbf{A}}{|\mathbf{A}|} = \frac{2}{7}\hat{\imath} + \frac{3}{7}\hat{\jmath} + \frac{6}{7}\hat{k},
+\qquad
+|\hat{a}| = \frac{1}{7}\sqrt{4+9+36} = 1 .
+\]
+The direction cosine with the $x$-axis is
+\[
+\cos\alpha = \frac{A_x}{|\mathbf{A}|} = \frac{2}{7}
+\quad \Longrightarrow \quad \alpha \approx 73.4^\circ .
+\]
+Note also that $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = \frac{4+9+36}{49} = 1$.
+
+\bigskip
+\noindent \emph{Board tip: draw the three-dimensional axes and the projections $A_x$, $A_y$, $A_z$ while doing part (c).}
+
+
+\subsection{Example 2: Vector Algebra and Force Equilibrium}
+
+Let $\mathbf{A} = 3\hat{\imath} - \hat{\jmath} + 2\hat{k}$ and $\mathbf{B} = -\hat{\imath} + 4\hat{\jmath} + 2\hat{k}$.
+
+\textbf{(a)} Find $\mathbf{A}+\mathbf{B}$, $\mathbf{A}-\mathbf{B}$, $|\mathbf{A}+\mathbf{B}|$ and $2\mathbf{A}-3\mathbf{B}$.
+
+\textbf{(b)} A hiker walks $4$ km east, then $3$ km north. Find the displacement (magnitude and direction) and compare it with the distance travelled, which is a scalar.
+
+\textbf{(c)} Two forces act on a particle: $\mathbf{F}_1 = (5\hat{\imath}+2\hat{\jmath})$ N and $\mathbf{F}_2 = (-3\hat{\imath}+6\hat{\jmath})$ N. What third force $\mathbf{F}_3$ keeps the particle in equilibrium?
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)}
+\[
+\mathbf{A}+\mathbf{B} = 2\hat{\imath} + 3\hat{\jmath} + 4\hat{k},
+\qquad
+|\mathbf{A}+\mathbf{B}| = \sqrt{4+9+16} = \sqrt{29} \approx 5.39,
+\]
+\[
+\mathbf{A}-\mathbf{B} = 4\hat{\imath} - 5\hat{\jmath} + 0\hat{k},
+\]
+\[
+2\mathbf{A} = 6\hat{\imath}-2\hat{\jmath}+4\hat{k},
+\qquad
+3\mathbf{B} = -3\hat{\imath}+12\hat{\jmath}+6\hat{k},
+\]
+\[
+2\mathbf{A}-3\mathbf{B} = 9\hat{\imath} - 14\hat{\jmath} - 2\hat{k}.
+\]
+Note that $|\mathbf{A}+\mathbf{B}| \neq |\mathbf{A}|+|\mathbf{B}|$, since $\sqrt{29}\approx 5.39$ while $\sqrt{14}+\sqrt{21}\approx 8.3$.
+
+\textbf{(b)} The displacement is $\mathbf{d} = 4\hat{\imath}+3\hat{\jmath}$ km, so
+\[
+|\mathbf{d}| = \sqrt{16+9} = 5\ \text{km},
+\qquad
+\theta = \arctan\frac{3}{4} = 37^\circ \ \text{north of east}.
+\]
+The distance travelled is $7$ km. It is a scalar, it has no direction, and it is different from the magnitude of the displacement.
+
+\textbf{(c)} Equilibrium requires $\mathbf{F}_1+\mathbf{F}_2+\mathbf{F}_3 = 0$, so
+\[
+\mathbf{F}_3 = -(\mathbf{F}_1+\mathbf{F}_2) = -(2\hat{\imath}+8\hat{\jmath}) = (-2\hat{\imath}-8\hat{\jmath})\ \text{N},
+\]
+\[
+|\mathbf{F}_3| = \sqrt{4+64} = 2\sqrt{17} \approx 8.2\ \text{N},
+\]
+pointing $76^\circ$ below the $-x$ axis, i.e. in the third quadrant.
+
+\bigskip
+\noindent \emph{Board tip: do part (b) graphically first with the triangle or parallelogram rule, then analytically.}
+
+
+\subsection{Example 3: Dot Product, Angle, Projection and Work}
+
+Let $\mathbf{A} = 2\hat{\imath}+3\hat{\jmath}-\hat{k}$ and $\mathbf{B} = \hat{\imath}-2\hat{\jmath}+2\hat{k}$.
+
+\textbf{(a)} Find $\mathbf{A}\cdot\mathbf{B}$ and the angle $\theta$ between them.
+
+\textbf{(b)} Find the scalar projection of $\mathbf{A}$ on $\mathbf{B}$, and the vector projection.
+
+\textbf{(c)} Find $c$ such that $\mathbf{A}$ is perpendicular to $\mathbf{C} = \hat{\imath} + c\,\hat{\jmath}$.
+
+\textbf{(d)} A force $\mathbf{F} = (3\hat{\imath}+4\hat{\jmath})$ N acts while the object undergoes a displacement $\mathbf{d} = (2\hat{\imath}-\hat{\jmath})$ m. Find the work $W = \mathbf{F}\cdot\mathbf{d}$.
+
+\textbf{(e)} Derive the law of cosines from $|\mathbf{A}-\mathbf{B}|^2$.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)}
+\[
+\mathbf{A}\cdot\mathbf{B} = (2)(1)+(3)(-2)+(-1)(2) = 2-6-2 = -6,
+\]
+\[
+|\mathbf{A}| = \sqrt{4+9+1} = \sqrt{14},
+\qquad
+|\mathbf{B}| = \sqrt{1+4+4} = 3,
+\]
+\[
+\cos\theta = \frac{-6}{3\sqrt{14}} = \frac{-2}{\sqrt{14}} \approx -0.535
+\quad \Longrightarrow \quad \theta \approx 122^\circ .
+\]
+A negative dot product means that the angle is obtuse.
+
+\textbf{(b)} The scalar projection is
+\[
+A_{\parallel} = \mathbf{A}\cdot\hat{b} = \frac{\mathbf{A}\cdot\mathbf{B}}{|\mathbf{B}|} = \frac{-6}{3} = -2,
+\]
+and the vector projection is
+\[
+A_{\parallel}\hat{b} = -2\cdot\frac{1}{3}\left(\hat{\imath}-2\hat{\jmath}+2\hat{k}\right)
+= -\frac{2}{3}\hat{\imath}+\frac{4}{3}\hat{\jmath}-\frac{4}{3}\hat{k}.
+\]
+
+\textbf{(c)}
+\[
+\mathbf{A}\cdot\mathbf{C} = 2 + 3c = 0
+\quad \Longrightarrow \quad c = -\frac{2}{3}.
+\]
+
+\textbf{(d)}
+\[
+W = (3)(2)+(4)(-1) = 6-4 = 2\ \text{J}.
+\]
+Only the component of $\mathbf{F}$ along $\mathbf{d}$ does work.
+
+\textbf{(e)}
+\[
+|\mathbf{A}-\mathbf{B}|^2 = (\mathbf{A}-\mathbf{B})\cdot(\mathbf{A}-\mathbf{B})
+= A^2 + B^2 - 2\,\mathbf{A}\cdot\mathbf{B}
+= A^2 + B^2 - 2AB\cos\theta .
+\]
+
+
+\subsection{Example 4: Cross Product, Area, Torque and Volume}
+
+Let $\mathbf{A} = 2\hat{\imath}+\hat{\jmath}-\hat{k}$ and $\mathbf{B} = \hat{\imath}+2\hat{\jmath}+\hat{k}$.
+
+\textbf{(a)} Compute $\mathbf{A}\times\mathbf{B}$ and verify that $\mathbf{B}\times\mathbf{A} = -\mathbf{A}\times\mathbf{B}$.
+
+\textbf{(b)} Verify that $\mathbf{A}\cdot(\mathbf{A}\times\mathbf{B}) = 0$ and find the unit normal $\hat{n}$ to the plane of $\mathbf{A}$ and $\mathbf{B}$.
+
+\textbf{(c)} Find the area of the parallelogram and of the triangle spanned by $\mathbf{A}$ and $\mathbf{B}$. Obtain $\theta$ from $|\mathbf{A}\times\mathbf{B}|$ and check it with the dot product.
+
+\textbf{(d)} For $\mathbf{r} = (2\hat{\imath}+\hat{\jmath})$ m and $\mathbf{F} = 3\hat{\jmath}$ N, find the torque $\boldsymbol{\tau} = \mathbf{r}\times\mathbf{F}$.
+
+\textbf{(e)} Find the volume of the parallelepiped with edges $\mathbf{a} = \hat{\imath}+2\hat{\jmath}$, $\mathbf{b} = 3\hat{\jmath}$ and $\mathbf{c} = 4\hat{k}$.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)}
+\[
+\mathbf{A}\times\mathbf{B}
+= \begin{vmatrix}
+\hat{\imath} & \hat{\jmath} & \hat{k}\\
+2 & 1 & -1\\
+1 & 2 & 1
+\end{vmatrix}
+= \hat{\imath}(1+2) - \hat{\jmath}(2+1) + \hat{k}(4-1)
+= 3\hat{\imath}-3\hat{\jmath}+3\hat{k}.
+\]
+Exchanging the two rows changes the sign, so
+\[
+\mathbf{B}\times\mathbf{A} = -3\hat{\imath}+3\hat{\jmath}-3\hat{k}.
+\]
+The cross product is anticommutative.
+
+\textbf{(b)}
+\[
+\mathbf{A}\cdot(\mathbf{A}\times\mathbf{B}) = 6-3-3 = 0,
+\]
+so the result is perpendicular to both vectors. Since $|\mathbf{A}\times\mathbf{B}| = 3\sqrt{3}$,
+\[
+\hat{n} = \frac{1}{\sqrt{3}}\left(\hat{\imath}-\hat{\jmath}+\hat{k}\right).
+\]
+
+\textbf{(c)} The parallelogram area is $|\mathbf{A}\times\mathbf{B}| = 3\sqrt{3} \approx 5.20$ and the triangle area is $\frac{3\sqrt{3}}{2}\approx 2.60$. With $|\mathbf{A}| = |\mathbf{B}| = \sqrt{6}$,
+\[
+\sin\theta = \frac{3\sqrt{3}}{6} = \frac{\sqrt{3}}{2}.
+\]
+Checking with the dot product, $\mathbf{A}\cdot\mathbf{B} = 2+2-1 = 3$, so $\cos\theta = \frac{3}{6} = \frac{1}{2}$. Both give $\theta = 60^\circ$.
+
+\textbf{(d)}
+\[
+\boldsymbol{\tau} = (2\hat{\imath}+\hat{\jmath})\times(3\hat{\jmath})
+= 6(\hat{\imath}\times\hat{\jmath}) + 3(\hat{\jmath}\times\hat{\jmath})
+= 6\hat{k}\ \text{N}\cdot\text{m},
+\]
+which points out of the page by the right-hand rule. The part of $\mathbf{r}$ parallel to $\mathbf{F}$ contributes nothing.
+
+\textbf{(e)}
+\[
+V = \left|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\right|
+= \left|
+\begin{vmatrix}
+1 & 2 & 0\\
+0 & 3 & 0\\
+0 & 0 & 4
+\end{vmatrix}
+\right| = 12 .
+\]
+
+
+\subsection{Example 5: Derivatives, Kinematics, Maxima and Concavity}
+
+\textbf{(a)} Differentiate
+\[
+f(x)=3x^4-5x^2+7,
+\quad
+g(x)=x^2\sin x,
+\quad
+h(x)=\sin(3x^2+1),
+\quad
+p(x)=\frac{x^2+1}{x-1},
+\quad
+q(x)=e^{-x^2}.
+\]
+
+\textbf{(b)} A ball is thrown so that $y(t) = 5+20t-5t^2$, with $y$ in metres and $t$ in seconds. Find $v(t)$ and $a(t)$, the time and value of the maximum height, and confirm with the second derivative that it is a maximum.
+
+\textbf{(c)} For simple harmonic motion $x(t) = A\sin(\omega t+\varphi)$, show that $a = -\omega^2 x$.
+
+\textbf{(d)} For damped motion $x(t) = Ae^{-bt}\cos\omega t$, find $\dot{x}$.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)} Using the power and sum rules, the product rule, the chain rule and the quotient rule,
+\begin{align*}
+f'(x) &= 12x^3-10x, \\
+g'(x) &= 2x\sin x + x^2\cos x, \\
+h'(x) &= 6x\cos(3x^2+1), \\
+p'(x) &= \frac{2x(x-1)-(x^2+1)}{(x-1)^2} = \frac{x^2-2x-1}{(x-1)^2}, \\
+q'(x) &= -2x\,e^{-x^2}.
+\end{align*}
+
+\textbf{(b)}
+\[
+v = \dot{y} = 20-10t,
+\qquad
+a = \dot{v} = \ddot{y} = -10\ \text{m/s}^2 .
+\]
+The maximum occurs when $v = 0$, that is at $t = 2$ s, where
+\[
+y(2) = 5+40-20 = 25\ \text{m}.
+\]
+Since $y''(t) = -10 < 0$ everywhere, the curve is concave, so $t = 2$ s is indeed a maximum.
+
+\textbf{(c)}
+\[
+v = A\omega\cos(\omega t+\varphi),
+\qquad
+a = -A\omega^2\sin(\omega t+\varphi) = -\omega^2 x .
+\]
+This is exactly the equation of motion produced by the spring force $F = -kx$.
+
+\textbf{(d)} By the product and chain rules,
+\[
+\dot{x} = A\left[-b\,e^{-bt}\cos\omega t - \omega\,e^{-bt}\sin\omega t\right]
+= -A\,e^{-bt}\left(b\cos\omega t + \omega\sin\omega t\right).
+\]
+
+
+\subsection{Example 6: Partial Derivatives, Total Differential and Total Derivative}
+
+\textbf{(a)} For $f(x,y) = x^2y+3xy^3-y$, find $\dfrac{\partial f}{\partial x}$ and $\dfrac{\partial f}{\partial y}$, and show that
+\[
+\frac{\partial^2 f}{\partial x\,\partial y} = \frac{\partial^2 f}{\partial y\,\partial x}.
+\]
+
+\textbf{(b)} The volume of a cylinder is $V = \pi r^2h$. With $r = 2.0$ cm, $h = 10.0$ cm, $dr = 0.1$ cm and $dh = 0.2$ cm, estimate $dV$ and the relative error $dV/V$.
+
+\textbf{(c)} The temperature in a room is $T(x,y,t) = xy+5t$. A bug moves along $x(t) = t^2$ and $y(t) = 2t$. Find $dT/dt$ in two different ways.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)} Treating the other variable as a constant,
+\[
+\frac{\partial f}{\partial x} = 2xy+3y^3,
+\qquad
+\frac{\partial f}{\partial y} = x^2+9xy^2-1 .
+\]
+Then
+\[
+\frac{\partial}{\partial y}\left(2xy+3y^3\right) = 2x+9y^2,
+\qquad
+\frac{\partial}{\partial x}\left(x^2+9xy^2-1\right) = 2x+9y^2,
+\]
+so the mixed partial derivatives are equal.
+
+\textbf{(b)}
+\[
+dV = \frac{\partial V}{\partial r}dr + \frac{\partial V}{\partial h}dh
+= 2\pi r h\,dr + \pi r^2\,dh
+= 2\pi(2)(10)(0.1) + \pi(4)(0.2) = 4.8\pi \approx 15\ \text{cm}^3 .
+\]
+Since $V = \pi(4)(10) = 40\pi \approx 126$ cm$^3$,
+\[
+\frac{dV}{V} = \frac{4.8\pi}{40\pi} = 0.12 = 12\%,
+\qquad \text{or equivalently} \qquad
+\frac{dV}{V} = 2\frac{dr}{r} + \frac{dh}{h} = 2(0.05)+0.02 .
+\]
+The exponent multiplies the relative error.
+
+\textbf{(c)} Using the total derivative,
+\[
+\frac{dT}{dt}
+= \frac{\partial T}{\partial x}\frac{dx}{dt}
++ \frac{\partial T}{\partial y}\frac{dy}{dt}
++ \frac{\partial T}{\partial t}
+= y(2t) + x(2) + 5
+= (2t)(2t) + 2t^2 + 5 = 6t^2+5 .
+\]
+By direct substitution, $T = (t^2)(2t)+5t = 2t^3+5t$, so
+\[
+\frac{dT}{dt} = 6t^2+5 ,
+\]
+which agrees. Physically, the temperature the bug feels changes both because it moves and because the room heats up, the latter being the term $\partial T/\partial t = 5$.
+
+
+\subsection{Example 7: Indefinite and Definite Integrals in Physics}
+
+\textbf{(a)} Evaluate
+\[
+\int\left(3x^2-4x+5\right)dx,
+\qquad
+\int\left(\frac{2}{x}+e^x\right)dx,
+\qquad
+\int \sin(2x)\,dx .
+\]
+
+\textbf{(b)} Evaluate $\int_0^3(2x+1)\,dx$ and check the answer geometrically using the area of a trapezoid. Then evaluate $\int_0^\pi \sin x\,dx$ and $\int_{-1}^{1}x^3\,dx$, and explain the second result.
+
+\textbf{(c)} A particle has $a(t) = 6t$ m/s$^2$, with $v(0) = 2$ m/s and $x(0) = 0$. Find $v(t)$, $x(t)$, and the displacement during the first $2$ s.
+
+\textbf{(d)} Find the work done by a spring force $F = kx$ in stretching from $0$ to $x_0$, with $k = 200$ N/m and $x_0 = 0.1$ m.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)}
+\begin{align*}
+\int\left(3x^2-4x+5\right)dx &= x^3-2x^2+5x+C, \\
+\int\left(\frac{2}{x}+e^x\right)dx &= 2\ln|x| + e^x + C, \\
+\int\sin(2x)\,dx &= -\frac{1}{2}\cos 2x + C .
+\end{align*}
+The last one can be checked by differentiating, since the chain rule returns $\sin 2x$.
+
+\textbf{(b)}
+\[
+\int_0^3(2x+1)\,dx = \left[x^2+x\right]_0^3 = 12 .
+\]
+Geometrically this is a trapezoid with parallel sides $f(0) = 1$ and $f(3) = 7$ and width $3$, giving $\frac{1+7}{2}\cdot 3 = 12$. Furthermore,
+\[
+\int_0^\pi \sin x\,dx = \left[-\cos x\right]_0^\pi = 1+1 = 2,
+\qquad
+\int_{-1}^{1}x^3\,dx = \left[\frac{x^4}{4}\right]_{-1}^{1} = \frac{1}{4}-\frac{1}{4} = 0 .
+\]
+The last integral vanishes because the negative area on $[-1,0]$ cancels the positive area on $[0,1]$; the definite integral gives a signed area.
+
+\textbf{(c)}
+\[
+v(t) = \int 6t\,dt = 3t^2+C_1,
+\qquad
+v(0) = 2 \ \Longrightarrow \ C_1 = 2,
+\qquad
+v(t) = 3t^2+2 ,
+\]
+\[
+x(t) = \int\left(3t^2+2\right)dt = t^3+2t+C_2,
+\qquad
+x(0) = 0 \ \Longrightarrow \ C_2 = 0 ,
+\]
+\[
+\Delta x = \int_0^2 v\,dt = \left[t^3+2t\right]_0^2 = 8+4 = 12\ \text{m}.
+\]
+The integration constants are fixed by the initial conditions, and this problem is the inverse of Example 5(b).
+
+\textbf{(d)}
+\[
+W = \int_0^{x_0} kx\,dx = \frac{1}{2}kx_0^2 = \frac{1}{2}(200)(0.1)^2 = 1\ \text{J}.
+\]
+The force is not constant, so $W = Fd$ cannot be used; the integral gives the area under the $F$ versus $x$ line.
+
+
+\subsection{Example 8: Taylor Series and Physical Approximations}
+
+\textbf{(a)} Expand $e^x$ and $\sin x$ about $x_0 = 0$ up to third order.
+
+\textbf{(b)} Derive the binomial series $(1+x)^n \approx 1+nx+\frac{n(n-1)}{2}x^2$ and use it to estimate $\sqrt{1.02}$.
+
+\textbf{(c)} Show that the relativistic energy $E = mc^2/\sqrt{1-v^2/c^2}$ reduces to $mc^2+\frac{1}{2}mv^2$ for $v \ll c$.
+
+\textbf{(d)} Show that the gravitational potential energy $U = -GMm/(R+h)$ becomes a constant plus $mgh$ for $h \ll R$.
+
+\bigskip
+\textbf{Solution}
+
+\textbf{(a)} For $f(x) = e^x$ we have $f^{(n)}(0) = 1$ for every $n$, so
+\[
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+\]
+For $f(x) = \sin x$ we have $f(0) = 0$, $f'(0) = 1$, $f''(0) = 0$ and $f'''(0) = -1$, so
+\[
+\sin x = x - \frac{x^3}{3!} + \cdots
+\qquad \Longrightarrow \qquad
+\sin\theta \approx \theta ,
+\]
+which is the small-angle approximation used for the pendulum. Similarly $\cos x = 1 - \frac{x^2}{2} + \cdots$
+
+\textbf{(b)} For $f(x) = (1+x)^n$ we have $f(0) = 1$, $f'(0) = n$ and $f''(0) = n(n-1)$, hence
+\[
+(1+x)^n = 1+nx+\frac{n(n-1)}{2}x^2+\cdots
+\qquad \text{for} \ |x|\ll 1 .
+\]
+With $n = \frac{1}{2}$ and $x = 0.02$,
+\[
+\sqrt{1.02} \approx 1 + 0.01 - \frac{1}{8}(0.0004) = 1.00995 ,
+\]
+while the exact value is $1.009950\ldots$
+
+\textbf{(c)} Setting $x = -v^2/c^2$ and $n = -\frac{1}{2}$,
+\[
+E = mc^2\left(1-\frac{v^2}{c^2}\right)^{-1/2}
+\approx mc^2\left(1+\frac{1}{2}\frac{v^2}{c^2}+\frac{3}{8}\frac{v^4}{c^4}\right)
+= mc^2 + \frac{1}{2}mv^2 + \cdots
+\]
+The first term is the rest energy and the second is the Newtonian kinetic energy.
+
+\textbf{(d)}
+\[
+U = -\frac{GMm}{R\left(1+h/R\right)}
+= -\frac{GMm}{R}\left(1+\frac{h}{R}\right)^{-1}
+\approx -\frac{GMm}{R}\left(1-\frac{h}{R}\right)
+= -\frac{GMm}{R} + \frac{GM}{R^2}mh ,
+\]
+and since $g = GM/R^2$ we obtain $U \approx \text{constant} + mgh$.
+
+\bigskip
+\noindent \emph{Closing remark: every simple formula of introductory physics, such as $mgh$, $\frac{1}{2}mv^2$ and $T = 2\pi\sqrt{L/g}$, is the first non-trivial term of a Taylor series.}
+
 
 \end{document}
