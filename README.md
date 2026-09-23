@@ -15,7 +15,7 @@ If you wish to download all materials at once, click the green `<> Code` button 
 
 | Chapter                                        |                       Lecture Notes                       |                            Homework                            |                               Solutions                               |
 | :----------------------------------------------- | :---------------------------------------------------------: | :--------------------------------------------------------------: | :----------------------------------------------------------------------: |
-| **1. Mathematical Tools**                      |      [📝 View Notes](./notes/mathematical-tools.pdf)      |      [📄 View HW](./homework/mathematical-tools/main.pdf)      |      [📝 View Solutions](./solutions/mathematical-tools/main.pdf)      |
+| **1. Mathematical Tools**                      |      [📝 View Notes](./notes/mathematical-tools/main.pdf)      |      [📄 View HW](./homework/mathematical-tools/main.pdf)      |      [📝 View Solutions](./solutions/mathematical-tools/main.pdf)      |
 | **2. Kinematics**                              |        [📝 View Notes](./notes/kinematics.pdf)        |        [📄 View HW](./homework/kinematics/main.pdf)        |        [📝 View Solutions](./solutions/electrostatics/main.pdf)        |
 | **3. Dynamics**                                |  [📝 View Notes](./notes/dynamics.pdf)  |  [📄 View HW](./homework/dynamics/main.pdf)  |  [📝 View Solutions](./solutions/dynamics/main.pdf)  |
 | **4. Conservation Theorems**                   |        [📝 View Notes](./notes/conservation-theorems.pdf)        |        [📄 View HW](./homework/magnetostatics/main.pdf)        |        [📝 View Solutions](./solutions/magnetostatics/main.pdf)        |
