@@ -137,13 +137,41 @@ It has the same direction as the displacement vector. If we are given the initia
 \[
 \Delta \mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1 = [x_2(t)-x_1(t)]\mathbf{i} + [y_2(t)-y_1(t)]\mathbf{j} + [z_2(t)-z_1(t)]\mathbf{k}
 \]
+then the average velocity vector becomes
+\[
+\mathbf{v}_\text{avg}= \frac{\Delta x}{\Delta t}\mathbf{i}+\frac{\Delta y}{\Delta t}\mathbf{j}+\frac{\Delta z}{\Delta t}\mathbf{k}
+\]
 
-If we are interested in the velocity of the particle at a given time instead of the average velocity
+If we are interested in the velocity of the particle at a given time instead of the average velocity we should consider the behavior of $\mathbf{v}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
 
+\[
+\lim_{\Delta t \rightarrow 0} \mathbf{v}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta z}{\Delta t}\mathbf{k},
+\]
+where we have the definition of derivatice for each term. Hence the velocity of a particle at time $t$ is defined as
+
+\begin{equation}
+    \mathbf{v}(t) = \frac{d}{dt}[x(t)]\mathbf{i}+\frac{d}{dt}[y(t)]\mathbf{j}+\frac{d}{dt}[z(t)]\mathbf{k},
+\end{equation}
+
+or in Newton's notation
+
+\begin{equation}
+    \mathbf{v}(t) = \dot{x}(t)\mathbf{i}+\dot{y}(t)\mathbf{j}+\dot{z}(t)\mathbf{k} = v_x(t)\mathbf{i}+v_y(t)\mathbf{j}+v_z(t)\mathbf{k}.
+\end{equation}
+
+The \emph{speed} of the particle is defined as the magnitude of the velocity vector:
+
+\begin{equation}
+    v(t) = |\mathbf{v}(t)|.
+\end{equation}
 
 
 \section{The Acceleration Vector}
 to be continued...
+
+\section{The Trajectory of a Particle}
+
+The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on.  
 
 
 
