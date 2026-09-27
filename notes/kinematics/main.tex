@@ -2,6 +2,8 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75em}
 
@@ -25,16 +27,38 @@ Mathematically, a particle is a point in the space with an associated mass. Ther
 \end{cases}
 \]
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{figures/point-particle.png}
+\end{figure}
+
+
+How can we mathematically write down the total mass of the particle in terms of its density function? We can consider the integral of the density function over all space, right? If $\rho$ is infinite at $\mathbf{r}_0$, wouldn't the integral be infinite as well? According to what we have learned in calculus, the integral of a function that is infinite must br infinite as well.
+\begin{equation}
+\int_{\text{all space}} \rho(\mathbf{r}) dV = \infty
+\end{equation}
+We attribute a geometrical ``dot'' a physical property called mass and we still want the mathematics work: We do not want the above integral to be infinite. Therefore, we say let it not be infinite, let it be a finite number $m$. In other words, we define the integral as follows:
+\begin{equation}
+\int_{\text{all space}} \rho(\mathbf{r}) dV \equiv m
+\end{equation}
+You will see more about this in Electricity and Magnetism course when we define Dirac delta function. 
 
 \section{The Position Vector}
 The position of a particle is described by a vector called the \emph{position vector}:
 \begin{equation}
 \mathbf{r}(t) = x(t) \mathbf{i} + y(t) \mathbf{j} + z(t) \mathbf{k}
 \end{equation}
-where $x(t)$, $y(t)$, and $z(t)$ are the coordinates of the particle in a Cartesian coordinate system, and $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$ are the unit vectors in the $x$, $y$, and $z$ directions, respectively. The position vector points from the origin of the coordinate system to the position of the particle at time $t$. The magnitude of the position vector represents the distance of the particle from the origin, and its direction represents the direction of the particle from the origin. The position vector is a function of time, and it can be used to describe the motion of the particle in space. The position vector can also be expressed in terms of spherical or cylindrical coordinates, depending on the problem at hand. 
+where $x(t)$, $y(t)$, and $z(t)$ are the coordinates of the particle as functions of time in a Cartesian coordinate system, and $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$ are the unit vectors in the $x$, $y$, and $z$ directions, respectively. The position vector points from the origin of the coordinate system to the position of the particle at time $t$. The magnitude of the position vector represents the distance of the particle from the origin, and its direction represents the direction of the particle from the origin. The position vector is a function of time, and it can be used to describe the motion of the particle in space. The position vector can also be expressed in terms of spherical or cylindrical coordinates, depending on the problem at hand. 
+
 
 
 \begin{figure}[ht]
+\centering
+\begin{minipage}{0.42\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/position-vector.png}
+\end{minipage}\hfill
+\begin{minipage}{0.54\textwidth}
 \centering
 \begin{tikzpicture}[>=stealth, scale=1.2]
 
@@ -61,9 +85,12 @@ where $x(t)$, $y(t)$, and $z(t)$ are the coordinates of the particle in a Cartes
     \node[below left] at (0,0) {$O$};
 
 \end{tikzpicture}
+    \end{minipage}
 \caption{The position vector $\mathbf{r}(t)$ of a particle in a two-dimensional Cartesian coordinate system.}
 \label{fig:position_vector}
 \end{figure}
+
+
 
 
 \section{The Displacement Vector}
@@ -75,6 +102,8 @@ What happens if a particle moves from one position $r_1(t_1)$ to another positio
 The displacement vector points from the initial position to the final position, and its magnitude represents the distance traveled by the particle in a straight line. The displacement vector is independent of the path taken by the particle, and only depends on the initial and final positions.
 
 \begin{figure}[h]
+\centering
+\begin{minipage}{0.6\textwidth}
 \centering
 \begin{tikzpicture}[>=stealth, thick, scale=0.6]
 
@@ -101,6 +130,7 @@ The displacement vector points from the initial position to the final position, 
     \fill (P2) circle (2pt) node[above right] {$P_2$};
 
 \end{tikzpicture}
+\end{minipage}
 \caption{Position vectors and displacement vector.}
 \label{fig:position_displacement}
 \end{figure}
@@ -117,9 +147,11 @@ The \emph{velocity} is defined as the change in position with respect to time. I
 \]
 What does this actually mean? Maybe the particle moved between the time interval $t_2-t_1$ as shown in the following figure:
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-This is a figure.
+\includegraphics[width=0.4\textwidth]{figures/average-velocity.png}
+\caption{Displacement vector}
+\label{fig:position_displacement}
 \end{figure}
 
 
@@ -167,13 +199,148 @@ The \emph{speed} of the particle is defined as the magnitude of the velocity vec
 
 
 \section{The Acceleration Vector}
-to be continued...
+\emph{Acceleration} is defined as the change in velocity with respect to time. If the change in velocity of the particle is described by $\Delta \mathbf{v}$, we can define the average acceleration vector as follows:
+\[
+\mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t}
+\]
+The average acceleration vector has the same direction as the change in velocity vector. If we are given the initial and final velocity vectors in component form as
+\[
+\mathbf{v}_1=v_{x1}(t)\mathbf{i} + v_{y1}(t)\mathbf{j} + v_{z1}(t)\mathbf{k}   
+\]
+\[
+\mathbf{v}_2=v_{x2}(t)\mathbf{i} + v_{y2}(t)\mathbf{j} + v_{z2}(t)\mathbf{k}
+\]
+Then the change in velocity is
+\[
+\Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1 = [v_{x2}(t)-v_{x1}(t)]\mathbf{i} + [v_{y2}(t)-v_{y1}(t)]\mathbf{j} + [v_{z2}(t)-v_{z1}(t)]\mathbf{k}
+\]
+and the average acceleration vector becomes
+\[
+\mathbf{a}_\text{avg}= \frac{\Delta v_x}{\Delta t}\mathbf{i}+\frac{\Delta v_y}{\Delta t}\mathbf{j}+\frac{\Delta v_z}{\Delta t}\mathbf{k}
+\]
+
+If we are interested in the acceleration of the particle at a given time instead of the average acceleration we should consider the behavior of $\mathbf{a}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
+
+\[
+\lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta v_x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_z}{\Delta t}\mathbf{k},
+\]
+where we have the definition of derivative for each term. Hence the acceleration of a particle at time $t$ is defined as
+
+\begin{equation}
+    \mathbf{a}(t) = \frac{d}{dt}[v_x(t)]\mathbf{i}+\frac{d}{dt}[v_y(t)]\mathbf{j}+\frac{d}{dt}[v_z(t)]\mathbf{k}.
+\end{equation}
+
+or in Newton's notation
+
+\begin{equation}
+    \mathbf{a}(t) = \dot{v}_x(t)\mathbf{i}+\dot{v}_y(t)\mathbf{j}+\dot{v}_z(t)\mathbf{k} = a_x(t)\mathbf{i}+a_y(t)\mathbf{j}+a_z(t)\mathbf{k}.
+\end{equation}
+where $a_x(t)$, $a_y(t)$, and $a_z(t)$ are the components of the acceleration vector in the $x$, $y$, and $z$ directions, respectively.
+
 
 \section{The Trajectory of a Particle}
 
-The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on.  
+The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/trajectory.png}
+\end{figure}
+
+Velocity and displacement vectors are always tangent to the particle's trajectory.
+
+\section{Acceleration vector for particles moving along a curved path}
+
+For a particle moving along a curved path, the acceleration vector generally has two components:
+\begin{itemize}
+    \item The tangential component, which is parallel to the velocity vector and changes the speed of the particle.
+    \item The normal component, which is perpendicular to the velocity vector and changes the direction of the particle's motion.
+\end{itemize}
+
+The normal component of the acceleration is responsible for the change in direction of the particle's motion, while the tangential component is responsible for the change in speed.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/acceleration-vector.png}
+\end{figure}
+Remember that
+\begin{equation}
+\mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t} = \frac{\mathbf{v}_2 - \mathbf{v}_1}{\Delta t}
+\end{equation}
+
+\section{Connection between position, velocity, and acceleration vectors}
+We have already seen that once we are given the position vector of a particle, $\mathbf{r}(t)$, we can find the velocity and acceleration vectors by taking the first and second derivatives with respect to time, respectively:
+\begin{equation}
+    \mathbf{r}(t) \xrightarrow{\frac{d}{dt}} \mathbf{v}(t) \xrightarrow{\frac{d}{dt}} \mathbf{a}(t)
+\end{equation}
+
+Is it possible to go the other way around? If we are given the acceleration vector of a particle, $\mathbf{a}(t)$, can we find the velocity and position vectors? If we are given the velocity vector, for example, can we find $\mathbf{r}(t)$?
 
 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/position-from-velocity.png}
+\end{figure}
+
+The area under the velocity-time graph represents the displacement of the particle. Therefore, we can use integral to calculate the displacementof the particle between two time instants $t_1$ and $t_2§$:
+
+\begin{equation}
+    \Delta x = \int_{t_1}^{t_2} v_x(t) dt
+\end{equation}
+
+However, we need to know the initial position of the particle at time $t_1$ in order to find the final position of the particle at time $t_2$. Therefore, we can write:
+\begin{equation}
+    x(t_2) = x(t_1) + \int_{t_1}^{t_2} v_x(t) dt 
+\end{equation}
+
+Therefore, if we are only given the form of $\mathbf{v}(t)$ but not the initial position of the particle, we can find the form of $\mathbf{r}(t)$ up to an unknown constant $C$, which actually comes automatically with the integration of the indefinite integral:
+\begin{equation}
+    \mathbf{r}(t) = \int \mathbf{v}(t) dt + \mathbf{C}
+\end{equation} 
+where $\mathbf{C}$ is a constant vector that represents the initial position of the particle at time $t=0$. The components of $\mathbf{C}$ can be determined if we are given the initial position of the particle. Like derivative, the integral is also a linear operator, which means that we can integrate each component of the velocity vector separately to find the corresponding components of the position vector:
+\begin{equation}
+    \mathbf{r}(t) = \int v_x(t) dt \mathbf{i} + \int v_y(t) dt \mathbf{j} + \int v_z(t) dt \mathbf{k} + \mathbf{C}
+\end{equation}
+
+The velocity is the time rate of change of the displacement and we saw that we can derive the position out of the velocity by using integration. Also, acceleration is the time rate of change of velocity, which means that the mathematical derivation of the velocity out of the acceleration have to be in the same way we derived the position out of the velocity:
+\begin{equation}
+    \mathbf{v}(t) = \int \mathbf{a}(t) dt + \mathbf{C}
+\end{equation}
+
+\section{Summary}
+If we are given how the position vector of a particle is changing with time, it means that we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively. If we are given how the acceleration vector of a particle is changing with time, we can find the velocity and position vectors by taking the indefinite integrals of the acceleration vector with respect to time, respectively. However, we need to know the initial conditions of the particle in order to find its exact position and velocity at any given time.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/summary.png}
+\end{figure}
+
+
+
+\section{Types of Motion}
+
+\subsection{Linear Motion}
+Motion along a straight line is called linear motion. In this case, the position vector of the particle can be expressed as:
+\[
+\mathbf{r}(t) = x(t) \mathbf{i}
+\]
+
+
+\subsection{Circular Motion}
+
+\subsection{Spiral Motion}
+
+It is a composite motion of linear and circular motions. The particle moves along a spiral path, which can be described by a combination of linear and circular motion equations. The position vector of a particle moving in a spiral path can be expressed as:
+\[
+\mathbf{r}(t) = r(t) \cos(\theta(t)) \mathbf{i} + r(t) \sin(\theta(t)) \mathbf{j} + z(t) \mathbf{k}
+\]
+
+
+\subsection{Oscillatory Motion}
+
+\subsection{Cycloidal Motion}
+It is the path traced by a point on the circumference of a circle as it rolls along straight line without slipping. Imagine drawing a chalk dot on a bicycle wheel and then rolling the wheel along a flat surface. The path traced by the chalk dot is a cycloid. 
 
 
 \end{document}
