@@ -372,23 +372,8 @@ There is no mathematical restriction on the form of $\theta(t)$, so it can be an
 \[
 \theta(t) = \omega t + \theta_0
 \]
-Here $\omega$ is the \emph{angular velocity} of the particle, and $\theta_0$ is the initial angle of the particle at time $t=0$. The angular velocity $\omega$ is defined as the rate of change of the angle with respect to time:
-\[
-\omega = \frac{d\theta}{dt} 
-\]
 
 \textbf{What is 1 radian?} A radian is a unit of angular measure used in mathematics and physics. It is defined as the angle subtended at the center of a circle by an arc whose length is equal to the radius of the circle. In other words, if you take a circle and draw an arc that has the same length as the radius of the circle, the angle formed at the center of the circle by that arc is 1 radian.
-
-If $1$ radian sees the arc length $R$ from the center of the circle, $2\pi$ radians sees the whole circumference of the circle, which is $2\pi R$. Therefore, we can write:
-\[
-2\pi \text{ radians} = 360^\circ
-\]
-
-Also, if $R$ is seen by $1$ radian, any other angle $\theta$ sees the arc length $s$ as follows:
-\[
-\theta = \frac{s}{R}   
-\]
-We will be using definition of radian in the following sections, so it is important to understand it well. The following figure shows the definition of one radian:
 
 \begin{figure}[ht]
     \centering
@@ -439,98 +424,18 @@ We will be using definition of radian in the following sections, so it is import
     \label{fig:one-radian}
 \end{figure}
 
-What about the velocity vector of a particle moving along a circular path? We can find the velocity vector by taking the derivative of the position vector with respect to time:
-\begin{align}
-    \mathbf{v}(t) &= \frac{d}{dt}[R \cos(\omega t)] \mathbf{i} + \frac{d}{dt}[R \sin(\omega t)] \mathbf{j} \\
-    &= -R \sin(\omega t) \omega \mathbf{i} + R \cos(\omega t) \omega \mathbf{j} 
-\end{align}
 
 
 \subsection{Spiral Motion}
 
 It is a composite motion of linear and circular motions. The particle moves along a spiral path, which can be described by a combination of linear and circular motion equations. The position vector of a particle moving in a spiral path can be expressed as:
 \[
-\mathbf{r}(t) = R \cos[\theta(t)] \mathbf{i} + R \sin[\theta(t)] \mathbf{j} + z(t) \mathbf{k}
+\mathbf{r}(t) = r(t) \cos(\theta(t)) \mathbf{i} + r(t) \sin(\theta(t)) \mathbf{j} + z(t) \mathbf{k}
 \]
 
 
 \subsection{Oscillatory Motion}
-\emph{Oscillatory motion} is the motion of a particle back and forth around a central point. Oscillations are periodic motions; they repeat themselves after a certain interval of time. Complex numbers together with the exponential function provide a powerful and neat framework for describing and analyzing oscillatory phenomena.
-
-\subsection*{Complex Numbers}
-
-Mathematicians figured in the 16th century that cubic formulas sometimes yield three real solutions while still forcing square roots of negative numbers to appear in the intermediate algebra; rules for $\sqrt{-1}$ were then introduced to keep these calculations consistent and recover the real results, marking the first systematic use of complex numbers. It was Descartes who coined the term ``imaginary'' for these numbers, reflecting the skepticism of the time regarding their existence, then Euler adopted the notation $i$ for $\sqrt{-1}$ making the calculation routine, which has since become standard in mathematics.
-
-\emph{Complex numbers} are numbers that can be expressed in the form 
-\begin{equation}
-    z = x + iy
-\end{equation}
-where $x$ and $y$ are real numbers, and $i$ is the imaginary unit satisfying the equation $i^2 = -1$. We call them ``numbers'' because they can be added, subtracted, multiplied, and divided like real numbers; they follow the same algebraic rules as real numbers, with the additional rule that $i^2 = -1$.
-
-The \emph{real part} of the complex number is denoted by $\text{Re}(z) = x$, and the \emph{imaginary part} is denoted by $\text{Im}(z) = y$. Complex numbers can be represented graphically on the \emph{complex plane}, where the horizontal axis represents the real part and the vertical axis represents the imaginary part as shown in Fig.~\ref{complex-plane.png}. 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/complex-plane.png}
-    \caption{The complex plane}
-    \label{complex-plane.png}
-\end{figure}
-
-Following the Pythagorean theorem, \emph{the magnitude}, or \emph{the modulus}, of a complex number $z = x + iy$ is given by
-\begin{equation}
-    |z| = \sqrt{x^2 + y^2}
-\end{equation}
-which defines the distance of the point $(x, y)$ from the origin in the complex plane. The \emph{argument} (or angle) of a complex number is the angle $\theta$ formed with the positive real axis, and it can be calculated using the arctangent function:
-\begin{equation}
-    \theta = \tan^{-1}\left(\frac{y}{x}\right)
-\end{equation}
-It is often useful to express complex numbers in polar form:
-\begin{equation}
-    z = r (\cos \theta + i \sin \theta) 
-\end{equation}
-where $r = |z|$ is the magnitude and $\theta = \arg(z)$ is the argument of the complex number. When $r$ is kept constant and the angle $\theta$ is changed linearly with time, the complex number $z$ traces out a circle in the complex plane, which can be interpreted as a representation of oscillatory motion. Therefore, the uniform circular motion can also be considered as an oscillating system. To connect $\theta$ with time, we can set $\theta = \omega t + \phi$, where $\omega$ is the \emph{angular frequency} of the oscillation (in units 1/[T]) and $\phi$ is the phase constant. Thus, we can rewrite the polar form of the complex number as:
-
-\begin{equation}
-    z(t) = r \left[ \cos(\omega t + \phi) + i \sin(\omega t + \phi) \right]
-\end{equation}
-\subsection*{The exponential function}
-The exponential function $e^x$ is a mathematical function that describes growth or decay processes as shown in Fig.~\ref{fig:exponential-function}. 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/exponential-function.png}
-    \caption{The exponential function $e^x$ showing growth for positive $x$ and decay for negative $x$.}
-    \label{fig:exponential-function}
-\end{figure}
-It is the only function that is equal to its own derivative, meaning that the rate of change of the function at any point is proportional to the value of the function at that point:
-\begin{equation}
-    \frac{d}{dx} e^x = e^x
-\end{equation}
-If, for example, the position of a particle changes exponentially with time as $x(t) = e^{t}$, then its velocity is also given by $v(t) = \frac{dx}{dt} = e^{t}$, which is the same as its position function. Hence, if at $t=0$, the particle is at position $x(0) = e^0 = 1$, its velocity at that instant is also $v(0) = e^0 = 1$. At time $t=1$, the position becomes $x(1) = e$, and the velocity is also $v(1) = e$. If we consider another exponential function with a \emph{growth rate} $k$, then the position and velocity functions become $x(t) = e^{kt}$ and $v(t) = \frac{dx}{dt} = k e^{kt}$, respectively. In this case, the velocity is proportional to the position by a factor of $k$:
-\begin{equation}
-    \frac{d}{dt}\underbrace{e^{kt}}_{\text{position}} = \underbrace{ke^{kt}}_{\text{velocity}}
-\end{equation}
-If the exponent is a negative number, the function describes exponential decay instead of growth. For instance, if the position of a particle changes as $x(t) = e^{-t}$, its velocity is given by $v(t) = \frac{dx}{dt} = -e^{-t}$, indicating that the particle is slowing down over time. If we consider the initial condition $x(0) = 1$, then the velocity at that instant is $v(0) = -1$. As the particle goes towards the origin, its position decreases exponentially, and its velocity becomes less negative, approaching zero as time progresses.
-
-\subsection*{Complex Exponential Function}
-What if we replace the exponent $x$ in the exponential function $e^x$ with a complex number $z = x + iy$? First let us consider a simpler case where the exponent is purely imaginary, i.e., $z = i\theta$ where $\theta$ is a real number. In this case, the complex exponential function can be expressed as:
-\begin{equation}
-    e^{i\theta} = \cos \theta + i \sin \theta
-\end{equation}
-
-The exponential function $e^x$ is often recognized for its unique property that its derivative is equal to itself. It is an analytical function that can be defined through its Taylor series expansion:
-\begin{equation}
-    e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots
-\end{equation}
-
-Couldn't we use a cosine or sine function to decribe oscillations instead of complex numbers? The answer is yes, but complex numbers provide a more elegant and efficient way to handle oscillatory phenomena, especially when dealing with multiple oscillations or when performing mathematical operations such as differentiation and integration. Using Euler's formula, we can express the complex exponential function as:
-\begin{equation}
-    e^{i\theta} = \cos \theta + i \sin \theta
-\end{equation}
-This relationship allows us to rewrite the polar form of a complex number in terms of the exponential function:
-\begin{equation}
-    z(t) = r e^{i(\omega t + \phi)}
-\end{equation}
-This representation is particularly useful in physics and engineering, as it simplifies the analysis of oscillatory systems. For example, when dealing with differential equations that describe oscillatory motion, using complex exponentials can make the calculations more straightforward. Additionally, complex numbers facilitate the representation of phase relationships between different oscillations, which is essential in many applications such as signal processing and wave mechanics.
-
+\emph{Oscillatory motion} is the motion of a particle back and forth around a central point. 
 
 \subsection{Cycloidal Motion}
 It is the path traced by a point on the circumference of a circle as it rolls along straight line without slipping. Imagine drawing a chalk dot on a bicycle wheel and then rolling the wheel along a flat surface. The path traced by the chalk dot is a cycloid. 
