@@ -164,7 +164,18 @@ To determine the velocity at a particular instant, we consider the average veloc
 \begin{equation}
 \mathbf{v}(t) =
 \lim_{\Delta t\rightarrow 0}
-\frac{\Delta\mathbf{r}}{\Delta t} =\frac{d\mathbf{r}}{dt} =
+\frac{\Delta\mathbf{r}}{\Delta t} =
+\lim_{\Delta t\rightarrow 0}\frac{\Delta x}{\Delta t}\mathbf{i}
++
+\lim_{\Delta t\rightarrow 0}\frac{\Delta y}{\Delta t}\mathbf{j}
++
+\lim_{\Delta t\rightarrow 0}\frac{\Delta z}{\Delta t}\mathbf{k}
+\end{equation}
+where we have the definition of derivative for each term. Hence the acceleration of a particle at time $t$ is defined as
+
+
+\begin{equation}
+\mathbf{v}(t) = \frac{d\mathbf{r}}{dt} =
 \frac{dx}{dt}\mathbf{i}
 +
 \frac{dy}{dt}\mathbf{j}
@@ -229,21 +240,15 @@ and the average acceleration vector becomes
 \mathbf{a}_\text{avg}= \frac{\Delta v_x}{\Delta t}\mathbf{i}+\frac{\Delta v_y}{\Delta t}\mathbf{j}+\frac{\Delta v_z}{\Delta t}\mathbf{k}
 \]
 
-
 \section{The Instantaneous Acceleration Vector}
 
 If we are interested in the acceleration of the particle at a given time instead of the average acceleration we should consider the behavior of $\mathbf{a}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
 
 \[
-\lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta \mathbf{v}}{\Delta t} = \frac{d\mathbf{v}}{dt} = \frac{dv_x}{dt}\mathbf{i}+\frac{dv_y}{dt}\mathbf{j}+\frac{dv_z}{dt}\mathbf{k}
+\mathbf{a}(t) = \lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta \mathbf{v}}{\Delta t} = \frac{d\mathbf{v}}{dt} = \frac{dv_x}{dt}\mathbf{i}+\frac{dv_y}{dt}\mathbf{j}+\frac{dv_z}{dt}\mathbf{k}
 \]
-where we have the definition of derivative for each term. Hence the acceleration of a particle at time $t$ is defined as
 
-\begin{equation}
-    \mathbf{a}(t) = \frac{d}{dt}[v_x(t)]\mathbf{i}+\frac{d}{dt}[v_y(t)]\mathbf{j}+\frac{d}{dt}[v_z(t)]\mathbf{k}.
-\end{equation}
-
-or in Newton's notation
+In Newton's notation
 
 \begin{equation}
     \mathbf{a}(t) = \dot{v}_x(t)\mathbf{i}+\dot{v}_y(t)\mathbf{j}+\dot{v}_z(t)\mathbf{k} = a_x(t)\mathbf{i}+a_y(t)\mathbf{j}+a_z(t)\mathbf{k}.
@@ -253,64 +258,59 @@ where $a_x(t)$, $a_y(t)$, and $a_z(t)$ are the components of the acceleration ve
 
 \section{The Trajectory of a Particle}
 
-The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on. The \emph{trajectory equation} of a particle is the equation that describes the trajectory of the particle in space. It can be obtained by eliminating the time variable from the position vector equation $\mathbf{r}(t)$ and connecting the $x$, $y$, and $z$ coordinates of the particle.
+The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on. The \emph{trajectory equation} of a particle is the equation that describes the trajectory of the particle in space. It can be obtained by eliminating the time variable from the components of the position vector $\mathbf{r}(t)$ and connecting the $x$, $y$, and $z$ coordinates of the particle.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/trajectory.png}
+\centering
+A figure comes here.
+\caption{The trajectory of a particle in space is shown in green. The trajectory is the path followed by the particle as time goes on.}
 \end{figure}
 
-
-\section{Connection between position, velocity, and acceleration vectors}
+\section{Connecting position, velocity, and acceleration}
 We have already seen that once we are given the position vector of a particle, $\mathbf{r}(t)$, we can find the velocity and acceleration vectors by taking the first and second derivatives with respect to time, respectively:
 \begin{equation}
     \mathbf{r}(t) \xrightarrow{\frac{d}{dt}} \mathbf{v}(t) \xrightarrow{\frac{d}{dt}} \mathbf{a}(t)
 \end{equation}
 
-Is it possible to go the other way around? If we are given the acceleration vector of a particle, $\mathbf{a}(t)$, can we find the velocity and position vectors? If we are given the velocity vector, for example, can we find $\mathbf{r}(t)$?
+What we really do here is to transform one information into another via a derivative operation. Note that once we know the position vector of a particle, we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively.
 
+It is also possible to go the other way around If we are given the acceleration vector of a particle, $\mathbf{a}(t)$, we can find the velocity and position vectors.
 
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\textwidth]{figures/position-from-velocity.png}
-\end{figure}
-
-The area under the velocity-time graph represents the displacement of the particle. Therefore, we can use integral to calculate the displacementof the particle between two time instants $t_1$ and $t_2§$:
-
+For simplicity assume that the motion takes place on $x$-axis only and we know $a_x(t)$ as shown in Fig.~\ref{fig:acceleration}(a), which means that we know how the acceleration of the particle is changing with time. We can find how much the velocity of the particle has changed from time $t_1$ to time $t_2$ by integrating the acceleration function with respect to time:
 \begin{equation}
-    \Delta x = \int_{t_1}^{t_2} v_x(t) dt
+    \Delta v_x = \int_{t_1}^{t_2} a_x(t) dt = v_x(t_2) - v_x(t_1)
 \end{equation}
-
-However, we need to know the initial position of the particle at time $t_1$ in order to find the final position of the particle at time $t_2$. Therefore, we can write:
+Rearranging the above equation, we can write:
 \begin{equation}
-    x(t_2) = x(t_1) + \int_{t_1}^{t_2} v_x(t) dt 
+    v_x(t_2) = v_x(t_1) + \int_{t_1}^{t_2} a_x(t) dt
 \end{equation}
+This means that if the only information we have is the form of $a_x(t)$, we can find how much the velocity of the particle has changed from time $t_1$ to time $t_2$. However, we still need to know the initial velocity of the particle at time $t_1$ in order to find the final velocity of the particle at time $t_2$. 
 
-Therefore, if we are only given the form of $\mathbf{v}(t)$ but not the initial position of the particle, we can find the form of $\mathbf{r}(t)$ up to an unknown constant $C$, which actually comes automatically with the integration of the indefinite integral:
+\begin{remark}
+If we consider integration as a transformation of information, we can say that we can transform the information about the acceleration of a particle into information about the velocity of the particle. However, we need to know the initial velocity of the particle at time $t_1$ in order to find the final velocity of the particle at time $t_2$. 
+\end{remark}
+
+In terms of indefinite integral, we can write:
+\begin{equation}
+    v_x(t) = \int a_x(t) dt + C
+\end{equation}
+where $C$ is a constant that represents the initial velocity of the particle at time $t=0$. The value of $C$ can be determined if we are given the initial velocity of the particle. Like derivative, the integral is also a linear operator, which means that we can integrate each component of the acceleration vector separately to find the corresponding components of the velocity vector:
+\begin{equation}
+    \mathbf{v}(t) = \int \mathbf{a}(t) dt + \mathbf{C} = \int a_x(t) dt \mathbf{i} + \int a_y(t) dt \mathbf{j} + \int a_z(t) dt \mathbf{k} + \mathbf{C}
+\end{equation}
+where $\mathbf{C}$ is a constant vector that represents the initial velocity of the particle at time $t=0$. The components of $\mathbf{C}$ can be determined if we are given the initial velocity of the particle. Similarly, we can find the position of the particle by integrating the velocity vector:
 \begin{equation}
     \mathbf{r}(t) = \int \mathbf{v}(t) dt + \mathbf{C}
-\end{equation} 
-where $\mathbf{C}$ is a constant vector that represents the initial position of the particle at time $t=0$. The components of $\mathbf{C}$ can be determined if we are given the initial position of the particle. Like derivative, the integral is also a linear operator, which means that we can integrate each component of the velocity vector separately to find the corresponding components of the position vector:
-\begin{equation}
-    \mathbf{r}(t) = \int v_x(t) dt \mathbf{i} + \int v_y(t) dt \mathbf{j} + \int v_z(t) dt \mathbf{k} + \mathbf{C}
 \end{equation}
+where $\mathbf{C}$ is a constant vector that represents the initial position of the particle at time $t=0$. The components of $\mathbf{C}$ can be determined if we are given the initial position of the particle. 
 
-The velocity is the time rate of change of the displacement and we saw that we can derive the position out of the velocity by using integration. Also, acceleration is the time rate of change of velocity, which means that the mathematical derivation of the velocity out of the acceleration have to be in the same way we derived the position out of the velocity:
-\begin{equation}
-    \mathbf{v}(t) = \int \mathbf{a}(t) dt + \mathbf{C}
-\end{equation}
-
-\section{Summary}
-If we are given how the position vector of a particle is changing with time, it means that we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively. If we are given how the acceleration vector of a particle is changing with time, we can find the velocity and position vectors by taking the indefinite integrals of the acceleration vector with respect to time, respectively. However, we need to know the initial conditions of the particle in order to find its exact position and velocity at any given time.
-
-(Note for myself: Put some more text here to explain my information point of view.) 
+\textbf{Summary:} If we are given how the position vector of a particle is changing with time, it means that we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively. If we are given how the acceleration vector of a particle is changing with time, we can find the velocity and position vectors by taking the indefinite integrals of the acceleration vector with respect to time, respectively. However, we need to know the initial conditions of the particle in order to find its exact position and velocity at any given time.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/summary.png}
+    \caption{Summary of the relationships between position, velocity, and acceleration vectors.}
 \end{figure}
-
 
 
 \section{Types of Motion}
