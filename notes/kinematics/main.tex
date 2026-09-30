@@ -24,7 +24,7 @@
 In this Chapter, we will study the motion of particles in space without considering the reasons for the motion; that is what \emph{kinematics} is about. We will introduce the concepts of position, displacement, velocity, and acceleration vectors, and explore their relationships. We will also discuss different types of motion, including linear, circular, spiral, oscillatory, and cycloidal motion. Finally, we will work through some examples to illustrate these concepts. We will stick to Cartesian coordinates for simplicity, but the concepts can be extended to other coordinate systems as well.
 
 \section{Notion of a Particle}
-A \emph{particle} is a body whose size and shape are not important for the problem at hand. In other words, a particle can be treated as a point mass. Its motion is described by its position, velocity, and acceleration as functions of time. Mathematically, a particle is a point in space with an associated mass.
+A \emph{particle} is a body whose size and shape are not important for the problem at hand. In other words, a particle can be treated as a point mass. Its motion is described by its position, velocity, and acceleration as functions of time. Geometrically, a particle is a point in space with an associated mass.
 
 For example, planets can be treated as particles when studying their motion around the Sun, even though they have finite size and shape. However, when studying phenomena such as tidal waves or atmospheric motion, the size and shape of the Earth are important, so the Earth cannot be treated as a particle.
 
@@ -262,8 +262,8 @@ The \emph{trajectory} of a particle is the path followed by the particle in spac
 
 \begin{figure}[h!]
 \centering
-A figure comes here.
-\caption{The trajectory of a particle in space is shown in green. The trajectory is the path followed by the particle as time goes on.}
+\includegraphics[width=0.5\textwidth]{figures/trajectory.png}
+\caption{The trajectory of a particle in space is shown in red. The trajectory is the path followed by the particle as time goes on and the equation of the trajectory contains the relationship between the $x$, $y$, and $z$ coordinates of the particle.}
 \end{figure}
 
 \section{Connecting position, velocity, and acceleration}
@@ -308,7 +308,7 @@ where $\mathbf{C}$ is a constant vector that represents the initial position of 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/summary.png}
+    \includegraphics[width=0.5\textwidth]{figures/summary.png}
     \caption{Summary of the relationships between position, velocity, and acceleration vectors.}
 \end{figure}
 
@@ -316,129 +316,152 @@ where $\mathbf{C}$ is a constant vector that represents the initial position of 
 \section{Types of Motion}
 
 \subsection{Linear Motion}
-Motion along a straight line is called linear motion. In this case, the position vector of the particle can be expressed as:
-\[
-\mathbf{r}(t) = x(t) \mathbf{i}
-\]
-Here, $x$ direction is chosen randomly as the direction of motion. The other two directions could also be chosen equally well. The velocity and acceleration vectors are also along the same direction as the position vector, and can be expressed as:
-\[
-\mathbf{v}(t) = \dot{x}(t) \mathbf{i}
-\]
-\[
-\mathbf{a}(t) = \ddot{x}(t) \mathbf{i}
-\]
-When the motion is restricted to a straight line, or in other words, when the motion is one-dimensional, the position, velocity, and acceleration vectors can be represented by scalar quantities along the direction of motion:
-\[
-x = x(t), v = \dot{x}(t), a = \ddot{x}(t)
-\]
+Motion along a straight line is called \emph{linear motion}. In this case, the position vector of the particle can be written as
+\begin{equation}
+\mathbf{r}(t) = x(t)\mathbf{i},
+\end{equation}
+where the $x$-axis is chosen along the direction of motion. The velocity and acceleration vectors are also directed along this axis:
+\begin{equation}
+\mathbf{v}(t) = \dot{x}(t)\mathbf{i}, \quad \mathbf{a}(t) = \ddot{x}(t)\mathbf{i}.
+\end{equation}
+When the motion is restricted to a straight line, or in other words, when the motion is one-dimensional, the position, velocity, and acceleration can therefore be described by the scalar quantities
 
-The signs of these scalar quantities indicate the direction of motion along the chosen axis. For example, if the particle is moving in the positive $x$ direction, the position, velocity, and acceleration scalars will be positive. If the particle is moving in the negative $x$ direction, these scalars will be negative. The magnitude of these scalars represents the distance traveled, speed, and rate of change of speed, respectively.
+$$
+x=x(t), \qquad v=\dot{x}(t), \qquad a=\ddot{x}(t).
+$$
+
+The sign of each quantity indicates its direction relative to the chosen \(x\)-axis. In particular, \(v>0\) means that the particle is moving in the positive \(x\)-direction, while \(v<0\) means that it is moving in the negative \(x\)-direction. Similarly, \(a>0\) and \(a<0\) indicate acceleration in the positive and negative \(x\)-directions, respectively. The magnitude \(|v|\) is the speed, while \(|a|\) is the magnitude of the acceleration.
+
 
 \subsection{Circular Motion}
-\emph{Circular motion} is the motion of a particle along a circular path:
+\label{sec:circular-motion}
+\emph{Circular motion} is the motion of a particle along a circular path. For a circular path of constant radius $R$ as shown in Fig.~\ref{fig:circular-motion}, the position vector of the particle can be written as
+\begin{equation}
+\mathbf{r}(t)
+=
+R\cos[\theta(t)]\,\mathbf{i}
++
+R\sin[\theta(t)]\,\mathbf{j}.
+\end{equation}
+where $R$ is the radius of the circular path and $\theta(t)$ is the angle between the position vector and the positive $x$-axis. Since the particle moves along the circle, this angle generally changes with time:
 
+$$
+\theta=\theta(t).
+$$
 
 \begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}[scale=1.0, >=stealth]
-        \coordinate (O) at (0,0);
-        \coordinate (P) at (35:3);
-        \coordinate (PR) at (35:-3);
-        \draw[thick] (O) circle (3);
-        \draw[->] (-0.3,0) -- (3.7,0) node[right] {$x$};
-        \draw[->] (0,-0.3) -- (0,3.5) node[above] {$y$};
-        \draw[->,thick,blue] (O) -- (P) node[midway,above left] {$\mathbf{r}(t)$};
-        \draw[-,thick,blue] (O) -- (PR) node[midway,below right] {$R$};
-        \fill (P) circle (2.5pt) node[above right] {$P$};
-        \draw[->] (1,0) arc[start angle=0,end angle=35,radius=1]
-            node[midway,right] {$\theta(t)$};
-
-    \end{tikzpicture}
-    \caption{Circular path and polar-coordinate vectors at the particle's position.}
+\centering
+\includegraphics[width=0.5\textwidth]{figures/circular-motion.png}
+\caption{Circular motion described by the position vector $\mathbf{r}(t)$.}
+\label{fig:circular-motion}
 \end{figure}
-\[
-\mathbf{r}(t) = R \cos[\theta(t)] \mathbf{i} + R \sin[\theta(t)] \mathbf{j}
-\]
-Here, $R$ is the radius of the circular path, and $\theta(t)$ is the angle made by the position vector with respect to a reference axis. We know that $\theta$ changes with time, so it can be represented as a function of time:
-\[
-\theta = \theta(t)
-\]
-There is no mathematical restriction on the form of $\theta(t)$, so it can be any function of time. However, if we are interested in \emph{uniform circular motion}, where the speed of the particle is constant, the angle $\theta$ is defined as a linear function of time:
-\[
-\theta(t) = \omega t + \theta_0
-\]
-Here $\omega$ is the \emph{angular velocity} of the particle, and $\theta_0$ is the initial angle of the particle at time $t=0$. The angular velocity $\omega$ is defined as the rate of change of the angle with respect to time:
-\[
-\omega = \frac{d\theta}{dt} 
-\]
 
-\textbf{What is 1 radian?} A radian is a unit of angular measure used in mathematics and physics. It is defined as the angle subtended at the center of a circle by an arc whose length is equal to the radius of the circle. In other words, if you take a circle and draw an arc that has the same length as the radius of the circle, the angle formed at the center of the circle by that arc is 1 radian.
+The \emph{instantaneous angular velocity} is defined as the rate of change of the angle:
+\begin{equation}
+\omega(t)=\frac{d\theta}{dt}.
+\end{equation}
 
-If $1$ radian sees the arc length $R$ from the center of the circle, $2\pi$ radians sees the whole circumference of the circle, which is $2\pi R$. Therefore, we can write:
-\[
-2\pi \text{ radians} = 360^\circ
-\]
+In \emph{uniform circular motion}, the speed of the particle is constant. In this case, the angular velocity is also constant, so the angle changes linearly with time:
 
-Also, if $R$ is seen by $1$ radian, any other angle $\theta$ sees the arc length $s$ as follows:
-\[
-\theta = \frac{s}{R}   
-\]
-We will be using definition of radian in the following sections, so it is important to understand it well. The following figure shows the definition of one radian:
+\begin{equation}
+\theta(t)=\omega t+\theta_0,
+\end{equation}
+
+where $\omega$ is the constant angular velocity and $\theta_0$ is the angle at $t=0$.
+
+\textbf{What is 1 radian?}
+
+A radian is a unit of angular measure. An angle of $1$ radian is defined as the angle at the center of a circle that subtends an arc whose length is equal to the radius of the circle. Thus, if an angle $\theta$ subtends an arc of length $s$ on a circle of radius $R$, then, when $\theta$ is measured in radians,
+\begin{equation}
+\theta=\frac{s}{R}.
+\end{equation}
+For a complete circle, the arc length is the circumference $2\pi R$. Therefore,
+
+$$
+2\pi\ \mathrm{rad}=360^\circ.
+$$
+
+The definition of the radian will be used repeatedly in the following sections, so it is important to understand this relationship between angular displacement and arc length. The following figure illustrates the definition of one radian:
 
 \begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[scale=1.2]
-
-        % Circle
-        \draw[thick] (0,0) circle (2);
-
-        % Center
-        \fill (0,0) circle (1.5pt);
-        \node[below left] at (0,0) {$O$};
-
-        % Radius to initial point
-        \draw[thick] (0,0) -- (2,0);
-        \node[below] at (1,0) {$R$};
-
-        % Radius to final point
-        \draw[thick] (0,0) -- ({2*cos(57.3)},{2*sin(57.3)});
-
-        % Arc of length R
-        \draw[very thick] (2,0)
-            arc[start angle=0, end angle=57.3, radius=2];
-
-        % Angle
-        \draw[->] (0.65,0)
-            arc[start angle=0, end angle=57.3, radius=0.65];
-        \node at (0.95,0.48) {$1\,\mathrm{rad}$};
-
-        % Arc-length label
-        \node at (1.55,1.05) {$s=R$};
-
-        % Radius label on second radius
-        \node[above left] at ({2*cos(57.3)},{2*sin(57.3)})
-            {$R$};
-
-        % Dashed construction showing equal lengths
-        \draw[dashed] (2,0) -- (2,-0.45);
-        \draw[dashed] ({2*cos(57.3)},{2*sin(57.3)})
-            -- ({2*cos(57.3)+0.25},{2*sin(57.3)+0.15});
-
-        % Definition
-        \node[align=center] at (0,-2.9)
-            {\large Arc length $s$ equals the radius $R$\\[2pt]
-             $\displaystyle \theta=\frac{s}{R}=1\,\mathrm{rad}$};
-
-    \end{tikzpicture}
-    \caption{Definition of one radian: an angle of $1$ radian subtends an arc whose length equals the radius of the circle.}
-    \label{fig:one-radian}
+\centering
+\includegraphics[width=0.35\textwidth]{figures/one-radian.png}
+\caption{Definition of one radian: an angle of $1$ radian subtends an arc whose length equals the radius of the circle.}
+\label{fig:one-radian}
 \end{figure}
 
-What about the velocity vector of a particle moving along a circular path? We can find the velocity vector by taking the derivative of the position vector with respect to time:
-\begin{align}
-    \mathbf{v}(t) &= \frac{d}{dt}[R \cos(\omega t)] \mathbf{i} + \frac{d}{dt}[R \sin(\omega t)] \mathbf{j} \\
-    &= -R \sin(\omega t) \omega \mathbf{i} + R \cos(\omega t) \omega \mathbf{j} 
-\end{align}
+We can obtain the velocity vector of a particle moving in a circular path by differentiating the position vector with respect to time:
+
+\begin{equation}
+\mathbf{v}(t) = \frac{d\mathbf{r}}{dt}
+=
+\frac{d}{dt}
+\left[
+R\cos\theta\mathbf{i}
++
+R\sin\theta\mathbf{j}
+\right]
+=
+-R\dot{\theta}\sin\theta\mathbf{i}
++
+R\dot{\theta}\cos\theta\mathbf{j}.
+\end{equation}
+
+Since $\dot{\theta}=\omega$ for uniform circular motion,
+
+\begin{equation}
+\mathbf{v}(t)
+=
+R\omega
+\left[
+-\sin\theta\mathbf{i}
++
+\cos\theta\mathbf{j}
+\right].
+\end{equation}
+
+The velocity vector is tangent to the circular path and therefore perpendicular to the position vector. Its magnitude is
+
+$$
+|\mathbf{v}|=R|\omega|.
+$$
+
+Thus, for uniform circular motion, the speed is constant and is related to the angular velocity by
+
+$$
+v=R|\omega|.
+$$
+
+Similarly, we can find the acceleration vector by differentiating the velocity vector with respect to time:
+
+\begin{equation}
+\mathbf{a}(t) = \frac{d\mathbf{v}}{dt}
+=
+\frac{d}{dt}
+\left[
+R\omega
+\left(
+-\sin\theta\mathbf{i}
++
+\cos\theta\mathbf{j}
+\right)
+\right]
+=
+-R\omega^2\cos\theta\mathbf{i}
+-
+R\omega^2\sin\theta\mathbf{j}.
+\end{equation}
+
+Thus, for uniform circular motion, the acceleration vector points towards the center of the circular path and is therefore directed radially inward. Its magnitude is
+
+\begin{equation}
+a=R|\omega|^2 
+\end{equation}
+
+We can also express the acceleration in terms of the speed $v$:
+\begin{equation}
+a  = \frac{R^2}{R} \left(\frac{d\theta}{dt}\right)^2 = \frac{1}{R} \left(\frac{ds}{dt}\right)^2 = \frac{v^2}{R}
+\end{equation}
 
 
 \subsection{Spiral Motion}
@@ -447,28 +470,157 @@ It is a composite motion of linear and circular motions. The particle moves alon
 \[
 \mathbf{r}(t) = R \cos[\theta(t)] \mathbf{i} + R \sin[\theta(t)] \mathbf{j} + z(t) \mathbf{k}
 \]
-
+which describes a circular motion in the \(xy\)-plane with radius \(R\) and a linear motion along the \(z\)-axis. The angle \(\theta(t)\) and the height \(z(t)\) can be functions of time, allowing for various types of spiral motion, such as helical or conical spirals.
 
 \subsection{Oscillatory Motion}
 
+Oscillations are periodic motions; they repeat themselves after a certain interval of time.
+Complex numbers together with the exponential function provide a powerful and elegant
+framework for describing and analyzing oscillatory phenomena.
 
+\subsubsection*{Complex Numbers}
+\label{sec:complex-numbers}
 
+Mathematicians in the 16th century discovered that cubic formulas sometimes yield three
+real solutions while still forcing square roots of negative numbers to appear in the
+intermediate algebra. Bombelli (1572) was the first to state systematic rules for
+operating with $\sqrt{-1}$, making these calculations consistent and allowing the real
+results to be recovered, marking the first systematic use of complex numbers. Descartes
+later coined the term ``imaginary'' for these numbers, reflecting the skepticism of the
+time regarding their existence, and Euler adopted the notation $i$ for $\sqrt{-1}$,
+making the calculations routine; this notation has since become standard in mathematics.
 
-
-The exponential function $e^x$ is often recognized for its unique property that its derivative is equal to itself. It is an analytical function that can be defined through its Taylor series expansion:
+\emph{Complex numbers} are numbers that can be expressed in the form
 \begin{equation}
-    e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots
+    z = x + iy,
 \end{equation}
+where $x$ and $y$ are real numbers and $i$ is the imaginary unit satisfying $i^2 = -1$.
+We call them ``numbers'' because they obey the same algebraic rules as real numbers, with
+the additional rule that $i^2 = -1$, allowing addition, subtraction, multiplication,
+and division.
 
-Couldn't we use a cosine or sine function to decribe oscillations instead of complex numbers? The answer is yes, but complex numbers provide a more elegant and efficient way to handle oscillatory phenomena, especially when dealing with multiple oscillations or when performing mathematical operations such as differentiation and integration. Using Euler's formula, we can express the complex exponential function as:
+The real part of $z$ is denoted $\mathrm{Re}(z) = x$ and the imaginary part
+$\mathrm{Im}(z) = y$. Complex numbers can be represented graphically on the
+\emph{complex plane}, where the horizontal axis represents the real part and the vertical
+axis the imaginary part, as shown in Fig.~\ref{complex-plane.png}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/complex-plane.png}
+    \caption{The complex plane.}
+    \label{complex-plane.png}
+\end{figure}
+
+By the Pythagorean theorem, the magnitude (or modulus) of $z = x + iy$ is
 \begin{equation}
-    e^{i\theta} = \cos \theta + i \sin \theta
+    |z| = \sqrt{x^2 + y^2},
 \end{equation}
-This relationship allows us to rewrite the polar form of a complex number in terms of the exponential function:
+the distance from the origin to the point $(x,y)$ in the complex plane. The argument
+(or angle) of $z$ is the angle $\theta$ that the line from the origin to $z$ makes with
+the positive real axis. For $x > 0$ it reduces to
 \begin{equation}
-    z(t) = r e^{i(\omega t + \phi)}
+    \theta = \tan^{-1}\!\left(\frac{y}{x}\right);
 \end{equation}
-This representation is particularly useful in physics and engineering, as it simplifies the analysis of oscillatory systems. For example, when dealing with differential equations that describe oscillatory motion, using complex exponentials can make the calculations more straightforward. Additionally, complex numbers facilitate the representation of phase relationships between different oscillations, which is essential in many applications such as signal processing and wave mechanics.
+in general the correct quadrant must be taken into account, and the two-argument function
+$\operatorname{atan2}(y,x)$ returns the correct angle for all $(x,y)\neq(0,0)$.
+
+It is often useful to write $z$ in \emph{polar form} (see Fig.~\ref{complex-plane.png}), which expresses $z$ in terms of its magnitude and argument:
+\begin{equation}
+    z = r\,(\cos\theta + i\sin\theta),
+\end{equation}
+where $r = |z|$ is the magnitude and $\theta = \arg(z)$ is the argument. 
+
+
+\subsubsection*{The connection between complex numbers, circular motion and oscillations}
+
+When $r$ is held constant and $\theta$ changes linearly with time, $z$ traces a circle in the complex plane, representing circular motion. Setting $\theta = \omega t + \phi$, where
+$\omega$ is the angular velocity (in units $[\mathrm{T}^{-1}]$) as we defined it in Sec.~\ref{sec:circular-motion}, and $\phi$ is
+the phase constant, gives
+\begin{equation}
+    z(t) = r\left[\cos(\omega t+\phi)+i\sin(\omega t+\phi)\right].
+\end{equation}
+                
+If we take the real part of $z(t)$, we obtain the familiar equation for simple harmonic oscillation which will be examined in more detail in Sec.~\ref{sec:small-oscillations}:
+\begin{equation}
+    x(t) = r\cos(\omega t+\phi),
+\end{equation}
+which describes the motion of a particle oscillating back and forth along a line. It is customary to call $\omega$ in this case the \emph{angular frequency} since it refers to the rate of change of the phase of an oscillation. However, both angular velocity and angular frequency have the same units and the same numerical value. The imaginary part 
+\begin{equation}
+    y(t) = r\sin(\omega t+\phi)
+\end{equation}
+describes a particle oscillating along a line perpendicular to the $x$-axis (imaginary axis). The combination of these two perpendicular oscillations results in circular motion, as the particle moves around the circle in the complex plane. The angular velocity $\omega$ determines how fast the particle moves around the circle, while the phase constant $\phi$ determines the initial position of the particle on the circle at $t=0$.
+
+
+\subsubsection*{The Exponential Function}
+
+The exponential function $e^x$ describes growth or decay processes, as shown in
+Fig.~\ref{fig:exponential-function}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/exponential-function.png}
+    \caption{The exponential function $e^x$: growth for positive $x$,
+             decay for negative $x$.}
+    \label{fig:exponential-function}
+\end{figure}
+
+It is defined by its Taylor series:
+\begin{equation}
+    e^{x} = \sum_{n=0}^{\infty}\frac{x^{n}}{n!}
+          = 1 + \frac{x}{1!} + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \cdots
+\end{equation}
+A key property is that $e^x$ is the \emph{unique} function satisfying $f'=f$ with
+$f(0)=1$, meaning its rate of change at every point equals its value there:
+\begin{equation}
+    \frac{d}{dx}\,e^{x} = e^{x}.
+\end{equation}
+More generally, for a constant rate $k$,
+\begin{equation}
+    \frac{d}{dt}\,e^{kt} = k\,e^{kt},
+\end{equation}
+so the velocity of a particle whose position is $x(t)=e^{kt}$ is always proportional to
+its position by the factor $k$: exponential growth for $k>0$ and exponential decay
+for $k<0$.
+
+\subsection*{Complex Exponential Function}
+
+Substituting $x = i\theta$ (with $\theta$ real) into the Taylor series of $e^x$ and
+using $i^{2}=-1$, $i^{3}=-i$, $i^{4}=1$, \ldots yields
+\begin{equation}
+    e^{i\theta}
+      = 1 + i\theta - \frac{\theta^{2}}{2!} - \frac{i\theta^{3}}{3!}
+        + \frac{\theta^{4}}{4!} + \cdots
+\end{equation}
+Separating real and imaginary parts:
+\begin{equation}
+    e^{i\theta}
+      = \underbrace{\left(1-\frac{\theta^{2}}{2!}+\frac{\theta^{4}}{4!}-\cdots
+                   \right)}_{\cos\theta}
+      + \;i\underbrace{\left(\theta-\frac{\theta^{3}}{3!}+\frac{\theta^{5}}{5!}
+                             -\cdots\right)}_{\sin\theta},
+\end{equation}
+which is \emph{Euler's formula}:
+\begin{equation}
+    e^{i\theta} = \cos\theta + i\sin\theta.
+\end{equation}
+Applying this to the polar form, the time-dependent complex number becomes simply
+\begin{equation}
+    z(t) = r\,e^{i(\omega t+\phi)}.
+\end{equation}
+While a cosine or sine alone can describe a single oscillation, the complex exponential
+handles multiple oscillations, phase relationships, and operations such as differentiation
+and integration more efficiently, making it the preferred tool in signal processing and
+wave mechanics.
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{Cycloidal Motion ---\textit{Optional}}
@@ -483,7 +635,10 @@ The position vector of a particle moving along a cycloidal path can be expressed
 
 
 
+
+
 \section{Worked Examples}
+
 \subsection{Collision of Two Particles}
 Two particles are moving on a plane according to the following position vectors:
 \[
@@ -550,9 +705,6 @@ This factors as:
 (t-2)^2 = 0
 \]
 So $t = 2$.
-
-
-\section{Worked Examples}
 
 \subsection{Displacement, Average Velocity, Instantaneous Velocity, and Collision}
 
