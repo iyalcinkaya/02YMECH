@@ -4,9 +4,14 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{graphicx}
+\usepackage{amsthm}
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75em}
-
 
 
 \title{Chapter 2: Kinematics}
@@ -15,214 +20,222 @@
 
 \begin{document}
 \maketitle
+
+In this Chapter, we will study the motion of particles in space without considering the reasons for the motion; that is what \emph{kinematics} is about. We will introduce the concepts of position, displacement, velocity, and acceleration vectors, and explore their relationships. We will also discuss different types of motion, including linear, circular, spiral, oscillatory, and cycloidal motion. Finally, we will work through some examples to illustrate these concepts. We will stick to Cartesian coordinates for simplicity, but the concepts can be extended to other coordinate systems as well.
+
 \section{Notion of a Particle}
-A \emph{particle} is a body whose size and shape are not important for the problem at hand. In other words, a particle is a body that can be treated as a point mass. The motion of a particle is described by its position, velocity, and acceleration as functions of time. For example, planets can be treated as particles when studying their motion around the sun, even though they have size and shape. But when studying the tidal waves on earth and the tornadoes in the atmosphere, the size and shape of the earth is important, and they cannot be treated as particles.
+A \emph{particle} is a body whose size and shape are not important for the problem at hand. In other words, a particle can be treated as a point mass. Its motion is described by its position, velocity, and acceleration as functions of time. Mathematically, a particle is a point in space with an associated mass.
 
-Mathematically, a particle is a point in the space with an associated mass. Therefore, if one has to define a density function for a point particle which is located at $\mathbf{r}_0$, it would look like:
-\[
-\rho(\mathbf{r}) =
-\begin{cases}
-\infty, & \mathbf{r} = \mathbf{r}_0,\\[4pt]
-0, & \mathbf{r} \neq \mathbf{r}_0.
-\end{cases}
-\]
+For example, planets can be treated as particles when studying their motion around the Sun, even though they have finite size and shape. However, when studying phenomena such as tidal waves or atmospheric motion, the size and shape of the Earth are important, so the Earth cannot be treated as a particle.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.5]{figures/point-particle.png}
-\end{figure}
+\begin{remark}
+Since a particle's entire mass is idealized as being concentrated at a single point, its mass density is formally singular at that point. This is an idealization and requires some mathematical care; a rigorous treatment uses the Dirac delta distribution, which will be introduced in the Electricity and Magnetism course.
+\end{remark}
 
-
-How can we mathematically write down the total mass of the particle in terms of its density function? We can consider the integral of the density function over all space, right? If $\rho$ is infinite at $\mathbf{r}_0$, wouldn't the integral be infinite as well? According to what we have learned in calculus, the integral of a function that is infinite must br infinite as well.
-\begin{equation}
-\int_{\text{all space}} \rho(\mathbf{r}) dV = \infty
-\end{equation}
-We attribute a geometrical ``dot'' a physical property called mass and we still want the mathematics work: We do not want the above integral to be infinite. Therefore, we say let it not be infinite, let it be a finite number $m$. In other words, we define the integral as follows:
-\begin{equation}
-\int_{\text{all space}} \rho(\mathbf{r}) dV \equiv m
-\end{equation}
-You will see more about this in Electricity and Magnetism course when we define Dirac delta function. 
 
 \section{The Position Vector}
+
 The position of a particle is described by a vector called the \emph{position vector}:
+
 \begin{equation}
-\mathbf{r}(t) = x(t) \mathbf{i} + y(t) \mathbf{j} + z(t) \mathbf{k}
+\mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k},
 \end{equation}
-where $x(t)$, $y(t)$, and $z(t)$ are the coordinates of the particle as functions of time in a Cartesian coordinate system, and $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$ are the unit vectors in the $x$, $y$, and $z$ directions, respectively. The position vector points from the origin of the coordinate system to the position of the particle at time $t$. The magnitude of the position vector represents the distance of the particle from the origin, and its direction represents the direction of the particle from the origin. The position vector is a function of time, and it can be used to describe the motion of the particle in space. The position vector can also be expressed in terms of spherical or cylindrical coordinates, depending on the problem at hand. 
 
+where \(x(t)\), \(y(t)\), and \(z(t)\) are the Cartesian coordinates of the particle as functions of time, and \(\mathbf{i}\), \(\mathbf{j}\), and \(\mathbf{k}\) are the unit vectors in the \(x\)-, \(y\)-, and \(z\)-directions, respectively.
 
+The position vector points from the origin of the coordinate system to the particle. Its magnitude,
+
+\begin{equation}
+|\mathbf{r}(t)|
+=
+\sqrt{x^2(t)+y^2(t)+z^2(t)},
+\end{equation}
+
+is the distance of the particle from the origin, while its direction specifies the direction from the origin to the particle.
+
+Because the coordinates can change with time, the position vector \(\mathbf{r}(t)\) describes the motion of the particle through space.
 
 \begin{figure}[ht]
-\centering
-\begin{minipage}{0.42\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/position-vector.png}
-\end{minipage}\hfill
-\begin{minipage}{0.54\textwidth}
-\centering
-\begin{tikzpicture}[>=stealth, scale=1.2]
 
-    % Axes
-    \draw[->] (-0.3,0) -- (5,0) node[right] {$x$};
-    \draw[->] (0,-0.3) -- (0,4) node[above] {$y$};
+    \includegraphics[width=0.5\textwidth]{figures/position-vector.png}
 
-    % Particle
-    \fill (3.5,2.5) circle (2pt) node[above right] {Particle};
-
-    % Position vector
-    \draw[->, thick] (0,0) -- (3.5,2.5)
-        node[midway, above left] {$\mathbf{r}(t)$};
-
-    % Coordinates
-    \draw[dashed] (3.5,0) -- (3.5,2.5);
-    \draw[dashed] (0,2.5) -- (3.5,2.5);
-
-    % Coordinate labels
-    \node[below] at (3.5,0) {$x(t)$};
-    \node[left] at (0,2.5) {$y(t)$};
-
-    % Origin
-    \node[below left] at (0,0) {$O$};
-
-\end{tikzpicture}
-    \end{minipage}
-\caption{The position vector $\mathbf{r}(t)$ of a particle in a two-dimensional Cartesian coordinate system.}
-\label{fig:position_vector}
+    \caption{The position vector \(\mathbf{r}(t)\) of a particle in a three-dimensional Cartesian coordinate system.}
+    \label{fig:position_vector}
 \end{figure}
-
-
 
 
 \section{The Displacement Vector}
-What happens if a particle moves from one position $r_1(t_1)$ to another position $r_2(t_2)$? The displacement of a particle is described by a vector called the \emph{displacement vector}. It is defined as the change in position of the particle, and is given by the difference between the final position vector and the initial position vector:
+
+Suppose a particle moves from an initial position $\mathbf{r}(t_1)$ to a final position $\mathbf{r}(t_2)$. The \emph{displacement vector} describes the change in the particle's position. It is defined as the difference between the final and initial position vectors:
+
 \begin{equation}
-\Delta \mathbf{r} = \mathbf{r}_2 (t_2) - \mathbf{r}_1 (t_1)
+\Delta\mathbf{r} = \mathbf{r}(t_2)-\mathbf{r}(t_1).
+\label{eq:displacement}
 \end{equation}
 
-The displacement vector points from the initial position to the final position, and its magnitude represents the distance traveled by the particle in a straight line. The displacement vector is independent of the path taken by the particle, and only depends on the initial and final positions.
-
-\begin{figure}[h]
-\centering
-\begin{minipage}{0.6\textwidth}
-\centering
-\begin{tikzpicture}[>=stealth, thick, scale=0.6]
-
-    % Points
-    \coordinate (O)  at (0,0);
-    \coordinate (P1) at (4,1);
-    \coordinate (P2) at (5,4);
-
-    % Position vector r_1
-    \draw[->] (O) -- (P1)
-        node[midway, below] {$\mathbf{r}_1(t_1)$};
-
-    % Position vector r_2
-    \draw[->] (O) -- (P2)
-        node[pos=0.55, above left] {$\mathbf{r}_2(t_2)$};
-
-    % Displacement vector
-    \draw[->] (P1) -- (P2)
-        node[midway, above right] {$\Delta\mathbf{r}$};
-
-    % Points
-    \fill (O) circle (2pt) node[below left] {$O$};
-    \fill (P1) circle (2pt) node[below] {$P_1$};
-    \fill (P2) circle (2pt) node[above right] {$P_2$};
-
-\end{tikzpicture}
-\end{minipage}
-\caption{Position vectors and displacement vector.}
-\label{fig:position_displacement}
-\end{figure}
-
-If we simple subtract $\mathbf{r}_1$ from $\mathbf{r}_2$ by using the head to tail method, the resulting vector would be in some direction starting from the origin. But the displacement vector is defined as the vector that starts from the initial position and ends at the final position. Therefore, we need to translate the vector $\mathbf{r}_1$ to the point $\mathbf{r}_2$ in order to find the displacement vector $\Delta \mathbf{r}$. This is shown in Figure \ref{fig:position_displacement}.
-
-
-\section{The Velocity Vector}
-
-The \emph{velocity} is defined as the change in position with respect to time. If the displacement of the particle is described by $\Delta \mathbf{r}$, can we define the velocity as follows?
-
-\[
-\mathbf{v}\overset{?}{=}\frac{\Delta \mathbf{r}}{\Delta t}
-\]
-What does this actually mean? Maybe the particle moved between the time interval $t_2-t_1$ as shown in the following figure:
 
 \begin{figure}[h!]
-\centering
-\includegraphics[width=0.4\textwidth]{figures/average-velocity.png}
-\caption{Displacement vector}
-\label{fig:position_displacement}
+    \centering
+    \includegraphics[width=0.3\textwidth]{figures/displacement-vector.png}
+    \caption{Displacement vector of a particle moving from an initial position $\mathbf{r}(t_1)$ to a final position $\mathbf{r}(t_2)$. The actual path, which is shown by the green curve, taken by the particle is not necessarily a straight line.}
+    \label{fig:displacement_vector}
 \end{figure}
 
 
-Maybe the particle sped up during its motion or slowed down or maybe it took a brake for some time. We do not know. The information given to us in the beginning was only $\mathbf{r}_1(t)$ and $\mathbf{r}_2(t)$. Therefore, all we can say is how fast and in which direction the particle moved during $\Delta t$ ``on average''. Therefore, we define the \emph{average velocity vector} as
-\[
-\mathbf{v}_\text{avg}=\frac{\Delta \mathbf{r}}{\Delta t}
-\]
-It has the same direction as the displacement vector. If we are given the initial and final position vectors in component form as
-\[
-\mathbf{r}_1=x_1(t)\mathbf{i} + y_1(t)\mathbf{j} + z_1(t)\mathbf{k}
-\]
-\[
-\mathbf{r}_2=x_2(t)\mathbf{i} + y_2(t)\mathbf{j} + z_2(t)\mathbf{k}
-\]
-\[
-\Delta \mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1 = [x_2(t)-x_1(t)]\mathbf{i} + [y_2(t)-y_1(t)]\mathbf{j} + [z_2(t)-z_1(t)]\mathbf{k}
-\]
-then the average velocity vector becomes
-\[
-\mathbf{v}_\text{avg}= \frac{\Delta x}{\Delta t}\mathbf{i}+\frac{\Delta y}{\Delta t}\mathbf{j}+\frac{\Delta z}{\Delta t}\mathbf{k}
-\]
+The displacement vector points from the initial position to the final position. Its magnitude, $\lvert\Delta\mathbf{r}\rvert$, is the straight-line distance between the initial and final positions. In general, it is not equal to the distance traveled by the particle along its trajectory. The displacement depends only on the initial and final positions, not on the path taken between them.
 
-If we are interested in the velocity of the particle at a given time instead of the average velocity we should consider the behavior of $\mathbf{v}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
+Geometrically, the relation given in Eq.~\eqref{eq:displacement} follows directly from vector subtraction. Since both position vectors originate at the origin, the vector connecting the initial position $P_1$ to the final position $P_2$ is equal to $\mathbf{r}(t_2)-\mathbf{r}(t_1)$. Thus, the displacement vector is the vector from the initial position to the final position.
 
-\[
-\lim_{\Delta t \rightarrow 0} \mathbf{v}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta z}{\Delta t}\mathbf{k},
-\]
-where we have the definition of derivatice for each term. Hence the velocity of a particle at time $t$ is defined as
+\section{\label{sec:average_velocity}The Average Velocity Vector}
+
+
+Velocity describes how the position of a particle changes with time. Suppose the particle moves from an initial position $\mathbf{r}(t_1)$ to a final position $\mathbf{r}(t_2)$ during the time interval $\Delta t = t_2-t_1$ and let the corresponding displacement be $\Delta\mathbf{r}$. We define \emph{the average velocity vector} as
 
 \begin{equation}
-    \mathbf{v}(t) = \frac{d}{dt}[x(t)]\mathbf{i}+\frac{d}{dt}[y(t)]\mathbf{j}+\frac{d}{dt}[z(t)]\mathbf{k},
+\mathbf{v}_{\mathrm{avg}} = \frac{\Delta\mathbf{r}}{\Delta t}.
+\label{eq:average_velocity}
 \end{equation}
 
-or in Newton's notation
+This quantity describes the displacement per unit time during the interval $\Delta t$. Note that the particle may have sped up, slowed down, or even stopped temporarily during the motion from $\mathbf{r}(t_1)$ to $\mathbf{r}(t_2)$. From the initial and final positions alone, we can therefore determine only the particle's motion \emph{on average} over the time interval as given in Eq.~\eqref{eq:average_velocity}. In the way the displacement shows where the particle went on average, the average velocity vector shows the direction and magnitude of the particle's motion on average. Consequently, the average velocity vector is in the same direction as the displacement vector, provided $\Delta\mathbf{r} \neq \mathbf{0}$.
+
+Given that the initial and final position vectors be
 
 \begin{equation}
-    \mathbf{v}(t) = \dot{x}(t)\mathbf{i}+\dot{y}(t)\mathbf{j}+\dot{z}(t)\mathbf{k} = v_x(t)\mathbf{i}+v_y(t)\mathbf{j}+v_z(t)\mathbf{k}.
+\mathbf{r}(t_1)
+=
+x(t_1)\mathbf{i}
++
+y(t_1)\mathbf{j}
++
+z(t_1)\mathbf{k},
 \end{equation}
-
-The \emph{speed} of the particle is defined as the magnitude of the velocity vector:
 
 \begin{equation}
-    v(t) = |\mathbf{v}(t)|.
+\mathbf{r}(t_2)
+=
+x(t_2)\mathbf{i}
++
+y(t_2)\mathbf{j}
++
+z(t_2)\mathbf{k},
+\end{equation}
+
+the displacement can be written as
+
+\begin{equation}
+\begin{aligned}
+\Delta\mathbf{r}
+&=
+\mathbf{r}(t_2)-\mathbf{r}(t_1) \\
+&=
+\left[x(t_2)-x(t_1)\right]\mathbf{i}
++
+\left[y(t_2)-y(t_1)\right]\mathbf{j}
++
+\left[z(t_2)-z(t_1)\right]\mathbf{k}.
+\end{aligned}
+\end{equation}
+
+Defining
+
+\begin{equation}
+\Delta x = x(t_2)-x(t_1), \qquad
+\Delta y = y(t_2)-y(t_1), \qquad
+\Delta z = z(t_2)-z(t_1),
+\end{equation}
+
+the average velocity can also be written as
+
+\begin{equation}
+\mathbf{v}_{\mathrm{avg}}
+=
+\frac{\Delta x}{\Delta t}\mathbf{i}
++
+\frac{\Delta y}{\Delta t}\mathbf{j}
++
+\frac{\Delta z}{\Delta t}\mathbf{k}.
+\end{equation}
+
+\section{The Instantaneous Velocity Vector}
+
+To determine the velocity at a particular instant, we consider the average velocity over an increasingly small time interval around that instant. Mathematically, considering the limit of the average velocity as $\Delta t \rightarrow 0$ leads us to the definition of \emph{instantaneous velocity}
+
+\begin{equation}
+\mathbf{v}(t) =
+\lim_{\Delta t\rightarrow 0}
+\frac{\Delta\mathbf{r}}{\Delta t} =\frac{d\mathbf{r}}{dt} =
+\frac{dx}{dt}\mathbf{i}
++
+\frac{dy}{dt}\mathbf{j}
++
+\frac{dz}{dt}\mathbf{k}.
 \end{equation}
 
 
-\section{The Acceleration Vector}
-\emph{Acceleration} is defined as the change in velocity with respect to time. If the change in velocity of the particle is described by $\Delta \mathbf{v}$, we can define the average acceleration vector as follows:
-\[
+Using Newton's notation,
+
+\begin{equation}
+\mathbf{v}(t)
+=
+\dot{x}(t)\mathbf{i}
++
+\dot{y}(t)\mathbf{j}
++
+\dot{z}(t)\mathbf{k}
+=
+v_x(t)\mathbf{i}
++
+v_y(t)\mathbf{j}
++
+v_z(t)\mathbf{k}.
+\end{equation}
+
+The \emph{speed} of the particle is the magnitude of its velocity vector:
+
+\begin{equation}
+v(t)
+=
+\lvert\mathbf{v}(t)\rvert.
+\end{equation}
+
+We use speed if we are only interested in how fast the particle is moving, regardless of its direction of motion. The speed is always a non-negative quantity, while the velocity can be positive or negative depending on the direction of motion.
+
+\begin{remark}
+    Compared to the average velocity, calculating the instantaneous velocity requires more detailed information about the motion of the particle. In calculating displacement, we only needed two vectors, the initial and final positions. However, in calculating the instantaneous velocity, we need to know $\mathbf{r}(t)$, i.e., all of the position vectors at each instant in time.   
+\end{remark}
+
+
+
+\section{The Average Acceleration Vector}
+Acceleration is defined as the change in velocity with respect to time. Following the same reasoning as we did for the average velocity in Sec.~\ref{sec:average_velocity}, we can define the average acceleration vector as follows:
+
+\begin{equation}
 \mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t}
-\]
-The average acceleration vector has the same direction as the change in velocity vector. If we are given the initial and final velocity vectors in component form as
+\end{equation}
+where \(\Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1\) is the change in velocity vector, and \(\Delta t = t_2 - t_1\) is the time interval over which the change in velocity occurs. The average acceleration vector describes how the velocity of the particle changes on average over the time interval \(\Delta t\). The average acceleration vector has the same direction as the change in velocity vector. If we are given the initial and final velocity vectors in component form as
 \[
-\mathbf{v}_1=v_{x1}(t)\mathbf{i} + v_{y1}(t)\mathbf{j} + v_{z1}(t)\mathbf{k}   
+\mathbf{v}(t_1)=v_{x}(t_1)\mathbf{i} + v_{y}(t_1)\mathbf{j} + v_{z}(t_1)\mathbf{k}   
 \]
 \[
-\mathbf{v}_2=v_{x2}(t)\mathbf{i} + v_{y2}(t)\mathbf{j} + v_{z2}(t)\mathbf{k}
+\mathbf{v}(t_2)=v_{x}(t_2)\mathbf{i} + v_{y}(t_2)\mathbf{j} + v_{z}(t_2)\mathbf{k}
 \]
 Then the change in velocity is
 \[
-\Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1 = [v_{x2}(t)-v_{x1}(t)]\mathbf{i} + [v_{y2}(t)-v_{y1}(t)]\mathbf{j} + [v_{z2}(t)-v_{z1}(t)]\mathbf{k}
+\Delta \mathbf{v} = \mathbf{v}(t_2) - \mathbf{v}(t_1) = [v_{x}(t_2)-v_{x}(t_1)]\mathbf{i} + [v_{y}(t_2)-v_{y}(t_1)]\mathbf{j} + [v_{z}(t_2)-v_{z}(t_1)]\mathbf{k}
 \]
 and the average acceleration vector becomes
 \[
 \mathbf{a}_\text{avg}= \frac{\Delta v_x}{\Delta t}\mathbf{i}+\frac{\Delta v_y}{\Delta t}\mathbf{j}+\frac{\Delta v_z}{\Delta t}\mathbf{k}
 \]
 
+
+\section{The Instantaneous Acceleration Vector}
+
 If we are interested in the acceleration of the particle at a given time instead of the average acceleration we should consider the behavior of $\mathbf{a}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
 
 \[
-\lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta v_x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_z}{\Delta t}\mathbf{k},
+\lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta \mathbf{v}}{\Delta t} = \frac{d\mathbf{v}}{dt} = \frac{dv_x}{dt}\mathbf{i}+\frac{dv_y}{dt}\mathbf{j}+\frac{dv_z}{dt}\mathbf{k}
 \]
 where we have the definition of derivative for each term. Hence the acceleration of a particle at time $t$ is defined as
 
@@ -240,33 +253,13 @@ where $a_x(t)$, $a_y(t)$, and $a_z(t)$ are the components of the acceleration ve
 
 \section{The Trajectory of a Particle}
 
-The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on.
+The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on. The \emph{trajectory equation} of a particle is the equation that describes the trajectory of the particle in space. It can be obtained by eliminating the time variable from the position vector equation $\mathbf{r}(t)$ and connecting the $x$, $y$, and $z$ coordinates of the particle.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/trajectory.png}
 \end{figure}
 
-Velocity and displacement vectors are always tangent to the particle's trajectory.
-
-\section{Acceleration vector for particles moving along a curved path}
-
-For a particle moving along a curved path, the acceleration vector generally has two components:
-\begin{itemize}
-    \item The tangential component, which is parallel to the velocity vector and changes the speed of the particle.
-    \item The normal component, which is perpendicular to the velocity vector and changes the direction of the particle's motion.
-\end{itemize}
-
-The normal component of the acceleration is responsible for the change in direction of the particle's motion, while the tangential component is responsible for the change in speed.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/acceleration-vector.png}
-\end{figure}
-Remember that
-\begin{equation}
-\mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t} = \frac{\mathbf{v}_2 - \mathbf{v}_1}{\Delta t}
-\end{equation}
 
 \section{Connection between position, velocity, and acceleration vectors}
 We have already seen that once we are given the position vector of a particle, $\mathbf{r}(t)$, we can find the velocity and acceleration vectors by taking the first and second derivatives with respect to time, respectively:
@@ -310,6 +303,8 @@ The velocity is the time rate of change of the displacement and we saw that we c
 
 \section{Summary}
 If we are given how the position vector of a particle is changing with time, it means that we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively. If we are given how the acceleration vector of a particle is changing with time, we can find the velocity and position vectors by taking the indefinite integrals of the acceleration vector with respect to time, respectively. However, we need to know the initial conditions of the particle in order to find its exact position and velocity at any given time.
+
+(Note for myself: Put some more text here to explain my information point of view.) 
 
 \begin{figure}[h!]
     \centering
@@ -455,66 +450,10 @@ It is a composite motion of linear and circular motions. The particle moves alon
 
 
 \subsection{Oscillatory Motion}
-\emph{Oscillatory motion} is the motion of a particle back and forth around a central point. Oscillations are periodic motions; they repeat themselves after a certain interval of time. Complex numbers together with the exponential function provide a powerful and neat framework for describing and analyzing oscillatory phenomena.
 
-\subsection*{Complex Numbers}
 
-Mathematicians figured in the 16th century that cubic formulas sometimes yield three real solutions while still forcing square roots of negative numbers to appear in the intermediate algebra; rules for $\sqrt{-1}$ were then introduced to keep these calculations consistent and recover the real results, marking the first systematic use of complex numbers. It was Descartes who coined the term ``imaginary'' for these numbers, reflecting the skepticism of the time regarding their existence, then Euler adopted the notation $i$ for $\sqrt{-1}$ making the calculation routine, which has since become standard in mathematics.
 
-\emph{Complex numbers} are numbers that can be expressed in the form 
-\begin{equation}
-    z = x + iy
-\end{equation}
-where $x$ and $y$ are real numbers, and $i$ is the imaginary unit satisfying the equation $i^2 = -1$. We call them ``numbers'' because they can be added, subtracted, multiplied, and divided like real numbers; they follow the same algebraic rules as real numbers, with the additional rule that $i^2 = -1$.
 
-The \emph{real part} of the complex number is denoted by $\text{Re}(z) = x$, and the \emph{imaginary part} is denoted by $\text{Im}(z) = y$. Complex numbers can be represented graphically on the \emph{complex plane}, where the horizontal axis represents the real part and the vertical axis represents the imaginary part as shown in Fig.~\ref{complex-plane.png}. 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/complex-plane.png}
-    \caption{The complex plane}
-    \label{complex-plane.png}
-\end{figure}
-
-Following the Pythagorean theorem, \emph{the magnitude}, or \emph{the modulus}, of a complex number $z = x + iy$ is given by
-\begin{equation}
-    |z| = \sqrt{x^2 + y^2}
-\end{equation}
-which defines the distance of the point $(x, y)$ from the origin in the complex plane. The \emph{argument} (or angle) of a complex number is the angle $\theta$ formed with the positive real axis, and it can be calculated using the arctangent function:
-\begin{equation}
-    \theta = \tan^{-1}\left(\frac{y}{x}\right)
-\end{equation}
-It is often useful to express complex numbers in polar form:
-\begin{equation}
-    z = r (\cos \theta + i \sin \theta) 
-\end{equation}
-where $r = |z|$ is the magnitude and $\theta = \arg(z)$ is the argument of the complex number. When $r$ is kept constant and the angle $\theta$ is changed linearly with time, the complex number $z$ traces out a circle in the complex plane, which can be interpreted as a representation of oscillatory motion. Therefore, the uniform circular motion can also be considered as an oscillating system. To connect $\theta$ with time, we can set $\theta = \omega t + \phi$, where $\omega$ is the \emph{angular frequency} of the oscillation (in units 1/[T]) and $\phi$ is the phase constant. Thus, we can rewrite the polar form of the complex number as:
-
-\begin{equation}
-    z(t) = r \left[ \cos(\omega t + \phi) + i \sin(\omega t + \phi) \right]
-\end{equation}
-\subsection*{The exponential function}
-The exponential function $e^x$ is a mathematical function that describes growth or decay processes as shown in Fig.~\ref{fig:exponential-function}. 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/exponential-function.png}
-    \caption{The exponential function $e^x$ showing growth for positive $x$ and decay for negative $x$.}
-    \label{fig:exponential-function}
-\end{figure}
-It is the only function that is equal to its own derivative, meaning that the rate of change of the function at any point is proportional to the value of the function at that point:
-\begin{equation}
-    \frac{d}{dx} e^x = e^x
-\end{equation}
-If, for example, the position of a particle changes exponentially with time as $x(t) = e^{t}$, then its velocity is also given by $v(t) = \frac{dx}{dt} = e^{t}$, which is the same as its position function. Hence, if at $t=0$, the particle is at position $x(0) = e^0 = 1$, its velocity at that instant is also $v(0) = e^0 = 1$. At time $t=1$, the position becomes $x(1) = e$, and the velocity is also $v(1) = e$. If we consider another exponential function with a \emph{growth rate} $k$, then the position and velocity functions become $x(t) = e^{kt}$ and $v(t) = \frac{dx}{dt} = k e^{kt}$, respectively. In this case, the velocity is proportional to the position by a factor of $k$:
-\begin{equation}
-    \frac{d}{dt}\underbrace{e^{kt}}_{\text{position}} = \underbrace{ke^{kt}}_{\text{velocity}}
-\end{equation}
-If the exponent is a negative number, the function describes exponential decay instead of growth. For instance, if the position of a particle changes as $x(t) = e^{-t}$, its velocity is given by $v(t) = \frac{dx}{dt} = -e^{-t}$, indicating that the particle is slowing down over time. If we consider the initial condition $x(0) = 1$, then the velocity at that instant is $v(0) = -1$. As the particle goes towards the origin, its position decreases exponentially, and its velocity becomes less negative, approaching zero as time progresses.
-
-\subsection*{Complex Exponential Function}
-What if we replace the exponent $x$ in the exponential function $e^x$ with a complex number $z = x + iy$? First let us consider a simpler case where the exponent is purely imaginary, i.e., $z = i\theta$ where $\theta$ is a real number. In this case, the complex exponential function can be expressed as:
-\begin{equation}
-    e^{i\theta} = \cos \theta + i \sin \theta
-\end{equation}
 
 The exponential function $e^x$ is often recognized for its unique property that its derivative is equal to itself. It is an analytical function that can be defined through its Taylor series expansion:
 \begin{equation}
@@ -532,8 +471,15 @@ This relationship allows us to rewrite the polar form of a complex number in ter
 This representation is particularly useful in physics and engineering, as it simplifies the analysis of oscillatory systems. For example, when dealing with differential equations that describe oscillatory motion, using complex exponentials can make the calculations more straightforward. Additionally, complex numbers facilitate the representation of phase relationships between different oscillations, which is essential in many applications such as signal processing and wave mechanics.
 
 
-\subsection{Cycloidal Motion}
+\subsection{Cycloidal Motion ---\textit{Optional}}
 It is the path traced by a point on the circumference of a circle as it rolls along straight line without slipping. Imagine drawing a chalk dot on a bicycle wheel and then rolling the wheel along a flat surface. The path traced by the chalk dot is a cycloid. 
+
+The position vector of a particle moving along a cycloidal path can be expressed as:
+\[
+\mathbf{r}(t) = R(t - \sin t)\mathbf{i} + R(1 - \cos t)\mathbf{j}
+\]
+
+
 
 
 
@@ -604,6 +550,1256 @@ This factors as:
 (t-2)^2 = 0
 \]
 So $t = 2$.
+
+
+\section{Worked Examples}
+
+\subsection{Displacement, Average Velocity, Instantaneous Velocity, and Collision}
+
+Two particles move in the \(xy\)-plane according to
+
+\[
+\mathbf{r}_1(t)=(t^2+1)\mathbf{i}+2t\mathbf{j},
+\]
+
+\[
+\mathbf{r}_2(t)=(5-t)\mathbf{i}+(t^2-1)\mathbf{j}.
+\]
+
+\begin{enumerate}
+    \item Find the position of each particle at \(t=0\) and \(t=2\).
+    \item Find the displacement vectors of both particles between \(t=0\) and \(t=2\).
+    \item Find their average velocity vectors over this time interval.
+    \item Find \(\mathbf{v}_1(t)\) and \(\mathbf{v}_2(t)\).
+    \item Determine whether the particles collide. If they do, find the collision time and collision position.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a) Positions at \(t=0\) and \(t=2\)}
+
+For particle 1,
+
+\[
+\mathbf{r}_1(0)
+=
+(0^2+1)\mathbf{i}+2(0)\mathbf{j}
+=
+\mathbf{i},
+\]
+
+and
+
+\[
+\mathbf{r}_1(2)
+=
+(2^2+1)\mathbf{i}+2(2)\mathbf{j}
+=
+5\mathbf{i}+4\mathbf{j}.
+\]
+
+For particle 2,
+
+\[
+\mathbf{r}_2(0)
+=
+(5-0)\mathbf{i}+(0^2-1)\mathbf{j}
+=
+5\mathbf{i}-\mathbf{j},
+\]
+
+and
+
+\[
+\mathbf{r}_2(2)
+=
+(5-2)\mathbf{i}+(2^2-1)\mathbf{j}
+=
+3\mathbf{i}+3\mathbf{j}.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\mathbf{r}_1(0)=\mathbf{i},
+\qquad
+\mathbf{r}_1(2)=5\mathbf{i}+4\mathbf{j}
+}
+\]
+
+and
+
+\[
+\boxed{
+\mathbf{r}_2(0)=5\mathbf{i}-\mathbf{j},
+\qquad
+\mathbf{r}_2(2)=3\mathbf{i}+3\mathbf{j}.
+}
+\]
+
+\textbf{(b) Displacement vectors}
+
+The displacement is
+
+\[
+\Delta \mathbf{r}
+=
+\mathbf{r}(t_2)-\mathbf{r}(t_1).
+\]
+
+Thus, for particle 1,
+
+\[
+\Delta \mathbf{r}_1
+=
+\mathbf{r}_1(2)-\mathbf{r}_1(0)
+=
+(5\mathbf{i}+4\mathbf{j})-\mathbf{i},
+\]
+
+so
+
+\[
+\boxed{
+\Delta \mathbf{r}_1
+=
+4\mathbf{i}+4\mathbf{j}.
+}
+\]
+
+For particle 2,
+
+\[
+\Delta \mathbf{r}_2
+=
+\mathbf{r}_2(2)-\mathbf{r}_2(0)
+=
+(3\mathbf{i}+3\mathbf{j})-(5\mathbf{i}-\mathbf{j}),
+\]
+
+hence
+
+\[
+\boxed{
+\Delta \mathbf{r}_2
+=
+-2\mathbf{i}+4\mathbf{j}.
+}
+\]
+
+\textbf{(c) Average velocity vectors}
+
+The average velocity is
+
+\[
+\mathbf{v}_{\mathrm{avg}}
+=
+\frac{\Delta\mathbf{r}}{\Delta t}.
+\]
+
+Since
+
+\[
+\Delta t=2-0=2,
+\]
+
+we obtain
+
+\[
+\mathbf{v}_{\mathrm{avg},1}
+=
+\frac{4\mathbf{i}+4\mathbf{j}}{2}
+=
+2\mathbf{i}+2\mathbf{j},
+\]
+
+and therefore
+
+\[
+\boxed{
+\mathbf{v}_{\mathrm{avg},1}
+=
+2\mathbf{i}+2\mathbf{j}.
+}
+\]
+
+Similarly,
+
+\[
+\mathbf{v}_{\mathrm{avg},2}
+=
+\frac{-2\mathbf{i}+4\mathbf{j}}{2}
+=
+-\mathbf{i}+2\mathbf{j},
+\]
+
+so
+
+\[
+\boxed{
+\mathbf{v}_{\mathrm{avg},2}
+=
+-\mathbf{i}+2\mathbf{j}.
+}
+\]
+
+\textbf{(d) Instantaneous velocity}
+
+The instantaneous velocity is obtained from
+
+\[
+\mathbf{v}(t)=\frac{d\mathbf{r}}{dt}.
+\]
+
+For particle 1,
+
+\[
+\mathbf{v}_1(t)
+=
+\frac{d}{dt}
+\left[
+(t^2+1)\mathbf{i}+2t\mathbf{j}
+\right],
+\]
+
+giving
+
+\[
+\boxed{
+\mathbf{v}_1(t)
+=
+2t\mathbf{i}+2\mathbf{j}.
+}
+\]
+
+For particle 2,
+
+\[
+\mathbf{v}_2(t)
+=
+\frac{d}{dt}
+\left[
+(5-t)\mathbf{i}+(t^2-1)\mathbf{j}
+\right],
+\]
+
+so
+
+\[
+\boxed{
+\mathbf{v}_2(t)
+=
+-\mathbf{i}+2t\mathbf{j}.
+}
+\]
+
+\textbf{(e) Collision}
+
+The particles collide when their position vectors are equal at the same time:
+
+\[
+\mathbf{r}_1(t)=\mathbf{r}_2(t).
+\]
+
+This gives the two equations
+
+\[
+t^2+1=5-t,
+\]
+
+and
+
+\[
+2t=t^2-1.
+\]
+
+The first equation gives
+
+\[
+t^2+t-4=0,
+\]
+
+so
+
+\[
+t=\frac{-1\pm\sqrt{17}}{2}.
+\]
+
+The second equation gives
+
+\[
+t^2-2t-1=0,
+\]
+
+so
+
+\[
+t=1\pm\sqrt{2}.
+\]
+
+There is no time that satisfies both equations simultaneously. Therefore, the particles do not collide.
+
+\[
+\boxed{\text{The two particles never collide.}}
+\]
+
+This illustrates that equality of one coordinate is not sufficient for a collision; all spatial coordinates must be equal at the same instant.
+
+
+\subsection{Velocity, Acceleration, and the Interpretation of Signs}
+
+A particle moves along the \(x\)-axis according to
+
+\[
+x(t)=t^3-6t^2+9t.
+\]
+
+\begin{enumerate}
+    \item Find \(v(t)\) and \(a(t)\).
+    \item Determine the times at which the particle is at rest.
+    \item For each time interval separated by these instants, determine whether the particle is moving in the \(+x\) or \(-x\) direction.
+    \item Determine where the particle is speeding up and where it is slowing down.
+    \item Find the total distance traveled during \(0\leq t\leq 4\).
+    \item Compare the total distance traveled with the magnitude of the net displacement.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a) Velocity and acceleration}
+
+The velocity is the derivative of position:
+
+\[
+v(t)=\frac{dx}{dt}
+=
+3t^2-12t+9.
+\]
+
+Factoring,
+
+\[
+v(t)=3(t^2-4t+3)
+=
+3(t-1)(t-3).
+\]
+
+Therefore,
+
+\[
+\boxed{
+v(t)=3(t-1)(t-3).
+}
+\]
+
+The acceleration is
+
+\[
+a(t)=\frac{dv}{dt}
+=
+6t-12,
+\]
+
+so
+
+\[
+\boxed{
+a(t)=6(t-2).
+}
+\]
+
+\textbf{(b) Times at which the particle is at rest}
+
+The particle is at rest when
+
+\[
+v(t)=0.
+\]
+
+Therefore,
+
+\[
+3(t-1)(t-3)=0,
+\]
+
+which gives
+
+\[
+\boxed{
+t=1,\qquad t=3.
+}
+\]
+
+\textbf{(c) Direction of motion}
+
+The sign of \(v(t)\) determines the direction of motion.
+
+For \(0<t<1\),
+
+\[
+(t-1)<0,\qquad (t-3)<0,
+\]
+
+so
+
+\[
+v(t)>0.
+\]
+
+Thus the particle moves in the \(+x\) direction.
+
+For \(1<t<3\),
+
+\[
+(t-1)>0,\qquad (t-3)<0,
+\]
+
+so
+
+\[
+v(t)<0.
+\]
+
+Thus the particle moves in the \(-x\) direction.
+
+For \(t>3\),
+
+\[
+(t-1)>0,\qquad (t-3)>0,
+\]
+
+so
+
+\[
+v(t)>0.
+\]
+
+Thus the particle again moves in the \(+x\) direction.
+
+Therefore,
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Time interval} & \text{Direction} \\ \hline
+0<t<1 & +x\\
+1<t<3 & -x\\
+t>3 & +x
+\end{array}
+}
+\]
+
+\textbf{(d) Speeding up and slowing down}
+
+A particle speeds up when the velocity and acceleration have the same sign, and slows down when they have opposite signs.
+
+We have
+
+\[
+a(t)=6(t-2).
+\]
+
+Hence,
+
+\[
+a(t)<0 \quad \text{for }t<2,
+\]
+
+and
+
+\[
+a(t)>0 \quad \text{for }t>2.
+\]
+
+Combining this with the sign of \(v(t)\):
+
+\[
+\begin{array}{c|c|c|c}
+\text{Interval} & v & a & \text{Behavior} \\ \hline
+0<t<1 & + & - & \text{slowing down}\\
+1<t<2 & - & - & \text{speeding up}\\
+2<t<3 & - & + & \text{slowing down}\\
+t>3 & + & + & \text{speeding up}
+\end{array}
+\]
+
+Thus,
+
+\[
+\boxed{
+\begin{aligned}
+&\text{slowing down: } 0<t<1,\quad 2<t<3,\\
+&\text{speeding up: } 1<t<2,\quad t>3.
+\end{aligned}
+}
+\]
+
+\textbf{(e) Total distance traveled for \(0\leq t\leq4\)}
+
+Because the particle changes direction at \(t=1\) and \(t=3\), we must divide the motion into separate intervals.
+
+First calculate the positions:
+
+\[
+x(0)=0,
+\]
+
+\[
+x(1)=1-6+9=4,
+\]
+
+\[
+x(3)=27-54+27=0,
+\]
+
+\[
+x(4)=64-96+36=4.
+\]
+
+Therefore, the distances traveled are
+
+\[
+d_1=|x(1)-x(0)|=|4-0|=4,
+\]
+
+\[
+d_2=|x(3)-x(1)|=|0-4|=4,
+\]
+
+\[
+d_3=|x(4)-x(3)|=|4-0|=4.
+\]
+
+Hence the total distance is
+
+\[
+\boxed{
+d_{\mathrm{total}}=4+4+4=12.
+}
+\]
+
+\textbf{(f) Distance versus displacement}
+
+The net displacement is
+
+\[
+\Delta x=x(4)-x(0)=4-0=4.
+\]
+
+Its magnitude is therefore
+
+\[
+|\Delta x|=4.
+\]
+
+Thus,
+
+\[
+\boxed{
+\text{total distance}=12,
+\qquad
+|\text{displacement}|=4.
+}
+\]
+
+The difference occurs because the particle changes direction during its motion.
+
+
+\subsection{Reconstructing Position and Velocity from Acceleration}
+
+A particle moves in one dimension with acceleration
+
+\[
+a(t)=6t-4.
+\]
+
+At \(t=0\),
+
+\[
+x(0)=2,
+\qquad
+v(0)=-3.
+\]
+
+\begin{enumerate}
+    \item Find \(v(t)\).
+    \item Find \(x(t)\).
+    \item Determine the time at which the particle changes direction.
+    \item Find the position of the particle at that instant.
+    \item Verify the result by differentiating \(x(t)\).
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a) Finding the velocity}
+
+Since
+
+\[
+a(t)=\frac{dv}{dt},
+\]
+
+we integrate:
+
+\[
+v(t)=\int (6t-4)\,dt.
+\]
+
+Therefore,
+
+\[
+v(t)=3t^2-4t+C_1.
+\]
+
+Using the initial condition \(v(0)=-3\),
+
+\[
+-3=C_1.
+\]
+
+Hence,
+
+\[
+\boxed{
+v(t)=3t^2-4t-3.
+}
+\]
+
+\textbf{(b) Finding the position}
+
+Since
+
+\[
+v(t)=\frac{dx}{dt},
+\]
+
+we integrate again:
+
+\[
+x(t)
+=
+\int (3t^2-4t-3)\,dt.
+\]
+
+Thus,
+
+\[
+x(t)=t^3-2t^2-3t+C_2.
+\]
+
+Using \(x(0)=2\),
+
+\[
+2=C_2.
+\]
+
+Therefore,
+
+\[
+\boxed{
+x(t)=t^3-2t^2-3t+2.
+}
+\]
+
+This demonstrates why the initial conditions are necessary: one integration introduces one unknown constant, and a second integration introduces another.
+
+\textbf{(c) Time at which the particle changes direction}
+
+The particle changes direction when its velocity changes sign. First find when it is at rest:
+
+\[
+v(t)=0.
+\]
+
+Thus,
+
+\[
+3t^2-4t-3=0.
+\]
+
+Using the quadratic formula,
+
+\[
+t
+=
+\frac{4\pm\sqrt{16+36}}{6}
+=
+\frac{4\pm2\sqrt{13}}{6}.
+\]
+
+Therefore,
+
+\[
+t=\frac{2\pm\sqrt{13}}{3}.
+\]
+
+Since physical time in this problem is taken to begin at \(t=0\), the relevant solution is
+
+\[
+\boxed{
+t_{\mathrm{turn}}
+=
+\frac{2+\sqrt{13}}{3}.
+}
+\]
+
+\textbf{(d) Position at the turning point}
+
+Substituting
+
+\[
+t_{\mathrm{turn}}
+=
+\frac{2+\sqrt{13}}{3}
+\]
+
+into
+
+\[
+x(t)=t^3-2t^2-3t+2
+\]
+
+gives the turning-point position
+
+\[
+\boxed{
+x_{\mathrm{turn}}
+=
+-\frac{52+26\sqrt{13}}{27}.
+}
+\]
+
+Numerically,
+
+\[
+x_{\mathrm{turn}}\approx -5.412.
+\]
+
+\textbf{(e) Verification}
+
+Differentiating the position function,
+
+\[
+x(t)=t^3-2t^2-3t+2,
+\]
+
+gives
+
+\[
+\frac{dx}{dt}
+=
+3t^2-4t-3
+=
+v(t),
+\]
+
+and differentiating once more,
+
+\[
+\frac{d^2x}{dt^2}
+=
+6t-4
+=
+a(t).
+\]
+
+Therefore,
+
+\[
+\boxed{
+\frac{dx}{dt}=v(t),
+\qquad
+\frac{d^2x}{dt^2}=a(t),
+}
+\]
+
+as required.
+
+
+\subsection{Uniform Circular Motion}
+
+A particle moves on a circle of radius \(R\) according to
+
+\[
+\mathbf{r}(t)
+=
+R\cos(\omega t)\mathbf{i}
++
+R\sin(\omega t)\mathbf{j}.
+\]
+
+\begin{enumerate}
+    \item Find \(\mathbf{v}(t)\).
+    \item Find the speed \( |\mathbf{v}(t)|\).
+    \item Find \(\mathbf{a}(t)\).
+    \item Show explicitly that
+    \[
+    \mathbf{r}(t)\cdot\mathbf{v}(t)=0.
+    \]
+    \item Show that the acceleration always points toward the center of the circle.
+    \item Find the magnitude of the acceleration in terms of \(R\) and \(\omega\).
+    \item Explain geometrically why the velocity is tangent to the trajectory while the acceleration is directed toward the center.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a) Velocity}
+
+The velocity is
+
+\[
+\mathbf{v}(t)
+=
+\frac{d\mathbf{r}}{dt}.
+\]
+
+Therefore,
+
+\[
+\mathbf{v}(t)
+=
+-R\omega\sin(\omega t)\mathbf{i}
++
+R\omega\cos(\omega t)\mathbf{j}.
+\]
+
+Hence,
+
+\[
+\boxed{
+\mathbf{v}(t)
+=
+-R\omega\sin(\omega t)\mathbf{i}
++
+R\omega\cos(\omega t)\mathbf{j}.
+}
+\]
+
+\textbf{(b) Speed}
+
+The speed is the magnitude of the velocity:
+
+\[
+|\mathbf{v}(t)|
+=
+\sqrt{
+R^2\omega^2\sin^2(\omega t)
++
+R^2\omega^2\cos^2(\omega t)
+}.
+\]
+
+Using
+
+\[
+\sin^2\theta+\cos^2\theta=1,
+\]
+
+we obtain
+
+\[
+|\mathbf{v}(t)|
+=
+R|\omega|.
+\]
+
+For \(\omega>0\),
+
+\[
+\boxed{
+v=R\omega.
+}
+\]
+
+Thus the speed is constant.
+
+\textbf{(c) Acceleration}
+
+Differentiate the velocity:
+
+\[
+\mathbf{a}(t)
+=
+\frac{d\mathbf{v}}{dt}.
+\]
+
+Hence,
+
+\[
+\mathbf{a}(t)
+=
+-R\omega^2\cos(\omega t)\mathbf{i}
+-
+R\omega^2\sin(\omega t)\mathbf{j}.
+\]
+
+Factorizing,
+
+\[
+\boxed{
+\mathbf{a}(t)
+=
+-\omega^2
+\left[
+R\cos(\omega t)\mathbf{i}
++
+R\sin(\omega t)\mathbf{j}
+\right].
+}
+\]
+
+Since the expression in brackets is precisely \(\mathbf{r}(t)\),
+
+\[
+\boxed{
+\mathbf{a}(t)=-\omega^2\mathbf{r}(t).
+}
+\]
+
+\textbf{(d) Orthogonality of position and velocity}
+
+Using the expressions above,
+
+\begin{align}
+\mathbf{r}(t)\cdot\mathbf{v}(t)
+&=
+\left[
+R\cos(\omega t)\mathbf{i}
++
+R\sin(\omega t)\mathbf{j}
+\right]
+\cdot
+\left[
+-R\omega\sin(\omega t)\mathbf{i}
++
+R\omega\cos(\omega t)\mathbf{j}
+\right]
+\\
+&=
+-R^2\omega\cos(\omega t)\sin(\omega t)
++
+R^2\omega\sin(\omega t)\cos(\omega t)
+\\
+&=0.
+\end{align}
+
+Therefore,
+
+\[
+\boxed{
+\mathbf{r}(t)\perp\mathbf{v}(t).
+}
+\]
+
+Since the position vector points from the center to the particle, the velocity is perpendicular to the radius and therefore tangent to the circle.
+
+\textbf{(e) Direction of the acceleration}
+
+We found that
+
+\[
+\mathbf{a}(t)=-\omega^2\mathbf{r}(t).
+\]
+
+The factor \(-\omega^2\) is negative, so \(\mathbf{a}(t)\) points in the direction opposite to \(\mathbf{r}(t)\).
+
+Since \(\mathbf{r}(t)\) points from the center toward the particle, the acceleration points from the particle toward the center.
+
+Thus,
+
+\[
+\boxed{
+\text{the acceleration is always directed toward the center.}
+}
+\]
+
+\textbf{(f) Magnitude of the acceleration}
+
+Since
+
+\[
+\mathbf{a}(t)=-\omega^2\mathbf{r}(t),
+\]
+
+we have
+
+\[
+|\mathbf{a}(t)|
+=
+\omega^2|\mathbf{r}(t)|.
+\]
+
+Because
+
+\[
+|\mathbf{r}(t)|=R,
+\]
+
+it follows that
+
+\[
+\boxed{
+a=R\omega^2.
+}
+\]
+
+Using \(v=R\omega\), this can also be written as
+
+\[
+\boxed{
+a=\frac{v^2}{R}.
+}
+\]
+
+\textbf{(g) Geometrical interpretation}
+
+The particle remains at a fixed distance \(R\) from the center. Therefore, its position vector continuously rotates.
+
+The velocity is the rate of change of the position vector. An infinitesimal change in the position vector along a circular path is tangent to the circle, so the instantaneous velocity is tangent to the trajectory.
+
+The velocity vector itself changes direction continuously. Its change is directed toward the center of the circle, producing an inward acceleration.
+
+Thus,
+
+\[
+\boxed{
+\mathbf{v}\text{ is tangent to the trajectory,}
+\qquad
+\mathbf{a}\text{ points toward the center.}
+}
+\]
+
+
+\subsection{Oscillatory Motion and the Complex Exponential}
+
+Consider the complex function
+
+\[
+z(t)=Ae^{i(\omega t+\phi)},
+\]
+
+where \(A\), \(\omega\), and \(\phi\) are constants.
+
+\begin{enumerate}
+    \item Using Euler's formula, write \(z(t)\) in terms of its real and imaginary parts.
+    \item What trajectory does the corresponding point follow in the complex plane?
+    \item Calculate \(\dot z(t)\) and \(\ddot z(t)\).
+    \item Show that
+    \[
+    \ddot z+\omega^2 z=0.
+    \]
+    \item What are the real and imaginary parts of this equation?
+    \item Explain why the complex exponential is useful for describing oscillatory motion.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a) Real and imaginary parts}
+
+Using Euler's formula,
+
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta,
+\]
+
+we obtain
+
+\[
+z(t)
+=
+A\left[
+\cos(\omega t+\phi)
++
+i\sin(\omega t+\phi)
+\right].
+\]
+
+Therefore,
+
+\[
+\boxed{
+\operatorname{Re}[z(t)]
+=
+A\cos(\omega t+\phi)
+}
+\]
+
+and
+
+\[
+\boxed{
+\operatorname{Im}[z(t)]
+=
+A\sin(\omega t+\phi).
+}
+\]
+
+Thus, the same complex function contains both sine and cosine oscillations.
+
+\textbf{(b) Trajectory in the complex plane}
+
+The real and imaginary coordinates are
+
+\[
+x(t)=A\cos(\omega t+\phi),
+\]
+
+\[
+y(t)=A\sin(\omega t+\phi).
+\]
+
+Squaring and adding,
+
+\[
+x^2+y^2
+=
+A^2\cos^2(\omega t+\phi)
++
+A^2\sin^2(\omega t+\phi).
+\]
+
+Hence,
+
+\[
+x^2+y^2=A^2.
+\]
+
+Therefore, the point follows a circle of radius \(A\) centered at the origin:
+
+\[
+\boxed{
+x^2+y^2=A^2.
+}
+\]
+
+\textbf{(c) First and second derivatives}
+
+Differentiating,
+
+\[
+\dot z(t)
+=
+i\omega A e^{i(\omega t+\phi)}.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\dot z(t)=i\omega z(t).
+}
+\]
+
+Differentiating again,
+
+\[
+\ddot z(t)
+=
+(i\omega)^2 A e^{i(\omega t+\phi)}.
+\]
+
+Since
+
+\[
+i^2=-1,
+\]
+
+we have
+
+\[
+\boxed{
+\ddot z(t)=-\omega^2 z(t).
+}
+\]
+
+\textbf{(d) Differential equation}
+
+From the previous result,
+
+\[
+\ddot z=-\omega^2z.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\ddot z+\omega^2z=0.
+}
+\]
+
+Thus the complex exponential automatically satisfies the differential equation of simple harmonic motion.
+
+\textbf{(e) Real and imaginary parts}
+
+Since
+
+\[
+z(t)
+=
+x(t)+iy(t),
+\]
+
+we have
+
+\[
+\ddot z+\omega^2z
+=
+\left(\ddot x+\omega^2x\right)
++
+i\left(\ddot y+\omega^2y\right).
+\]
+
+For this expression to vanish, both the real and imaginary parts must vanish:
+
+\[
+\boxed{
+\ddot x+\omega^2x=0
+}
+\]
+
+and
+
+\[
+\boxed{
+\ddot y+\omega^2y=0.
+}
+\]
+
+Thus both the real and imaginary components independently describe simple harmonic motion.
+
+\textbf{(f) Why use complex exponentials?}
+
+The complex exponential provides a compact representation of two real oscillatory functions:
+
+\[
+e^{i\omega t}
+=
+\cos(\omega t)+i\sin(\omega t).
+\]
+
+Differentiation becomes particularly simple:
+
+\[
+\frac{d}{dt}e^{i\omega t}
+=
+i\omega e^{i\omega t}.
+\]
+
+Similarly,
+
+\[
+\frac{d^2}{dt^2}e^{i\omega t}
+=
+-\omega^2e^{i\omega t}.
+\]
+
+Thus, instead of carrying separate sine and cosine functions through every calculation, we can perform the calculation using a single complex exponential and take the real or imaginary part at the end.
+
+The complex representation therefore provides a convenient mathematical tool for analyzing oscillatory motion, while the underlying physical motion can remain completely real.
+
 
 
 
