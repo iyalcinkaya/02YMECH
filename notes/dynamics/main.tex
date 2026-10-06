@@ -9,507 +9,475 @@
 
 
 
-\title{Chapter 2: Kinematics}
+
+\title{Chapter 3: Dynamics}
 \author{İskender Yalçınkaya, PhD}
 \date{\today}
 
 \begin{document}
 \maketitle
-\section{Notion of a Particle}
-A \emph{particle} is a body whose size and shape are not important for the problem at hand. In other words, a particle is a body that can be treated as a point mass. The motion of a particle is described by its position, velocity, and acceleration as functions of time. For example, planets can be treated as particles when studying their motion around the sun, even though they have size and shape. But when studying the tidal waves on earth and the tornadoes in the atmosphere, the size and shape of the earth is important, and they cannot be treated as particles.
+In this chapter, we turn our attention to the causes of motion: What makes an object change its motion? For centuries, philosophers believed that an object must be continuously acted upon in order to remain in motion. This view was consistent with everyday experience. For example, when you slide a book across a table, it eventually comes to rest. It therefore seems natural to conclude that a ``push'' is required to keep the book moving.
 
-Mathematically, a particle is a point in the space with an associated mass. Therefore, if one has to define a density function for a point particle which is located at $\mathbf{r}_0$, it would look like:
-\[
-\rho(\mathbf{r}) =
-\begin{cases}
-\infty, & \mathbf{r} = \mathbf{r}_0,\\[4pt]
-0, & \mathbf{r} \neq \mathbf{r}_0.
-\end{cases}
-\]
+Galileo Galilei challenged this idea by introducing the principle of inertia. He argued that an object does not need a cause to maintain a constant velocity. In the absence of external influences, an object at rest remains at rest, while an object in motion continues to move in a straight line at constant speed. The apparent need for a cause to maintain motion in everyday situations arises because friction and other external influences are present.
+
+Isaac Newton later formulated this idea and developed a quantitative theory of dynamics. In particular, Newton's asserted that there must be a cause for objects to accelerate. He called this cause \emph{force}. Thus, the fundamental question of dynamics is not why an object has a velocity, but why its velocity changes.
+
+In this Chapter, we will restrict our attention to the motion of a single particle. We will call this particle a \emph{system} to make our terminology consistent with the rest of the text where we will be revisiting the dynamics for system of particles in Chapter \ref{ch:dynamics-of-system-of-particles}.
+
+\section{Newton's Axioms of Motion}
+
+\textbf{Axiom 1:} A body remains at rest or continues to move in a straight line with constant speed unless acted upon by a \emph{force}. 
+
+\textbf{Axiom 2:} A body acted upon a \emph{force} moves in such a manner that the time rate of change of its \emph{momentum} equals the net force acting on it.
+
+\textbf{Axiom 3:}  To every action, there is an equal and opposite reaction. 
+
+It looks like the 1st axiom is a special case of the 2nd axiom, where the net force is zero. However, the 1st axiom is important because Newton defines a special class of reference frames called \emph{inertial frames} where his axioms of motion hold true. Geometrically, a \emph{reference frame} is the coordinate system where we make measurements. For example, if you are in a car, the car itself is your reference frame; you measure all lengths relative to the car. When the car accelerates, you feel a force pushing you back into your seat. This force is not due to any physical interaction with the car; rather, it arises because you are in a non-inertial frame of reference. Newton's axioms are valid only in intertial frames, which are reference frames that are not accelerating. Inertial frames are special because they allow us to describe the motion of objects in a simple and consistent way.
+
+The second axiom mentions the quantity \emph{momentum}, which is defined as
+\begin{equation}
+    \mathbf{p} = m\mathbf{v},
+\end{equation}
+where $\mathbf{p}$ is the momentum of a body, $m$ is its mass, and $\mathbf{v}$ is its velocity. The units of momentum are kilogram meters per second (kg·m/s). The second axiom states that if the momentum changes in time it is due to a net force acting on the body. Mathematically, this can be expressed as
+\begin{equation}
+    \mathbf{F} = \frac{d\mathbf{p}}{dt},
+\end{equation}
+where $\mathbf{F}$ is the net force acting on the body. The units of force are newtons (N), which are defined as one kilogram meter per second squared (kg·m/s²). In general, both mass and velocity can change with time resulting in a change in momentum. If the mass of the body is constant, then this equation can be rewritten as
+\begin{equation}
+    \mathbf{F} = m\frac{d\mathbf{v}}{dt} = m\mathbf{a},
+\end{equation}
+where $\mathbf{a}$ is the acceleration of the body. This equation is often referred to as Newton's second law of motion. It states that the acceleration of a body is directly proportional to the net force acting on it and inversely proportional to its mass. In other words,
+\begin{equation}
+    \mathbf{a} = \frac{\mathbf{F}}{m}.
+\end{equation}
+
+The third axiom states the nature of forces that they never exist in isolation, but always come in pairs. If body A exerts a force on body B, then body B exerts an equal and opposite force on body A. This is known as the \emph{action-reaction} principle. For example, when you push against a wall, the wall pushes back against you with an equal and opposite force. If you push a book across a table, the book pushes back against your hand with an equal and opposite force.
+
+These three axioms explain a wide range of phenomena, from the motion of planets to the behavior of everyday objects. They form the foundation of classical mechanics and are still used today to analyze the motion of objects in a variety of contexts.
+
+\section{Galilean Invariance and Inertial Frames}
+
+All reference frames that move with a constant velocity relative to an inertial reference frame are also inertial reference frames. The laws of  mechanics have the same form in all inertial reference frames. This is known as \emph{Galilean invariance}. For example, if you are in a car moving at constant velocity along a straight road, you can perform mechanical experiments and obtain the same results as if you were at rest. The outcome of a mechanical experiment does not depend on the uniform motion of the reference frame.
+
+To see this, consider two inertial reference frames, $S$ and $S'$, where $S'$ moves with a constant velocity $\mathbf{v}_0$ relative to $S$. If their origins coincide at $t=0$, the position of a body in the two reference frames is related by
+
+\begin{equation}
+\mathbf{r}' = \mathbf{r} - \mathbf{v}_0 t,
+\end{equation}
+
+where $\mathbf{r}$ is the position of the body in $S$ and $\mathbf{r}'$ is its position in $S'$. Differentiating with respect to time gives the relation between the velocities:
+
+\begin{equation}
+\mathbf{v}' = \frac{d\mathbf{r}'}{dt}
+= \frac{d\mathbf{r}}{dt} - \mathbf{v}_0
+= \mathbf{v} - \mathbf{v}_0,
+\end{equation}
+
+where $\mathbf{v}$ and $\mathbf{v}'$ are the velocities of the body in $S$ and $S'$, respectively. Differentiating once more gives
+
+\begin{equation}
+\mathbf{a}' = \frac{d\mathbf{v}'}{dt}
+= \frac{d\mathbf{v}}{dt}
+= \mathbf{a}.
+\end{equation}
+
+Thus, the acceleration of a body is the same in all inertial reference frames. Consequently, Newton's second law,
+
+\begin{equation}
+\mathbf{F} = m\mathbf{a},
+\end{equation}
+
+has the same form in both frames:
+
+\begin{equation}
+\mathbf{F}' = m\mathbf{a}' = m\mathbf{a} = \mathbf{F}.
+\end{equation}
+
+This invariance of Newton's laws under Galilean transformations is the basis of Galilean invariance in classical mechanics.
+
+An important feature of Galilean transformations is that time is absolute. The time interval between two events is the same in all inertial reference frames:
+
+\begin{equation}
+t' = t.
+\end{equation}
+
+Therefore, if two events occur simultaneously in one inertial reference frame, they occur simultaneously in every other inertial reference frame. This absolute nature of time is a fundamental assumption of classical mechanics.
+
+\section{Validity of Newton's Axioms}
+
+The validity of Newton's axioms has been extensively tested and confirmed by experiments. Within the domain of classical mechanics, they provide an accurate description of the motion of macroscopic bodies when their speeds are much smaller than the speed of light and quantum effects can be neglected.
+
+The first and second axioms form the basis for relating forces to the motion of a particle, while the third axiom expresses a fundamental property of interactions between two bodies. In its usual form,
+
+$$
+\mathbf{F}_{12}=-\mathbf{F}_{21},
+$$
+
+the third axiom holds for central interactions, for which the force between two particles acts along the line joining them and depends only on their separation. Newtonian gravitational and electrostatic forces are important examples. By contrast, forces such as magnetic forces, friction, and fluid drag are non-central: their direction is not determined solely by the line joining the interacting bodies. Nevertheless, non-central forces do not necessarily violate the third axiom; in interactions involving fields, the momentum of the field must also be taken into account.
+
+The axioms therefore constitute the postulates of Newtonian mechanics: their validity is established not by derivation from more fundamental principles within classical mechanics, but by their agreement with experimental observations within their range of applicability.
+
+
+\section{Measurement of Mass}
+
+An \emph{isolated system} is a system on which the net external force is zero. Internal forces may still act between the bodies within the system. Therefore, for an isolated system consisting of $N$ bodies, the sum of the internal forces acting on all bodies is zero:
+
+\begin{equation}
+\sum_{i=1}^{N} \mathbf{F}_i = 0.
+\end{equation}
+
+For a system consisting of two bodies, Newton's third axiom gives
+
+\begin{equation}
+\mathbf{F}_1 = -\mathbf{F}_2.
+\end{equation}
+
+Using Newton's second axiom,
+
+\begin{equation}
+m_1\mathbf{a}_1 = -m_2\mathbf{a}_2,
+\end{equation}
+
+and therefore, taking magnitudes,
+
+\begin{equation}
+\frac{m_2}{m_1} = \frac{|\mathbf{a}_1|}{|\mathbf{a}_2|}.
+\end{equation}
+
+Thus, if one of the masses is chosen as a reference mass, the other mass can be determined by measuring the accelerations of the two bodies.
+
+There is another way to measure mass. Near the surface of the Earth, an object is acted upon by the gravitational force, called its \emph{weight}. Neglecting air resistance, all objects at the same location have the same gravitational acceleration, denoted by $\mathbf{g}$. Newton's second axiom therefore gives
+
+\begin{equation}
+\mathbf{W} = m\mathbf{g},
+\end{equation}
+
+where $\mathbf{W}$ is the weight of the object. Taking magnitudes,
+
+\begin{equation}
+|\mathbf{W}| = m|\mathbf{g}|.
+\end{equation}
+
+Thus, by comparing the weights of two bodies at the same location, their masses are related by
+
+\begin{equation}
+\frac{m_2}{m_1}
+= \frac{|\mathbf{W}_2|}{|\mathbf{W}_1|},
+\end{equation}
+
+or equivalently,
+
+\begin{equation}
+m_2 = \frac{|\mathbf{W}_2|}{|\mathbf{W}_1|}m_1.
+\end{equation}
+
+The equality of inertial and gravitational mass is an experimental fact in Newtonian mechanics and is known as the \emph{equivalence of inertial and gravitational mass}. This equivalence plays a central role in Einstein's theory of gravity, where it is elevated to the \emph{equivalence principle}.
+
+
+\section{Equations of Motion}
+
+The 2nd axiom provides the \emph{equation of motion} of a body once the
+force acting on it is specified. It is a differential equation that
+determines how the position of the body changes with time under the
+influence of a force. In general,
+
+\begin{equation}
+\dot{\mathbf{p}} = \mathbf{F}(\mathbf{r},\mathbf{v},t),
+\end{equation}
+
+where $\mathbf{r}$ is the position vector, $\mathbf{v}$ is the velocity
+vector, and $t$ is time. The force may depend on position, velocity,
+and time.
+
+For a body of constant mass, $\mathbf{p}=m\mathbf{v}$, so the equation
+of motion takes the familiar form
+
+\begin{equation}
+m\ddot{\mathbf{r}}
+= \mathbf{F}(\mathbf{r},\dot{\mathbf{r}},t).
+\end{equation}
+
+This is a second-order differential equation for the position vector
+$\mathbf{r}(t)$. Together with the initial position and velocity, its
+solution determines the motion of the body.
+
+\subsection{Angular-Momentum Form of the 2nd Axiom}
+
+The 2nd axiom also has a useful form associated with rotational motion.
+In translational motion, the momentum $\mathbf{p}$ characterizes the
+motion of a body, while the force $\mathbf{F}$ determines how its
+momentum changes. There is a corresponding description of motion about
+a reference point: the angular momentum $\mathbf{L}$ characterizes the
+motion of a body about that point, while the torque $\boldsymbol{\tau}$
+determines how its angular momentum changes. Thus, angular momentum and
+torque play roles in rotational motion analogous to those of momentum
+and force in translational motion.
+
+The angular momentum of a particle about a reference point $O$ is
+defined as
+
+\begin{equation}
+\mathbf{L} = \mathbf{r}\times\mathbf{p},
+\end{equation}
+
+where $\mathbf{r}$ is the position vector of the particle relative
+to $O$. The units of angular momentum are kilogram meter squared per second (kg·m²/s). The torque of a force about the same point is defined as
+
+\begin{equation}
+\boldsymbol{\tau}
+= \mathbf{r}\times\mathbf{F}.
+\end{equation}
+
+These definitions reflect the fact that a force can affect not only
+the translational motion of a body but also its tendency to rotate
+about a reference point. The torque depends on both the magnitude and
+direction of the force and on its position relative to the reference
+point.
+
+Taking the time derivative of the angular momentum and using the
+2nd axiom gives
+
+\begin{equation}
+\frac{d\mathbf{L}}{dt}
+= \frac{d\mathbf{r}}{dt}\times\mathbf{p}
++ \mathbf{r}\times\frac{d\mathbf{p}}{dt}.
+\end{equation}
+
+For a particle of constant mass, $\mathbf{p}=m\mathbf{v}$, so
+$\mathbf{v}$ and $\mathbf{p}$ are parallel and therefore
+
+\begin{equation}
+\mathbf{v}\times\mathbf{p}=0.
+\end{equation}
+
+Hence,
+
+\begin{equation}
+\boxed{
+\frac{d\mathbf{L}}{dt}
+= \boldsymbol{\tau}
+}.
+\end{equation}
+
+Thus, the 2nd axiom can be written in two analogous forms,
+
+\begin{equation}
+\boxed{\frac{d\mathbf{p}}{dt}=\mathbf{F}},
+\qquad
+\boxed{\frac{d\mathbf{L}}{dt}=\boldsymbol{\tau}}.
+\end{equation}
+
+The first describes the change of linear momentum caused by a force,
+while the second describes the change of angular momentum caused by a
+torque. These relations will be used in the following section to
+formulate the conservation laws.
+
+
+\section{Conservation Theorems}
+In this section, we will discuss the direct consequences of Newton's axioms of motion, which are the conservation theorems. These theorems state that certain physical quantities remain constant in time for an isolated system; this is what we mean by \emph{conservation}. The conservation theorems are important because they provide a powerful tool for analyzing the motion of systems without having to solve the equations of motion directly. The conservation theorems are derived from Newton's axioms and are valid for all isolated systems, regardless of the specific forces acting within the system.
+
+\subsection{Conservation of Linear Momentum}
+The linear momentum of a system is conserved if the net external force acting on the system is zero:
+\begin{equation}
+    \dot{\mathbf{p}} = \mathbf{F}_{\text{ext}} = 0 \implies \mathbf{p} = \text{constant},
+\end{equation}
+The system here can be a single particle or a collection of particles. The conservation of linear momentum say that it does not matter how asingle particle moves in space, or how the particles move in space and interact with each other, as long as there is no net external force acting on the system the total linear momentum of the system remains constant. 
+
+A corrolary of the conservation of linear momentum is that if the it is conserved in a system, so all components of linear momentum vector are conserved. This means that if the system is isolated, the total linear momentum in the $x$-direction, $y$-direction, and $z$-direction are all conserved separately. To see this, let $s$ be any arbitrary direction in space, and let $\hat{\mathbf{s}}$ be the unit vector in that direction. The component of the linear momentum along this direction is given by
+\begin{equation}
+    p_s = \mathbf{p}\cdot\hat{\mathbf{s}}.
+\end{equation}
+Taking the time derivative gives
+\begin{equation}
+    \dot{p}_s = \dot{\mathbf{p}}\cdot\hat{\mathbf{s}} = \mathbf{F}_{\text{ext}}\cdot\hat{\mathbf{s}} = F_{\text{ext},s},
+\end{equation}
+where $F_{\text{ext},s}$ is the component of the net external force along the direction $\hat{\mathbf{s}}$. If the net external force is zero, then $F_{\text{ext},s} = 0$, and therefore $\dot{p}_s = 0$. This means that the component of the linear momentum along any arbitrary direction is conserved. Since the $x$-direction, $y$-direction, and $z$-direction are just three specific directions in space, it follows that the components of linear momentum along these directions are also conserved separately. 
+
+
+\subsection{Conservation of Angular Momentum}
+The angular momentum of a system is conserved if the net external torque acting on the system is zero.
+\begin{equation}
+    \frac{d\mathbf{L}}{dt} = \boldsymbol{\tau}_{\text{ext}} = 0 \implies \mathbf{L} = \text{constant},
+\end{equation}
+
+\subsection{\label{sec:work-kinetic-energy}Work and Kinetic Energy}
+
+When a particle is acted upon by a force, $\mathbf{F}$, the \emph{work} done by the force as the particle moves from position $\mathbf{r}_1$ to position $\mathbf{r}_2$ is defined as
+\begin{equation}
+    W = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r}.
+\end{equation}
+where $d\mathbf{r}$ is an infinitesimal displacement vector along the path of the particle from $\mathbf{r}_1$ to $\mathbf{r}_2$ and it can be expressed as
+\begin{equation}
+    d\mathbf{r} = dx\mathbf{i} + dy\mathbf{j} + dz\mathbf{k} = \mathbf{v} dt,
+\end{equation}
+
+If $\mathbf{F}$ is the only force acting on the particle, then we can write the integrant of the work integral as
+\begin{equation}
+    \mathbf{F}\cdot d\mathbf{r} = \frac{d\mathbf{p}}{dt}\cdot d\mathbf{r} = \frac{d\mathbf{p}}{dt}\cdot \mathbf{v} dt = \frac{d\mathbf{p}}{dt}\cdot \frac{\mathbf{p}}{m} dt = \frac{1}{m}\mathbf{p}\cdot d\mathbf{p} = \frac{1}{2m} d(\mathbf{p}\cdot\mathbf{p}) = d\left(\frac{1}{2} m v^2\right) = dK,
+\end{equation}
+where $K = \frac{1}{2} m v^2$ is defined as the \emph{kinetic energy} of the particle. Therefore, the work done by the force as the particle moves from $\mathbf{r}_1$ to $\mathbf{r}_2$ can also be expressed as the change in kinetic energy of the particle:
+\begin{equation}
+    W_{12} = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r} = \int_{K_1}^{K_2} dK = K_2 - K_1 = \Delta K.
+    \label{eq:work-kinetic-energy}
+\end{equation}
+
+From the differential point of view, if a force $\mathbf{F}$ acts on a particle along an infinitesimal path $d\mathbf{r}$, it changes its kinetic energy by an infinitesimal amount $dK$:
+\begin{equation}
+    dK = \mathbf{F}\cdot d\mathbf{r}.
+    \label{eq:differential-work-kinetic-energy}
+\end{equation}
+Both equations, Eq.~\eqref{eq:work-kinetic-energy} and Eq.~\eqref{eq:differential-work-kinetic-energy}, are known as the \emph{work-energy theorem}. They state that the work done by a force on a particle is equal to the change in its kinetic energy. This theorem provides a powerful tool for analyzing the motion of particles, especially when the forces involved are complex or difficult to describe in terms of acceleration.
+
+It is worth empasizing that a positive work done on a particle by a force increases its kinetic energy, while a negative work done by a force decreases its kinetic energy. If the work done by the force is zero, then the kinetic energy of the particle remains constant. This can happen if the force is perpendicular to the displacement of the particle, as in uniform circular motion, or if there is no net force acting on the particle.
+
+The unit of work and kinetic energy is the joule (J), which is defined as one newton-meter (N·m). In terms of base SI units, one joule is equal to one kilogram meter squared per second squared (kg·m²/s²).
+
+\subsection{Conservative Forces and Potential Energy}
+
+A \emph{conservative force} is a force for which the work done in moving a particle between two points is independent of the path taken. Thus, the work depends only on the initial and final positions of the particle. Equivalently, the work done by a conservative force around any closed path is zero:
+
+\begin{equation}
+\oint \mathbf{F}\cdot d\mathbf{r} = 0.
+\end{equation}
+
+This property allows us to define a scalar function of position called the \emph{potential energy}, $U(\mathbf{r})$, such that the work done by the conservative force in moving the particle from point $A$ to point $B$ is equal to the negative change in potential energy:
+
+\begin{equation}
+W_{AB}
+= \int_\mathbf{r_A}^{\mathbf{r_B}} \mathbf{F}\cdot d\mathbf{r}
+= -\Delta U
+= U(\mathbf{r}_A)-U(\mathbf{r}_B).
+\end{equation}
+
+For simplicity, consider motion in the $x$ direction only. Then,
+
+\begin{equation}
+W_{AB}
+= \int_{x_A}^{x_B} F_xdx
+= U(x_A)-U(x_B).
+\end{equation}
+
+Since this relation must hold for arbitrary $x_A$ and $x_B$, differentiating with respect to the upper limit gives
+
+\begin{equation}
+F_x = -\frac{dU}{dx}.
+\end{equation}
+
+In three dimensions, this generalizes to
+
+\begin{equation}
+\mathbf{F} = -\nabla U,
+\end{equation}
+
+where $\nabla U$ is the gradient of the potential energy:
+
+\begin{equation}
+\nabla U
+= \frac{\partial U}{\partial x}\mathbf{i}
++ \frac{\partial U}{\partial y}\mathbf{j}
++ \frac{\partial U}{\partial z}\mathbf{k}.
+\end{equation}
+
+Thus, the force is determined by how the potential energy varies in space, while the work between two points depends only on the values of $U$ at those points. The zero of potential energy is arbitrary: adding a constant to $U$ does not affect the force or the work:
+\begin{equation}
+\mathbf{F} = -\nabla (U+C) = -\nabla U
+\end{equation}
+
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.5]{figures/point-particle.png}
-\end{figure}
-
-
-How can we mathematically write down the total mass of the particle in terms of its density function? We can consider the integral of the density function over all space, right? If $\rho$ is infinite at $\mathbf{r}_0$, wouldn't the integral be infinite as well? According to what we have learned in calculus, the integral of a function that is infinite must br infinite as well.
-\begin{equation}
-\int_{\text{all space}} \rho(\mathbf{r}) dV = \infty
-\end{equation}
-We attribute a geometrical ``dot'' a physical property called mass and we still want the mathematics work: We do not want the above integral to be infinite. Therefore, we say let it not be infinite, let it be a finite number $m$. In other words, we define the integral as follows:
-\begin{equation}
-\int_{\text{all space}} \rho(\mathbf{r}) dV \equiv m
-\end{equation}
-You will see more about this in Electricity and Magnetism course when we define Dirac delta function. 
-
-\section{The Position Vector}
-The position of a particle is described by a vector called the \emph{position vector}:
-\begin{equation}
-\mathbf{r}(t) = x(t) \mathbf{i} + y(t) \mathbf{j} + z(t) \mathbf{k}
-\end{equation}
-where $x(t)$, $y(t)$, and $z(t)$ are the coordinates of the particle as functions of time in a Cartesian coordinate system, and $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$ are the unit vectors in the $x$, $y$, and $z$ directions, respectively. The position vector points from the origin of the coordinate system to the position of the particle at time $t$. The magnitude of the position vector represents the distance of the particle from the origin, and its direction represents the direction of the particle from the origin. The position vector is a function of time, and it can be used to describe the motion of the particle in space. The position vector can also be expressed in terms of spherical or cylindrical coordinates, depending on the problem at hand. 
-
-
-
-\begin{figure}[ht]
 \centering
-\begin{minipage}{0.42\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/position-vector.png}
-\end{minipage}\hfill
-\begin{minipage}{0.54\textwidth}
-\centering
-\begin{tikzpicture}[>=stealth, scale=1.2]
-
-    % Axes
-    \draw[->] (-0.3,0) -- (5,0) node[right] {$x$};
-    \draw[->] (0,-0.3) -- (0,4) node[above] {$y$};
-
-    % Particle
-    \fill (3.5,2.5) circle (2pt) node[above right] {Particle};
-
-    % Position vector
-    \draw[->, thick] (0,0) -- (3.5,2.5)
-        node[midway, above left] {$\mathbf{r}(t)$};
-
-    % Coordinates
-    \draw[dashed] (3.5,0) -- (3.5,2.5);
-    \draw[dashed] (0,2.5) -- (3.5,2.5);
-
-    % Coordinate labels
-    \node[below] at (3.5,0) {$x(t)$};
-    \node[left] at (0,2.5) {$y(t)$};
-
-    % Origin
-    \node[below left] at (0,0) {$O$};
-
-\end{tikzpicture}
-    \end{minipage}
-\caption{The position vector $\mathbf{r}(t)$ of a particle in a two-dimensional Cartesian coordinate system.}
-\label{fig:position_vector}
+\includegraphics[width=0.5\textwidth]{figures/conservative.png}
+\caption{For a conservative force, the work done in moving a particle between two points is independent of the path taken; it depends only on the initial and final positions. Therefore, the work done around any closed path is zero.}
+\label{fig}
 \end{figure}
 
 
 
-
-\section{The Displacement Vector}
-What happens if a particle moves from one position $r_1(t_1)$ to another position $r_2(t_2)$? The displacement of a particle is described by a vector called the \emph{displacement vector}. It is defined as the change in position of the particle, and is given by the difference between the final position vector and the initial position vector:
+\subsection{Conservation of Mechanical Energy}
+The \emph{mechanical energy} of a particle is defined as the sum of its kinetic energy and potential energy:
 \begin{equation}
-\Delta \mathbf{r} = \mathbf{r}_2 (t_2) - \mathbf{r}_1 (t_1)
+    E = K + U,
+\end{equation}
+where $K$ is the kinetic energy and $U$ is the potential energy. A very important consequence of Newton's axioms is that the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces. In other words, if a particle is acted upon only by conservative forces, then its total mechanical energy remains constant. We will show this mathematically as follows:
+\begin{equation}
+    \frac{dE}{dt} = \frac{dK}{dt} + \frac{dU}{dt} 
+\end{equation}
+The first term in the summation can be written as
+\begin{equation}
+\frac{dK}{dt} = \frac{d}{dt}\left(\frac{1}{2}m\mathbf{v}\cdot\mathbf{v}\right) = m \mathbf{v}\cdot\dot{\mathbf{v}} = m \mathbf{v}\cdot\mathbf{a} = \mathbf{F}\cdot\mathbf{v} = \mathbf{F}\cdot\dot{\mathbf{r}}
+\end{equation}
+For the second term, we will consider the most general case where the potential energy is a function of position and time, $U(\mathbf{r},t)$. Then, using the chain rule, we can write
+\begin{equation}
+\frac{dU}{dt} = \sum_{i=1}^{3} \frac{\partial U}{\partial x_i}\frac{dx_i}{dt} + \frac{\partial U}{\partial t} = \sum_{i=1}^{3} \frac{\partial U}{\partial x_i}\dot{x_i} + \frac{\partial U}{\partial t} = \nabla U\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t}.
+\end{equation}
+Therefore, we can write the time derivative of the mechanical energy as
+\begin{equation}
+\frac{dE}{dt} = \mathbf{F}\cdot\dot{\mathbf{r}} + \nabla U\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t} = (\mathbf{F} + \nabla U)\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t}.
+\end{equation}
+If the force is conservative, then $\mathbf{F} = -\nabla U$, so the first term in the summation vanishes, and we are left with
+\begin{equation}
+\frac{dE}{dt} = \frac{\partial U}{\partial t}.
+\end{equation}
+If the potential energy is independent of time, then $\frac{\partial U}{\partial t} = 0$, and we have
+\begin{equation}
+\frac{dE}{dt} = 0 \implies E = \text{constant}.
+\end{equation}
+Thus, the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces and the potential energy is independent of time. This is known as the \emph{conservation of mechanical energy}. It is a powerful tool for analyzing the motion of particles, especially in situations where the forces involved are complex or difficult to describe in terms of acceleration.
+
+\section{More on the Total Energy and the Potential Energy}
+What if we only know the total mechanical energy and the potential energy function of a system? How much information can we extract about the motion of the system without solving any equation of motion?
+
+
+\section{Mechanical Energy as a First Integral of Motion}
+
+The conservation of mechanical energy can be used to obtain a first-order equation governing the motion of a particle. If the mechanical energy of a particle is conserved, then
+\begin{equation}
+E = K + U
+  = \frac{1}{2} m v^2 + U(x)
+  = \text{constant}.
 \end{equation}
 
-The displacement vector points from the initial position to the final position, and its magnitude represents the distance traveled by the particle in a straight line. The displacement vector is independent of the path taken by the particle, and only depends on the initial and final positions.
-
-\begin{figure}[h]
-\centering
-\begin{minipage}{0.6\textwidth}
-\centering
-\begin{tikzpicture}[>=stealth, thick, scale=0.6]
-
-    % Points
-    \coordinate (O)  at (0,0);
-    \coordinate (P1) at (4,1);
-    \coordinate (P2) at (5,4);
-
-    % Position vector r_1
-    \draw[->] (O) -- (P1)
-        node[midway, below] {$\mathbf{r}_1(t_1)$};
-
-    % Position vector r_2
-    \draw[->] (O) -- (P2)
-        node[pos=0.55, above left] {$\mathbf{r}_2(t_2)$};
-
-    % Displacement vector
-    \draw[->] (P1) -- (P2)
-        node[midway, above right] {$\Delta\mathbf{r}$};
-
-    % Points
-    \fill (O) circle (2pt) node[below left] {$O$};
-    \fill (P1) circle (2pt) node[below] {$P_1$};
-    \fill (P2) circle (2pt) node[above right] {$P_2$};
-
-\end{tikzpicture}
-\end{minipage}
-\caption{Position vectors and displacement vector.}
-\label{fig:position_displacement}
-\end{figure}
-
-If we simple subtract $\mathbf{r}_1$ from $\mathbf{r}_2$ by using the head to tail method, the resulting vector would be in some direction starting from the origin. But the displacement vector is defined as the vector that starts from the initial position and ends at the final position. Therefore, we need to translate the vector $\mathbf{r}_1$ to the point $\mathbf{r}_2$ in order to find the displacement vector $\Delta \mathbf{r}$. This is shown in Figure \ref{fig:position_displacement}.
-
-
-\section{The Velocity Vector}
-
-The \emph{velocity} is defined as the change in position with respect to time. If the displacement of the particle is described by $\Delta \mathbf{r}$, can we define the velocity as follows?
-
-\[
-\mathbf{v}\overset{?}{=}\frac{\Delta \mathbf{r}}{\Delta t}
-\]
-What does this actually mean? Maybe the particle moved between the time interval $t_2-t_1$ as shown in the following figure:
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.4\textwidth]{figures/average-velocity.png}
-\caption{Displacement vector}
-\label{fig:position_displacement}
-\end{figure}
-
-
-Maybe the particle sped up during its motion or slowed down or maybe it took a brake for some time. We do not know. The information given to us in the beginning was only $\mathbf{r}_1(t)$ and $\mathbf{r}_2(t)$. Therefore, all we can say is how fast and in which direction the particle moved during $\Delta t$ ``on average''. Therefore, we define the \emph{average velocity vector} as
-\[
-\mathbf{v}_\text{avg}=\frac{\Delta \mathbf{r}}{\Delta t}
-\]
-It has the same direction as the displacement vector. If we are given the initial and final position vectors in component form as
-\[
-\mathbf{r}_1=x_1(t)\mathbf{i} + y_1(t)\mathbf{j} + z_1(t)\mathbf{k}
-\]
-\[
-\mathbf{r}_2=x_2(t)\mathbf{i} + y_2(t)\mathbf{j} + z_2(t)\mathbf{k}
-\]
-\[
-\Delta \mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1 = [x_2(t)-x_1(t)]\mathbf{i} + [y_2(t)-y_1(t)]\mathbf{j} + [z_2(t)-z_1(t)]\mathbf{k}
-\]
-then the average velocity vector becomes
-\[
-\mathbf{v}_\text{avg}= \frac{\Delta x}{\Delta t}\mathbf{i}+\frac{\Delta y}{\Delta t}\mathbf{j}+\frac{\Delta z}{\Delta t}\mathbf{k}
-\]
-
-If we are interested in the velocity of the particle at a given time instead of the average velocity we should consider the behavior of $\mathbf{v}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
-
-\[
-\lim_{\Delta t \rightarrow 0} \mathbf{v}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta z}{\Delta t}\mathbf{k},
-\]
-where we have the definition of derivatice for each term. Hence the velocity of a particle at time $t$ is defined as
-
+This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
 \begin{equation}
-    \mathbf{v}(t) = \frac{d}{dt}[x(t)]\mathbf{i}+\frac{d}{dt}[y(t)]\mathbf{j}+\frac{d}{dt}[z(t)]\mathbf{k},
+v(x)
+=
+\sqrt{\frac{2}{m}\left[E-U(x)\right]}.
 \end{equation}
 
-or in Newton's notation
-
+For one-dimensional motion, we have
 \begin{equation}
-    \mathbf{v}(t) = \dot{x}(t)\mathbf{i}+\dot{y}(t)\mathbf{j}+\dot{z}(t)\mathbf{k} = v_x(t)\mathbf{i}+v_y(t)\mathbf{j}+v_z(t)\mathbf{k}.
+v = \frac{dx}{dt},
+\end{equation}
+so that
+\begin{equation}
+dt
+=
+\frac{dx}{\pm\sqrt{\frac{2}{m}\left[E-U(x)\right]}}.
 \end{equation}
 
-The \emph{speed} of the particle is defined as the magnitude of the velocity vector:
-
+Integrating from $(x_0,t_0)$ to $(x,t)$ gives
 \begin{equation}
-    v(t) = |\mathbf{v}(t)|.
+t-t_0
+=
+\int_{x_0}^{x}
+\frac{dx}
+{\pm\sqrt{\frac{2}{m}\left[E-U(x)\right]}}.
 \end{equation}
 
+Thus, if the potential energy $U(x)$ is known, this equation can, in principle, be used to determine the motion $x(t)$. The integral may not have an analytical solution for an arbitrary potential, but it can be evaluated numerically.
 
-\section{The Acceleration Vector}
-\emph{Acceleration} is defined as the change in velocity with respect to time. If the change in velocity of the particle is described by $\Delta \mathbf{v}$, we can define the average acceleration vector as follows:
-\[
-\mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t}
-\]
-The average acceleration vector has the same direction as the change in velocity vector. If we are given the initial and final velocity vectors in component form as
-\[
-\mathbf{v}_1=v_{x1}(t)\mathbf{i} + v_{y1}(t)\mathbf{j} + v_{z1}(t)\mathbf{k}   
-\]
-\[
-\mathbf{v}_2=v_{x2}(t)\mathbf{i} + v_{y2}(t)\mathbf{j} + v_{z2}(t)\mathbf{k}
-\]
-Then the change in velocity is
-\[
-\Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1 = [v_{x2}(t)-v_{x1}(t)]\mathbf{i} + [v_{y2}(t)-v_{y1}(t)]\mathbf{j} + [v_{z2}(t)-v_{z1}(t)]\mathbf{k}
-\]
-and the average acceleration vector becomes
-\[
-\mathbf{a}_\text{avg}= \frac{\Delta v_x}{\Delta t}\mathbf{i}+\frac{\Delta v_y}{\Delta t}\mathbf{j}+\frac{\Delta v_z}{\Delta t}\mathbf{k}
-\]
-
-If we are interested in the acceleration of the particle at a given time instead of the average acceleration we should consider the behavior of $\mathbf{a}_\text{avg}$ when $\Delta t \rightarrow 0$. Therefore,
-
-\[
-\lim_{\Delta t \rightarrow 0} \mathbf{a}_\text{avg} = \lim_{\Delta t \rightarrow 0} \frac{\Delta v_x}{\Delta t}\mathbf{i}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_y}{\Delta t}\mathbf{j}+\lim_{\Delta t \rightarrow 0}\frac{\Delta v_z}{\Delta t}\mathbf{k},
-\]
-where we have the definition of derivative for each term. Hence the acceleration of a particle at time $t$ is defined as
-
-\begin{equation}
-    \mathbf{a}(t) = \frac{d}{dt}[v_x(t)]\mathbf{i}+\frac{d}{dt}[v_y(t)]\mathbf{j}+\frac{d}{dt}[v_z(t)]\mathbf{k}.
-\end{equation}
-
-or in Newton's notation
-
-\begin{equation}
-    \mathbf{a}(t) = \dot{v}_x(t)\mathbf{i}+\dot{v}_y(t)\mathbf{j}+\dot{v}_z(t)\mathbf{k} = a_x(t)\mathbf{i}+a_y(t)\mathbf{j}+a_z(t)\mathbf{k}.
-\end{equation}
-where $a_x(t)$, $a_y(t)$, and $a_z(t)$ are the components of the acceleration vector in the $x$, $y$, and $z$ directions, respectively.
-
-
-\section{The Trajectory of a Particle}
-
-The \emph{trajectory} of a particle is the path followed by the particle in space as time goes on.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/trajectory.png}
-\end{figure}
-
-Velocity and displacement vectors are always tangent to the particle's trajectory.
-
-\section{Acceleration vector for particles moving along a curved path}
-
-For a particle moving along a curved path, the acceleration vector generally has two components:
-\begin{itemize}
-    \item The tangential component, which is parallel to the velocity vector and changes the speed of the particle.
-    \item The normal component, which is perpendicular to the velocity vector and changes the direction of the particle's motion.
-\end{itemize}
-
-The normal component of the acceleration is responsible for the change in direction of the particle's motion, while the tangential component is responsible for the change in speed.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/acceleration-vector.png}
-\end{figure}
-Remember that
-\begin{equation}
-\mathbf{a}_\text{avg} = \frac{\Delta \mathbf{v}}{\Delta t} = \frac{\mathbf{v}_2 - \mathbf{v}_1}{\Delta t}
-\end{equation}
-
-\section{Connection between position, velocity, and acceleration vectors}
-We have already seen that once we are given the position vector of a particle, $\mathbf{r}(t)$, we can find the velocity and acceleration vectors by taking the first and second derivatives with respect to time, respectively:
-\begin{equation}
-    \mathbf{r}(t) \xrightarrow{\frac{d}{dt}} \mathbf{v}(t) \xrightarrow{\frac{d}{dt}} \mathbf{a}(t)
-\end{equation}
-
-Is it possible to go the other way around? If we are given the acceleration vector of a particle, $\mathbf{a}(t)$, can we find the velocity and position vectors? If we are given the velocity vector, for example, can we find $\mathbf{r}(t)$?
-
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\textwidth]{figures/position-from-velocity.png}
-\end{figure}
-
-The area under the velocity-time graph represents the displacement of the particle. Therefore, we can use integral to calculate the displacementof the particle between two time instants $t_1$ and $t_2§$:
-
-\begin{equation}
-    \Delta x = \int_{t_1}^{t_2} v_x(t) dt
-\end{equation}
-
-However, we need to know the initial position of the particle at time $t_1$ in order to find the final position of the particle at time $t_2$. Therefore, we can write:
-\begin{equation}
-    x(t_2) = x(t_1) + \int_{t_1}^{t_2} v_x(t) dt 
-\end{equation}
-
-Therefore, if we are only given the form of $\mathbf{v}(t)$ but not the initial position of the particle, we can find the form of $\mathbf{r}(t)$ up to an unknown constant $C$, which actually comes automatically with the integration of the indefinite integral:
-\begin{equation}
-    \mathbf{r}(t) = \int \mathbf{v}(t) dt + \mathbf{C}
-\end{equation} 
-where $\mathbf{C}$ is a constant vector that represents the initial position of the particle at time $t=0$. The components of $\mathbf{C}$ can be determined if we are given the initial position of the particle. Like derivative, the integral is also a linear operator, which means that we can integrate each component of the velocity vector separately to find the corresponding components of the position vector:
-\begin{equation}
-    \mathbf{r}(t) = \int v_x(t) dt \mathbf{i} + \int v_y(t) dt \mathbf{j} + \int v_z(t) dt \mathbf{k} + \mathbf{C}
-\end{equation}
-
-The velocity is the time rate of change of the displacement and we saw that we can derive the position out of the velocity by using integration. Also, acceleration is the time rate of change of velocity, which means that the mathematical derivation of the velocity out of the acceleration have to be in the same way we derived the position out of the velocity:
-\begin{equation}
-    \mathbf{v}(t) = \int \mathbf{a}(t) dt + \mathbf{C}
-\end{equation}
-
-\section{Summary}
-If we are given how the position vector of a particle is changing with time, it means that we know everything about the motion of the particle. We can find the velocity and acceleration vectors by taking the first and second derivatives of the position vector with respect to time, respectively. If we are given how the acceleration vector of a particle is changing with time, we can find the velocity and position vectors by taking the indefinite integrals of the acceleration vector with respect to time, respectively. However, we need to know the initial conditions of the particle in order to find its exact position and velocity at any given time.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.6\textwidth]{figures/summary.png}
-\end{figure}
-
-
-
-\section{Types of Motion}
-
-\subsection{Linear Motion}
-Motion along a straight line is called linear motion. In this case, the position vector of the particle can be expressed as:
-\[
-\mathbf{r}(t) = x(t) \mathbf{i}
-\]
-Here, $x$ direction is chosen randomly as the direction of motion. The other two directions could also be chosen equally well. The velocity and acceleration vectors are also along the same direction as the position vector, and can be expressed as:
-\[
-\mathbf{v}(t) = \dot{x}(t) \mathbf{i}
-\]
-\[
-\mathbf{a}(t) = \ddot{x}(t) \mathbf{i}
-\]
-When the motion is restricted to a straight line, or in other words, when the motion is one-dimensional, the position, velocity, and acceleration vectors can be represented by scalar quantities along the direction of motion:
-\[
-x = x(t), v = \dot{x}(t), a = \ddot{x}(t)
-\]
-
-The signs of these scalar quantities indicate the direction of motion along the chosen axis. For example, if the particle is moving in the positive $x$ direction, the position, velocity, and acceleration scalars will be positive. If the particle is moving in the negative $x$ direction, these scalars will be negative. The magnitude of these scalars represents the distance traveled, speed, and rate of change of speed, respectively.
-
-\subsection{Circular Motion}
-\emph{Circular motion} is the motion of a particle along a circular path:
-
-
-\begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}[scale=1.0, >=stealth]
-        \coordinate (O) at (0,0);
-        \coordinate (P) at (35:3);
-        \coordinate (PR) at (35:-3);
-        \draw[thick] (O) circle (3);
-        \draw[->] (-0.3,0) -- (3.7,0) node[right] {$x$};
-        \draw[->] (0,-0.3) -- (0,3.5) node[above] {$y$};
-        \draw[->,thick,blue] (O) -- (P) node[midway,above left] {$\mathbf{r}(t)$};
-        \draw[-,thick,blue] (O) -- (PR) node[midway,below right] {$R$};
-        \fill (P) circle (2.5pt) node[above right] {$P$};
-        \draw[->] (1,0) arc[start angle=0,end angle=35,radius=1]
-            node[midway,right] {$\theta(t)$};
-
-    \end{tikzpicture}
-    \caption{Circular path and polar-coordinate vectors at the particle's position.}
-\end{figure}
-\[
-\mathbf{r}(t) = R \cos[\theta(t)] \mathbf{i} + R \sin[\theta(t)] \mathbf{j}
-\]
-Here, $R$ is the radius of the circular path, and $\theta(t)$ is the angle made by the position vector with respect to a reference axis. We know that $\theta$ changes with time, so it can be represented as a function of time:
-\[
-\theta = \theta(t)
-\]
-There is no mathematical restriction on the form of $\theta(t)$, so it can be any function of time. However, if we are interested in \emph{uniform circular motion}, where the speed of the particle is constant, the angle $\theta$ is defined as a linear function of time:
-\[
-\theta(t) = \omega t + \theta_0
-\]
-
-\textbf{What is 1 radian?} A radian is a unit of angular measure used in mathematics and physics. It is defined as the angle subtended at the center of a circle by an arc whose length is equal to the radius of the circle. In other words, if you take a circle and draw an arc that has the same length as the radius of the circle, the angle formed at the center of the circle by that arc is 1 radian.
-
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[scale=1.2]
-
-        % Circle
-        \draw[thick] (0,0) circle (2);
-
-        % Center
-        \fill (0,0) circle (1.5pt);
-        \node[below left] at (0,0) {$O$};
-
-        % Radius to initial point
-        \draw[thick] (0,0) -- (2,0);
-        \node[below] at (1,0) {$R$};
-
-        % Radius to final point
-        \draw[thick] (0,0) -- ({2*cos(57.3)},{2*sin(57.3)});
-
-        % Arc of length R
-        \draw[very thick] (2,0)
-            arc[start angle=0, end angle=57.3, radius=2];
-
-        % Angle
-        \draw[->] (0.65,0)
-            arc[start angle=0, end angle=57.3, radius=0.65];
-        \node at (0.95,0.48) {$1\,\mathrm{rad}$};
-
-        % Arc-length label
-        \node at (1.55,1.05) {$s=R$};
-
-        % Radius label on second radius
-        \node[above left] at ({2*cos(57.3)},{2*sin(57.3)})
-            {$R$};
-
-        % Dashed construction showing equal lengths
-        \draw[dashed] (2,0) -- (2,-0.45);
-        \draw[dashed] ({2*cos(57.3)},{2*sin(57.3)})
-            -- ({2*cos(57.3)+0.25},{2*sin(57.3)+0.15});
-
-        % Definition
-        \node[align=center] at (0,-2.9)
-            {\large Arc length $s$ equals the radius $R$\\[2pt]
-             $\displaystyle \theta=\frac{s}{R}=1\,\mathrm{rad}$};
-
-    \end{tikzpicture}
-    \caption{Definition of one radian: an angle of $1$ radian subtends an arc whose length equals the radius of the circle.}
-    \label{fig:one-radian}
-\end{figure}
-
-
-
-\subsection{Spiral Motion}
-
-It is a composite motion of linear and circular motions. The particle moves along a spiral path, which can be described by a combination of linear and circular motion equations. The position vector of a particle moving in a spiral path can be expressed as:
-\[
-\mathbf{r}(t) = r(t) \cos(\theta(t)) \mathbf{i} + r(t) \sin(\theta(t)) \mathbf{j} + z(t) \mathbf{k}
-\]
-
-
-\subsection{Oscillatory Motion}
-\emph{Oscillatory motion} is the motion of a particle back and forth around a central point. 
-
-\subsection{Cycloidal Motion}
-It is the path traced by a point on the circumference of a circle as it rolls along straight line without slipping. Imagine drawing a chalk dot on a bicycle wheel and then rolling the wheel along a flat surface. The path traced by the chalk dot is a cycloid. 
-
+For motion in more than one dimension, conservation of energy determines the speed of the particle but not the direction of its velocity. Therefore, the energy equation alone is not sufficient to determine the full trajectory $\mathbf{r}(t)$.
 
 
 \section{Worked Examples}
-\subsection{Collision of Two Particles}
-Two particles are moving on a plane according to the following position vectors:
-\[
-\mathbf{r}_1(t) = t\mathbf{i} + t\mathbf{j}
-\]
-\[
-\mathbf{r}_2(t) = (-t+4)\mathbf{i} + (2t-2)\mathbf{j}
-\]
-What time $t$ do the two particles collide? What is the position vector of the collision point?
-\textbf{Solution 1:} The two particles collide when their position vectors are equal:
-\[
-\mathbf{r}_1(t) = \mathbf{r}_2(t)
-\]
-This gives us two equations:
-\[
-t = -t + 4 \quad \text{(i)}
-\]
-\[
-t = 2t - 2 \quad \text{(ii)}
-\]
-From equation (i), we get:
-\[
-2t = 4 \implies t = 2
-\]
-From equation (ii), we get:
-\[
-t = 2t - 2 \implies t = 2
-\]
-Both equations give us the same time $t = 2$. Now we can find the position vector of the collision point by substituting $t = 2$ into either $\mathbf{r}_1(t)$ or $\mathbf{r}_2(t)$:
-\[
-\mathbf{r}_1(2) = 2\mathbf{i} + 2\mathbf{j} = 2\mathbf{i} + 2\mathbf{j} 
-\]
-
-\textbf{Solution 2:} Define a \emph{seperation vector} $\Delta\mathbf{r}$:
-\[
-\Delta\mathbf{r} = \mathbf{r}_2(t) - \mathbf{r}_1(t)
-\]
-The two particles collide when $|\Delta\mathbf{r}| = 0$:
-\[
-|(-2t+4)\mathbf{i} + (t-2)\mathbf{j}| = 0
-\]
-This is equivalent to:
-\[
-\sqrt{(-2t+4)^2 + (t-2)^2} = 0
-\]
-Squaring both sides:
-\[
-(-2t+4)^2 + (t-2)^2 = 0
-\]
-Expanding:
-\[
-4t^2 - 16t + 16 + t^2 - 4t + 4 = 0
-\]
-Combining like terms:
-\[
-5t^2 - 20t + 20 = 0
-\]
-Dividing by 5:
-\[
-t^2 - 4t + 4 = 0
-\]
-This factors as:
-\[
-(t-2)^2 = 0
-\]
-So $t = 2$.
-
+\subsection{Circular motion}
+Basics and why it takes place on a plane. torque and centripetal force. Derivation of the centripetal acceleration formula. Examples of circular motion in everyday life. angular momentum and torque in circular motion. Conservation of angular momentum in circular motion. Examples of conservation of angular momentum in everyday life.
+\subsection{Motion of a Particle under a Constant Force}
+\subsection{Motion of a Particle on an Inclined Plane}
+\subsection{Free Fall and Terminal Speed}
+\subsection{Collisions and Impulse}
+\subsection{Nabla as an operator converting a scalar field into a vector field}
+\subsection{mgh example}
 
 
 

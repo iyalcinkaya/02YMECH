@@ -574,13 +574,14 @@ $f(0)=1$, meaning its rate of change at every point equals its value there:
 \begin{equation}
     \frac{d}{dx}\,e^{x} = e^{x}.
 \end{equation}
-More generally, for a constant rate $k$,
+More generally, for a constant rate $\lambda$, where $\lambda$ is a real number:
 \begin{equation}
-    \frac{d}{dt}\,e^{kt} = k\,e^{kt},
+    \frac{d}{dt}\,e^{\lambda t} = \lambda\,e^{\lambda t},
+    \label{eq:exponential-derivative}
 \end{equation}
-so the velocity of a particle whose position is $x(t)=e^{kt}$ is always proportional to
-its position by the factor $k$: exponential growth for $k>0$ and exponential decay
-for $k<0$.
+so the velocity of a particle whose position is $x(t)=e^{\lambda t}$ is always proportional to
+its position by the factor $\lambda$: exponential growth for $\lambda>0$ and exponential decay
+for $\lambda<0$.
 
 \subsection*{Complex Exponential Function}
 
@@ -611,6 +612,26 @@ While a cosine or sine alone can describe a single oscillation, the complex expo
 handles multiple oscillations, phase relationships, and operations such as differentiation
 and integration more efficiently, making it the preferred tool in signal processing and
 wave mechanics.
+
+
+Compared to Eq.~\eqref{eq:exponential-derivative}, replacing the real constant $\lambda$ with the imaginary constant $i\omega$ gives
+\begin{equation}
+    \frac{d}{dt}\,e^{i\omega t} = i\omega\,e^{i\omega t},
+\end{equation}
+so the velocity of a particle whose position is $x(t)=e^{i\omega t}$ is always proportional to its position by the factor $i\omega$. The factor $i$ indicates that the velocity is perpendicular to the position, as in circular motion. The magnitude of the velocity is $|\mathbf{v}| = \omega |x|$, as we found in Sec.~\ref{sec:circular-motion}.
+
+The coefficient of the time parameter $t$ in the exponent can be chosen as a general complex number. In this way, we can describe a combination of oscillatory and exponential growth or decay behavior. For example, if we let $\lambda = \alpha + i\omega$, where $\alpha$ and $\omega$ are real numbers, then
+\begin{equation}
+    \frac{d}{dt}\,e^{(\alpha+i\omega) t}
+      = (\alpha+i\omega)\,e^{(\alpha+i\omega) t},
+\end{equation}
+so the velocity of a particle whose position is $x(t)=e^{(\alpha+i\omega) t}$ is always proportional to its position by the factor $\alpha+i\omega$. The real part $\alpha$ indicates that the particle's speed is increasing or decreasing exponentially, while the imaginary part $i\omega$ indicates that the particle is oscillating. The magnitude of the velocity is
+\begin{equation}
+    |\mathbf{v}| = \sqrt{\alpha^2+\omega^2}\,|x|,
+\end{equation}
+which combines the effects of exponential growth or decay and oscillation.
+
+
 
 
 
