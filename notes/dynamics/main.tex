@@ -304,7 +304,7 @@ The angular momentum of a system is conserved if the net external torque acting 
 
 When a particle is acted upon by a force, $\mathbf{F}$, the \emph{work} done by the force as the particle moves from position $\mathbf{r}_1$ to position $\mathbf{r}_2$ is defined as
 \begin{equation}
-    W = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r}.
+    W_{12} = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r}.
 \end{equation}
 where $d\mathbf{r}$ is an infinitesimal displacement vector along the path of the particle from $\mathbf{r}_1$ to $\mathbf{r}_2$ and it can be expressed as
 \begin{equation}
@@ -424,8 +424,11 @@ If the potential energy is independent of time, then $\frac{\partial U}{\partial
 \end{equation}
 Thus, the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces and the potential energy is independent of time. This is known as the \emph{conservation of mechanical energy}. It is a powerful tool for analyzing the motion of particles, especially in situations where the forces involved are complex or difficult to describe in terms of acceleration.
 
-\section{More on the Total Energy and the Potential Energy}
-What if we only know the total mechanical energy and the potential energy function of a system? How much information can we extract about the motion of the system without solving any equation of motion?
+\section{More on the Potential Energy}
+Knowing the potential energy function $U(\mathbf{r})$ together with the total mechanical energy $E$ of a particle provides us with a powerful tool for analyzing its motion without solving the equations of motion directly. 
+
+Let us consider the following example. Suppose a particle of mass $m$ is moving in one dimension under the influence of a conservative force with potential energy $U(x) = k(x^3-3x)$ as given in Fig.~\ref{fig:potential-energy-example}. 
+
 
 
 \section{Mechanical Energy as a First Integral of Motion}
@@ -470,11 +473,230 @@ For motion in more than one dimension, conservation of energy determines the spe
 
 
 \section{Worked Examples}
+
+\subsection{\label{ex:constant-force} Motion of a Particle under a Constant Force}
+Assume that a particle of mass $m$ is acted upon by a constant force in $\mathbf{F}$. Write down the equation of motion and solve it to find the position and velocity of the particle as functions of time.
+
+\textbf{Solution:} If the force is constant, then motion takes place in a straight line. The equation of motion is given by Newton's second law can be written in a scalar form as
+\begin{equation}
+m\ddot{x} = F,
+\end{equation}
+where $x$ is the position of the particle along the direction of the force. It can be solved for velocity as
+\begin{equation}
+    d\dot{x} = \frac{F}{m}dt \implies \int d\dot{x} = \int \frac{F}{m}dt + C \implies \dot{x} = \frac{F}{m}t + C,
+\end{equation}
+where $C$ is the constant of integration. If the initial velocity of the particle at $t=0$ is $v_0$, then $C = \dot{x}_0$, and we have
+\begin{equation}
+    \dot{x}(t) \equiv v_x(t) = \frac{F}{m}t + v_0.
+\end{equation}
+Integrating once more gives the position of the particle as a function of time:
+\begin{equation}
+    dx = \left(\frac{F}{m}t + v_0\right)dt \implies \int dx = \int \left(\frac{F}{m}t + v_0\right)dt \implies x(t) = \frac{F}{2m}t^2 + v_0 t + x_0,
+\end{equation}
+where $x_0$ is the initial position of the particle at $t=0$. Thus, the position, velocity and acceleration of the particle as functions of time are given by 
+\begin{equation}
+    \boxed{
+x(t) = \frac{F}{2m}t^2 + v_0 t + x_0, \quad v_x(t) = \frac{F}{m}t + v_0, \quad a_x(t) = \frac{F}{m}= \text{constant}
+    }
+    \label{eq:constant-force-motion}
+\end{equation}
+which are plotted in Fig.~\ref{fig:position-velocity-acceleration}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/position-velocity-acceleration.png}
+\caption{Motion of a particle under a constant force. The position, velocity, and acceleration of the particle as functions of time.}
+\label{fig:position-velocity-acceleration}
+\end{figure}
+
+
+\subsection{Free fall Motion}
+
+A particle is released from a height $h$ and falls under the influence of gravity freely from rest, then $F = mg$, $v_0 = 0$, and $x_0 = h$.
+
+\begin{enumerate}
+\item[(a)] Write down the equation of motion and its solution to find the position and velocity of the particle as functions of time.
+\item[(b)] Find the speed of the particle when it crushes into the ground.
+\end{enumerate}
+
+
+\textbf{Solution:} 
+
+(a) The equation of motion is given by Newton's second law can be written in a scalar form as since it takes place in a straight line along the vertical direction, we have
+\begin{equation}
+m\ddot{y} = -mg \implies \ddot{y} = -g,
+\end{equation}
+where $y$ is the position of the particle along the vertical direction. This problem is the same as Example \ref{ex:constant-force}, with $F = -mg$, $v_0 = 0$, and $x_0 = h$. Therefore, the position and velocity of the particle as functions of time are given by
+\begin{equation}
+    \boxed{
+y(t) = -\frac{1}{2}gt^2 + h, \quad v_y(t) = -gt, \quad a_y(t) = -g = \text{constant}
+    }
+\end{equation}
+
+(b) The particle crushes into the ground when $y(t) = 0$, which gives
+\begin{equation}
+    0 = -\frac{1}{2}gt^2 + h \implies t = \sqrt{\frac{2h}{g}}.
+\end{equation}
+The speed of the particle when it crushes into the ground is given by
+\begin{equation}
+    v_y\left(\sqrt{\frac{2h}{g}}\right) = -g\sqrt{\frac{2h}{g}} = -\sqrt{2gh} \implies \boxed{v = \sqrt{2gh}}
+\end{equation}
+
+
+\subsection{Motion on an Inclined Plane and Friction Forces}
+A block is placed on a frictionless inclined plane that makes an angle $\theta$ with the horizontal. The block is released from rest at the top of the incline as shown in Fig.~\ref{fig:inclined-plane}. Write down the equation of motion, and solve it to find the position and velocity of the block for the following cases: 
+\begin{enumerate}
+    \item[(a)] The block slides down the frictionless incline.
+    \item[(b)] The block slides down the incline on a rough surface with a coefficient of kinetic friction $\mu_k$.
+    \item[(c)] Assume that we can increase the angle of the incline $\theta$ until the block starts sliding down the incline. Find the critical angle $\theta_c$ at which the block starts sliding down the incline given the coefficient of static friction $\mu_s$. 
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/inclined-plane.png}
+\caption{A block on a frictionless inclined plane.}
+\label{fig:inclined-plane}
+\end{figure}
+
+\textbf{Solution:}
+
+(a) For a frictionless incline, the only force acting on the block along the incline is the component of its weight parallel to the incline, which is $mg\sin\theta$ as seen in Fig.~\ref{fig:inclined-plane}. This force causes the block to accelerate down the incline (in $+x$ direction) and does not change in time. Therefore, this problem can be considered as a motion of a particle under a constant force as considered in Example~\ref{ex:constant-force}. The acceleration of the block along the incline is given by
+\begin{equation}
+    a_x = \frac{F}{m} = \frac{mg\sin\theta}{m} = g\sin\theta.
+\end{equation}
+Therefore, the position and velocity of the block as functions of time are given by
+\begin{equation}
+    \boxed{
+x(t) = \frac{1}{2}g\sin\theta t^2, \quad v_x(t) = g\sin\theta t, \quad a_x(t) = g\sin\theta = \text{constant}
+    }
+\end{equation}
+
+Note that the acceleration of the block along the incline is less than $g$ because only a component of the weight acts along the incline. The acceleration is maximum when $\theta = 90^\circ$, in which case $a_x = g$. The form of the equations of motion is the same as that for free fall, but the acceleration is reduced by a factor of $\sin\theta$. Therefore, the motion on an inclined plane can be considered as a ``slowed-down version of free fall''.
+
+(b) When the surfaces are rough, the block experiences a \emph{kinetic friction force} because the block is sliding relative to the surface. Kinetic friction acts opposite to the direction of sliding. Thus, since the block moves down the incline, the kinetic friction force acts up the incline.
+
+The magnitude of the kinetic friction force is described by the empirical relation
+
+\begin{equation}
+f_k=\mu_k N,
+\end{equation}
+
+where $N$ is the normal force exerted by the surface on the block. The dimensionless quantity $\mu_k$ is called the \emph{coefficient of kinetic friction}. It characterizes the strength of the frictional interaction between the two surfaces: for a given normal force, a larger $\mu_k$ corresponds to a larger kinetic friction force.
+
+The relation $f_k=\mu_kN$ means that, within the kinetic-friction model, the magnitude of the friction force is proportional to the normal force. The normal force measures how strongly the two surfaces press against each other. It is important to note that $\mu_k$ is a property of the pair of contacting surfaces and is not itself a force. The normal force is equal to the component of the weight perpendicular to the incline, which is $mg\cos\theta$. Therefore, the force of friction is $f_k = \mu_k mg\cos\theta$. The net force along the incline is then
+\begin{equation}
+    F_{net} = mg\sin\theta - \mu_k mg\cos\theta.
+\end{equation}
+The acceleration of the block along the incline is given by
+\begin{equation}
+    a_x = \frac{F_{net}}{m} = g(\sin\theta - \mu_k \cos\theta).
+\end{equation}
+This is a constant acceleration, so the position and velocity of the block as functions of time can be found by using Eq.~\eqref{eq:constant-force-motion} with $a_x = g(\sin\theta - \mu_k \cos\theta)$.
+
+(c) Before the block starts sliding, it is at rest relative to the incline. The friction force is therefore \emph{static friction}. Static friction acts along the surface and prevents relative motion between the two surfaces. Unlike kinetic friction, its magnitude is not generally fixed at a particular value; it adjusts to balance the other forces, up to a maximum value given by
+\begin{equation}
+f_s \leq f_{s,\max}=\mu_s N,
+\end{equation}
+where $\mu_s$ is the \emph{coefficient of static friction} and $N$ is the normal force. The coefficient $\mu_s$ is dimensionless and characterizes the strength of static friction between the two surfaces.
+
+As the angle $\theta$ of the incline is increased, the component of the gravitational force parallel to the incline,
+\begin{equation}
+mg\sin\theta,
+\end{equation}
+also increases. The block remains at rest as long as static friction can balance this component. At the critical angle $\theta_c$, the block is just about to start sliding down the incline. At this point, static friction has reached its maximum value:
+\begin{equation}
+f_s=f_{s,\max}=\mu_sN.
+\end{equation}
+The normal force is determined by the component of the gravitational force perpendicular to the incline. Since there is no acceleration perpendicular to the surface,
+
+\begin{equation}
+N=mg\cos\theta_c.
+\end{equation}
+
+At the critical angle, the component of gravity down the incline is exactly balanced by the maximum static friction acting up the incline:
+\begin{equation}
+mg\sin\theta_c=\mu_sN.
+\end{equation}
+Substituting $N=mg\cos\theta_c$ gives
+\begin{equation}
+mg\sin\theta_c
+=\mu_s mg\cos\theta_c \implies \tan\theta_c=\mu_s.
+\end{equation}
+Therefore, the critical angle at which the block starts sliding down the incline is
+\begin{equation}
+\boxed{\theta_c=\arctan(\mu_s)}.
+\end{equation}
+For $\theta<\theta_c$, static friction is sufficient to keep the block at rest. At $\theta=\theta_c$, static friction reaches its maximum value and the block is on the verge of sliding. For $\theta>\theta_c$, the block starts sliding down the incline, and the friction force becomes kinetic friction.
+
+\subsection{A More Realistic Free Fall and Terminal Speed}
+A particle is released from a height $h$ with initial velocity $v_0 = 0$ and falls under the influence of gravity. The particle experiences a resistive force due to air resistance, which is proportional to its velocity: $F_r = -kv$, where $k$ is a positive constant that characterizes the strength of the resistive force. 
+\begin{enumerate}
+    \item[(a)] Write down the equation of motion and solve it to find the velocity of the particle as function of time.
+    \item[(b)] Determine the terminal speed of the particle.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) The equation of motion is given by Newton's second law can be written in a scalar form as
+\begin{equation}
+m\ddot{y} = -mg - kv \implies m\frac{dv}{dt} = -mg - kv,
+\end{equation}
+where $y$ is the position of the particle along the vertical direction. This is a first-order linear ordinary differential equation for the velocity $v(t)$. It can be solved using an integrating factor or by separation of variables. Rearranging gives
+\begin{equation}
+\frac{dv}{dt} + \frac{k}{m}v = -g.
+\end{equation}
+The integrating factor is $e^{(k/m)t}$, so multiplying both sides gives
+\begin{equation}
+e^{(k/m)t}\frac{dv}{dt} + \frac{k}{m}e^{(k/m)t}v = -ge^{(k/m)t}.
+\end{equation}
+The left-hand side can be recognized as the derivative of $ve^{(k/m)t}$, so we have
+\begin{equation}\frac{d}{dt}\left(ve^{(k/m)t}\right) = -ge^{(k/m)t}.
+\end{equation}
+Integrating both sides with respect to $t$ gives
+\begin{equation}
+ve^{(k/m)t} = -\frac{mg}{k}e^{(k/m)t} + C,
+\end{equation}
+where $C$ is the constant of integration. Solving for $v(t)$ gives
+\begin{equation}
+v(t) = -\frac{mg}{k} + Ce^{-(k/m)t}.
+\end{equation}
+Using the initial condition $v(0) = 0$, we find $C = \frac{mg}{k}$, so the solution is
+\begin{equation}
+v(t) = -\frac{mg}{k}\left(1 - e^{-(k/m)t}\right).
+\label{eq:velocity-with-air-resistance}
+\end{equation}
+The plot of $v(t)$ is shown in Fig.~\ref{fig:figures/terminal-speed.png}.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/terminal-speed.png}
+\caption{Velocity of a particle falling under gravity with air resistance proportional to its velocity. The velocity approaches the terminal speed $v_{\text{terminal}} = \frac{mg}{k}$ as $t \to \infty$.}
+\label{fig:figures/terminal-speed.png}
+\end{figure}
+
+(b) The terminal speed is the speed at which the net force on the particle becomes zero, meaning that the resistive force balances the gravitational force. Setting $m\frac{dv}{dt} = 0$ gives
+\begin{equation}
+0 = -mg - kv_{\text{terminal}} \implies v_{\text{terminal}} = -\frac{mg}{k}.
+\end{equation}
+The negative sign indicates that the terminal speed is directed downward. The magnitude of the terminal speed is
+\begin{equation}
+\boxed{v_{\text{terminal}} = \frac{mg}{k}},
+\end{equation}
+which agrees with the long-time limit of Eq.~\eqref{eq:velocity-with-air-resistance} as $t \to \infty$.
+
 \subsection{Circular motion}
+A particle of mass $m$ moves in a circular path of radius $r$ with constant speed $v$. The motion is uniform circular motion.
+
+\begin{enumerate}
+    \item[(a)] Write down the equation of motion and solve it to find the centripetal acceleration of the particle.
+    \item[(b)] Determine the period of revolution and the frequency of revolution of the particle.
+\end{enumerate}
+
+\textbf{Solution:} 
+(a)
+
+
 Basics and why it takes place on a plane. torque and centripetal force. Derivation of the centripetal acceleration formula. Examples of circular motion in everyday life. angular momentum and torque in circular motion. Conservation of angular momentum in circular motion. Examples of conservation of angular momentum in everyday life.
-\subsection{Motion of a Particle under a Constant Force}
-\subsection{Motion of a Particle on an Inclined Plane}
-\subsection{Free Fall and Terminal Speed}
+
 \subsection{Collisions and Impulse}
 \subsection{Nabla as an operator converting a scalar field into a vector field}
 \subsection{mgh example}
