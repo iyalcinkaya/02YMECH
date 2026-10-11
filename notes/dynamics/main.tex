@@ -424,12 +424,43 @@ If the potential energy is independent of time, then $\frac{\partial U}{\partial
 \end{equation}
 Thus, the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces and the potential energy is independent of time. This is known as the \emph{conservation of mechanical energy}. It is a powerful tool for analyzing the motion of particles, especially in situations where the forces involved are complex or difficult to describe in terms of acceleration.
 
-\section{More on the Potential Energy}
+\section{\label{sec:more-potential-energy}More on the Potential Energy}
 Knowing the potential energy function $U(\mathbf{r})$ together with the total mechanical energy $E$ of a particle provides us with a powerful tool for analyzing its motion without solving the equations of motion directly. 
 
-Let us consider the following example. Suppose a particle of mass $m$ is moving in one dimension under the influence of a conservative force with potential energy $U(x) = k(x^3-3x)$ as given in Fig.~\ref{fig:potential-energy-example}. 
+Let us consider the following example. Suppose a particle of mass $m$ is moving in one dimension under the influence of a conservative force with potential energy $U(x) = k(x^3-3x)$ as given in Fig.~\ref{fig:potential-energy-example}, where $k$ is a positive constant. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/potential-example.png}
+\caption{Potential energy function $U(x) = k(x^3-3x)$ for a particle in one dimension.}
+\label{fig:potential-energy-example}
+\end{figure}
+
+First, note that the kinetic energy of a particle, $K=\frac{1}{2}mv^2$, is always non-negative, since the mass $m$ is positive and the square of the speed $v^2$ is non-negative. Therefore, for a particle with conserved total mechanical energy $E$, we must have
+\begin{equation}
+K = E - U(x) \geq 0 \implies E \geq U(x).
+\end{equation}
 
 
+Thus, the motion of a particle with conserved total
+mechanical energy $E$ is restricted to regions where $E \geq U(x)$. Regions where $U(x)>E$ are called \emph{classically forbidden regions}, since the particle would need negative kinetic energy to reach them, which is impossible in classical mechanics. Therefore, $E_1$ is the minimum energy for a particle to have in existence of the potential $U(x)$ as seen in Fig.~\ref{fig:potential-energy-example}. 
+
+In general, at positions where $E=U(x)$, the kinetic energy vanishes, and the particle is momentarily at rest. If the force at such a position is nonzero, the particle reverses its direction of motion, and the position is called a \emph{turning point}. On the other hand, if the force vanishes, the particle is at an \emph{equilibrium position} and can remain at rest.
+
+If the total energy of the particle is $E_1$, then the particle is at rest at the equilibrium position $x=1$. For $E_2$, the particle can move between the two turning points $x_1$ and $x_2$, where $E_2 = U(x_1) = U(x_2)$. Even if we do not know the exact function $x(t)$, wecan still say that the particle oscillates between $x_1$ and $x_2$ around the equilibrium position $x=1$. For energy $E_3$, the particle's motion if bounded by point $x=2$ on the right. As particle moves to the left to reach point $x=-1$, it's velocity decreases with an ever decreasing rate so that it takes an infinite amount of time to reach $x=-1$ under ideal conditions. Practically, we would see it still at point $x=-1$ after a long time, but it would never reach that point. For energy $E_4$, even though the motion of the particle is bounded from the right, it can move freely to the left forever without any restrictions.
+
+\section{Stable and Unstable Equilibrium}
+
+A point of equilibrium is said to be \emph{stable} if a small displacement from the equilibrium position results in a restoring force that tends to bring the particle back to the equilibrium position. Conversely, an equilibrium point is \emph{unstable} if a small displacement from the equilibrium position results in a force that tends to move the particle further away from the equilibrium position.
+
+Mathematically, a point of equilibrium $x_0$ is stable if the potential energy function $U(x)$ has a local minimum at that point, and it is unstable if $U(x)$ has a local maximum at that point. In other words, if $U''(x_0) > 0$, the equilibrium is stable, and if $U''(x_0) < 0$, the equilibrium is unstable.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/stable-unstable-equilibrium.png}
+\caption{Stable and unstable equilibrium points. We may think of a ball placed in a concave-up potential well as being in stable equilibrium, while a ball placed on top of a concave-down potential hill is in unstable equilibrium. However, this analogy is not perfect, since the ball can roll away from the equilibrium point in any direction, while a particle in one-dimensional motion can only move along a line as given in Fig.~\ref{fig:potential-energy-example}.}
+\label{fig:equilibrium}
+\end{figure}
 
 \section{Mechanical Energy as a First Integral of Motion}
 
@@ -628,7 +659,7 @@ Therefore, the critical angle at which the block starts sliding down the incline
 \end{equation}
 For $\theta<\theta_c$, static friction is sufficient to keep the block at rest. At $\theta=\theta_c$, static friction reaches its maximum value and the block is on the verge of sliding. For $\theta>\theta_c$, the block starts sliding down the incline, and the friction force becomes kinetic friction.
 
-\subsection{A More Realistic Free Fall and Terminal Speed}
+\subsection{A ``More Realistic'' Free Fall and Terminal Speed}
 A particle is released from a height $h$ with initial velocity $v_0 = 0$ and falls under the influence of gravity. The particle experiences a resistive force due to air resistance, which is proportional to its velocity: $F_r = -kv$, where $k$ is a positive constant that characterizes the strength of the resistive force. 
 \begin{enumerate}
     \item[(a)] Write down the equation of motion and solve it to find the velocity of the particle as function of time.
@@ -683,24 +714,487 @@ The negative sign indicates that the terminal speed is directed downward. The ma
 \end{equation}
 which agrees with the long-time limit of Eq.~\eqref{eq:velocity-with-air-resistance} as $t \to \infty$.
 
+\subsection{Projectile Motion}
+A particle is projected from the ground with an initial speed $v_0$ at an angle $\theta$ above the horizontal.
+\begin{enumerate}
+    \item [(a)] Find the time of flight ($t_{\text{flight}}$) of the particle.
+    \item [(b)] Find the maximum height ($y_{\text{max}}$) reached by the particle.
+    \item [(c)] Find the horizontal range ($x_{\text{max}}$) of the particle.
+    \item [(d)] Find the trajectory equation $y(x)$ of the particle.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/projectile.png}
+\caption{Projectile motion of a particle launched with initial speed $v_0$ at an angle $\theta$ above the horizontal. The motion can be analyzed by decomposing the initial velocity into horizontal and vertical components.}
+\label{fig:projectile-motion}
+\end{figure}
+
+\textbf{Solution:}
+
+The motion can be divided into horizontal and vertical components. The horizontal motion is uniform, i.e., the horizontal velocity is constant, while the vertical motion is uniformly accelerated due to gravity.  The initial velocity can be decomposed into horizontal and vertical components:
+\begin{equation}
+v_{0x} = v_0 \cos \theta, \quad v_{0y} = v_0 \sin \theta.
+\end{equation}
+
+(a) To determine the time of flight, we analyze the vertical motion. The particle is acted upon only by the force of gravity; yet again, this is a constant force problem as considered in Ex.~\ref{ex:constant-force}. Therefore, the vertical acceleration is $a_y = -g$. The vertical velocity as a function of time is given by
+\begin{equation}
+v_y(t) = v_{0y} - gt.
+\end{equation}
+
+To find the time of flight, we can find the time where the velocity becomes zero at the maximum height, and then double it to account for the descent back to the ground. Setting $v_y(t) = 0$ gives
+\begin{equation}
+0 = v_{0y} - gt_{\text{up}} \implies t_{\text{up}} = \frac{v_{0y}}{g} = \frac{v_0 \sin \theta}{g}.
+\end{equation}
+The total time of flight is then
+\begin{equation}
+    \boxed{
+t_{\text{flight}} = 2 t_{\text{up}} = \frac{2 v_0 \sin \theta}{g}}.
+\end{equation}
+
+(b) We know that the maximum height is reached when the vertical velocity becomes zero. The height at that time can be found using the vertical motion equation by using Eq.~\eqref{eq:constant-force-motion} with $a_y = -g$, $v_{0y} = v_0 \sin \theta$, and $y_0 = 0$:
+\begin{equation}
+y(t) = v_{0y} t - \frac{1}{2} g t^2.
+\end{equation}
+
+
+Using the vertical motion equation, we can find the maximum height:
+\begin{equation}
+y_{\text{max}} = v_{0y} t_{\text{up}} - \frac{1}{2} g t_{\text{up}}^2 = v_0 \sin \theta \cdot \frac{v_0 \sin \theta}{g} - \frac{1}{2} g \left(\frac{v_0 \sin \theta}{g}\right)^2.
+\end{equation}
+
+\begin{equation}
+    \boxed{
+y_{\text{max}} = \frac{v_0^2 \sin^2 \theta}{2g}}.
+\end{equation}
+
+(c) The horizontal range can be found by determining the horizontal distance traveled during the total time of flight. The horizontal motion is uniform, so the horizontal velocity is constant:
+\begin{equation}
+v_x = v_{0x} = v_0 \cos \theta.
+\end{equation}
+
+The horizontal range is then
+\begin{equation}
+    x_{\text{max}} = v_{x0} t_{\text{flight}} = v_0 \cos \theta \cdot \frac{2 v_0 \sin \theta}{g}.
+\end{equation}
+Using the double angle identity $\sin 2\theta = 2 \sin \theta \cos \theta$, we can simplify the expression:
+\begin{equation}
+    \boxed{x_{\text{max}} = \frac{v_0^2 \sin 2\theta}{g}}.
+\end{equation}
+
+(d) The trajectory equation $y(x)$ can be found by eliminating time $t$ from the horizontal and vertical motion equations. From the horizontal motion, we have
+\begin{equation}
+x(t) = v_{0x} t \implies t = \frac{x}{v_{0x}} = \frac{x}{v_0 \cos \theta}.
+\end{equation}
+Substituting this expression for $t$ into the vertical motion equation gives
+\begin{equation}
+y(x) = v_{0y} \left(\frac{x}{v_0 \cos \theta}\right) - \frac{1}{2} g \left(\frac{x}{v_0 \cos \theta}\right)^2 = x \tan \theta - \frac{g x^2}{2 v_0^2 \cos^2 \theta}.
+\end{equation}
+Thus, the trajectory equation is
+\begin{equation}
+    \boxed{y(x) = x \tan \theta - \frac{g x^2}{2 v_0^2 \cos^2 \theta}}.
+\end{equation}
+
+Assigning $A = \frac{g}{2 v_0^2 \cos^2 \theta}$, and $B = \tan \theta$, we can write the trajectory equation as
+\begin{equation}
+    \boxed{y(x) = Bx - Ax^2}
+\end{equation}
+which is a quadratic equation in $x$, representing a parabolic trajectory.
+
+\subsection{Force law from a given speed function}
+A particle of mass $m$ has speed $v(x) = \alpha / x$ where $\alpha$ is a positive constant and $x$ is the position of the particle along a straight line. Find the force responsible for this motion as a function of position $x$.
+
+\textbf{Solution:} 
+\begin{equation}
+    F = m a = m \frac{dv}{dt} = m \frac{dv}{dx} \frac{dx}{dt} = m v \frac{dv}{dx} = m \left(\frac{\alpha}{x}\right) \left(-\frac{\alpha}{x^2}\right) = -\frac{m \alpha^2}{x^3}.
+\end{equation}
+
+
+
 \subsection{Circular motion}
 A particle of mass $m$ moves in a circular path of radius $r$ with constant speed $v$. The motion is uniform circular motion.
 
 \begin{enumerate}
-    \item[(a)] Write down the equation of motion and solve it to find the centripetal acceleration of the particle.
+    \item[(a)] Write down the equation of motion and solve it to find the acceleration of the particle.
     \item[(b)] Determine the period of revolution and the frequency of revolution of the particle.
 \end{enumerate}
 
 \textbf{Solution:} 
-(a)
-
+(a) The equation of motion for uniform circular motion is
+\begin{equation}
+    m \vec{a} = \vec{F},
+\end{equation}
+where $\vec{a}$ is the acceleration and $\vec{F}$ is the net force. The net force in uniform circular motion is the centripetal force, which points toward the center of the circle:
+\begin{equation}
+    \vec{F} = -\frac{mv^2}{r} \hat{r},
+\end{equation}
+where $\hat{r}$ is the unit vector pointing from the center of the circle to the particle. The acceleration is then
+\begin{equation}
+    \vec{a} = \frac{\vec{F}}{m} = -\frac{v^2}{r} \hat{r}.
+\end{equation}
 
 Basics and why it takes place on a plane. torque and centripetal force. Derivation of the centripetal acceleration formula. Examples of circular motion in everyday life. angular momentum and torque in circular motion. Conservation of angular momentum in circular motion. Examples of conservation of angular momentum in everyday life.
 
+\subsection{Elastic collision of two hockey pucks (1)}
+
+Two hockey pucks with identical masses are on a flat, horizontal ice hockey rink. Black puck is motionless and white is moving 2.5 m/s toward the black puck. The two pucks collide. After the collision, the black puck moves at 2.5 m/s in the same direction as the white puck was moving. 
+
+\begin{enumerate}
+    \item [(a)] What is the speed of the white puck after the collision?
+    \item [(b)] Is the energy conserved in this collision? If so, what is the total kinetic energy before and after the collision?
+\end{enumerate}
+
+\textbf{Solution:} 
+
+(a) Let $m$ be the mass of each puck, $v_{1i}$ and $v_{2i}$ be the initial velocities of the white and black pucks, respectively, and $v_{1f}$ and $v_{2f}$ be their final velocities after the collision. The conservation of momentum gives us:
+\begin{equation}
+m v_{1i} + m v_{2i} = m v_{1f} + m v_{2f}.
+\end{equation}
+Substituting the known values:
+\begin{equation}
+m (2.5) + m (0) = m v_{1f} + m (2.5).
+\end{equation}
+Dividing through by $m$ and simplifying:
+\begin{equation}
+2.5 = v_{1f} + 2.5 \implies v_{1f} = 0.
+\end{equation}
+Thus, the speed of the white puck after the collision is $\boxed{0 \text{m/s}}$.
+
+(b) The total kinetic energy before the collision is:
+\begin{equation}
+K_{i} = \frac{1}{2} m v_{1i}^2 + \frac{1}{2} m v_{2i}^2 = \frac{1}{2} m (2.5)^2 + \frac{1}{2} m (0)^2 = \frac{1}{2} m (6.25) = 3.125 m.
+\end{equation}
+The total kinetic energy after the collision is:
+\begin{equation}
+K_{f} = \frac{1}{2} m v_{1f}^2 + \frac{1}{2} m v_{2f}^2 = \frac{1}{2} m (0)^2 + \frac{1}{2} m (2.5)^2 = \frac{1}{2} m (6.25) = 3.125 m.
+\end{equation}
+Since $K_{i} = K_{f}$, the energy is conserved in this collision, and the total kinetic energy before and after the collision is $\boxed{3.125 m}$. If the energy is conserved before and after the collision, then the collision is called an \emph{elastic collision} meaning that no energy was lost to heat, sound, or deformation of the pucks.
+
+
+
+\subsection{Elastic collision of two hockey pucks (2)}
+Two hockey pucks with identical masses collide as shown in Fig.~\ref{fig:hockey-pucks}. Find the final velocities of the two pucks after the collision.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/elastic-collision.png}
+\caption{aa}
+\label{fig:hockey-pucks}
+\end{figure}
+
+\textbf{Solution:}
+The momentum vector has to stay the same before and after the collision. Before the collision, the momentum of the system is
+\begin{equation}
+\mathbf{p}_i =  2 \text{kg} \times 5 \mathbf{i} \frac{\text{m}}{\text{s}}  = 10 \mathbf{i} \frac{\text{kg m}}{\text{s}} \implies \mathbf{p}_f = 10 \mathbf{i} \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+
+We know the directions of the two pucks after the collision, so we can decompose the $\mathbf{p}_f$ into its components along these directions as shown in Fig.~\ref{fig:hockey-pucks-solution}. Therefore, we have
+\begin{equation}
+|\mathbf{p}_{A,f}| = 10 \cos(30^\circ) = 10 \frac{\sqrt{3}}{2} = 5\sqrt{3} \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+\begin{equation}
+|\mathbf{p}_{B,f}| = 10 \sin(30^\circ) = 10 \frac{1}{2} = 5 \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/elastic-collision-solution.png}
+\caption{aa}
+\label{fig:hockey-pucks-solution}
+\end{figure}
+
+
+\subsection{Conservation of angular momentum}
+
+
+
+
+\subsection{Scalar fields and vector fields}
+Given the potential $U(x) = ax^2 + by^2$, find the corresponding force field $\mathbf{F}(x,y)$.
+
+\textbf{Solution:} The force field is given by $\mathbf{F}(x,y) = -\nabla U(x,y)$. Computing the gradient, we get
+\begin{equation}
+    \mathbf{F}(x,y) = -\left(\frac{\partial U}{\partial x} \hat{i} + \frac{\partial U}{\partial y} \hat{j}\right) = -\left(2ax \hat{i} + 2by \hat{j}\right).
+\end{equation}
+Thus, the force field is
+\begin{equation}
+    \boxed{\mathbf{F}(x,y) = -2ax \hat{i} - 2by \hat{j}}.
+\end{equation}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/potential-force.pdf}
+    \caption{Potential energy $U=x^2+y^2$ and its force field $\mathbf{F}=-\nabla U=(-2x,-2y)$, in scaled units. The force points inward, perpendicular to the circular equipotential curves, and its magnitude increases linearly with distance from the origin. The origin is a stable equilibrium.}
+    \label{fig:bowl-potential-force}
+\end{figure}
+
+\subsection{Potential energy for the motion close to the surface of the earth}
+A particle of mass $m$ is raised to a height $h$ above the ground. Assume that the gravitational force is constant near the surface of the earth.
+
+\begin{enumerate}
+    \item [(a)] Show that gravitational force is conservative.
+    \item [(b)] Determine the work done by the gravitational force on the particle as it moves from the ground to a height $h$.
+    \item [(c)] How much work is done by us in raising the particle to a height $h$?
+\end{enumerate}
+
+\textbf{Solution:} 
+
+(a) When the distance from the Earth's surface is much smaller than the Earth's radius, the gravitational field can be approximated as uniform. In this approximation, the gravitational force acting on a particle of mass $m$ is given by
+\begin{equation}
+    \mathbf{F} = -mg\hat{\mathbf{z}},
+\end{equation}
+where $g$ is the gravitational acceleration and $\hat{\mathbf{z}}$
+is the unit vector pointing vertically upward. Recall that a force is conservative if the work done in
+moving a particle between two points is independent of the path taken. To verify this property for gravity, consider a particle moving from an initial position $A$ to a final position $B$ along an arbitrary path $C$.
+
+The work done by the gravitational force is
+\begin{equation}
+    W_{AB} = \int_C \mathbf{F}\cdot d\mathbf{r},
+\end{equation}
+where the infinitesimal displacement vector is
+\begin{equation}
+    d\mathbf{r}
+    = dx\hat{\mathbf{x}}
+    + dy\hat{\mathbf{y}}
+    + dz\hat{\mathbf{z}}.
+\end{equation}
+
+Substituting the gravitational force into the work integral,
+we obtain
+\begin{equation}
+\begin{aligned}
+    W_{AB}
+    &= \int_C (-mg\hat{\mathbf{z}})\cdot d\mathbf{r} \\
+    &= -mg\int_C \hat{\mathbf{z}}\cdot d\mathbf{r} \\
+    &= -mg\int_C dz \\
+    &= -mg\int_{z_A}^{z_B} dz.
+\end{aligned}
+\end{equation}
+Evaluating the integral gives
+\begin{equation}
+    \boxed{W_{AB} = -mg(z_B-z_A).}
+\end{equation}
+
+Notice that the work done by gravity depends only on the
+initial and final heights, $z_A$ and $z_B$, and not on the
+particular path followed by the particle. Therefore, the
+gravitational force is conservative.
+
+In particular, if the particle moves along a closed path,
+its initial and final positions coincide, so $z_A=z_B$.
+Consequently,
+\begin{equation}
+    \boxed{\oint_C \mathbf{F}\cdot d\mathbf{r}=0,}
+\end{equation}
+which is another defining property of a conservative force. Note that the assumption of a uniform gravitational field is an approximation valid near the Earth's surface. We will see that the full Newtonian gravitational force,
+$\mathbf{F}=-GMm\hat{\mathbf{r}}/r^2$, is also conservative.
+
+(b) The work done by the gravitational force on the particle as it moves from the ground ($z_A=0$) to a height $h$ ($z_B=h$) is
+\begin{equation}
+    W_{AB} = -mg(h-0) = -mgh.
+\end{equation}
+
+(c) The work done by us in raising the particle to a height $h$ is the negative of the work done by gravity:
+\begin{equation}
+    W_{us} = -W_{AB} = mgh.
+\end{equation}
+
+
+
+
 \subsection{Collisions and Impulse}
-\subsection{Nabla as an operator converting a scalar field into a vector field}
-\subsection{mgh example}
+
+\subsection{Infinite time required to reach point $x=-1$}
+
+\subsection{Stable and Unstable Equilibrium Points (1)}
+Find the stable and unstable equilibrium points of the potential energy function $U(x) = k(x^3-3x)$ given in Sec.~\ref{sec:more-potential-energy} and justify your answers mathematically using the second derivative of the potential energy.
+
+\textbf{Solution:} The equilibrium points are found by setting the force, $F(x)=-dU/dx$, equal to zero. Equivalently, we set the first derivative of the potential energy to zero:
+\begin{equation}
+    \frac{dU}{dx} = k(3x^2-3)
+    = 3k(x^2-1)
+    = 3k(x-1)(x+1) = 0.
+\end{equation}
+This gives us two equilibrium points: $x=-1$ and $x=1$.
+
+To determine the stability of each equilibrium point, we compute the second derivative of the potential energy:
+\begin{equation}
+    U''(x) = \frac{d^2U}{dx^2} = 6kx.
+\end{equation}
+An equilibrium point is stable if $U''(x)>0$, corresponding to a local minimum of the potential energy, and unstable if $U''(x)<0$, corresponding to a local maximum.
+
+At $x=-1$, we have
+\begin{equation}
+    U''(-1)=-6k<0,
+\end{equation}
+so the equilibrium at $x=-1$ is unstable.
+
+At $x=1$, we have
+\begin{equation}
+    U''(1)=6k>0,
+\end{equation}
+so the equilibrium at $x=1$ is stable.
+
+\subsection{Stable and Unstable Equilibrium Points (2)}
+
+A particle of mass $m$ moves along the $x$-axis under the influence of a conservative force described by the potential energy function
+\begin{equation}
+    U(x) = U_0 \left[\left(\frac{x}{a}\right)^4 - 2\left(\frac{x}{a}\right)^2\right],
+\end{equation}
+where $U_0>0$ and $a>0$ are constants.
+
+\begin{enumerate}
+    \item[(a)] Determine the force $F(x)$ acting on the particle as a function of its position.
+
+    \item[(b)] Find all equilibrium positions of the particle, i.e., the positions at which the net force vanishes.
+
+    \item[(c)] Determine which equilibrium positions are stable and which are unstable. Justify your answers mathematically using the second derivative of the potential energy.
+\end{enumerate}
+
+\textbf{Solution:}
+(a) The force is given by $F(x) = -\frac{dU}{dx}$. Taking the derivative, we get
+\begin{equation}
+    F(x) = -U_0 \left[4\left(\frac{x}{a}\right)^3 - 4\left(\frac{x}{a}\right)\right] = 4U_0\left(\frac{x}{a}\right)\left[\left(\frac{x}{a}\right)^2 - 1\right].
+\end{equation}
+
+(b) The equilibrium positions are found by setting $F(x) = 0$:
+\begin{equation}
+    4U_0\left(\frac{x}{a}\right)\left[\left(\frac{x}{a}\right)^2 - 1\right] = 0.
+\end{equation}
+This gives us three equilibrium positions: $x = 0$, $x = a$, and $x = -a$.
+
+(c) To determine the stability of each equilibrium position, we compute the second derivative of the potential energy:
+\begin{equation}
+    U''(x) = \frac{d^2U}{dx^2} = \frac{4U_0}{a^2}\left[3\left(\frac{x}{a}\right)^2 - 1\right].
+\end{equation}
+At $x = 0$, we have $U''(0) = -\frac{4U_0}{a^2} < 0$, so the equilibrium at $x = 0$ is unstable.
+At $x = a$ and $x = -a$, we have $U''(a) = U''(-a) = \frac{8U_0}{a^2} > 0$, so the equilibria at these points are stable.
 
 
+\subsection{Using Total Energy as the Equation of Motion for a Particle Under a Constant Force}
 
+Starting from $E = K + U$, derive $x(t)$ for a particle under a constant force $F$ and show that it is equivalent to the solution obtained from Newton's second law.
+
+\textbf{Solution:}
+The total energy of the particle is given by
+\begin{equation}
+    E = \frac{1}{2}mv^2 + U(x),
+\end{equation}
+where $m$ is the mass of the particle, $v$ is its velocity, and $U(x)$ is the potential energy. For a constant force $F$,
+\begin{equation}
+    F = -\frac{dU}{dx}
+    \implies dU = -F\,dx
+    \implies U(x) = -Fx + C,
+\end{equation}
+where $C$ is a constant. Since the potential energy is defined up to an arbitrary constant, we can set $C = 0$ without loss of generality. The total energy becomes
+\begin{equation}
+    E = \frac{1}{2}mv^2 - Fx.
+\end{equation}
+
+Solving for the velocity, we obtain
+\begin{equation}
+    \frac{1}{2}mv^2 = E + Fx
+    \implies
+    v = \frac{dx}{dt}
+    = \pm\sqrt{\frac{2}{m}(E+Fx)}.
+\end{equation}
+The sign depends on the direction of motion. Let us first consider a particle with a positive initial velocity, $v_0>0$, and assume that its velocity remains positive over the time interval considered. We then have
+\begin{equation}
+    \frac{dx}{dt} = \sqrt{\frac{2}{m}(E+Fx)}.
+\end{equation}
+Separating the variables gives
+\begin{equation}
+    \frac{dx}{\sqrt{E+Fx}}
+    = \sqrt{\frac{2}{m}}\,dt.
+\end{equation}
+
+Integrating both sides from the initial position $x_0$ at time $t_0$ to the position $x(t)$ at time $t$, we obtain
+\begin{equation}
+    \int_{x_0}^{x(t)}
+    \frac{dx}{\sqrt{E+Fx}}
+    =
+    \sqrt{\frac{2}{m}}
+    \int_{t_0}^{t}dt.
+\end{equation}
+
+Assuming $F\neq 0$, and using the substitution $u = E + Fx$, we have $du = F\,dx$, and the integral on the left-hand side is
+\begin{equation}
+    \frac{1}{F} \int u^{-1/2} du = \frac{1}{F} \cdot 2u^{1/2} = \frac{2}{F}\sqrt{u} = \frac{2}{F}\sqrt{E+Fx}.
+\end{equation}
+Therefore,
+\begin{equation}
+    \frac{2}{F}
+    \left[
+        \sqrt{E+Fx(t)}
+        -\sqrt{E+Fx_0}
+    \right]
+    =
+    \sqrt{\frac{2}{m}}(t-t_0).
+\end{equation}
+
+Rearranging, we find
+\begin{equation}
+    \sqrt{E+Fx(t)}
+    =
+    \sqrt{E+Fx_0}
+    +\frac{F}{\sqrt{2m}}(t-t_0).
+    \label{eq:energy-motion-solution}
+\end{equation}
+
+At the initial position $x_0$, the total energy is
+\begin{equation}
+    E = \frac{1}{2}mv_0^2-Fx_0,
+\end{equation}
+which implies
+\begin{equation}
+    \sqrt{E+Fx_0}
+    = \sqrt{\frac{m}{2}}\,v_0,
+\end{equation}
+where we have used $v_0>0$. Substituting this into Eq.~\eqref{eq:energy-motion-solution} expression gives
+\begin{equation}
+    \sqrt{E+Fx(t)}
+    =
+    \sqrt{\frac{m}{2}}\,v_0
+    +\frac{F}{\sqrt{2m}}(t-t_0).
+\end{equation}
+
+Squaring both sides, we obtain
+\begin{equation}
+    E+Fx(t)
+    =
+    \frac{m}{2}v_0^2
+    +Fv_0(t-t_0)
+    +\frac{F^2}{2m}(t-t_0)^2.
+\end{equation}
+
+Using the initial energy
+$E=\frac{1}{2}mv_0^2-Fx_0$,
+we can simplify this expression to
+\begin{equation}
+    Fx(t)
+    =
+    Fx_0+Fv_0(t-t_0)
+    +\frac{F^2}{2m}(t-t_0)^2.
+\end{equation}
+
+Finally, dividing both sides by $F$, we obtain
+\begin{equation}
+    \boxed{
+    x(t)=x_0+v_0(t-t_0)
+    +\frac{F}{2m}(t-t_0)^2
+    }.
+\end{equation}
+
+This is precisely the familiar equation of motion for a particle under constant acceleration,
+\begin{equation}
+    x(t)=x_0+v_0(t-t_0)
+    +\frac{1}{2}a(t-t_0)^2,
+\end{equation}
+where $a=F/m$, according to Newton's second law.
+
+The same result is obtained for a negative initial velocity by choosing the negative square-root branch. If the particle changes direction, the appropriate branch must be changed at the turning point. For $F=0$, the energy equation gives constant speed, and the initial direction determines the uniform motion
+$x(t)=x_0+v_0(t-t_0)$.
+
+\textbf{Remark:}
+The conservation of mechanical energy determines the magnitude of the velocity but not its direction.
 \end{document}
