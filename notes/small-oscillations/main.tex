@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+
+
+\title{Chapter 4: Small Oscillations}
+\author{İskender Yalçınkaya, PhD}
+\date{\today}
+
+\begin{document}
+\maketitle
+In this chapter, we will study how physical systems behave in the vicinity of their stable equilibrium points. Such behavior is often referred to as \textit{small oscillations} because the system exhibits oscillatory motion about its equilibrium position, with a displacement that remains small.
+
+We will first examine the simplest case of oscillatory motion, in which a restoring force acts on the system, pushing it back toward its equilibrium position. We will then consider the effects of a retarding force, which dissipates mechanical energy and causes the amplitude of oscillations to decrease over time. Finally, we will study driven oscillations, in which an external periodic force acts on the system, and investigate how the resulting motion depends on the frequency of the driving force, including the phenomenon of resonance. For simplicity, we will restrict our attention to one-dimensional systems throughout this chapter.
+
+\section{Simple Oscillations}
+
+We begin by considering the motion of a particle under a conservative force described by a potential energy function $U(x)$. We make the following three assumptions:
+\begin{enumerate}
+    \item[(i)] $U(x)$ is sufficiently smooth to allow a Taylor expansion about the equilibrium point.
+    \item[(ii)] The potential has a local minimum at $x=x_0$, with $U'(x_0)=0$ and $U''(x_0)>0$, so that $x_0$ is a stable equilibrium point.
+    \item[(iii)] The displacement from equilibrium, $|x-x_0|$, remains ``sufficiently small''.
+\end{enumerate}
+
+Assumption (i) allows us to expand the potential energy about the equilibrium point $x_0$ using a Taylor series:
+\begin{equation}
+    U(x) = U(x_0) + U'(x_0)(x-x_0)
+    + \frac{1}{2}U''(x_0)(x-x_0)^2
+    + \frac{1}{6}U'''(x_0)(x-x_0)^3
+    + \ldots
+\end{equation}
+According to assumption (ii), the first derivative vanishes at equilibrium, $U'(x_0)=0$, while the second derivative is positive, $U''(x_0)>0$. Furthermore, assumption (iii) allows us to neglect the third and higher-order terms compared to the quadratic term. This is what we actually mean when we say that the displacement is ``sufficiently small'' in assumption (iii). Since the reference level of potential energy can be chosen arbitrarily, we may also set $U(x_0)=0$ without loss of generality. We therefore obtain the quadratic approximation
+\begin{equation}
+    U(x) \approx \frac{1}{2}k(x-x_0)^2,
+    \label{eq:quadratic-potential}
+\end{equation}
+where $k\equiv U''(x_0)>0$.
+
+It is worth emphasizing that this approximation follows directly from our assumptions and is not limited to specific systems such as springs or pendulums. A wide range of physical systems can be described by a quadratic potential near their stable equilibrium points, provided that the second derivative of the potential at equilibrium is positive. This allows us to study the small oscillations of different physical systems using the same mathematical framework.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/small-oscillation.png}
+    \caption{Small oscillations of a particle about a stable equilibrium point under potential energy $U(x)$. The particle oscillates about the equilibrium position $x_0$ with a small amplitude.}
+    \label{fig:small-oscillations}
+\end{figure}
+
+Using the quadratic approximation, we can derive the force acting on the particle:
+\begin{equation}
+    F(x)=-\frac{dU}{dx}\approx -k(x-x_0).
+\end{equation}
+This is known as \textit{Hooke's law}. The force is proportional to the displacement from equilibrium and always points toward the equilibrium position $x_0$. For this reason, it is called a \textit{restoring force}.
+
+The dynamics of the particle are governed by Newton's second law:
+\begin{equation}
+    F_\text{net}=m\ddot{x},
+\end{equation}
+where $m$ is the mass of the particle. Assuming that the restoring force is the only net force acting on the particle, and choosing the origin at the equilibrium position ($x_0=0$), we obtain
+\begin{equation}
+    m\ddot{x}=-kx.
+\end{equation}
+Rearranging this equation gives
+\begin{equation}
+    \ddot{x}+\omega_0^2 x=0,
+    \label{eq:simple-osc-eq-of-motion}
+\end{equation}
+where we have introduced the positive parameter
+\begin{equation}
+    \omega_0\equiv\sqrt{\frac{k}{m}}.
+\end{equation}
+
+This is a second-order linear differential equation describing \textit{simple harmonic motion}. The physical meaning of $\omega_0$ will become clear when we solve this equation and examine the resulting motion.
+
+We know that the particle oscillates back and forth about the equilibrium position in a periodic way. We saw in Chapter 1 that the exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen as summarized in the following table:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        $\lambda$ & Behavior of $e^{\lambda t}$ \\
+        \hline
+        Real and positive ($\lambda > 0$) & Exponential growth \\
+        Real and negative ($\lambda < 0$) & Exponential decay \\
+        Purely imaginary ($\lambda = i$) & Sinusoidal oscillation \\
+        Complex, $\operatorname{Re}(\lambda) < 0$ & Oscillation with exponentially decaying amplitude \\
+        Complex, $\operatorname{Re}(\lambda) > 0$ & Oscillation with exponentially growing amplitude \\
+        \hline
+    \end{tabular}
+\end{table}
+
+We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, we look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. This leads to the characteristic equation
+\begin{equation}
+    \lambda^2+\omega_0^2=0,
+\end{equation}
+which has the two purely imaginary roots
+\begin{equation}
+    \lambda=\pm i\omega_0.
+\end{equation}
+leading two different solutions $x(t)=e^{\pm i\omega_0 t}$. Using Euler's formula, we can express these solutions in terms of sine and cosine functions:
+\begin{equation}
+    x(t)=A\cos(\omega_0 t)+B\sin(\omega_0 t),
+\end{equation}
+where $A$ and $B$ are constants determined by the initial conditions of the system. 
+
+
+
+
+\section{Damped Oscillations}  
+
+\section{Phase Space Analysis}
+
+\section{Driven Oscillations}
+
+\end{document}
