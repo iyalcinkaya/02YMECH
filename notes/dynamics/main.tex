@@ -462,6 +462,40 @@ Mathematically, a point of equilibrium $x_0$ is stable if the potential energy f
 \label{fig:equilibrium}
 \end{figure}
 
+\section{Impulse and Power}
+The \emph{impulse} of a force $\mathbf{F}$ acting on a particle over a time interval from $t_1$ to $t_2$ is defined as
+\begin{equation}
+\mathbf{J} = \int_{t_1}^{t_2} \mathbf{F} dt.
+\end{equation}
+The impulse is a vector quantity that has the same direction as the force. It represents the change in momentum of the particle due to the force acting over the time interval. From Newton's second axiom, we have
+\begin{equation}
+\mathbf{J} = \int_{t_1}^{t_2} \frac{d\mathbf{p}}{dt} dt = \int_{t_1}^{t_2} d\mathbf{p} = \mathbf{p}_2 - \mathbf{p}_1 = \Delta \mathbf{p},
+\end{equation}
+where $\mathbf{p}_1$ and $\mathbf{p}_2$ are the momenta of the particle at times $t_1$ and $t_2$, respectively. Thus, the impulse of a force is equal to the change in momentum of the particle. This relationship is known as the \emph{impulse-momentum theorem}. It provides a useful way to analyze the effects of forces that act over short time intervals, such as collisions or explosions.
+
+
+
+If we know the change in momentum of a particle and the time interval over which the change occurs, we can calculate the average force acting on the particle during that time interval. As it is geometrically shown in Fig.~\ref{fig:average-force}, the average force is can be written as
+\begin{equation}
+\mathbf{F}_{\text{avg}} = \frac{\Delta \mathbf{p}}{\Delta t} = \frac{\mathbf{p}_2 - \mathbf{p}_1}{t_2 - t_1}.
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/impulse-average-force.png}
+\caption{The average force acting on a particle over a time interval $\Delta t$ is equal to the change in momentum (area under the force-time curve) of the particle divided by the time interval.}
+\label{fig:average-force}
+\end{figure}
+
+The \emph{power} is defined as the rate at which work is done by a force on a particle. Accordingg to the situation considered, it can also be interpreted as the rate at which energy is transferred/transformed to or from a particle/system. It is measured in watts (W), where one watt is equal to one joule per second (J/s).
+
+If a force $\mathbf{F}$ acts on a particle that moves with velocity $\mathbf{v}$, the instantaneous power delivered to the particle is given by
+\begin{equation}
+P = \frac{dW}{dt} = \mathbf{F} \cdot \frac{d\mathbf{r}}{dt} = \mathbf{F}\cdot\mathbf{v}.
+\end{equation}
+ The power can be positive or negative, depending on the direction of the force relative to the velocity of the particle. If the force is in the same direction as the velocity, the power is positive, indicating that energy is being transferred to the particle. If the force is in the opposite direction, the power is negative, indicating that energy is being taken away from the particle.
+
+
 \section{Mechanical Energy as a First Integral of Motion}
 
 The conservation of mechanical energy can be used to obtain a first-order equation governing the motion of a particle. If the mechanical energy of a particle is conserved, then
@@ -903,6 +937,142 @@ We know the directions of the two pucks after the collision, so we can decompose
 \end{figure}
 
 
+\subsection{Inelastic collision of two hockey pucks}
+
+A hockey puck of mass $m_1 = 2\,\mathrm{kg}$ moves with velocity
+$v_1 = 5\,\mathrm{m/s}$ toward a stationary hockey puck of mass
+$m_2 = 3\,\mathrm{kg}$. Assume that the collision is one-dimensional
+and that the external impulse during the collision is negligible.
+The two pucks collide and stick together.
+\begin{enumerate}
+    \item[(a)] Find the final velocity of the combined pucks.
+    \item[(b)] Determine the mechanical energy lost in the collision.
+    \item[(c)] If instead the pucks separate after the collision,
+    and half of the initial kinetic energy is lost, find their
+    final velocities.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a)}
+When two objects collide and stick together, the collision is called
+a \emph{perfectly inelastic collision}. The total momentum is conserved
+when the external impulse is negligible. Since there is no defined potential energy, the mechanical energy of the system is solely kinetic energy. Kinetic energy is not
+conserved: some of it is converted into internal energy, such as
+heating and deformation. 
+
+Choose the positive $x$-direction along the initial motion of the
+first puck. Conservation of momentum gives
+\begin{equation}
+    m_1v_1 + m_2v_2 = (m_1+m_2)v_f.
+\end{equation}
+Since $v_2=0$, the common final velocity is
+\begin{equation}
+    v_f = \frac{m_1v_1}{m_1+m_2}
+    = \frac{(2\,\mathrm{kg})(5\,\mathrm{m/s})}
+    {2\,\mathrm{kg}+3\,\mathrm{kg}}
+    = \boxed{2\,\mathrm{m/s}}.
+\end{equation}
+The combined pucks move in the initial direction of the first puck.
+
+\textbf{(b)}
+The initial kinetic energy is
+\begin{equation}
+    K_i = \frac{1}{2}m_1v_1^2+\frac{1}{2}m_2v_2^2
+    = \frac{1}{2}(2\,\mathrm{kg})(5\,\mathrm{m/s})^2
+    = 25\,\mathrm{J}.
+\end{equation}
+The final kinetic energy is
+\begin{equation}
+    K_f = \frac{1}{2}(m_1+m_2)v_f^2
+    = \frac{1}{2}(5\,\mathrm{kg})(2\,\mathrm{m/s})^2
+    = 10\,\mathrm{J}.
+\end{equation}
+Therefore, the kinetic energy lost is
+\begin{equation}
+    K_{\mathrm{lost}} = K_i-K_f
+    = 25\,\mathrm{J}-10\,\mathrm{J}
+    = \boxed{15\,\mathrm{J}}.
+\end{equation}
+This energy is converted into other forms; it is not destroyed.
+The change in kinetic energy is
+$\Delta K = K_f-K_i=-15\,\mathrm{J}$.
+
+\textbf{(c)}
+Half of the initial kinetic energy is lost, so
+\begin{equation}
+    K_f = \frac{1}{2}K_i = 12.5\,\mathrm{J}.
+\end{equation}
+Let $v_{1f}$ and $v_{2f}$ be the signed final velocities.
+Conservation of momentum and the specified final kinetic energy give
+\begin{align}
+    m_1v_{1f}+m_2v_{2f} &= m_1v_1,\\
+    \frac{1}{2}m_1v_{1f}^2+\frac{1}{2}m_2v_{2f}^2
+    &= 12.5\,\mathrm{J}.
+\end{align}
+From the momentum equation,
+\begin{equation}
+    v_{2f}
+    = \frac{m_1v_1-m_1v_{1f}}{m_2}
+    = \frac{10\,\mathrm{m/s}-2v_{1f}}{3}.
+\end{equation}
+Substituting this expression into the kinetic energy equation gives
+\begin{equation}
+    (1\,\mathrm{kg})v_{1f}^2
+    + \frac{3}{2}\,\mathrm{kg}
+    \left(\frac{10\,\mathrm{m/s}-2v_{1f}}{3}\right)^2
+    = 12.5\,\mathrm{J}.
+\end{equation}
+Completing the square yields
+\begin{equation}
+    10\,\mathrm{J}
+    + \frac{5}{3}\,\mathrm{kg}
+    \left(v_{1f}-2\,\mathrm{m/s}\right)^2
+    = 12.5\,\mathrm{J}.
+\end{equation}
+Therefore,
+\begin{equation}
+    v_{1f}
+    = \left(2\pm\frac{\sqrt{6}}{2}\right)\mathrm{m/s},
+    \qquad
+    v_{2f}
+    = \left(2\mp\frac{\sqrt{6}}{3}\right)\mathrm{m/s}.
+\end{equation}
+
+To select the physically relevant solution, note that the first puck
+approaches the second puck from behind. After the collision, the pucks
+must separate, which requires
+\begin{equation}
+    v_{2f}>v_{1f}.
+\end{equation}
+Thus,
+\begin{equation}
+    \boxed{
+    v_{1f}
+    = \left(2-\frac{\sqrt{6}}{2}\right)\mathrm{m/s}
+    \approx 0.775\,\mathrm{m/s}
+    }
+\end{equation}
+and
+\begin{equation}
+    \boxed{
+    v_{2f}
+    = \left(2+\frac{\sqrt{6}}{3}\right)\mathrm{m/s}
+    \approx 2.816\,\mathrm{m/s}
+    }.
+\end{equation}
+The other algebraic solution has $v_{1f}>v_{2f}$ and corresponds to
+approaching rather than separating pucks, so it cannot describe the
+state immediately after this collision.
+
+Both final velocities are positive. The first puck slows down,
+while the second puck moves forward faster than the first.
+
+
+
+
+
+
 \subsection{Conservation of angular momentum}
 
 
@@ -999,6 +1169,32 @@ $\mathbf{F}=-GMm\hat{\mathbf{r}}/r^2$, is also conservative.
     W_{us} = -W_{AB} = mgh.
 \end{equation}
 
+
+\subsection{Horsepower}
+
+In British engineering units, the unit of power is the horsepower (hp). One horsepower is defined as the power required to lift 550 pounds by 1 foot in 1 second. In SI units, it is approximately (according to DIN; German Institute for Standardization) defined as the power required to lift 75 kg by 1 meter in 1 second. 
+
+\begin{enumerate}
+    \item[(a)] Write 1 horsepower in SI units.
+    \item[(b)] If a car has a 200 hp engine, what is the maximum power output of the engine in watts?
+\end{enumerate}
+
+\textbf{Solution:}
+(a) The work done in lifting 75 kg by 1 meter is
+\begin{equation}
+W = mgh = (75 \text{ kg})(9.8 \text{ m/s}^2)(1 \text{ m}) = 735 \text{ J}. 
+\end{equation}
+Since this work is done in 1 second, the power is
+\begin{equation}
+P = \frac{W}{t} = \frac{735 \text{ J}}{1 \text{ s}} = 735 \text{ W}.
+\end{equation}
+Therefore, 1 horsepower is approximately $\boxed{735 \text{ W}}$.
+
+(b) The maximum power output of a 200 hp engine is
+\begin{equation}
+P_{\text{max}} = 200 \text{ hp} \times 735 \text{ W/hp} = 147,000 \text{ W} = 147 \text{kW}.
+\end{equation}
+Therefore, the maximum power output of the engine is $\boxed{147 \text{kW}}$. In other words, a 200 hp engine can deliver a maximum energy of 147 kJ in 1 second.
 
 
 
