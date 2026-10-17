@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>From Circular Motion to Simple Harmonic Motion</title>
+<style>
+  :root {
+    --bg:#0a101d; --panel:#111b2c; --panel-deep:#0c1525; --border:#2a3850;
+    --ink:#f0f4fa; --muted:#a6b5cb; --soft:#74879f; --mint:#68e0cc;
+    --amber:#ffbe78; --blue:#7faaff; --grid:#28364b; --slider:#68e0cc;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; background:radial-gradient(1100px 640px at 50% -200px, #1c3454 0%, var(--bg) 74%); color:var(--ink); font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  button, input { font:inherit; }
+  button { -webkit-tap-highlight-color: transparent; }
+  .app { width:min(1330px, calc(100% - 48px)); margin:0 auto; padding:39px 0 54px; }
+  .eyebrow { color:var(--mint); font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; margin-bottom:10px; }
+  header { display:flex; align-items:end; justify-content:space-between; gap:22px; margin-bottom:25px; }
+  h1 { margin:0; font-size:clamp(29px,3.2vw,44px); font-weight:740; letter-spacing:-.047em; line-height:1.12; }
+  .intro { margin:11px 0 0; max-width:770px; color:var(--muted); font-size:15px; }
+  .formula-top { white-space:nowrap; border:1px solid var(--border); padding:12px 20px; border-radius:12px; background:#152239; font-family:Georgia,"Times New Roman",serif; color:var(--ink); font-size:21px; }
+  .formula-top .accent { color:var(--mint); }
+  .visuals { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .panel { overflow:hidden; min-width:0; background:linear-gradient(180deg,rgba(20,32,50,.98),rgba(12,22,38,.98)); border:1px solid var(--border); border-radius:17px; box-shadow:0 14px 35px #03070d30; }
+  .panel-top { padding:20px 23px 3px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .panel-top h2 { margin:0; font-size:15px; font-weight:700; letter-spacing:-.005em; }
+  .panel-top .tag { font-size:11px; color:var(--soft); font-weight:650; letter-spacing:.08em; text-transform:uppercase; }
+  .panel p.sub { margin:1px 23px 0; color:var(--muted); font-size:12px; }
+  .figure { display:block; width:100%; height:auto; max-height:435px; touch-action:pan-y; user-select:none; }
+  .svg-label { font-size:15px; fill:#bac9dd; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .svg-label.small { font-size:12px; fill:#899bb2; }
+  .svg-label.emph { fill:#68e0cc; font-weight:700; }
+  .svg-label.ochre { fill:#ffbe78; font-weight:700; }
+  .orbital-target { cursor:grab; touch-action:none; }
+  .orbital-target:active { cursor:grabbing; }
+  .panel-footer { border-top:1px solid #233147; margin:0 23px; padding:12px 0 14px; display:flex; gap:17px; flex-wrap:wrap; color:var(--muted); font-size:12px; }
+  .legend { display:inline-flex; align-items:center; gap:7px; }
+  .dot { border-radius:100px; width:9px; height:9px; display:inline-block; background:var(--amber); }
+  .dot.mint { background:var(--mint); }
+  .controls { margin-top:17px; border:1px solid var(--border); background:rgba(17,27,44,.96); border-radius:17px; padding:21px 24px 23px; }
+  .playbar { display:flex; align-items:center; gap:11px; flex-wrap:wrap; }
+  .primary-btn, .secondary-btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:1px solid transparent; border-radius:10px; cursor:pointer; font-size:13px; font-weight:720; padding:11px 17px; transition:background .15s,border .15s; }
+  .primary-btn { background:var(--mint); color:#071a1b; min-width:109px; }
+  .primary-btn:hover { background:#a0f2e4; }
+  .secondary-btn { color:var(--ink); background:#1b2a42; border-color:#33435c; }
+  .secondary-btn:hover { background:#293c58; }
+  button:focus-visible, input:focus-visible { outline:2px solid var(--amber); outline-offset:4px; }
+  .playback-speed { margin-left:auto; display:flex; align-items:center; gap:9px; }
+  .playback-speed label { color:var(--muted); font-size:12px; }
+  .speed-buttons { background:#0b1627; border:1px solid #304159; border-radius:9px; display:flex; padding:3px; }
+  .speed-buttons button { border:0; color:var(--muted); padding:5px 10px; background:transparent; border-radius:6px; cursor:pointer; font-size:12px; }
+  .speed-buttons button[aria-pressed="true"] { background:#294a53; color:var(--mint); font-weight:760; }
+  .seek-wrap { margin:20px 0 19px; }
+  .control-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .control-head label { font-size:13px; font-weight:680; }
+  output, .control-value { font-variant-numeric:tabular-nums; color:var(--mint); font-size:13px; font-weight:680; }
+  input[type=range] { width:100%; height:17px; margin:8px 0 0; cursor:pointer; background:none; accent-color:var(--slider); }
+  .timeline-labels { display:flex; justify-content:space-between; margin-top:0; color:var(--soft); font-size:11px; font-variant-numeric:tabular-nums; }
+  .inputs { border-top:1px solid var(--border); padding-top:19px; display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .details { margin-top:16px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .stat { border:1px solid #273950; border-radius:11px; background:#0c192a; padding:11px 15px; }
+  .stat-name { font-size:11px; color:var(--soft); }
+  .stat-val { font-variant-numeric:tabular-nums; font-size:21px; font-weight:700; letter-spacing:-.025em; line-height:1.5; }
+  .stat-val.amber { color:var(--amber); } .stat-val.mint { color:var(--mint); }
+  .stat-unit { color:var(--soft); font-size:11px; font-weight:450; margin-left:4px; letter-spacing:0; }
+  .note { margin-top:17px; color:var(--muted); line-height:1.6; padding:0 3px; font-size:13px; }
+  .note strong { color:var(--ink); }
+  .explain { margin-top:15px; padding:17px 21px; border-left:3px solid var(--mint); background:#13223870; border-radius:0 10px 10px 0; color:#b5c3d8; font-size:14px; }
+  .explain strong { color:#fff; }
+  .math { font-family:Georgia,"Times New Roman",serif; font-size:17px; color:#eff7ff; white-space:nowrap; }
+  @media(max-width:960px) { .visuals { grid-template-columns:1fr; } .figure{max-height:420px;} .panel{max-width:800px;width:100%;margin:0 auto;} }
+  @media(max-width:620px) { .app{width:calc(100% - 24px);padding-top:23px;} header{display:block;} .formula-top{display:inline-block;margin-top:17px;font-size:18px;} .panel-top{padding:17px 17px 3px;} .panel p.sub{margin-left:17px;margin-right:17px;} .controls{padding:17px 16px;} .inputs{grid-template-columns:1fr;gap:13px;} .details{grid-template-columns:1fr 1fr;} .playback-speed{width:100%;margin:4px 0 0;} .panel-footer{margin:0 17px;} .svg-label {font-size:14px;} }
+  @media(prefers-reduced-motion:reduce) { .primary-btn,.secondary-btn { transition:none; } }
+</style>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div>
+      <div class="eyebrow">Interactive mechanics laboratory</div>
+      <h1>One rotation. One oscillation.</h1>
+      <p class="intro">The horizontal projection of a point moving uniformly around a circle executes simple harmonic motion. Follow the rotating point, its shadow, and its displacement over time.</p>
+    </div>
+    <div class="formula-top" aria-label="x of t equals A cosine of omega t plus phi"><span class="accent">x</span>(t) = A cos(ωt + φ)</div>
+  </header>
+
+  <section class="visuals" aria-label="Linked motion visualizations">
+    <article class="panel">
+      <div class="panel-top"><h2>01 / Circular motion & projection</h2><span class="tag">Geometry</span></div>
+      <p class="sub">Drag the amber point to change the phase.</p>
+      <svg id="circleSvg" class="figure" viewBox="0 0 650 545" role="img" aria-label="An animated particle rotates counterclockwise on a circle and projects onto a horizontal line, generating oscillatory motion">
+        <defs>
+          <pattern id="smallGrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#223147" stroke-width=".55" opacity=".35"/></pattern>
+          <filter id="dotGlow" x="-130%" y="-130%" width="360%" height="360%"><feGaussianBlur stdDeviation="7"/></filter>
+        </defs>
+        <rect x="0" y="4" width="650" height="530" fill="url(#smallGrid)" opacity=".36"/>
+        <g stroke="#52627b" stroke-width="1.3" opacity=".75">
+          <line x1="102" y1="211" x2="538" y2="211" stroke-dasharray="4 6"/>
+          <line x1="320" y1="35" x2="320" y2="390" stroke-dasharray="4 6"/>
+        </g>
+        <circle id="orbit" cx="320" cy="211" r="108" fill="none" stroke="#657e9e" stroke-width="1.7"/>
+        <circle cx="320" cy="211" r="3.2" fill="#889bb5"/>
+        <line id="radius" x1="320" y1="211" x2="428" y2="211" stroke="#ffbe78" stroke-width="3" stroke-linecap="round"/>
+        <path id="angleArc" fill="none" stroke="#e3b875" stroke-width="2" stroke-linecap="round"/>
+        <text id="angleLabel" x="377" y="193" class="svg-label ochre">θ</text>
+        <text id="radiusLabel" x="378" y="194" class="svg-label ochre">A</text>
+        <line id="projectionGuide" x1="428" y1="211" x2="428" y2="463" stroke="#68e0cc" stroke-width="1.75" stroke-dasharray="5 7" opacity=".75"/>
+        <circle id="orbitalGlow" cx="428" cy="211" r="17" fill="#ffbe78" opacity=".22" filter="url(#dotGlow)"/>
+        <circle id="orbitDot" cx="428" cy="211" r="9" fill="#ffbe78" stroke="#ffd9a9" stroke-width="2.3"/>
+        <circle id="orbitGrab" class="orbital-target" cx="428" cy="211" r="22" fill="transparent" aria-label="Drag rotating particle"/>
+        <g>
+          <line x1="80" y1="463" x2="568" y2="463" stroke="#b5c8dd" stroke-width="1.8"/>
+          <path d="M568 463 l-10 -5 v10 z" fill="#b5c8dd"/>
+          <g id="stageTicks" stroke="#52647d" stroke-width="1.4">
+            <line x1="176" y1="457" x2="176" y2="469"/><line x1="248" y1="457" x2="248" y2="469"/><line x1="320" y1="455" x2="320" y2="471"/><line x1="392" y1="457" x2="392" y2="469"/><line x1="464" y1="457" x2="464" y2="469"/>
+          </g>
+          <g class="svg-label small" text-anchor="middle"><text x="176" y="491">−2</text><text x="248" y="491">−1</text><text x="320" y="491">0</text><text x="392" y="491">1</text><text x="464" y="491">2</text></g>
+          <text x="581" y="468" class="svg-label emph">x</text>
+          <line id="displacement" x1="320" y1="463" x2="428" y2="463" stroke="#68e0cc" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+          <circle id="shadowGlow" cx="428" cy="463" r="18" fill="#68e0cc" opacity=".15"/>
+          <circle id="shadowDot" cx="428" cy="463" r="9" fill="#68e0cc" stroke="#b3ffef" stroke-width="2.3"/>
+        </g>
+        <text x="320" y="518" text-anchor="middle" class="svg-label small">The projection moves back and forth along one dimension</text>
+      </svg>
+      <div class="panel-footer"><span class="legend"><i class="dot"></i> Rotating point</span><span class="legend"><i class="dot mint"></i> Horizontal projection (shadow)</span></div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-top"><h2>02 / Displacement versus time</h2><span class="tag">Oscillation</span></div>
+      <p class="sub">The same horizontal position plotted as x(t).</p>
+      <svg id="graphSvg" class="figure" viewBox="0 0 650 545" role="img" aria-label="A cosine wave showing displacement as a function of time, with a moving point linked to the circular motion">
+        <g id="graphGrid"></g>
+        <path id="fullWave" fill="none" stroke="#526c8c" stroke-width="2.5" stroke-linecap="round" opacity=".66"/>
+        <path id="pastWave" fill="none" stroke="#68e0cc" stroke-width="3.5" stroke-linecap="round"/>
+        <line id="playhead" x1="64" x2="64" y1="69" y2="453" stroke="#ffbe78" stroke-width="1.65" stroke-dasharray="5 7" opacity=".86"/>
+        <circle id="waveGlow" cx="64" cy="261" r="19" fill="#ffbe78" opacity=".19"/>
+        <circle id="waveDot" cx="64" cy="261" r="7.5" fill="#ffbe78" stroke="#ffe0b9" stroke-width="2"/>
+        <text id="graphTimeText" x="63" y="480" class="svg-label small">t = 0.00 s</text>
+      </svg>
+      <div class="panel-footer"><span class="legend"><i class="dot mint"></i> Motion traced so far</span><span class="legend"><i class="dot"></i> Current displacement</span></div>
+    </article>
+  </section>
+
+  <section class="controls" aria-label="Animation controls">
+    <div class="playbar">
+      <button id="playBtn" class="primary-btn" type="button" aria-label="Pause animation"><span id="playIcon" aria-hidden="true">Ⅱ</span><span id="playText">Pause</span></button>
+      <button id="resetBtn" class="secondary-btn" type="button" title="Go to t equals zero">↺ &nbsp; Restart</button>
+      <button id="stepBtn" class="secondary-btn" type="button" title="Advance by one eighth of a period">↦ &nbsp; Step T/8</button>
+      <div class="playback-speed"><label>Playback speed</label><div class="speed-buttons" role="group" aria-label="Playback speed">
+        <button type="button" data-speed="0.25" aria-pressed="false">¼×</button>
+        <button type="button" data-speed="0.5" aria-pressed="false">½×</button>
+        <button type="button" data-speed="1" aria-pressed="true">1×</button>
+        <button type="button" data-speed="2" aria-pressed="false">2×</button>
+      </div></div>
+    </div>
+    <div class="seek-wrap">
+      <div class="control-head"><label for="timeSlider">Explore the timeline</label><output id="timeValue" for="timeSlider">t = 0.00 s</output></div>
+      <input type="range" id="timeSlider" min="0" max="1000" value="0" step="1" aria-label="Time through three oscillation periods"/>
+      <div class="timeline-labels"><span>0</span><span>T</span><span>2T</span><span>3T</span></div>
+    </div>
+    <div class="inputs">
+      <div><div class="control-head"><label for="amplitude">Amplitude A</label><output id="ampValue" for="amplitude">1.5 units</output></div><input type="range" id="amplitude" min="0.5" max="2" step="0.1" value="1.5"/></div>
+      <div><div class="control-head"><label for="omega">Angular frequency ω</label><output id="omegaValue" for="omega">1.5 rad/s</output></div><input type="range" id="omega" min="0.5" max="4" step="0.1" value="1.5"/></div>
+      <div><div class="control-head"><label for="phase">Initial phase φ</label><output id="phaseValue" for="phase">0°</output></div><input type="range" id="phase" min="0" max="360" step="5" value="0"/></div>
+    </div>
+    <div class="details" aria-label="Current motion measurements">
+      <div class="stat"><div class="stat-name">Phase θ(t)</div><div class="stat-val amber"><span id="thetaRead">0</span><span class="stat-unit">deg</span></div></div>
+      <div class="stat"><div class="stat-name">Displacement x(t)</div><div class="stat-val mint"><span id="xRead">+1.50</span><span class="stat-unit">units</span></div></div>
+      <div class="stat"><div class="stat-name">Velocity v(t)</div><div class="stat-val"><span id="vRead">0.00</span><span class="stat-unit">units/s</span></div></div>
+      <div class="stat"><div class="stat-name">Acceleration a(t)</div><div class="stat-val"><span id="aRead">−3.38</span><span class="stat-unit">units/s²</span></div></div>
+    </div>
+  </section>
+  <p class="note">Tip: <strong>Drag the amber point</strong> around the circle or move the timeline slider. Increase the angular frequency to make the oscillation faster. Change the amplitude to change the radius of the circle and the maximum displacement.</p>
+  <aside class="explain"><strong>Why this is simple harmonic motion.</strong> For uniform circular motion, the angle increases linearly: <span class="math">θ(t) = ωt + φ</span>. Its horizontal coordinate is <span class="math">x(t) = A cos(ωt + φ)</span>. Differentiating twice gives <span class="math">d²x/dt² = −ω²x</span> — the defining equation of simple harmonic motion. The particle on the circle and the oscillator are a mathematical construction: they need not be the same physical object.</aside>
+</main>
+<script>
+(() => {
+  'use strict';
+  const TAU=2*Math.PI, cx=320,cy=211,stageY=463,scale=72;
+  const graph={left:63,right:606,top:76,bottom:453,centerY:261,unit:81};
+  const el=id=>document.getElementById(id);
+  const state={A:1.5,omega:1.5,phi:0,t:0,playing:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,speed:1,dragging:false};
+  const period=()=>TAU/state.omega;
+  const duration=()=>3*period();
+  const theta=()=>state.omega*state.t+state.phi;
+  const normAngle=a=>((a%TAU)+TAU)%TAU;
+  const fmt=(n,d=2)=>{const x=Math.abs(n)<0.5*10**(-d)?0:n;return (x>0?'+':x<0?'−':'')+Math.abs(x).toFixed(d);};
+  const pos=(ang,A=state.A)=>cx+scale*A*Math.cos(ang);
+  const attr=(id,a)=>{const e=el(id);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,String(v)));};
+  const svgText=(x,y,text,extra={})=>{const n=document.createElementNS('http://www.w3.org/2000/svg','text');n.setAttribute('x',x);n.setAttribute('y',y);n.setAttribute('class','svg-label small');Object.entries(extra).forEach(([k,v])=>n.setAttribute(k,v));n.textContent=text;return n;};
+
+  function renderCircle() {
+    const angle=theta(),wrapped=normAngle(angle),r=scale*state.A;
+    const px=cx+r*Math.cos(angle),py=cy-r*Math.sin(angle);
+    attr('orbit',{r});
+    attr('radius',{x2:px,y2:py});
+    attr('orbitDot',{cx:px,cy:py});attr('orbitalGlow',{cx:px,cy:py});attr('orbitGrab',{cx:px,cy:py});
+    attr('projectionGuide',{x1:px,y1:py,x2:px,y2:stageY});
+    attr('displacement',{x2:px});attr('shadowGlow',{cx:px});attr('shadowDot',{cx:px});
+    const aR=Math.min(37,r*.43),steps=Math.max(2,Math.ceil(wrapped/0.065));
+    let d='M '+(cx+aR).toFixed(3)+' '+cy;
+    for(let i=1;i<=steps;i++){const a=wrapped*i/steps;d+=' L '+(cx+aR*Math.cos(a)).toFixed(3)+' '+(cy-aR*Math.sin(a)).toFixed(3);}
+    el('angleArc').setAttribute('d',wrapped<.005?'':d);
+    const at=Math.max(.34,Math.min(wrapped/2,5.7));
+    attr('angleLabel',{x:cx+54*Math.cos(at),y:cy-54*Math.sin(at)-5,display:wrapped<0.18||wrapped>TAU-0.12?'none':'inline'});
+    attr('radiusLabel',{x:cx+r*.57*Math.cos(angle)+18*Math.sin(angle),y:cy-r*.57*Math.sin(angle)-18*Math.cos(angle)});
+  }
+  function wavePath(from,to,samples=400){
+    let p='';
+    for(let i=0;i<=samples;i++){
+      const t=from+(to-from)*i/samples,x=graph.left+(t/duration())*(graph.right-graph.left),y=graph.centerY-graph.unit*state.A*Math.cos(state.omega*t+state.phi);
+      p+=(i?' L ':'M ')+x.toFixed(2)+' '+y.toFixed(2);
+    }
+    return p;
+  }
+  let lastWaveKey='';
+  function redrawWaveIfChanged(){
+    const key=`${state.A},${state.omega},${state.phi}`;
+    if(key!==lastWaveKey){el('fullWave').setAttribute('d',wavePath(0,duration(),600));lastWaveKey=key;}
+  }
+  function renderGraph(){
+    redrawWaveIfChanged();
+    const x=graph.left+(state.t/duration())*(graph.right-graph.left);
+    const y=graph.centerY-graph.unit*state.A*Math.cos(theta());
+    el('pastWave').setAttribute('d',state.t<=0.00001?'':wavePath(0,state.t,Math.max(3,Math.ceil(400*state.t/duration()))));
+    attr('playhead',{x1:x,x2:x});attr('waveGlow',{cx:x,cy:y});attr('waveDot',{cx:x,cy:y});
+    const timeText=el('graphTimeText');timeText.textContent=`t = ${state.t.toFixed(2)} s`;
+    attr('graphTimeText',{x:Math.max(67,Math.min(x-30,513))});
+  }
+  function renderNumbers(){
+    const th=theta(),x=state.A*Math.cos(th),v=-state.A*state.omega*Math.sin(th),a=-(state.omega**2)*x;
+    el('thetaRead').textContent=(normAngle(th)*180/Math.PI).toFixed(0);
+    el('xRead').textContent=fmt(x);el('vRead').textContent=fmt(v);el('aRead').textContent=fmt(a);
+    el('timeValue').textContent=`t = ${state.t.toFixed(2)} s`;
+    el('timeSlider').value=Math.round((state.t/duration())*1000);
+  }
+  function render(){renderRing();renderCircle();renderGraph();renderNumbers();}
+  function buildGraphGrid(){
+    const node=el('graphGrid');node.replaceChildren();
+    const NS='http://www.w3.org/2000/svg';
+    const mk=(tag,attrs)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));node.appendChild(n);return n;};
+    for(let k=-2;k<=2;k++){
+      const y=graph.centerY-graph.unit*k;
+      mk('line',{x1:graph.left,x2:graph.right,y1:y,y2:y,stroke:k===0?'#9eaec5':'#304159','stroke-width':k===0?1.6:1,'stroke-dasharray':k===0?'':'4 7'});
+      node.appendChild(svgText(graph.left-11,y+4,k.toString(),{'text-anchor':'end'}));
+    }
+    for(let j=0;j<=3;j++){
+      const x=graph.left+(graph.right-graph.left)*j/3;
+      mk('line',{x1:x,x2:x,y1:graph.top,y2:graph.bottom,stroke:j===0?'#92a4bc':'#34455d','stroke-width':j===0?1.5:1,'stroke-dasharray':j===0?'':'4 7'});
+      node.appendChild(svgText(x,graph.bottom+29,j===0?'0':j===1?'T':j+'T',{'text-anchor':'middle'}));
+    }
+    const ylabel=svgText(37,52,'x (displacement)',{'text-anchor':'start'});ylabel.setAttribute('fill','#68e0cc');node.appendChild(ylabel);
+    node.appendChild(svgText(graph.right,graph.bottom+53,'time t →',{'text-anchor':'end'}));
+    const hint=svgText(graph.left,528,'One complete oscillation takes T = 2π / ω',{});node.appendChild(hint);
+  }
+  function syncPlayBtn(){
+    el('playText').textContent=state.playing?'Pause':'Play';
+    el('playIcon').textContent=state.playing?'Ⅱ':'▶';
+    el('playBtn').setAttribute('aria-label',state.playing?'Pause animation':'Play animation');
+  }
+  const setPlaying=value=>{state.playing=value;syncPlayBtn();};
+  el('playBtn').addEventListener('click',()=>setPlaying(!state.playing));
+  el('resetBtn').addEventListener('click',()=>{state.t=0;setPlaying(false);render();});
+  el('stepBtn').addEventListener('click',()=>{setPlaying(false);state.t=(state.t+period()/8)%duration();render();});
+  el('timeSlider').addEventListener('input',e=>{setPlaying(false);state.t=Number(e.target.value)/1000*duration();render();});
+  el('amplitude').addEventListener('input',e=>{state.A=Number(e.target.value);el('ampValue').textContent=state.A.toFixed(1)+' units';render();});
+  el('omega').addEventListener('input',e=>{
+    const fraction=state.t/duration();state.omega=Number(e.target.value);state.t=fraction*duration();
+    el('omegaValue').textContent=state.omega.toFixed(1)+' rad/s';render();
+  });
+  el('phase').addEventListener('input',e=>{state.phi=Number(e.target.value)*Math.PI/180;el('phaseValue').textContent=e.target.value+'°';render();});
+  document.querySelectorAll('[data-speed]').forEach(btn=>btn.addEventListener('click',()=>{
+    state.speed=Number(btn.dataset.speed);
+    document.querySelectorAll('[data-speed]').forEach(other=>other.setAttribute('aria-pressed',String(other===btn)));
+  }));
+
+  function svgCoords(event){
+    const svg=el('circleSvg'),pt=svg.createSVGPoint();pt.x=event.clientX;pt.y=event.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  function dragTo(event){
+    const pt=svgCoords(event),a=normAngle(Math.atan2(cy-pt.y,pt.x-cx));
+    let phaseProgress=normAngle(a-state.phi)/TAU;
+    const n=Math.min(2,Math.floor(state.t/period()));
+    state.t=(n+phaseProgress)*period();render();
+  }
+  // A wide, invisible ring gives mouse and touch users a larger drag target.
+  const ring=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  ring.setAttribute('cx',cx);ring.setAttribute('cy',cy);ring.setAttribute('fill','none');
+  ring.setAttribute('stroke','transparent');ring.setAttribute('stroke-width','30');
+  ring.classList.add('orbital-target');
+  ring.id='orbitHit';
+  el('orbit').after(ring);
+  const svg=el('circleSvg');
+  const beginDrag=e=>{e.preventDefault();state.dragging=true;setPlaying(false);svg.setPointerCapture(e.pointerId);dragTo(e);};
+  ring.addEventListener('pointerdown',beginDrag);
+  el('orbitGrab').addEventListener('pointerdown',beginDrag);
+  svg.addEventListener('pointermove',e=>{if(state.dragging){e.preventDefault();dragTo(e);}});
+  svg.addEventListener('pointerup',()=>{state.dragging=false;});
+  svg.addEventListener('pointercancel',()=>{state.dragging=false;});
+  svg.addEventListener('lostpointercapture',()=>{state.dragging=false;});
+  function renderRing(){ring.setAttribute('r',scale*state.A);}
+  let lastFrame=null;
+  function frame(now){
+    if(lastFrame!==null&&state.playing&&!state.dragging){
+      const elapsed=Math.min((now-lastFrame)/1000,.065);
+      state.t=(state.t+elapsed*state.speed)%duration();render();
+    }
+    lastFrame=now;requestAnimationFrame(frame);
+  }
+  document.addEventListener('visibilitychange',()=>{lastFrame=null;});
+  buildGraphGrid();syncPlayBtn();render();requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

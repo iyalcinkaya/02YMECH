@@ -104,7 +104,7 @@ We know that the particle oscillates back and forth about the equilibrium positi
     \end{tabular}
 \end{table}
 
-We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, we look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. This leads to the characteristic equation
+We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, it is natural\footnote{I admit that this is a handwaving argument. For the complete description, we need to study Laplace transforms which is beyond the scope of this text.} to look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. This leads to the characteristic equation
 \begin{equation}
     \lambda^2+\omega_0^2=0,
 \end{equation}
@@ -199,9 +199,7 @@ where $R=|Z|$ is its magnitude and $\phi$ is its argument (the angle it makes wi
 \end{equation}
 and its argument $\phi$ is determined by
 \begin{equation}
-    \cos\phi=\frac{C}{R},
-    \qquad
-    \sin\phi=-\frac{D}{R}.
+    \arctan\left(-\frac{D}{C}\right)=\phi.
 \end{equation}
 
 Substituting the polar form of $Z$ into the expression for the displacement gives
@@ -245,6 +243,38 @@ Similarly, the initial phase is determined by
 \end{equation}
 Thus, both the amplitude and the initial phase are determined by the initial position and velocity. In the special case $R=0$, the particle remains at its equilibrium position, $x(t)=0$, and the phase $\phi$ is undefined.
 
+\subsection{Energy of Simple Oscillations}
+The mechanical energy of a particle undergoing simple oscillation
+\begin{equation}
+    E = K + U = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k x^2 
+\end{equation}
+
+Substituting the general solution $x(t)=R\cos(\omega_0 t+\phi)$ into the expressions for kinetic and potential energies, we find
+\begin{align}
+    K(t)&=\frac{1}{2}m\left[-R\omega_0\sin(\omega_0 t+\phi)\right]^2
+    =\frac{1}{2}mR^2\omega_0^2\sin^2(\omega_0 t+\phi),\\
+    U(t)&=\frac{1}{2}k\left[R\cos(\omega_0 t+\phi)\right]^2
+    =\frac{1}{2}kR^2\cos^2(\omega_0 t+\phi).
+\end{align}
+Using the relation $k=m\omega_0^2$, we can express the total energy as
+\begin{equation}
+    E=\frac{1}{2}mR^2\omega_0^2\left[\sin^2(\omega_0 t+\phi)+\cos^2(\omega_0 t+\phi)\right]
+    =\frac{1}{2}mR^2\omega_0^2.
+\end{equation}
+By substituting $\omega_0^2=k/m$, we can also express the total energy in terms of the force constant $k$ and the amplitude $R$:
+\begin{equation}
+    E=\frac{1}{2}kR^2.
+\end{equation}
+Hence, the mechanical energy of a simple oscillator is constant and proportional to the square of the amplitude. This is a characteristic feature of conservative systems, where energy is conserved and oscillates between kinetic and potential forms without any loss as shown in the Fig.~\ref{fig:energy-oscillations}, with the maximum kinetic energy occurring when the particle passes through the equilibrium position ($x=0$) and the maximum potential energy occurring at the turning points of the motion ($x=\pm R$).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/energy-oscillations.png}
+    \caption{Oscillations of kinetic energy $K(t)$, potential energy $U(t)$, and total energy $E$ for a particle undergoing simple harmonic motion. The total energy remains constant, while the kinetic and potential energies oscillate out of phase with each other.}
+    \label{fig:energy-oscillations}
+\end{figure}
+
+
 \subsection{Physical Interpretation of the Solution}
 We have obtained four equivalent forms of the general solution to the equation of motion for simple harmonic oscillations:
 \begin{align}
@@ -255,12 +285,20 @@ We have obtained four equivalent forms of the general solution to the equation o
 \end{align}
 
 
-
-
 \section{Damped Oscillations}  
+If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. This leads to the equation of motion for damped oscillations:
+\begin{equation}
+    m\ddot{x}+b\dot{x}+kx=0,
+\end{equation}
+where $b$ is the damping coefficient, which characterizes the strength of the retarding force. The damping coefficient has units of force per unit velocity (N·s/m) and depends on the properties of the medium through which the particle moves, such as viscosity or air resistance.
 
 \section{Phase Space Analysis}
 
 \section{Driven Oscillations}
+
+
+\section{Worked Examples}
+\subsection{Work done by the spring force}
+\subsection{Simple pendulum}
 
 \end{document}

@@ -1,13 +1,13 @@
 \documentclass[12pt]{article}
+
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{tikz}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{graphicx}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75em}
-
-
 
 
 \title{Chapter 3: Dynamics}
@@ -487,7 +487,7 @@ If we know the change in momentum of a particle and the time interval over which
 \label{fig:average-force}
 \end{figure}
 
-The \emph{power} is defined as the rate at which work is done by a force on a particle. Accordingg to the situation considered, it can also be interpreted as the rate at which energy is transferred/transformed to or from a particle/system. It is measured in watts (W), where one watt is equal to one joule per second (J/s).
+The \emph{power} is defined as the rate at which work is done by a force on a particle. According to the situation considered, it can also be interpreted as the rate at which energy is transferred/transformed to or from a particle/system. It is measured in watts (W), where one watt is equal to one joule per second (J/s).
 
 If a force $\mathbf{F}$ acts on a particle that moves with velocity $\mathbf{v}$, the instantaneous power delivered to the particle is given by
 \begin{equation}
@@ -505,7 +505,7 @@ E = K + U
   = \text{constant}.
 \end{equation}
 
-This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
+This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time\footnote{$F(x)=m\frac{dv}{dt} = m\frac{dv}{dx}\frac{dx}{dt}=mv\frac{dv}{dx} \implies F(x)dx = m v dv \implies \int F(x)dx = \int \frac{1}{2}m v^2 + C \implies  -U (x) = \frac{1}{2}m v^2 + C \implies \frac{1}{2}m v^2 + U(x)=C\coloneqq E$}. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
 \begin{equation}
 v(x)
 =
@@ -693,6 +693,25 @@ Therefore, the critical angle at which the block starts sliding down the incline
 \end{equation}
 For $\theta<\theta_c$, static friction is sufficient to keep the block at rest. At $\theta=\theta_c$, static friction reaches its maximum value and the block is on the verge of sliding. For $\theta>\theta_c$, the block starts sliding down the incline, and the friction force becomes kinetic friction.
 
+
+\subsection{Mass-Pulley System}
+Two blocks of unequal masses are connected by a string over a smooth pulley as shown in Fig.~\ref{fig:mass-pulley-system}. If the coefficient of kinetic friction is $\mu_k$ between the heavier block and the surface, write down the equations of motion and solve them to find the acceleration of the blocks and the tension in the string.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{figures/mass-pulley-system.png}
+\caption{Two blocks of unequal masses connected by a string over a smooth pulley. The heavier block is on a horizontal surface with kinetic friction, while the lighter block hangs vertically.}
+\label{fig:mass-pulley-system}
+\end{figure}
+
+\textbf{Solution:}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/mass-pulley-system-fbd.png}
+\caption{Free-body diagrams of the two blocks in the mass-pulley system. The forces acting on each block are shown, including the tension in the string, the weight of each block, and the kinetic friction acting on the heavier block.}
+\label{fig:mass-pulley-system-fbd}
+\end{figure}
+
 \subsection{A ``More Realistic'' Free Fall and Terminal Speed}
 A particle is released from a height $h$ with initial velocity $v_0 = 0$ and falls under the influence of gravity. The particle experiences a resistive force due to air resistance, which is proportional to its velocity: $F_r = -kv$, where $k$ is a positive constant that characterizes the strength of the resistive force. 
 \begin{enumerate}
@@ -849,27 +868,120 @@ A particle of mass $m$ has speed $v(x) = \alpha / x$ where $\alpha$ is a positiv
 A particle of mass $m$ moves in a circular path of radius $r$ with constant speed $v$. The motion is uniform circular motion.
 
 \begin{enumerate}
-    \item[(a)] Write down the equation of motion and solve it to find the acceleration of the particle.
-    \item[(b)] Determine the period of revolution and the frequency of revolution of the particle.
+    \item[(a)] Write down the acceleration of the particle and its direction. What is the corresponding force acting on the particle?
+    \item[(b)] Calculate the acceleration of the particle by using geometry; that is, by using the change in the velocity vector over a small time interval $dt$. 
+    \item[(c)] Instead of considering two very close velocity vectors seperated by the time interval $dt$, consider two velocity vectors seperated by a finite time interval so that the velocity vectors will be at the opposite ends of the diameter of the circle. Calculate the change in the velocity vector and the corresponding acceleration. Compare it with the result obtained in part (b).
+    \item[(c)] What is the kinetic energy of the particle? 
+    \item[(d)] Assume that we have $N$ particles of different masses $m_i$ ($i = 1, 2, \ldots, N$) moving in circular paths of different radii $r_i$ with different constant speeds $v_i$. Write down the total kinetic energy of the system of particles.
+    \item[(e)] What if the particles have the same angular frequency $\omega$? Write down the total kinetic energy of the system of particles in terms of $\omega$ and $r_i$.
+    \item[(f)] What is the angular momentum of the particle? Is there any torque acting on the particle?  Express the angular momentum in terms of the moment of inertia $I$ and angular frequency $\omega$.
+
 \end{enumerate}
 
 \textbf{Solution:} 
-(a) The equation of motion for uniform circular motion is
+(a) As we have seen in Kinematics, the position vector of a particle in circular motion is given by
 \begin{equation}
-    m \vec{a} = \vec{F},
+    \mathbf{r}(t) = r \cos(\omega t) \hat{i} + r \sin(\omega t) \hat{j},
 \end{equation}
-where $\vec{a}$ is the acceleration and $\vec{F}$ is the net force. The net force in uniform circular motion is the centripetal force, which points toward the center of the circle:
+where $r$ is the radius of the circle and $\omega$ is the angular frequency. The second derivative of the position vector with respect to time gives the acceleration:
 \begin{equation}
-    \vec{F} = -\frac{mv^2}{r} \hat{r},
+    \mathbf{a}(t) = -\omega^2 r \cos(\omega t) \hat{i} - \omega^2 r \sin(\omega t) \hat{j} = -\omega^2 \mathbf{r}(t).
 \end{equation}
-where $\hat{r}$ is the unit vector pointing from the center of the circle to the particle. The acceleration is then
+The acceleration is directed toward the center of the circle, which is called centripetal acceleration, and its magnitude is given by
 \begin{equation}
-    \vec{a} = \frac{\vec{F}}{m} = -\frac{v^2}{r} \hat{r}.
+    a = \omega^2 r = \frac{v^2}{r},
+\end{equation}
+where $v = \omega r$ is the speed of the particle. The direction of the acceleration is always toward the center of the circle, which is perpendicular to the velocity vector.
+
+The corresponding force acting on the particle is given by Newton's second law:
+\begin{equation}
+    \mathbf{F} = m \mathbf{a} = -m \omega^2 \mathbf{r}(t) = -\frac{m v^2}{r} \hat{r},
+\end{equation}
+where $\hat{r}$ is the unit vector pointing from the particle toward the center of the circle. The force is called the \emph{centripetal force}, and it is responsible for keeping the particle in circular motion. The magnitude of the centripetal force is given by
+\begin{equation}
+    F = \frac{m v^2}{r}.
 \end{equation}
 
-Basics and why it takes place on a plane. torque and centripetal force. Derivation of the centripetal acceleration formula. Examples of circular motion in everyday life. angular momentum and torque in circular motion. Conservation of angular momentum in circular motion. Examples of conservation of angular momentum in everyday life.
+(b) Let us consider two velocity vectors $\mathbf{v}_1$ and $\mathbf{v}_2$ at two different points on the circle separated by a small angle $ d\theta$ as shown in the Fig.~\ref{fig:geometric-acceleration}. Since we consider a very small angle $d\theta$, the arc length is approximately equal to the length of $|d\mathbf{v}|$. The change in the velocity vector is given by
+\begin{equation}
+    dv \approx v d\theta \implies a = \frac{d v}{dt} \approx \frac{v d\theta}{dt} = \frac{v}{R}\frac{(Rd\theta)}{dt} = \frac{v}{R}\frac{ds}{dt} = \frac{v^2}{R},
+\end{equation}
 
-\subsection{Elastic collision of two hockey pucks (1)}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/geometric-acceleration.png}
+\caption{Velocity vectors of a particle in circular motion at two different points on the circle separated by a small angle $d\theta$. The change in the velocity vector $\Delta \mathbf{v}$ is directed toward the center of the circle.}
+\label{fig:geometric-acceleration}
+\end{figure}
+
+(c) Let us consider two velocity vectors $\mathbf{v}_1$ and $\mathbf{v}_2$ at two different points on the circle separated by an angle of $180^\circ$. The change in the velocity vector is given by
+\begin{equation}
+    \Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1 = -\mathbf{v}_1 - \mathbf{v}_1 = -2\mathbf{v}_1.
+\end{equation}
+The magnitude of the change in the velocity vector is given by
+\begin{equation}
+    |\Delta \mathbf{v}| = 2v.
+\end{equation} The time interval between the two velocity vectors is given by
+\begin{equation}
+    \Delta t = \frac{T}{2} = \frac{\pi}{\omega},
+\end{equation}
+where $T = 2\pi/\omega$ is the period of the circular motion. Therefore, the magnitude of the acceleration is given by
+\begin{equation}
+    a = \frac{|\Delta \mathbf{v}|}{\Delta t} = \frac{2v}{\pi/\omega} = \frac{2\omega v}{\pi} = \frac{2\omega^2 r}{\pi}.
+\end{equation}
+This is the average acceleration over the time interval $\Delta t$. The direction of the acceleration is toward the center of the circle, which is consistent with the result obtained in part (b). The magnitude of the acceleration obtained in part (b) is $a = \omega^2 r$, which is the instantaneous acceleration at any point on the circle. The average acceleration over a finite time interval is less than the instantaneous acceleration, but the direction is the same. This is something that we would expect since some acceleration vectors are cancelled out during the averaging.
+
+(b) The kinetic energy of the particle is given by
+\begin{equation}
+    K = \frac{1}{2} m v^2.
+\end{equation}
+which can also be expressed in terms of the angular frequency as
+\begin{equation}
+    K = \frac{1}{2} m (\omega r)^2 = \frac{1}{2} m \omega^2 r^2.
+\end{equation}
+
+(c) The total kinetic energy of the system of $N$ particles is given by the sum of the kinetic energies of each particle:
+\begin{equation}
+    K_{\text{total}} = \sum_{i=1}^{N} \frac{1}{2} m_i v_i^2 = \sum_{i=1}^{N} \frac{1}{2} m_i (\omega_i r_i)^2 = \sum_{i=1}^{N} \frac{1}{2} m_i \omega_i^2 r_i^2.
+\end{equation}
+
+(d) If the particles have the same angular frequency $\omega$, then the total kinetic energy of the system can be expressed as
+\begin{equation}
+    K_{\text{total}} = \sum_{i=1}^{N} \frac{1}{2} m_i \omega^2 r_i^2 = \frac{1}{2} \omega^2 \left(\sum_{i=1}^{N} m_i r_i^2\right).
+\end{equation}
+The term in the parantheses is called the \emph{moment of inertia} of the system of particles about the axis of rotation, denoted by $I$:
+\begin{equation}
+    I = \sum_{i=1}^{N} m_i r_i^2.
+    \label{eq:moment-of-inertia}
+\end{equation}
+It is a measure of how the mass is distributed with respect to the axis of rotation; the larger the scattering of the masses from the axis, the larger the moment of inertia. The assumption of the same angular frequency $\omega$ is equivalent to assuming that the system of particles is rigidly rotating about the axis of rotation. Therefore, the total kinetic energy of a rigidly rotating system of particles can be expressed in terms of its moment of inertia and angular frequency as
+\begin{equation}
+    K_{\text{total}} = \frac{1}{2} I \omega^2.
+\end{equation}
+This is the rotational analog of the kinetic energy of a particle moving in a straight line, $K = \frac{1}{2} m v^2$ where $I$ plays the role of mass $m$ and $\omega$ plays the role of speed $v$. It directly follows from Eq.~\ref{eq:moment-of-inertia} that the moment of inertia of a single particle of mass $m$ moving in a circular path of radius $r$ is given by
+\begin{equation}
+    I = m r^2.
+\end{equation}
+
+
+(e) The angular momentum of the particle about the center of the circle is given by
+\begin{equation}
+    \mathbf{L} = \mathbf{r} \times m \mathbf{v} = m r^2 \omega \mathbf{k},
+\end{equation}
+where $\mathbf{k}$ is the unit vector perpendicular to the plane of motion. The torque acting on the particle is given by
+\begin{equation}
+    \boldsymbol{\tau} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times (-m \omega^2 \mathbf{r}) = 0,
+\end{equation}
+since the force is directed toward the center of the circle and is therefore parallel to the position vector. Thus, there is no torque acting on the particle, and the angular momentum is conserved.
+
+We can express the angular momentum of the particle undergoing a uniform circular motion in terms of the moment of inertia $I$ and angular frequency $\omega$,
+\begin{equation}
+    \mathbf{L} = I \omega \mathbf{k}.
+\end{equation}
+This form of angular momentum is the rotational analog of the linear momentum of a particle moving in a straight line, $\mathbf{p} = m \mathbf{v}$, where $I$ plays the role of mass $m$ and $\omega$ plays the role of speed $v$.
+
+\subsection{Elastic collision of two hockey pucks -- 1}
 
 Two hockey pucks with identical masses are on a flat, horizontal ice hockey rink. Black puck is motionless and white is moving 2.5 m/s toward the black puck. The two pucks collide. After the collision, the black puck moves at 2.5 m/s in the same direction as the white puck was moving. 
 
@@ -906,7 +1018,7 @@ Since $K_{i} = K_{f}$, the energy is conserved in this collision, and the total 
 
 
 
-\subsection{Elastic collision of two hockey pucks (2)}
+\subsection{Elastic collision of two hockey pucks -- 2}
 Two hockey pucks with identical masses collide as shown in Fig.~\ref{fig:hockey-pucks}. Find the final velocities of the two pucks after the collision.
 \begin{figure}[h!]
 \centering
@@ -1070,12 +1182,251 @@ while the second puck moves forward faster than the first.
 
 
 
-
-
-
 \subsection{Conservation of angular momentum}
 
+A ceiling fan with moment of inertia $I$ and radius $R$ is freely rotating with angular velocity $\omega_i$. A mouse of mass $m$ jumps onto the outer edge of the fan
+with zero tangential velocity relative to the ground and remains there. Assuming that no external torque acts about the fan's rotation axis, determine the ratio of the final angular velocity to the initial angular
+velocity of the fan.
 
+\textbf{Solution:}
+Since no external torque acts about the rotation axis, the total angular momentum of the system is conserved. Initially, only the fan contributes to the angular momentum because the mouse has zero tangential velocity. Therefore,
+\begin{equation}
+    L_i = I\omega_i.
+\end{equation}
+After the mouse lands on the fan, they rotate together with angular velocity $\omega_f$. Since the mouse can be treated as a point mass at a distance $R$ from the rotation axis, its moment of inertia is $mR^2$. The final angular momentum is therefore
+\begin{equation}
+    L_f = (I+mR^2)\omega_f.
+\end{equation}
+From conservation of angular momentum,
+\begin{equation}
+    L_i = L_f
+    \implies
+    I\omega_i = (I+mR^2)\omega_f.
+\end{equation}
+Solving for the ratio of the final to the initial angular velocity, we obtain
+\begin{equation}
+    \boxed{
+    \frac{\omega_f}{\omega_i}
+    = \frac{I}{I+mR^2}
+    }.
+\end{equation}
+
+Since $I/(I+mR^2)<1$, the angular velocity decreases after the mouse lands on the fan. This is because the total moment of inertia increases while the total angular momentum remains constant.
+
+\subsection{Energy and Conservation of Angular Momentum -- 1}
+
+An ice skater with moment of inertia $I$ and angular velocity $\omega_i$ is spinning with her arms extended. The skater then pulls her arms in, reducing her moment of inertia to $I/2$. Assuming that no external torque acts about her rotation axis,
+\begin{enumerate}
+    \item[(a)] Determine the final angular velocity of the skater.
+    \item[(b)] Determine whether the rotational kinetic energy
+    is conserved. If not, calculate the change in rotational
+    kinetic energy and explain its physical origin.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) Since no external torque acts about the rotation axis, the angular momentum of the skater is conserved. Initially, the skater has moment of inertia $I$ and angular velocity $\omega_i$, so the initial angular momentum is $L_i=I\omega_i$. After pulling her arms in, her moment of inertia becomes $I/2$, and her final angular velocity is $\omega_f$. The final angular momentum is therefore $L_f=(I/2)\omega_f$.
+
+From conservation of angular momentum, we have
+\begin{equation}
+    L_i=L_f
+    \implies I\omega_i=\frac{I}{2}\omega_f.
+\end{equation}
+Solving for the final angular velocity, we obtain
+\begin{equation}
+    \boxed{\omega_f=2\omega_i}.
+\end{equation}
+Therefore, the skater's angular velocity doubles when her moment of inertia is reduced by half.
+
+(b) The initial rotational kinetic energy of the skater is
+\begin{equation}
+    K_i=\frac{1}{2}I\omega_i^2.
+\end{equation}
+After pulling her arms in, her moment of inertia is reduced to $I/2$, while her angular velocity increases to $\omega_f=2\omega_i$. Therefore, the final rotational kinetic energy is
+\begin{equation}
+    K_f=\frac{1}{2}\left(\frac{I}{2}\right)\omega_f^2
+    =\frac{1}{2}\left(\frac{I}{2}\right)(2\omega_i)^2
+    =I\omega_i^2.
+\end{equation}
+Comparing the initial and final kinetic energies, we find
+\begin{equation}
+    \boxed{K_f=2K_i}.
+\end{equation}
+Thus, the rotational kinetic energy is not conserved; it doubles. The change in rotational kinetic energy is
+\begin{equation}
+    \Delta K=K_f-K_i
+    =I\omega_i^2-\frac{1}{2}I\omega_i^2
+    =\boxed{\frac{1}{2}I\omega_i^2}.
+\end{equation}
+The increase in rotational kinetic energy comes from the work performed by the skater's muscles while pulling her arms inward. Therefore, although angular momentum is conserved in the absence of external torque, rotational kinetic energy need not be conserved when the moment of inertia changes.
+
+\subsection{Energy and Conservation of Angular Momentum -- 2}
+
+A uniform thin rod of mass $M=3\,\mathrm{kg}$ and length
+$L=2\,\mathrm{m}$ rotates counterclockwise in a horizontal
+plane about a frictionless vertical axis passing through
+its center. Its initial angular velocity is
+$\omega_i=4\,\mathrm{rad/s}$. A small lump of clay of mass
+$m=1\,\mathrm{kg}$ moves horizontally with a speed of
+$v=6\,\mathrm{m/s}$ and strikes one end of the rod.
+At the moment of impact, the clay moves tangentially
+to the circular path of the rod's end, in the clockwise
+direction, and sticks to the rod.
+
+The moment of inertia of a uniform thin rod about an
+axis passing through its center and perpendicular to
+its length is $I=ML^2/12$.
+
+\begin{enumerate}
+    \item[(a)] Determine the angular velocity of the
+    rod immediately after the collision, including
+    its direction of rotation.
+    \item[(b)] Calculate the mechanical energy lost
+    during the collision.
+    \item[(c)] Determine the minimum speed of the clay
+    required to reverse the direction of rotation
+    of the rod.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) Since no external torque acts about the rotation
+axis, the total angular momentum of the rod and clay
+is conserved during the collision.
+
+We choose the counterclockwise direction as positive.
+Initially, the angular momentum of the system is the
+sum of the angular momentum of the rod and the clay:
+\begin{equation}
+    L_i = I\omega_i - mv\frac{L}{2}.
+\end{equation}
+The minus sign appears because the clay moves in the
+clockwise direction, opposite to the initial rotation
+of the rod.
+
+The moment of inertia of the rod is
+\begin{equation}
+    I = \frac{ML^2}{12}
+    = \frac{3\cdot 2^2}{12}
+    = 1\,\mathrm{kg\,m^2}.
+\end{equation}
+
+After the collision, the clay remains attached to the
+end of the rod. Therefore, the total moment of inertia
+becomes
+\begin{equation}
+    I_f = I + m\left(\frac{L}{2}\right)^2.
+\end{equation}
+
+Since the rod and clay rotate together with angular
+velocity $\omega_f$, the final angular momentum is
+\begin{equation}
+    L_f =
+    \left(I+\frac{mL^2}{4}\right)\omega_f.
+\end{equation}
+
+Applying conservation of angular momentum,
+\begin{equation}
+    I\omega_i - \frac{mvL}{2}
+    = \left(I+\frac{mL^2}{4}\right)\omega_f.
+\end{equation}
+Solving for the final angular velocity,
+\begin{equation}
+    \omega_f =
+    \frac{I\omega_i-mvL/2}
+    {I+mL^2/4}.
+\end{equation}
+
+Substituting the numerical values,
+\begin{equation}
+    \omega_f =
+    \frac{1\cdot 4-1\cdot 6\cdot 1}
+    {1+1\cdot 1^2}
+    = \boxed{-1\,\mathrm{rad/s}}.
+\end{equation}
+
+The negative sign indicates that the rod reverses
+its direction of rotation and rotates clockwise
+after the collision.
+
+
+(b) The initial kinetic energy of the system is the
+sum of the rotational kinetic energy of the rod
+and the translational kinetic energy of the clay:
+\begin{equation}
+    K_i = \frac{1}{2}I\omega_i^2
+    +\frac{1}{2}mv^2.
+\end{equation}
+Substituting the numerical values,
+\begin{equation}
+    K_i = \frac{1}{2}(1)(4^2)
+    +\frac{1}{2}(1)(6^2)
+    = 8+18=26\,\mathrm{J}.
+\end{equation}
+
+After the collision, the rod and clay rotate
+together. Their total kinetic energy is
+\begin{equation}
+    K_f = \frac{1}{2}
+    \left(I+\frac{mL^2}{4}\right)\omega_f^2.
+\end{equation}
+Substituting the numerical values,
+\begin{equation}
+    K_f = \frac{1}{2}(1+1)(-1)^2
+    = 1\,\mathrm{J}.
+\end{equation}
+
+The mechanical energy lost during the collision is
+therefore
+\begin{equation}
+    \Delta K = K_i-K_f
+    = 26-1
+    = \boxed{25\,\mathrm{J}}.
+\end{equation}
+
+Although angular momentum is conserved, kinetic
+energy is not conserved because the collision is
+perfectly inelastic. Part of the initial mechanical
+energy is converted into other forms, such as
+internal energy and deformation.
+
+
+(c) To reverse the direction of rotation, the final
+angular velocity must be negative:
+\begin{equation}
+    \omega_f < 0.
+\end{equation}
+Since the denominator in the expression for
+$\omega_f$ is always positive, this condition
+requires
+\begin{equation}
+    I\omega_i-\frac{mvL}{2}<0.
+\end{equation}
+Rearranging, we obtain
+\begin{equation}
+    v>\frac{2I\omega_i}{mL}.
+\end{equation}
+
+Using $I=ML^2/12$, this becomes
+\begin{equation}
+    v>\frac{ML\omega_i}{6m}.
+\end{equation}
+
+Substituting the numerical values,
+\begin{equation}
+    v>\frac{3\cdot 2\cdot 4}{6\cdot 1}
+    = 4\,\mathrm{m/s}.
+\end{equation}
+
+Therefore, the threshold speed is
+\begin{equation}
+    \boxed{v_c=4\,\mathrm{m/s}}.
+\end{equation}
+
+At exactly $v=v_c$, the total initial angular
+momentum vanishes, and the rod comes to rest
+immediately after the collision. For $v>v_c$,
+the rod reverses its direction of rotation.
 
 
 \subsection{Scalar fields and vector fields}
@@ -1097,6 +1448,7 @@ Thus, the force field is
     \caption{Potential energy $U=x^2+y^2$ and its force field $\mathbf{F}=-\nabla U=(-2x,-2y)$, in scaled units. The force points inward, perpendicular to the circular equipotential curves, and its magnitude increases linearly with distance from the origin. The origin is a stable equilibrium.}
     \label{fig:bowl-potential-force}
 \end{figure}
+
 
 \subsection{Potential energy for the motion close to the surface of the earth}
 A particle of mass $m$ is raised to a height $h$ above the ground. Assume that the gravitational force is constant near the surface of the earth.
@@ -1198,11 +1550,14 @@ Therefore, the maximum power output of the engine is $\boxed{147 \text{kW}}$. In
 
 
 
-\subsection{Collisions and Impulse}
+\subsection{Impulse}
+A block of mass crashes into a wall blabla...
+
+
 
 \subsection{Infinite time required to reach point $x=-1$}
 
-\subsection{Stable and Unstable Equilibrium Points (1)}
+\subsection{Stable and Unstable Equilibrium Points -- 1}
 Find the stable and unstable equilibrium points of the potential energy function $U(x) = k(x^3-3x)$ given in Sec.~\ref{sec:more-potential-energy} and justify your answers mathematically using the second derivative of the potential energy.
 
 \textbf{Solution:} The equilibrium points are found by setting the force, $F(x)=-dU/dx$, equal to zero. Equivalently, we set the first derivative of the potential energy to zero:
@@ -1231,7 +1586,7 @@ At $x=1$, we have
 \end{equation}
 so the equilibrium at $x=1$ is stable.
 
-\subsection{Stable and Unstable Equilibrium Points (2)}
+\subsection{Stable and Unstable Equilibrium Points -- 2}
 
 A particle of mass $m$ moves along the $x$-axis under the influence of a conservative force described by the potential energy function
 \begin{equation}

@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+
+
+\title{Chapter 3: Central-Force Motion}
+\author{İskender Yalçınkaya, PhD}
+\date{\today}
+
+\begin{document}
+\maketitle
+In this Chapter, hede hödö hödö...
+
+
+
+\section{Definition of Central Force}
+
+\section{Direct Consequences of the Definitions}
+
+\section{Worked Examples}
+\subsection{Work and kinetic energy in a rotating system}
+
+Two identical small masses, each of mass $m$, are connected to a frictionless vertical rotation axis by two massless rods of adjustable length. The system rotates in a horizontal plane with an initial angular velocity $\omega_i$, and each mass is initially at a distance $r_i$ from the rotation axis. The rods are then shortened, pulling the masses radially inward until their distance from the axis becomes $r_f=r_i/\sqrt{2}$. Assume that no external torque acts about the rotation axis and that the radial velocities of the masses are zero both initially and finally.
+
+\begin{enumerate}
+    \item[(a)] Calculate the change in the total kinetic energy of the system using conservation of angular momentum.
+    \item[(b)] Calculate the work done by the pulling forces directly from the definition of work, $W=\int\mathbf{F}\cdot d\mathbf{r}$, and verify that it agrees with the result obtained in part (a).
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) Since no external torque acts about the rotation axis, the total angular momentum of the system is conserved. Treating the two masses as point particles, the initial moment of inertia is
+\begin{equation}
+    I_i=2mr_i^2.
+\end{equation}
+After the masses are pulled inward to $r_f=r_i/\sqrt{2}$, the final moment of inertia becomes
+\begin{equation}
+    I_f=2mr_f^2
+    =2m\left(\frac{r_i}{\sqrt{2}}\right)^2
+    =mr_i^2
+    =\frac{I_i}{2}.
+\end{equation}
+
+From conservation of angular momentum, we have
+\begin{equation}
+    I_i\omega_i=I_f\omega_f
+    \implies
+    2mr_i^2\omega_i=mr_i^2\omega_f.
+\end{equation}
+Therefore, the final angular velocity is
+\begin{equation}
+    \boxed{\omega_f=2\omega_i}.
+\end{equation}
+
+Since the radial velocities are zero initially and finally, the kinetic energy at these instants is purely rotational. The initial kinetic energy is
+\begin{equation}
+    K_i=\frac{1}{2}I_i\omega_i^2
+    =mr_i^2\omega_i^2.
+\end{equation}
+Similarly, the final kinetic energy is
+\begin{equation}
+    K_f=\frac{1}{2}I_f\omega_f^2
+    =\frac{1}{2}(mr_i^2)(2\omega_i)^2
+    =2mr_i^2\omega_i^2.
+\end{equation}
+Thus, the change in kinetic energy is
+\begin{equation}
+    \Delta K=K_f-K_i
+    =2mr_i^2\omega_i^2-mr_i^2\omega_i^2,
+\end{equation}
+which gives
+\begin{equation}
+    \boxed{\Delta K=mr_i^2\omega_i^2}.
+\end{equation}
+
+The kinetic energy of the system increases even though its angular momentum remains constant. This increase must come from the work performed by the forces pulling the masses inward.
+
+(b) To calculate this work directly, we start from the definition of work,
+\begin{equation}
+    W=\int\mathbf{F}\cdot d\mathbf{r}.
+\end{equation}
+Since the pulling force acts in the radial direction, only the radial component of displacement contributes to the work. For each mass, we can therefore write
+\begin{equation}
+    W_1=\int_{r_i}^{r_f}F_r\,dr,
+\end{equation}
+where $F_r$ is the radial component of the pulling force, with the outward radial direction chosen as positive.
+
+From Newton's second law in polar coordinates, the radial acceleration of a particle is
+\begin{equation}
+    a_r=\ddot{r}-r\omega^2.
+\end{equation}
+Therefore, the radial force acting on each mass is
+\begin{equation}
+    F_r=m(\ddot{r}-r\omega^2).
+\end{equation}
+
+Since there are two identical masses, the total work done by the pulling forces is
+\begin{equation}
+    W=2\int_{r_i}^{r_f}F_r\,dr
+    =2m\int_{r_i}^{r_f}\ddot{r}\,dr
+    -2m\int_{r_i}^{r_f}r\omega^2\,dr.
+\end{equation}
+
+Let us first evaluate the integral containing the radial acceleration. Using
+\begin{equation}
+    \ddot{r}=\frac{d\dot{r}}{dt},
+    \qquad
+    dr=\dot{r}\,dt,
+\end{equation}
+we obtain
+\begin{equation}
+    \int_{r_i}^{r_f}\ddot{r}\,dr
+    =\int_{\dot{r}_i}^{\dot{r}_f}\dot{r}\,d\dot{r}
+    =\frac{1}{2}\left(\dot{r}_f^2-\dot{r}_i^2\right).
+\end{equation}
+Since the radial velocities are zero both initially and finally, this integral vanishes. Hence, the total work reduces to
+\begin{equation}
+    W=-2m\int_{r_i}^{r_f}r\omega^2\,dr.
+\end{equation}
+
+However, the angular velocity is not constant during the inward motion. To express it as a function of the radial position $r$, we use conservation of angular momentum:
+\begin{equation}
+    I(r)\omega(r)=I_i\omega_i.
+\end{equation}
+Since $I(r)=2mr^2$, we have
+\begin{equation}
+    2mr^2\omega(r)=2mr_i^2\omega_i,
+\end{equation}
+which gives
+\begin{equation}
+    \omega(r)=\frac{r_i^2}{r^2}\omega_i.
+\end{equation}
+
+Substituting this expression into the work integral, we obtain
+\begin{align}
+    W
+    &=-2m\int_{r_i}^{r_f}
+    r\left(\frac{r_i^2}{r^2}\omega_i\right)^2\,dr\\
+    &=-2mr_i^4\omega_i^2
+    \int_{r_i}^{r_f}\frac{dr}{r^3}.
+\end{align}
+
+Evaluating the integral,
+\begin{align}
+    W
+    &=-2mr_i^4\omega_i^2
+    \left[-\frac{1}{2r^2}\right]_{r_i}^{r_f}\\
+    &=mr_i^4\omega_i^2
+    \left(\frac{1}{r_f^2}-\frac{1}{r_i^2}\right).
+\end{align}
+
+Finally, substituting $r_f=r_i/\sqrt{2}$, we find
+\begin{align}
+    W
+    &=mr_i^4\omega_i^2
+    \left(\frac{2}{r_i^2}-\frac{1}{r_i^2}\right)\\
+    &=mr_i^2\omega_i^2.
+\end{align}
+Therefore,
+\begin{equation}
+    \boxed{W=mr_i^2\omega_i^2}.
+\end{equation}
+
+This result agrees exactly with the change in kinetic energy calculated in part (a):
+\begin{equation}
+    \boxed{W=\Delta K=K_f-K_i}.
+\end{equation}
+
+Thus, although the angular momentum of the system is conserved, its kinetic energy increases due to the positive work performed by the pulling forces. This demonstrates that conservation of angular momentum does not necessarily imply conservation of kinetic energy.
+\end{document}
