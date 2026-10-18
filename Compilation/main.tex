@@ -1,0 +1,42 @@
+\documentclass[a4paper,12pt]{book}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{subfiles}
+\fancyhf{}
+\fancyhead[LE]{\scshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\thepage}
+\pagestyle{fancy}
+
+\title{CTU:\@ Mechanics\@ Lectures\@ Compilation}
+\author{Iskender Yalcinkaya, PhD}
+\date{\today}
+
+\begin{document}
+\maketitle
+\frontmatter
+Unrevised WIP document right now. More will be updated as our class materials gets updated.
+\tableofcontents
+\mainmatter
+\subfile{chapter1/math.tex}
+
+\subfile{chapter1/homework.tex}
+
+\subfile{chapter2/kinematics.tex}
+
+\subfile{chapter2/homework.tex}
+
+\subfile{chapter3/dynamics.tex}
+
+\subfile{chapter3/homework.tex}
+
+\subfile{chapter4/occ.tex}
+
+\backmatter
+
+\end{document}
