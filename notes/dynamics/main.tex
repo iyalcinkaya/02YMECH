@@ -505,7 +505,7 @@ E = K + U
   = \text{constant}.
 \end{equation}
 
-This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time\footnote{$F(x)=m\frac{dv}{dt} = m\frac{dv}{dx}\frac{dx}{dt}=mv\frac{dv}{dx} \implies F(x)dx = m v dv \implies \int F(x)dx = \int \frac{1}{2}m v^2 + C \implies  -U (x) = \frac{1}{2}m v^2 + C \implies \frac{1}{2}m v^2 + U(x)=C\coloneqq E$}. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
+This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
 \begin{equation}
 v(x)
 =
@@ -1620,6 +1620,49 @@ This gives us three equilibrium positions: $x = 0$, $x = a$, and $x = -a$.
 \end{equation}
 At $x = 0$, we have $U''(0) = -\frac{4U_0}{a^2} < 0$, so the equilibrium at $x = 0$ is unstable.
 At $x = a$ and $x = -a$, we have $U''(a) = U''(-a) = \frac{8U_0}{a^2} > 0$, so the equilibria at these points are stable.
+
+
+\subsection{Mechanical energy as the first integral of Newton's second axiom}
+Show that the mechanical energy $E = K + U$  can be derived by integrating Newton's second law for a particle moving in one dimension under the influence of a conservative force $F(x)=-dU/dx$.
+
+\textbf{Solution:} For a particle of mass $m$ moving in one dimension, Newton's second axiom:
+\begin{equation}
+    F(x) = m\frac{dv}{dt},
+\end{equation}
+where $v = dx/dt$ is the velocity of the particle. Using the chain rule, we can express the acceleration as
+\begin{equation}
+    \frac{dv}{dt} = \frac{dv}{dx}\frac{dx}{dt} = v\frac{dv}{dx}.
+\end{equation}
+Substituting this into Newton's second law, we have
+\begin{equation}
+    F(x) = m v \frac{dv}{dx}.
+\end{equation}
+Rearranging, we obtain
+\begin{equation}
+    F(x) dx = m v dv.
+\end{equation}
+Integrating both sides, we get
+\begin{equation}
+    \int F(x) dx = \int m v dv.
+\end{equation}
+The left-hand side can be expressed in terms of the potential energy $U(x)$, since
+\begin{equation}
+    F(x) = -\frac{dU}{dx} \implies \int F(x) dx = -U(x) + C,
+\end{equation}
+where $C$ is an integration constant. The right-hand side evaluates to
+\begin{equation}
+    \int m v dv = \frac{1}{2} m v^2 + C'.
+\end{equation}
+Combining these results, we have
+\begin{equation}
+    -U(x) + C = \frac{1}{2} m v^2 + C'.
+\end{equation}
+Rearranging, we find
+\begin{equation}
+    \frac{1}{2} m v^2 + U(x) = C - C' \coloneqq E,
+\end{equation}
+where $E$ is the total mechanical energy of the particle, which is conserved in the absence of non-conservative forces. Thus, we have derived the expression for the mechanical energy as the first integral of Newton's second law for a particle moving under a conservative force.
+
 
 
 \subsection{Using Total Energy as the Equation of Motion for a Particle Under a Constant Force}

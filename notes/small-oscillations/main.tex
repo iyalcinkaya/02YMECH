@@ -86,7 +86,8 @@ where we have introduced the positive parameter
 This is a second-order linear homogeneous differential equation describing \textit{simple harmonic motion}. The physical meaning of $\omega_0$ will become clear when we solve this equation and examine the resulting motion.
 
 
-\subsection{Solution to the Equation of Motion}
+
+\subsection{\label{sec:solution-simple-osc}Solution to the Equation of Motion}
 We know that the particle oscillates back and forth about the equilibrium position in a periodic way. We saw in Chapter 1 that the exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen as summarized in the following table:
 
 \begin{table}[h]
@@ -286,11 +287,41 @@ We have obtained four equivalent forms of the general solution to the equation o
 
 
 \section{Damped Oscillations}  
-If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. This leads to the equation of motion for damped oscillations:
+If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. The retarding force can be expressed as
 \begin{equation}
-    m\ddot{x}+b\dot{x}+kx=0,
+    F_\text{r}=-b\dot{x},
 \end{equation}
-where $b$ is the damping coefficient, which characterizes the strength of the retarding force. The damping coefficient has units of force per unit velocity (N·s/m) and depends on the properties of the medium through which the particle moves, such as viscosity or air resistance.
+where $b$ is a positive constant called the \textit{damping coefficient}. The negative sign indicates that the retarding force opposes the motion of the particle. The damping coefficient has units of force per unit velocity (N·s/m) and depends on the properties of the medium through which the particle moves, such as viscosity or air resistance. The total force acting on the particle is then the sum of the restoring force and the retarding force:
+\begin{equation}
+    F_\text{net}=F_\text{restoring}+F_\text{retarding}=-kx-b\dot{x}.
+\end{equation}
+
+This leads to the equation of motion for damped oscillations:
+\begin{equation}
+    m\ddot{x}+b\dot{x}+kx=0.
+\end{equation}
+Rearranging this equation gives
+\begin{equation}
+    \ddot{x}+2\gamma\dot{x}+\omega_0^2 x=0,
+    \label{eq:damped-osc-eq-of-motion}
+\end{equation}
+where we have introduced the positive parameters
+\begin{equation}
+    \gamma\coloneqq \frac{b}{2m},
+    \qquad
+    \omega_0\coloneqq \sqrt{\frac{k}{m}}.
+\end{equation}
+
+We would expect that the damping force would cause the amplitude of oscillations to decrease over time, eventually bringing the particle to rest at its equilibrium position. The parameter $\gamma$ characterizes the strength of the damping, with larger values corresponding to stronger damping effects. The parameter $\omega_0$ is the natural angular frequency of the undamped system, as we have seen in the previous section.
+
+We know thatthe exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen. For the damped oscillation equation, we can look for a solution of the form $x(t)=e^{\lambda t}$, as we did it in Section \ref{sec:solution-simple-osc}, which leads to the characteristic equation
+\begin{equation}
+    \lambda^2+2\gamma\lambda+\omega_0^2=0
+\end{equation}
+with the roots
+\begin{equation}
+    \lambda_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\end{equation}
 
 \section{Phase Space Analysis}
 
