@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75em}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 
 \title{Chapter 4: Small Oscillations}
@@ -80,7 +82,7 @@ Rearranging this equation gives
 \end{equation}
 where we have introduced the positive parameter
 \begin{equation}
-    \omega_0\equiv\sqrt{\frac{k}{m}}.
+    \omega_0\coloneqq\sqrt{\frac{k}{m}}.
 \end{equation}
 
 This is a second-order linear homogeneous differential equation describing \textit{simple harmonic motion}. The physical meaning of $\omega_0$ will become clear when we solve this equation and examine the resulting motion.
@@ -105,19 +107,18 @@ We know that the particle oscillates back and forth about the equilibrium positi
     \end{tabular}
 \end{table}
 
-We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, it is natural\footnote{I admit that this is a handwaving argument. For the complete description, we need to study Laplace transforms which is beyond the scope of this text.} to look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. This leads to the characteristic equation
+We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, it is natural\footnote{I admit that this is a handwaving argument. For the complete description, we need to study Laplace transforms which is beyond the scope of this text.} to look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. Differentiating this ansatz twice and pluging it into the equation of motion as given by Eq.~\ref{eq:simple-osc-eq-of-motion} gives
 \begin{equation}
-    \lambda^2+\omega_0^2=0,
+    \lambda^2 e^{\lambda t}+ \omega_0^2 e^{\lambda t} = 0 \implies \lambda^2 + \omega_0^2 = 0.
 \end{equation}
-which has the two purely imaginary roots
+This equation is called the characteristic equation having the two purely imaginary roots
 \begin{equation}
-    \lambda=\pm i\omega_0.
+    \lambda_{1,2}=\pm i\omega_0.
 \end{equation}
-
 This leads to two different solutions
 $x_{1,2}(t)=e^{\pm i\omega_0 t}$. Not surprisingly, the both solutions have a pure complex factor of the time leading to oscillatory behavior.
 
-A second-order linear homogeneous differential equation requires two initial conditions to determine a unique solution; therefore, the linear combination of two linearly independent solutions, containing two arbitrary constants, is sufficient to describe all possible solutions. Thus, the general solution can be written as
+A second-order linear homogeneous differential equation requires two initial conditions to determine a unique solution; therefore, the linear combination of two linearly independent solutions, containing two arbitrary constants, is sufficient to describe all possible solutions \footnote{The details about the construction of the general solution is a topic of linear algebra and again beyond the scope of this text.}. Thus, the general solution can be written as
 \begin{equation}
     x(t)=Ae^{i\omega_0 t}+Be^{-i\omega_0 t},
 \end{equation}
@@ -215,6 +216,7 @@ Substituting the polar form of $Z$ into the expression for the displacement give
 Finally, using Euler's formula, we obtain
 \begin{equation}
     \boxed{x(t)=R\cos(\omega_0 t+\phi).}
+    \label{eq:amplitude-phase-form}
 \end{equation}
 
 This is called the \emph{amplitude-phase form} of the general solution. The constant $R\geq 0$ is the \emph{amplitude}, representing the maximum displacement of the particle from its equilibrium position, while $\phi$ is the \emph{initial phase} (or \emph{phase constant}), which determines the position of the particle within its oscillation cycle at $t=0$.
@@ -276,16 +278,6 @@ Hence, the mechanical energy of a simple oscillator is constant and proportional
 \end{figure}
 
 
-\subsection{Physical Interpretation of the Solution}
-We have obtained four equivalent forms of the general solution to the equation of motion for simple harmonic oscillations:
-\begin{align}
-    x(t)&=Ae^{i\omega_0 t}+Be^{-i\omega_0 t},\\
-    x(t)&=C\cos(\omega_0 t)+D\sin(\omega_0 t),\\
-    x(t)&=R\cos(\omega_0 t+\phi),\\
-    x(t)&=\operatorname{Re}\left[Re^{i(\omega_0 t+\phi)}\right].
-\end{align}
-
-
 \section{Damped Oscillations}  
 If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. The retarding force can be expressed as
 \begin{equation}
@@ -314,22 +306,374 @@ where we have introduced the positive parameters
 
 We would expect that the damping force would cause the amplitude of oscillations to decrease over time, eventually bringing the particle to rest at its equilibrium position. The parameter $\gamma$ characterizes the strength of the damping, with larger values corresponding to stronger damping effects. The parameter $\omega_0$ is the natural angular frequency of the undamped system, as we have seen in the previous section.
 
-We know thatthe exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen. For the damped oscillation equation, we can look for a solution of the form $x(t)=e^{\lambda t}$, as we did it in Section \ref{sec:solution-simple-osc}, which leads to the characteristic equation
+We know that the exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen. For the damped oscillation equation, we can look for a solution of the form $x(t)=e^{\lambda t}$, as we did it in Section \ref{sec:solution-simple-osc} for simple oscillations. Plugging this into the differential equation in Eq.~\ref{eq:damped-osc-eq-of-motion} leads to the characteristic equation
 \begin{equation}
-    \lambda^2+2\gamma\lambda+\omega_0^2=0
+    \lambda^2+2\gamma\lambda+\omega_0^2=0,
 \end{equation}
-with the roots
+which has the two roots
 \begin{equation}
-    \lambda_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+    \lambda_{1,2}=\frac{-2\gamma\pm\sqrt{(2\gamma)^2-4\omega_0^2}}{2}=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
 \end{equation}
+The roots can be real or complex, depending on the relative magnitudes of $\gamma$ and $\omega_0$, leading to three different cases: underdamped ($\gamma<\omega_0$), critically damped ($\gamma=\omega_0$), and overdamped ($\gamma>\omega_0$). Each case corresponds to a different type of motion, which we will analyze in detail in the following subsections.
+
+\subsection{Underdamped Oscillations ($\gamma<\omega_0$)}
+In the underdamped case, the damping is weak enough that the system still oscillates, but with a gradually decreasing amplitude. The roots of the characteristic equation are complex conjugates:
+\begin{equation}
+    \lambda_{1,2}=-\gamma\pm i\omega_1,
+\end{equation}
+where we have defined the \textit{damped angular frequency}
+\begin{equation}
+    \omega_1\coloneqq\sqrt{\omega_0^2-\gamma^2}.
+\end{equation}
+The solution to the differential equation in this case is
+\begin{equation}
+    x(t)=e^{-\gamma t}(Ae^{i\omega_1 t}+Be^{-i\omega_1 t}),
+    \label{eq:underdamped-solution}
+\end{equation}
+where $A$ and $B$ are constants determined by the initial conditions. According to Eq.~\ref{eq:amplitude-phase-form}, we can also express the solution in amplitude-phase form as
+\begin{equation}
+    x(t)=(Re^{-\gamma t})\cos(\omega_1 t+\phi),
+    \label{eq:underdamped-amplitude-phase}
+\end{equation}
+where $R$ is the initial amplitude and $\phi$ is the initial phase. What we see inside the parantheses is the amplitude of the oscillation, which decays exponentially over time due to the damping effect. On the other hand, the cosine term describes the oscillatory motion with angular frequency $\omega_1$. Therefore, the motion is a combination of exponential decay and sinusoidal oscillation as shown in Fig.~\ref{fig:underdamped-oscillations}. 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/underdamped-oscillations.png}
+    \caption{Underdamped oscillations of a particle. The amplitude of oscillation decays exponentially over time due to the damping effect, while the particle continues to oscillate with a damped angular frequency $\omega_1$.}
+    \label{fig:underdamped-oscillations}
+\end{figure}
+
+
+Directly followed from the definition of $\omega_1$, the damped angular frequency $\omega_1$ is slightly less than the natural angular frequency $\omega_0$, indicating that the oscillations occur at a lower frequency than in the undamped case
+\[
+    \omega_1=\sqrt{\omega_0^2-\gamma^2}<\omega_0.
+\]
+
+Strictly speaking, the word ``frequency'' attributed to periodic motion. Therefore, calling $\omega_1$ a frequency is not strictly correct, since the motion is not strictly periodic due to the damping. However, it is common practice to refer to $\omega_1$ as the damped angular frequency, as it characterizes the rate of oscillation in the presence of damping for a given time interval.
+
+We know that the mechanical energy of a simple oscillator is constant and proportional to the square of its amplitude. In the case of underdamped oscillations, the amplitude decreases exponentially over time, resulting in a corresponding loss of mechanical energy. Since both the displacement and velocity acquire
+the same exponential factor $e^{-\gamma T}$ after
+one complete period $T$, the mechanical energy
+satisfies
+\begin{equation}
+    E(t+T)=E(t)e^{-2\gamma T}.
+\end{equation}
+Consequently, after $n$ complete periods,
+\begin{equation}
+    E(nT)=E_0e^{-2\gamma nT},
+\end{equation}
+where $E_0$ is the initial mechanical energy.
+The decrease in mechanical energy is due to
+dissipation, typically involving its conversion
+into heat or other forms of energy.
+
+
+\subsection{Critically Damped Oscillations ($\gamma=\omega_0$)}
+
+In the critically damped case, the damping is just strong enough to prevent oscillations. The roots of the characteristic equation are real and equal:
+\begin{equation}
+    \lambda_{1,2}=-\gamma.
+\end{equation}
+Therefore, we do not have two distinct solutions. We mentioned in Sec.~\ref{sec:solution-simple-osc} that the general solution for a second-order linear differential equation with constant coefficients is a linear combination of two independent solutions. In this case, we have only one independent solution, which is $e^{-\gamma t}$. To find a second independent solution, we return to the equation of motion, which, for $\gamma=\omega_0$,
+takes the form
+\begin{equation}
+    \ddot{x}+2\gamma\dot{x}+\gamma^2 x=0.
+\end{equation}
+Multiplying both sides by $e^{\gamma t}$, we obtain
+\begin{equation}
+    e^{\gamma t}\ddot{x}
+    +2\gamma e^{\gamma t}\dot{x}
+    +\gamma^2 e^{\gamma t}x=0.
+\end{equation}
+Note that the left-hand side is precisely the second derivative of the product $e^{\gamma t}x(t)$, as can be verified by applying the product rule twice:
+\begin{equation}
+    \frac{d^2}{dt^2}\left[e^{\gamma t}x(t)\right]
+    =e^{\gamma t}\ddot{x}
+    +2\gamma e^{\gamma t}\dot{x}
+    +\gamma^2 e^{\gamma t}x.
+\end{equation}
+Therefore, the equation of motion can be rewritten as
+\begin{equation}
+    \frac{d^2}{dt^2}\left[e^{\gamma t}x(t)\right]=0.
+\end{equation}
+Integrating twice with respect to time gives
+\begin{equation}
+    e^{\gamma t}x(t)=A+Bt,
+\end{equation}
+where $A$ and $B$ are arbitrary constants. Solving for $x(t)$, we obtain
+\begin{equation}
+    x(t)=(A+Bt)e^{-\gamma t}.
+\end{equation}
+We can now identify the two linearly independent solutions:
+\begin{equation}
+    x_1(t)=e^{-\gamma t},
+    \qquad
+    x_2(t)=te^{-\gamma t}.
+\end{equation}
+Indeed, neither solution can be expressed as a constant multiple of the other, so they are linearly independent. The constants $A$ and $B$ can be determined from the initial conditions $x(0)=x_0$ and $\dot{x}(0)=v_0$. Substituting these conditions gives
+\begin{equation}
+    A=x_0,
+    \qquad
+    B=v_0+\gamma x_0.
+\end{equation}
+Thus, the motion of a critically damped oscillator is
+described by
+\begin{equation}
+    x(t)=\left[x_0+(v_0+\gamma x_0)t\right]e^{-\gamma t}.
+\end{equation}
+Since both $e^{-\gamma t}$ and $te^{-\gamma t}$
+approach zero as $t\to\infty$, the particle eventually
+returns to its equilibrium position without undergoing
+oscillations. Depending on the initial conditions, the
+particle may cross the equilibrium position once, but
+it cannot oscillate back and forth around it. 
+\subsection{Overdamped Motion ($\gamma>\omega_0$)}
+
+In the overdamped case, the damping is sufficiently strong to prevent oscillations. The roots of the characteristic equation are real and distinct:
+\begin{equation}
+    \lambda_{1,2}=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\end{equation}
+Since $\gamma>\omega_0$, both roots are negative,
+with $\lambda_2<\lambda_1<0$.
+The general solution to the differential equation is
+\begin{equation}
+    x(t)=Ae^{\lambda_1 t}+Be^{\lambda_2 t},
+    \label{eq:overdamped-solution}
+\end{equation}
+where $A$ and $B$ are constants determined by the initial conditions.
+
+Since both exponential terms decay with time, the particle eventually approaches its equilibrium position. However, the two terms decay at different rates. Since $\lambda_1>\lambda_2$, the term $e^{\lambda_1 t}$ decays more slowly and dominates the motion at sufficiently long times, provided $A\neq 0$.
+
+Unlike the critically damped case, overdamping generally results in a slower approach to equilibrium. Although the particle may cross the equilibrium position once, depending on its initial conditions, it cannot undergo oscillatory
+motion about equilibrium.
+
+
+Since $\lambda_2<\lambda_1<0$, both exponential terms
+decay with time. At sufficiently long times, the term
+$e^{\lambda_1 t}$ dominates, provided $A\neq 0$.
+Notice that
+\begin{equation}
+    \lambda_1
+    =-\frac{\omega_0^2}
+    {\gamma+\sqrt{\gamma^2-\omega_0^2}}
+    >-\omega_0,
+\end{equation}
+where we have used $\gamma>\omega_0$.
+Thus, the dominant exponential decays more slowly than
+the exponential factor $e^{-\omega_0 t}$ appearing in
+the critically damped solution. Overdamping therefore
+generally produces a slower relaxation toward equilibrium.
+
+Furthermore, the particle can cross equilibrium only when $x(t)=0$, which, for nonzero $A$ and $B$, requires
+\begin{equation}
+    e^{(\lambda_1-\lambda_2)t}=-\frac{B}{A}.
+\end{equation}
+Since the left-hand side is a strictly increasing
+function of time, this equation can have at most one solution. Consequently, the particle may cross equilibrium once, depending on its initial conditions, but it cannot undergo oscillatory motion.
+
+
+
+
+
+\subsection{Quality Factor}
+
+The \emph{quality factor} $Q$ is a dimensionless quantity that characterizes how weakly an oscillating system is damped. We know that an undamped oscillator conserves its
+mechanical energy, whereas a damped oscillator gradually loses energy. A natural way to characterize the strength of damping is therefore to compare the mechanical energy stored in the oscillator with the energy dissipated during
+one complete oscillation.
+
+For weak damping ($\gamma\ll\omega_0$), the quality factor can be expressed approximately as
+\begin{equation}
+    Q\approx 2\pi\frac{E(t)}{\Delta E},
+\end{equation}
+where $E(t)$ is the mechanical energy at tan arbitrary time and $\Delta E$ is the energy dissipated over the subsequent oscillation period $T$. The factor $2\pi$ is included by convention. A high quality factor corresponds to weak damping, meaning that the oscillator loses only a small fraction of its mechanical energy during
+each cycle. To relate the quality factor to the damping parameter $\gamma$, we recall that the displacement and velocity of an underdamped oscillator is given by
+\begin{equation}
+    x(t)=R_0 e^{-\gamma t}\cos(\omega_1 t+\phi),
+    \qquad
+    \dot{x}(t)=-R_0 e^{-\gamma t}\left[\gamma\cos(\omega_1 t+\phi)+\omega_1\sin(\omega_1 t+\phi)\right].
+\end{equation}
+After one complete oscillation period
+$T=2\pi/\omega_1$, the trigonometric functions
+return to their original values. Consequently,
+both the displacement and velocity are multiplied
+by the same exponential factor:
+\begin{equation}
+    x(t+T)=e^{-\gamma T}x(t),
+    \qquad
+    v(t+T)=e^{-\gamma T}v(t).
+\end{equation}
+Since the total mechanical energy is given by $E(t)=\frac12 mv^2(t)+\frac12 kx^2(t)$, we obtain
+\begin{align}
+    E(t+T)
+    &=\frac12 m v^2(t+T)
+      +\frac12 k x^2(t+T)\nonumber\\
+    &=e^{-2\gamma T}
+      \left[\frac12 mv^2(t)
+      +\frac12 kx^2(t)\right].
+\end{align}
+Therefore,
+\begin{equation}
+    E(t+T)=E(t)e^{-2\gamma T}.
+\end{equation}
+The mechanical energy dissipated during
+one complete oscillation is
+\begin{align}
+    \Delta E
+    &=E(t)-E(t+T)\nonumber\\
+    &=E(t)\left(1-e^{-2\gamma T}\right).
+\end{align}
+
+For weak damping ($\gamma\ll\omega_0$), we have
+$2\gamma T\ll 1$. Using the first-order Taylor
+approximation
+\begin{equation}
+    e^{-2\gamma T}\approx 1-2\gamma T,
+\end{equation}
+we obtain
+\begin{equation}
+    \frac{\Delta E}{E(t)}\approx 2\gamma T.
+\end{equation}
+Substituting this result into the expression for
+the quality factor gives
+\begin{equation}
+    Q\approx\frac{2\pi}{2\gamma T}
+    =\frac{\pi}{\gamma T}
+    =\frac{\omega_1}{2\gamma}.
+\end{equation}
+Since $\omega_1=\sqrt{\omega_0^2-\gamma^2}
+\approx\omega_0$ for weak damping, we obtain
+\begin{equation}
+    Q\approx\frac{\omega_0}{2\gamma}.
+\end{equation}
+
+For the linearly damped harmonic oscillator, this last expression is conventionally adopted as the exact definition of the quality factor:
+\begin{equation}
+    Q\coloneqq\frac{\omega_0}{2\gamma}.
+    \label{eq:quality-factor}
+\end{equation}
+Its interpretation in terms of the energy dissipated per oscillation, however, is valid approximately in the weak-damping regime as described above. Rearranging the energy-based expression for the quality factor gives
+\begin{equation}
+    \frac{\Delta E}{E(t)}
+    \approx\frac{2\pi}{Q}.
+\end{equation}
+This relation provides a direct physical interpretation
+of $Q$: the larger the quality factor, the smaller
+the fraction of mechanical energy dissipated during
+each oscillation. For example, an oscillator with
+$Q=100$ loses approximately
+\begin{equation}
+    \frac{\Delta E}{E(t)}
+    \approx\frac{2\pi}{100}\approx 0.063,
+\end{equation}
+or about $6\%$ of its mechanical energy per cycle.The quality factor also allows us to express the damped angular frequency $\omega_1$ in terms of the natural angular frequency $\omega_0$. Using Eq. \eqref{eq:quality-factor}, we find
+\begin{equation}
+    \omega_1=\sqrt{\omega_0^2-\gamma^2}
+    =\omega_0\sqrt{1-\frac{1}{4Q^2}}.
+\end{equation}
+For example, when $Q=10$, we obtain $\omega_1\approx0.9987\omega_0$. Thus, for weak damping, the oscillation frequency remains very close to the natural frequency, even though the amplitude gradually decreases with time. Even for $Q=2$, we have $\omega_1\approx0.968\omega_0$, which is still a relatively small deviation from the natural frequency. To obtain another physical interpretation of $Q$, let us determine how many oscillation cycles occur before the amplitude decreases to $1/e$ of its initial value. The amplitude decays according to
+\begin{equation}
+    R(t)=R_0e^{-\gamma t},
+\end{equation}
+where $R_0$ is the initial amplitude. The time required for the amplitude to decrease to $R_0/e$ is therefore
+\begin{equation}
+    t_{1/e}=\frac{1}{\gamma}.
+\end{equation}
+The number of oscillation cycles during this time is
+\begin{equation}
+    N=\frac{t_{1/e}}{T}
+    =\frac{\omega_1}{2\pi\gamma}.
+\end{equation}
+For weak damping, $\omega_1\approx\omega_0$, and hence
+\begin{equation}
+    N\approx\frac{Q}{\pi} \implies Q\approx\pi N.
+\end{equation}
+This result shows that the quality factor is directly proportional to the number of oscillation cycles required for the amplitude to decrease to $1/e$ of its initial value. For example, an oscillator with $Q=100$ completes approximately $32$ cycles during this time. Thus, the quality factor provides two complementary physical interpretations of damping: it characterizes both the fraction of mechanical energy dissipated during each oscillation cycle and the number of cycles over which the oscillation amplitude significantly decreases.
+
+
+
+
 
 \section{Phase Space Analysis}
-
+The \emph{state} of a particle undergoing a small oscillation is completely specified as a function of time if two quantities are given at every instant of time: the position $x(t)$ and the velocity $\dot{x}(t)$. We may consider these quantities to be coordinates in two dimensional space, called \emph{phase space}. The position $x$ is plotted along the horizontal axis, while the velocity $\dot{x}$ is plotted along the vertical axis. The state of the particle at any instant of time is represented by a point in phase space, and the motion of the particle traces out a curve in this space as time progresses. This curve is called a \emph{phase trajectory}.
 \section{Driven Oscillations}
 
 
 \section{Worked Examples}
 \subsection{Work done by the spring force}
 \subsection{Simple pendulum}
+
+\subsection{Crossing the Equilibrium Position in Critically Damped Motion}
+
+Consider a critically damped oscillator with damping constant
+$\gamma=1\,\mathrm{s}^{-1}$. Initially, the particle is at
+$x_0=1\,\mathrm{m}$ and has velocity $v_0=-2\,\mathrm{m/s}$.
+
+\begin{enumerate}
+    \item[(a)] Determine the position of the particle as a function of time.
+    \item[(b)] Find the time at which the particle crosses the equilibrium position.
+    \item[(c)] Determine the maximum displacement of the particle on the opposite side of equilibrium and explain why the motion is not oscillatory.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) The general solution for critically damped motion is
+\begin{equation}
+    x(t)=\left[x_0+(v_0+\gamma x_0)t\right]e^{-\gamma t}.
+\end{equation}
+Substituting the given initial conditions, we obtain
+\begin{equation}
+    \boxed{x(t)=(1-t)e^{-t},}
+\end{equation}
+where $t$ is measured in seconds and $x$ in meters.
+
+(b) The particle crosses the equilibrium position when $x(t)=0$.
+Therefore,
+\begin{equation}
+    (1-t)e^{-t}=0.
+\end{equation}
+Since the exponential function never vanishes, we must have
+\begin{equation}
+    1-t=0.
+\end{equation}
+Thus, the particle crosses the equilibrium position at
+\begin{equation}
+    \boxed{t=1\,\mathrm{s}.}
+\end{equation}
+
+(c) To determine the maximum displacement on the opposite side
+of equilibrium, we find when the velocity vanishes.
+Differentiating the position with respect to time gives
+\begin{equation}
+    v(t)=\dot{x}(t)=(t-2)e^{-t}.
+\end{equation}
+Setting $v(t)=0$, we obtain
+\begin{equation}
+    (t-2)e^{-t}=0,
+\end{equation}
+which gives
+\begin{equation}
+    t=2\,\mathrm{s}.
+\end{equation}
+Substituting this into the position function, we find
+\begin{equation}
+    x(2)=(1-2)e^{-2}=-e^{-2}\,\mathrm{m}.
+\end{equation}
+Therefore, the particle reaches its maximum displacement
+on the opposite side of equilibrium at
+\begin{equation}
+    \boxed{x_{\min}=-e^{-2}\,\mathrm{m}\approx-0.135\,\mathrm{m}.}
+\end{equation}
+
+The particle initially moves toward equilibrium, crosses it
+at $t=1\,\mathrm{s}$, and continues into the negative region.
+At $t=2\,\mathrm{s}$, it momentarily stops and reverses direction,
+approaching equilibrium from below as $t\to\infty$.
+
+Although the particle crosses the equilibrium position once,
+the motion is not oscillatory because it never crosses
+equilibrium again. This illustrates that critical damping
+does not necessarily prevent a particle from crossing
+equilibrium; rather, it prevents repeated oscillations
+about equilibrium.
 
 \end{document}
