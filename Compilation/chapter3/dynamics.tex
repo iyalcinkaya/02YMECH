@@ -1,0 +1,1788 @@
+\documentclass[../main.tex]{subfiles}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+\begin{document}
+
+\chapter{Dynamics}
+
+In this chapter, we turn our attention to the causes of motion: What makes an object change its motion? For centuries, philosophers believed that an object must be continuously acted upon in order to remain in motion. This view was consistent with everyday experience. For example, when you slide a book across a table, it eventually comes to rest. It therefore seems natural to conclude that a ``push'' is required to keep the book moving.
+
+Galileo Galilei challenged this idea by introducing the principle of inertia. He argued that an object does not need a cause to maintain a constant velocity. In the absence of external influences, an object at rest remains at rest, while an object in motion continues to move in a straight line at constant speed. The apparent need for a cause to maintain motion in everyday situations arises because friction and other external influences are present.
+
+Isaac Newton later formulated this idea and developed a quantitative theory of dynamics. In particular, Newton's asserted that there must be a cause for objects to accelerate. He called this cause \emph{force}. Thus, the fundamental question of dynamics is not why an object has a velocity, but why its velocity changes.
+
+In this Chapter, we will restrict our attention to the motion of a single particle. We will call this particle a \emph{system} to make our terminology consistent with the rest of the text where we will be revisiting the dynamics for system of particles in Chapter \ref{ch:dynamics-of-system-of-particles}.
+
+\section{Newton's Axioms of Motion}
+
+\textbf{Axiom 1:} A body remains at rest or continues to move in a straight line with constant speed unless acted upon by a \emph{force}. 
+
+\textbf{Axiom 2:} A body acted upon a \emph{force} moves in such a manner that the time rate of change of its \emph{momentum} equals the net force acting on it.
+
+\textbf{Axiom 3:}  To every action, there is an equal and opposite reaction. 
+
+It looks like the 1st axiom is a special case of the 2nd axiom, where the net force is zero. However, the 1st axiom is important because Newton defines a special class of reference frames called \emph{inertial frames} where his axioms of motion hold true. Geometrically, a \emph{reference frame} is the coordinate system where we make measurements. For example, if you are in a car, the car itself is your reference frame; you measure all lengths relative to the car. When the car accelerates, you feel a force pushing you back into your seat. This force is not due to any physical interaction with the car; rather, it arises because you are in a non-inertial frame of reference. Newton's axioms are valid only in intertial frames, which are reference frames that are not accelerating. Inertial frames are special because they allow us to describe the motion of objects in a simple and consistent way.
+
+The second axiom mentions the quantity \emph{momentum}, which is defined as
+\begin{equation}
+    \mathbf{p} = m\mathbf{v},
+\end{equation}
+where $\mathbf{p}$ is the momentum of a body, $m$ is its mass, and $\mathbf{v}$ is its velocity. The units of momentum are kilogram meters per second (kg·m/s). The second axiom states that if the momentum changes in time it is due to a net force acting on the body. Mathematically, this can be expressed as
+\begin{equation}
+    \mathbf{F} = \frac{d\mathbf{p}}{dt},
+\end{equation}
+where $\mathbf{F}$ is the net force acting on the body. The units of force are newtons (N), which are defined as one kilogram meter per second squared (kg·m/s²). In general, both mass and velocity can change with time resulting in a change in momentum. If the mass of the body is constant, then this equation can be rewritten as
+\begin{equation}
+    \mathbf{F} = m\frac{d\mathbf{v}}{dt} = m\mathbf{a},
+\end{equation}
+where $\mathbf{a}$ is the acceleration of the body. This equation is often referred to as Newton's second law of motion. It states that the acceleration of a body is directly proportional to the net force acting on it and inversely proportional to its mass. In other words,
+\begin{equation}
+    \mathbf{a} = \frac{\mathbf{F}}{m}.
+\end{equation}
+
+The third axiom states the nature of forces that they never exist in isolation, but always come in pairs. If body A exerts a force on body B, then body B exerts an equal and opposite force on body A. This is known as the \emph{action-reaction} principle. For example, when you push against a wall, the wall pushes back against you with an equal and opposite force. If you push a book across a table, the book pushes back against your hand with an equal and opposite force.
+
+These three axioms explain a wide range of phenomena, from the motion of planets to the behavior of everyday objects. They form the foundation of classical mechanics and are still used today to analyze the motion of objects in a variety of contexts.
+
+\section{Galilean Invariance and Inertial Frames}
+
+All reference frames that move with a constant velocity relative to an inertial reference frame are also inertial reference frames. The laws of  mechanics have the same form in all inertial reference frames. This is known as \emph{Galilean invariance}. For example, if you are in a car moving at constant velocity along a straight road, you can perform mechanical experiments and obtain the same results as if you were at rest. The outcome of a mechanical experiment does not depend on the uniform motion of the reference frame.
+
+To see this, consider two inertial reference frames, $S$ and $S'$, where $S'$ moves with a constant velocity $\mathbf{v}_0$ relative to $S$. If their origins coincide at $t=0$, the position of a body in the two reference frames is related by
+
+\begin{equation}
+\mathbf{r}' = \mathbf{r} - \mathbf{v}_0 t,
+\end{equation}
+
+where $\mathbf{r}$ is the position of the body in $S$ and $\mathbf{r}'$ is its position in $S'$. Differentiating with respect to time gives the relation between the velocities:
+
+\begin{equation}
+\mathbf{v}' = \frac{d\mathbf{r}'}{dt}
+= \frac{d\mathbf{r}}{dt} - \mathbf{v}_0
+= \mathbf{v} - \mathbf{v}_0,
+\end{equation}
+
+where $\mathbf{v}$ and $\mathbf{v}'$ are the velocities of the body in $S$ and $S'$, respectively. Differentiating once more gives
+
+\begin{equation}
+\mathbf{a}' = \frac{d\mathbf{v}'}{dt}
+= \frac{d\mathbf{v}}{dt}
+= \mathbf{a}.
+\end{equation}
+
+Thus, the acceleration of a body is the same in all inertial reference frames. Consequently, Newton's second law,
+
+\begin{equation}
+\mathbf{F} = m\mathbf{a},
+\end{equation}
+
+has the same form in both frames:
+
+\begin{equation}
+\mathbf{F}' = m\mathbf{a}' = m\mathbf{a} = \mathbf{F}.
+\end{equation}
+
+This invariance of Newton's laws under Galilean transformations is the basis of Galilean invariance in classical mechanics.
+
+An important feature of Galilean transformations is that time is absolute. The time interval between two events is the same in all inertial reference frames:
+
+\begin{equation}
+t' = t.
+\end{equation}
+
+Therefore, if two events occur simultaneously in one inertial reference frame, they occur simultaneously in every other inertial reference frame. This absolute nature of time is a fundamental assumption of classical mechanics.
+
+\section{Validity of Newton's Axioms}
+
+The validity of Newton's axioms has been extensively tested and confirmed by experiments. Within the domain of classical mechanics, they provide an accurate description of the motion of macroscopic bodies when their speeds are much smaller than the speed of light and quantum effects can be neglected.
+
+The first and second axioms form the basis for relating forces to the motion of a particle, while the third axiom expresses a fundamental property of interactions between two bodies. In its usual form,
+
+$$
+\mathbf{F}_{12}=-\mathbf{F}_{21},
+$$
+
+the third axiom holds for central interactions, for which the force between two particles acts along the line joining them and depends only on their separation. Newtonian gravitational and electrostatic forces are important examples. By contrast, forces such as magnetic forces, friction, and fluid drag are non-central: their direction is not determined solely by the line joining the interacting bodies. Nevertheless, non-central forces do not necessarily violate the third axiom; in interactions involving fields, the momentum of the field must also be taken into account.
+
+The axioms therefore constitute the postulates of Newtonian mechanics: their validity is established not by derivation from more fundamental principles within classical mechanics, but by their agreement with experimental observations within their range of applicability.
+
+
+\section{Measurement of Mass}
+
+An \emph{isolated system} is a system on which the net external force is zero. Internal forces may still act between the bodies within the system. Therefore, for an isolated system consisting of $N$ bodies, the sum of the internal forces acting on all bodies is zero:
+
+\begin{equation}
+\sum_{i=1}^{N} \mathbf{F}_i = 0.
+\end{equation}
+
+For a system consisting of two bodies, Newton's third axiom gives
+
+\begin{equation}
+\mathbf{F}_1 = -\mathbf{F}_2.
+\end{equation}
+
+Using Newton's second axiom,
+
+\begin{equation}
+m_1\mathbf{a}_1 = -m_2\mathbf{a}_2,
+\end{equation}
+
+and therefore, taking magnitudes,
+
+\begin{equation}
+\frac{m_2}{m_1} = \frac{|\mathbf{a}_1|}{|\mathbf{a}_2|}.
+\end{equation}
+
+Thus, if one of the masses is chosen as a reference mass, the other mass can be determined by measuring the accelerations of the two bodies.
+
+There is another way to measure mass. Near the surface of the Earth, an object is acted upon by the gravitational force, called its \emph{weight}. Neglecting air resistance, all objects at the same location have the same gravitational acceleration, denoted by $\mathbf{g}$. Newton's second axiom therefore gives
+
+\begin{equation}
+\mathbf{W} = m\mathbf{g},
+\end{equation}
+
+where $\mathbf{W}$ is the weight of the object. Taking magnitudes,
+
+\begin{equation}
+|\mathbf{W}| = m|\mathbf{g}|.
+\end{equation}
+
+Thus, by comparing the weights of two bodies at the same location, their masses are related by
+
+\begin{equation}
+\frac{m_2}{m_1}
+= \frac{|\mathbf{W}_2|}{|\mathbf{W}_1|},
+\end{equation}
+
+or equivalently,
+
+\begin{equation}
+m_2 = \frac{|\mathbf{W}_2|}{|\mathbf{W}_1|}m_1.
+\end{equation}
+
+The equality of inertial and gravitational mass is an experimental fact in Newtonian mechanics and is known as the \emph{equivalence of inertial and gravitational mass}. This equivalence plays a central role in Einstein's theory of gravity, where it is elevated to the \emph{equivalence principle}.
+
+
+\section{Equations of Motion}
+
+The 2nd axiom provides the \emph{equation of motion} of a body once the
+force acting on it is specified. It is a differential equation that
+determines how the position of the body changes with time under the
+influence of a force. In general,
+
+\begin{equation}
+\dot{\mathbf{p}} = \mathbf{F}(\mathbf{r},\mathbf{v},t),
+\end{equation}
+
+where $\mathbf{r}$ is the position vector, $\mathbf{v}$ is the velocity
+vector, and $t$ is time. The force may depend on position, velocity,
+and time.
+
+For a body of constant mass, $\mathbf{p}=m\mathbf{v}$, so the equation
+of motion takes the familiar form
+
+\begin{equation}
+m\ddot{\mathbf{r}}
+= \mathbf{F}(\mathbf{r},\dot{\mathbf{r}},t).
+\end{equation}
+
+This is a second-order differential equation for the position vector
+$\mathbf{r}(t)$. Together with the initial position and velocity, its
+solution determines the motion of the body.
+
+\subsection{Angular-Momentum Form of the 2nd Axiom}
+
+The 2nd axiom also has a useful form associated with rotational motion.
+In translational motion, the momentum $\mathbf{p}$ characterizes the
+motion of a body, while the force $\mathbf{F}$ determines how its
+momentum changes. There is a corresponding description of motion about
+a reference point: the angular momentum $\mathbf{L}$ characterizes the
+motion of a body about that point, while the torque $\boldsymbol{\tau}$
+determines how its angular momentum changes. Thus, angular momentum and
+torque play roles in rotational motion analogous to those of momentum
+and force in translational motion.
+
+The angular momentum of a particle about a reference point $O$ is
+defined as
+
+\begin{equation}
+\mathbf{L} = \mathbf{r}\times\mathbf{p},
+\end{equation}
+
+where $\mathbf{r}$ is the position vector of the particle relative
+to $O$. The units of angular momentum are kilogram meter squared per second (kg·m²/s). The torque of a force about the same point is defined as
+
+\begin{equation}
+\boldsymbol{\tau}
+= \mathbf{r}\times\mathbf{F}.
+\end{equation}
+
+These definitions reflect the fact that a force can affect not only
+the translational motion of a body but also its tendency to rotate
+about a reference point. The torque depends on both the magnitude and
+direction of the force and on its position relative to the reference
+point.
+
+Taking the time derivative of the angular momentum and using the
+2nd axiom gives
+
+\begin{equation}
+\frac{d\mathbf{L}}{dt}
+= \frac{d\mathbf{r}}{dt}\times\mathbf{p}
++ \mathbf{r}\times\frac{d\mathbf{p}}{dt}.
+\end{equation}
+
+For a particle of constant mass, $\mathbf{p}=m\mathbf{v}$, so
+$\mathbf{v}$ and $\mathbf{p}$ are parallel and therefore
+
+\begin{equation}
+\mathbf{v}\times\mathbf{p}=0.
+\end{equation}
+
+Hence,
+
+\begin{equation}
+\boxed{
+\frac{d\mathbf{L}}{dt}
+= \boldsymbol{\tau}
+}.
+\end{equation}
+
+Thus, the 2nd axiom can be written in two analogous forms,
+
+\begin{equation}
+\boxed{\frac{d\mathbf{p}}{dt}=\mathbf{F}},
+\qquad
+\boxed{\frac{d\mathbf{L}}{dt}=\boldsymbol{\tau}}.
+\end{equation}
+
+The first describes the change of linear momentum caused by a force,
+while the second describes the change of angular momentum caused by a
+torque. These relations will be used in the following section to
+formulate the conservation laws.
+
+
+\section{Conservation Theorems}
+In this section, we will discuss the direct consequences of Newton's axioms of motion, which are the conservation theorems. These theorems state that certain physical quantities remain constant in time for an isolated system; this is what we mean by \emph{conservation}. The conservation theorems are important because they provide a powerful tool for analyzing the motion of systems without having to solve the equations of motion directly. The conservation theorems are derived from Newton's axioms and are valid for all isolated systems, regardless of the specific forces acting within the system.
+
+\subsection{Conservation of Linear Momentum}
+The linear momentum of a system is conserved if the net external force acting on the system is zero:
+\begin{equation}
+    \dot{\mathbf{p}} = \mathbf{F}_{\text{ext}} = 0 \implies \mathbf{p} = \text{constant},
+\end{equation}
+The system here can be a single particle or a collection of particles. The conservation of linear momentum say that it does not matter how asingle particle moves in space, or how the particles move in space and interact with each other, as long as there is no net external force acting on the system the total linear momentum of the system remains constant. 
+
+A corrolary of the conservation of linear momentum is that if the it is conserved in a system, so all components of linear momentum vector are conserved. This means that if the system is isolated, the total linear momentum in the $x$-direction, $y$-direction, and $z$-direction are all conserved separately. To see this, let $s$ be any arbitrary direction in space, and let $\hat{\mathbf{s}}$ be the unit vector in that direction. The component of the linear momentum along this direction is given by
+\begin{equation}
+    p_s = \mathbf{p}\cdot\hat{\mathbf{s}}.
+\end{equation}
+Taking the time derivative gives
+\begin{equation}
+    \dot{p}_s = \dot{\mathbf{p}}\cdot\hat{\mathbf{s}} = \mathbf{F}_{\text{ext}}\cdot\hat{\mathbf{s}} = F_{\text{ext},s},
+\end{equation}
+where $F_{\text{ext},s}$ is the component of the net external force along the direction $\hat{\mathbf{s}}$. If the net external force is zero, then $F_{\text{ext},s} = 0$, and therefore $\dot{p}_s = 0$. This means that the component of the linear momentum along any arbitrary direction is conserved. Since the $x$-direction, $y$-direction, and $z$-direction are just three specific directions in space, it follows that the components of linear momentum along these directions are also conserved separately. 
+
+
+\subsection{Conservation of Angular Momentum}
+The angular momentum of a system is conserved if the net external torque acting on the system is zero.
+\begin{equation}
+    \frac{d\mathbf{L}}{dt} = \boldsymbol{\tau}_{\text{ext}} = 0 \implies \mathbf{L} = \text{constant},
+\end{equation}
+
+\subsection{\label{sec:work-kinetic-energy}Work and Kinetic Energy}
+
+When a particle is acted upon by a force, $\mathbf{F}$, the \emph{work} done by the force as the particle moves from position $\mathbf{r}_1$ to position $\mathbf{r}_2$ is defined as
+\begin{equation}
+    W_{12} = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r}.
+\end{equation}
+where $d\mathbf{r}$ is an infinitesimal displacement vector along the path of the particle from $\mathbf{r}_1$ to $\mathbf{r}_2$ and it can be expressed as
+\begin{equation}
+    d\mathbf{r} = dx\mathbf{i} + dy\mathbf{j} + dz\mathbf{k} = \mathbf{v} dt,
+\end{equation}
+
+If $\mathbf{F}$ is the only force acting on the particle, then we can write the integrant of the work integral as
+\begin{equation}
+    \mathbf{F}\cdot d\mathbf{r} = \frac{d\mathbf{p}}{dt}\cdot d\mathbf{r} = \frac{d\mathbf{p}}{dt}\cdot \mathbf{v} dt = \frac{d\mathbf{p}}{dt}\cdot \frac{\mathbf{p}}{m} dt = \frac{1}{m}\mathbf{p}\cdot d\mathbf{p} = \frac{1}{2m} d(\mathbf{p}\cdot\mathbf{p}) = d\left(\frac{1}{2} m v^2\right) = dK,
+\end{equation}
+where $K = \frac{1}{2} m v^2$ is defined as the \emph{kinetic energy} of the particle. Therefore, the work done by the force as the particle moves from $\mathbf{r}_1$ to $\mathbf{r}_2$ can also be expressed as the change in kinetic energy of the particle:
+\begin{equation}
+    W_{12} = \int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F}\cdot d\mathbf{r} = \int_{K_1}^{K_2} dK = K_2 - K_1 = \Delta K.
+    \label{eq:work-kinetic-energy}
+\end{equation}
+
+From the differential point of view, if a force $\mathbf{F}$ acts on a particle along an infinitesimal path $d\mathbf{r}$, it changes its kinetic energy by an infinitesimal amount $dK$:
+\begin{equation}
+    dK = \mathbf{F}\cdot d\mathbf{r}.
+    \label{eq:differential-work-kinetic-energy}
+\end{equation}
+Both equations, Eq.~\eqref{eq:work-kinetic-energy} and Eq.~\eqref{eq:differential-work-kinetic-energy}, are known as the \emph{work-energy theorem}. They state that the work done by a force on a particle is equal to the change in its kinetic energy. This theorem provides a powerful tool for analyzing the motion of particles, especially when the forces involved are complex or difficult to describe in terms of acceleration.
+
+It is worth empasizing that a positive work done on a particle by a force increases its kinetic energy, while a negative work done by a force decreases its kinetic energy. If the work done by the force is zero, then the kinetic energy of the particle remains constant. This can happen if the force is perpendicular to the displacement of the particle, as in uniform circular motion, or if there is no net force acting on the particle.
+
+The unit of work and kinetic energy is the joule (J), which is defined as one newton-meter (N·m). In terms of base SI units, one joule is equal to one kilogram meter squared per second squared (kg·m²/s²).
+
+\subsection{Conservative Forces and Potential Energy}
+
+A \emph{conservative force} is a force for which the work done in moving a particle between two points is independent of the path taken. Thus, the work depends only on the initial and final positions of the particle. Equivalently, the work done by a conservative force around any closed path is zero:
+
+\begin{equation}
+\oint \mathbf{F}\cdot d\mathbf{r} = 0.
+\end{equation}
+
+This property allows us to define a scalar function of position called the \emph{potential energy}, $U(\mathbf{r})$, such that the work done by the conservative force in moving the particle from point $A$ to point $B$ is equal to the negative change in potential energy:
+
+\begin{equation}
+W_{AB}
+= \int_\mathbf{r_A}^{\mathbf{r_B}} \mathbf{F}\cdot d\mathbf{r}
+= -\Delta U
+= U(\mathbf{r}_A)-U(\mathbf{r}_B).
+\end{equation}
+
+For simplicity, consider motion in the $x$ direction only. Then,
+
+\begin{equation}
+W_{AB}
+= \int_{x_A}^{x_B} F_xdx
+= U(x_A)-U(x_B).
+\end{equation}
+
+Since this relation must hold for arbitrary $x_A$ and $x_B$, differentiating with respect to the upper limit gives
+
+\begin{equation}
+F_x = -\frac{dU}{dx}.
+\end{equation}
+
+In three dimensions, this generalizes to
+
+\begin{equation}
+\mathbf{F} = -\nabla U,
+\end{equation}
+
+where $\nabla U$ is the gradient of the potential energy:
+
+\begin{equation}
+\nabla U
+= \frac{\partial U}{\partial x}\mathbf{i}
++ \frac{\partial U}{\partial y}\mathbf{j}
++ \frac{\partial U}{\partial z}\mathbf{k}.
+\end{equation}
+
+Thus, the force is determined by how the potential energy varies in space, while the work between two points depends only on the values of $U$ at those points. The zero of potential energy is arbitrary: adding a constant to $U$ does not affect the force or the work:
+\begin{equation}
+\mathbf{F} = -\nabla (U+C) = -\nabla U
+\end{equation}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/conservative.png}
+\caption{For a conservative force, the work done in moving a particle between two points is independent of the path taken; it depends only on the initial and final positions. Therefore, the work done around any closed path is zero.}
+\label{fig}
+\end{figure}
+
+
+
+\subsection{Conservation of Mechanical Energy}
+The \emph{mechanical energy} of a particle is defined as the sum of its kinetic energy and potential energy:
+\begin{equation}
+    E = K + U,
+\end{equation}
+where $K$ is the kinetic energy and $U$ is the potential energy. A very important consequence of Newton's axioms is that the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces. In other words, if a particle is acted upon only by conservative forces, then its total mechanical energy remains constant. We will show this mathematically as follows:
+\begin{equation}
+    \frac{dE}{dt} = \frac{dK}{dt} + \frac{dU}{dt} 
+\end{equation}
+The first term in the summation can be written as
+\begin{equation}
+\frac{dK}{dt} = \frac{d}{dt}\left(\frac{1}{2}m\mathbf{v}\cdot\mathbf{v}\right) = m \mathbf{v}\cdot\dot{\mathbf{v}} = m \mathbf{v}\cdot\mathbf{a} = \mathbf{F}\cdot\mathbf{v} = \mathbf{F}\cdot\dot{\mathbf{r}}
+\end{equation}
+For the second term, we will consider the most general case where the potential energy is a function of position and time, $U(\mathbf{r},t)$. Then, using the chain rule, we can write
+\begin{equation}
+\frac{dU}{dt} = \sum_{i=1}^{3} \frac{\partial U}{\partial x_i}\frac{dx_i}{dt} + \frac{\partial U}{\partial t} = \sum_{i=1}^{3} \frac{\partial U}{\partial x_i}\dot{x_i} + \frac{\partial U}{\partial t} = \nabla U\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t}.
+\end{equation}
+Therefore, we can write the time derivative of the mechanical energy as
+\begin{equation}
+\frac{dE}{dt} = \mathbf{F}\cdot\dot{\mathbf{r}} + \nabla U\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t} = (\mathbf{F} + \nabla U)\cdot\dot{\mathbf{r}} + \frac{\partial U}{\partial t}.
+\end{equation}
+If the force is conservative, then $\mathbf{F} = -\nabla U$, so the first term in the summation vanishes, and we are left with
+\begin{equation}
+\frac{dE}{dt} = \frac{\partial U}{\partial t}.
+\end{equation}
+If the potential energy is independent of time, then $\frac{\partial U}{\partial t} = 0$, and we have
+\begin{equation}
+\frac{dE}{dt} = 0 \implies E = \text{constant}.
+\end{equation}
+Thus, the mechanical energy of a particle is conserved if the only forces acting on it are conservative forces and the potential energy is independent of time. This is known as the \emph{conservation of mechanical energy}. It is a powerful tool for analyzing the motion of particles, especially in situations where the forces involved are complex or difficult to describe in terms of acceleration.
+
+\section{\label{sec:more-potential-energy}More on the Potential Energy}
+Knowing the potential energy function $U(\mathbf{r})$ together with the total mechanical energy $E$ of a particle provides us with a powerful tool for analyzing its motion without solving the equations of motion directly. 
+
+Let us consider the following example. Suppose a particle of mass $m$ is moving in one dimension under the influence of a conservative force with potential energy $U(x) = k(x^3-3x)$ as given in Fig.~\ref{fig:potential-energy-example}, where $k$ is a positive constant. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/potential-example.png}
+\caption{Potential energy function $U(x) = k(x^3-3x)$ for a particle in one dimension.}
+\label{fig:potential-energy-example}
+\end{figure}
+
+First, note that the kinetic energy of a particle, $K=\frac{1}{2}mv^2$, is always non-negative, since the mass $m$ is positive and the square of the speed $v^2$ is non-negative. Therefore, for a particle with conserved total mechanical energy $E$, we must have
+\begin{equation}
+K = E - U(x) \geq 0 \implies E \geq U(x).
+\end{equation}
+
+
+Thus, the motion of a particle with conserved total
+mechanical energy $E$ is restricted to regions where $E \geq U(x)$. Regions where $U(x)>E$ are called \emph{classically forbidden regions}, since the particle would need negative kinetic energy to reach them, which is impossible in classical mechanics. Therefore, $E_1$ is the minimum energy for a particle to have in existence of the potential $U(x)$ as seen in Fig.~\ref{fig:potential-energy-example}. 
+
+In general, at positions where $E=U(x)$, the kinetic energy vanishes, and the particle is momentarily at rest. If the force at such a position is nonzero, the particle reverses its direction of motion, and the position is called a \emph{turning point}. On the other hand, if the force vanishes, the particle is at an \emph{equilibrium position} and can remain at rest.
+
+If the total energy of the particle is $E_1$, then the particle is at rest at the equilibrium position $x=1$. For $E_2$, the particle can move between the two turning points $x_1$ and $x_2$, where $E_2 = U(x_1) = U(x_2)$. Even if we do not know the exact function $x(t)$, wecan still say that the particle oscillates between $x_1$ and $x_2$ around the equilibrium position $x=1$. For energy $E_3$, the particle's motion if bounded by point $x=2$ on the right. As particle moves to the left to reach point $x=-1$, it's velocity decreases with an ever decreasing rate so that it takes an infinite amount of time to reach $x=-1$ under ideal conditions. Practically, we would see it still at point $x=-1$ after a long time, but it would never reach that point. For energy $E_4$, even though the motion of the particle is bounded from the right, it can move freely to the left forever without any restrictions.
+
+\section{Stable and Unstable Equilibrium}
+
+A point of equilibrium is said to be \emph{stable} if a small displacement from the equilibrium position results in a restoring force that tends to bring the particle back to the equilibrium position. Conversely, an equilibrium point is \emph{unstable} if a small displacement from the equilibrium position results in a force that tends to move the particle further away from the equilibrium position.
+
+Mathematically, a point of equilibrium $x_0$ is stable if the potential energy function $U(x)$ has a local minimum at that point, and it is unstable if $U(x)$ has a local maximum at that point. In other words, if $U''(x_0) > 0$, the equilibrium is stable, and if $U''(x_0) < 0$, the equilibrium is unstable.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/stable-unstable-equilibrium.png}
+\caption{Stable and unstable equilibrium points. We may think of a ball placed in a concave-up potential well as being in stable equilibrium, while a ball placed on top of a concave-down potential hill is in unstable equilibrium. However, this analogy is not perfect, since the ball can roll away from the equilibrium point in any direction, while a particle in one-dimensional motion can only move along a line as given in Fig.~\ref{fig:potential-energy-example}.}
+\label{fig:equilibrium}
+\end{figure}
+
+\section{Impulse and Power}
+The \emph{impulse} of a force $\mathbf{F}$ acting on a particle over a time interval from $t_1$ to $t_2$ is defined as
+\begin{equation}
+\mathbf{J} = \int_{t_1}^{t_2} \mathbf{F} dt.
+\end{equation}
+The impulse is a vector quantity that has the same direction as the force. It represents the change in momentum of the particle due to the force acting over the time interval. From Newton's second axiom, we have
+\begin{equation}
+\mathbf{J} = \int_{t_1}^{t_2} \frac{d\mathbf{p}}{dt} dt = \int_{t_1}^{t_2} d\mathbf{p} = \mathbf{p}_2 - \mathbf{p}_1 = \Delta \mathbf{p},
+\end{equation}
+where $\mathbf{p}_1$ and $\mathbf{p}_2$ are the momenta of the particle at times $t_1$ and $t_2$, respectively. Thus, the impulse of a force is equal to the change in momentum of the particle. This relationship is known as the \emph{impulse-momentum theorem}. It provides a useful way to analyze the effects of forces that act over short time intervals, such as collisions or explosions.
+
+
+
+If we know the change in momentum of a particle and the time interval over which the change occurs, we can calculate the average force acting on the particle during that time interval. As it is geometrically shown in Fig.~\ref{fig:average-force}, the average force is can be written as
+\begin{equation}
+\mathbf{F}_{\text{avg}} = \frac{\Delta \mathbf{p}}{\Delta t} = \frac{\mathbf{p}_2 - \mathbf{p}_1}{t_2 - t_1}.
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/impulse-average-force.png}
+\caption{The average force acting on a particle over a time interval $\Delta t$ is equal to the change in momentum (area under the force-time curve) of the particle divided by the time interval.}
+\label{fig:average-force}
+\end{figure}
+
+The \emph{power} is defined as the rate at which work is done by a force on a particle. According to the situation considered, it can also be interpreted as the rate at which energy is transferred/transformed to or from a particle/system. It is measured in watts (W), where one watt is equal to one joule per second (J/s).
+
+If a force $\mathbf{F}$ acts on a particle that moves with velocity $\mathbf{v}$, the instantaneous power delivered to the particle is given by
+\begin{equation}
+P = \frac{dW}{dt} = \mathbf{F} \cdot \frac{d\mathbf{r}}{dt} = \mathbf{F}\cdot\mathbf{v}.
+\end{equation}
+ The power can be positive or negative, depending on the direction of the force relative to the velocity of the particle. If the force is in the same direction as the velocity, the power is positive, indicating that energy is being transferred to the particle. If the force is in the opposite direction, the power is negative, indicating that energy is being taken away from the particle.
+
+
+\section{Mechanical Energy as a First Integral of Motion}
+
+The conservation of mechanical energy can be used to obtain a first-order equation governing the motion of a particle. If the mechanical energy of a particle is conserved, then
+\begin{equation}
+E = K + U
+  = \frac{1}{2} m v^2 + U(x)
+  = \text{constant}.
+\end{equation}
+
+This equation is called a \emph{first integral of motion} because it is obtained by integrating the second-order equation of motion once with respect to time. In this sense, energy conservation provides a first-order form of the equation of motion. This equation can be rearranged to give the speed of the particle as a function of position:
+\begin{equation}
+v(x)
+=
+\sqrt{\frac{2}{m}\left[E-U(x)\right]}.
+\end{equation}
+
+For one-dimensional motion, we have
+\begin{equation}
+v = \frac{dx}{dt},
+\end{equation}
+so that
+\begin{equation}
+dt
+=
+\frac{dx}{\pm\sqrt{\frac{2}{m}\left[E-U(x)\right]}}.
+\end{equation}
+
+Integrating from $(x_0,t_0)$ to $(x,t)$ gives
+\begin{equation}
+t-t_0
+=
+\int_{x_0}^{x}
+\frac{dx}
+{\pm\sqrt{\frac{2}{m}\left[E-U(x)\right]}}.
+\end{equation}
+
+Thus, if the potential energy $U(x)$ is known, this equation can, in principle, be used to determine the motion $x(t)$. The integral may not have an analytical solution for an arbitrary potential, but it can be evaluated numerically.
+
+For motion in more than one dimension, conservation of energy determines the speed of the particle but not the direction of its velocity. Therefore, the energy equation alone is not sufficient to determine the full trajectory $\mathbf{r}(t)$.
+
+
+\section{Worked Examples}
+
+\subsection{\label{ex:constant-force} Motion of a Particle under a Constant Force}
+Assume that a particle of mass $m$ is acted upon by a constant force in $\mathbf{F}$. Write down the equation of motion and solve it to find the position and velocity of the particle as functions of time.
+
+\textbf{Solution:} If the force is constant, then motion takes place in a straight line. The equation of motion is given by Newton's second law can be written in a scalar form as
+\begin{equation}
+m\ddot{x} = F,
+\end{equation}
+where $x$ is the position of the particle along the direction of the force. It can be solved for velocity as
+\begin{equation}
+    d\dot{x} = \frac{F}{m}dt \implies \int d\dot{x} = \int \frac{F}{m}dt + C \implies \dot{x} = \frac{F}{m}t + C,
+\end{equation}
+where $C$ is the constant of integration. If the initial velocity of the particle at $t=0$ is $v_0$, then $C = \dot{x}_0$, and we have
+\begin{equation}
+    \dot{x}(t) \equiv v_x(t) = \frac{F}{m}t + v_0.
+\end{equation}
+Integrating once more gives the position of the particle as a function of time:
+\begin{equation}
+    dx = \left(\frac{F}{m}t + v_0\right)dt \implies \int dx = \int \left(\frac{F}{m}t + v_0\right)dt \implies x(t) = \frac{F}{2m}t^2 + v_0 t + x_0,
+\end{equation}
+where $x_0$ is the initial position of the particle at $t=0$. Thus, the position, velocity and acceleration of the particle as functions of time are given by 
+\begin{equation}
+    \boxed{
+x(t) = \frac{F}{2m}t^2 + v_0 t + x_0, \quad v_x(t) = \frac{F}{m}t + v_0, \quad a_x(t) = \frac{F}{m}= \text{constant}
+    }
+    \label{eq:constant-force-motion}
+\end{equation}
+which are plotted in Fig.~\ref{fig:position-velocity-acceleration}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/position-velocity-acceleration.png}
+\caption{Motion of a particle under a constant force. The position, velocity, and acceleration of the particle as functions of time.}
+\label{fig:position-velocity-acceleration}
+\end{figure}
+
+
+\subsection{Free fall Motion}
+
+A particle is released from a height $h$ and falls under the influence of gravity freely from rest, then $F = mg$, $v_0 = 0$, and $x_0 = h$.
+
+\begin{enumerate}
+\item[(a)] Write down the equation of motion and its solution to find the position and velocity of the particle as functions of time.
+\item[(b)] Find the speed of the particle when it crushes into the ground.
+\end{enumerate}
+
+
+\textbf{Solution:} 
+
+(a) The equation of motion is given by Newton's second law can be written in a scalar form as since it takes place in a straight line along the vertical direction, we have
+\begin{equation}
+m\ddot{y} = -mg \implies \ddot{y} = -g,
+\end{equation}
+where $y$ is the position of the particle along the vertical direction. This problem is the same as Example \ref{ex:constant-force}, with $F = -mg$, $v_0 = 0$, and $x_0 = h$. Therefore, the position and velocity of the particle as functions of time are given by
+\begin{equation}
+    \boxed{
+y(t) = -\frac{1}{2}gt^2 + h, \quad v_y(t) = -gt, \quad a_y(t) = -g = \text{constant}
+    }
+\end{equation}
+
+(b) The particle crushes into the ground when $y(t) = 0$, which gives
+\begin{equation}
+    0 = -\frac{1}{2}gt^2 + h \implies t = \sqrt{\frac{2h}{g}}.
+\end{equation}
+The speed of the particle when it crushes into the ground is given by
+\begin{equation}
+    v_y\left(\sqrt{\frac{2h}{g}}\right) = -g\sqrt{\frac{2h}{g}} = -\sqrt{2gh} \implies \boxed{v = \sqrt{2gh}}
+\end{equation}
+
+
+\subsection{Motion on an Inclined Plane and Friction Forces}
+A block is placed on a frictionless inclined plane that makes an angle $\theta$ with the horizontal. The block is released from rest at the top of the incline as shown in Fig.~\ref{fig:inclined-plane}. Write down the equation of motion, and solve it to find the position and velocity of the block for the following cases: 
+\begin{enumerate}
+    \item[(a)] The block slides down the frictionless incline.
+    \item[(b)] The block slides down the incline on a rough surface with a coefficient of kinetic friction $\mu_k$.
+    \item[(c)] Assume that we can increase the angle of the incline $\theta$ until the block starts sliding down the incline. Find the critical angle $\theta_c$ at which the block starts sliding down the incline given the coefficient of static friction $\mu_s$. 
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/inclined-plane.png}
+\caption{A block on a frictionless inclined plane.}
+\label{fig:inclined-plane}
+\end{figure}
+
+\textbf{Solution:}
+
+(a) For a frictionless incline, the only force acting on the block along the incline is the component of its weight parallel to the incline, which is $mg\sin\theta$ as seen in Fig.~\ref{fig:inclined-plane}. This force causes the block to accelerate down the incline (in $+x$ direction) and does not change in time. Therefore, this problem can be considered as a motion of a particle under a constant force as considered in Example~\ref{ex:constant-force}. The acceleration of the block along the incline is given by
+\begin{equation}
+    a_x = \frac{F}{m} = \frac{mg\sin\theta}{m} = g\sin\theta.
+\end{equation}
+Therefore, the position and velocity of the block as functions of time are given by
+\begin{equation}
+    \boxed{
+x(t) = \frac{1}{2}g\sin\theta t^2, \quad v_x(t) = g\sin\theta t, \quad a_x(t) = g\sin\theta = \text{constant}
+    }
+\end{equation}
+
+Note that the acceleration of the block along the incline is less than $g$ because only a component of the weight acts along the incline. The acceleration is maximum when $\theta = 90^\circ$, in which case $a_x = g$. The form of the equations of motion is the same as that for free fall, but the acceleration is reduced by a factor of $\sin\theta$. Therefore, the motion on an inclined plane can be considered as a ``slowed-down version of free fall''.
+
+(b) When the surfaces are rough, the block experiences a \emph{kinetic friction force} because the block is sliding relative to the surface. Kinetic friction acts opposite to the direction of sliding. Thus, since the block moves down the incline, the kinetic friction force acts up the incline.
+
+The magnitude of the kinetic friction force is described by the empirical relation
+
+\begin{equation}
+f_k=\mu_k N,
+\end{equation}
+
+where $N$ is the normal force exerted by the surface on the block. The dimensionless quantity $\mu_k$ is called the \emph{coefficient of kinetic friction}. It characterizes the strength of the frictional interaction between the two surfaces: for a given normal force, a larger $\mu_k$ corresponds to a larger kinetic friction force.
+
+The relation $f_k=\mu_kN$ means that, within the kinetic-friction model, the magnitude of the friction force is proportional to the normal force. The normal force measures how strongly the two surfaces press against each other. It is important to note that $\mu_k$ is a property of the pair of contacting surfaces and is not itself a force. The normal force is equal to the component of the weight perpendicular to the incline, which is $mg\cos\theta$. Therefore, the force of friction is $f_k = \mu_k mg\cos\theta$. The net force along the incline is then
+\begin{equation}
+    F_{net} = mg\sin\theta - \mu_k mg\cos\theta.
+\end{equation}
+The acceleration of the block along the incline is given by
+\begin{equation}
+    a_x = \frac{F_{net}}{m} = g(\sin\theta - \mu_k \cos\theta).
+\end{equation}
+This is a constant acceleration, so the position and velocity of the block as functions of time can be found by using Eq.~\eqref{eq:constant-force-motion} with $a_x = g(\sin\theta - \mu_k \cos\theta)$.
+
+(c) Before the block starts sliding, it is at rest relative to the incline. The friction force is therefore \emph{static friction}. Static friction acts along the surface and prevents relative motion between the two surfaces. Unlike kinetic friction, its magnitude is not generally fixed at a particular value; it adjusts to balance the other forces, up to a maximum value given by
+\begin{equation}
+f_s \leq f_{s,\max}=\mu_s N,
+\end{equation}
+where $\mu_s$ is the \emph{coefficient of static friction} and $N$ is the normal force. The coefficient $\mu_s$ is dimensionless and characterizes the strength of static friction between the two surfaces.
+
+As the angle $\theta$ of the incline is increased, the component of the gravitational force parallel to the incline,
+\begin{equation}
+mg\sin\theta,
+\end{equation}
+also increases. The block remains at rest as long as static friction can balance this component. At the critical angle $\theta_c$, the block is just about to start sliding down the incline. At this point, static friction has reached its maximum value:
+\begin{equation}
+f_s=f_{s,\max}=\mu_sN.
+\end{equation}
+The normal force is determined by the component of the gravitational force perpendicular to the incline. Since there is no acceleration perpendicular to the surface,
+
+\begin{equation}
+N=mg\cos\theta_c.
+\end{equation}
+
+At the critical angle, the component of gravity down the incline is exactly balanced by the maximum static friction acting up the incline:
+\begin{equation}
+mg\sin\theta_c=\mu_sN.
+\end{equation}
+Substituting $N=mg\cos\theta_c$ gives
+\begin{equation}
+mg\sin\theta_c
+=\mu_s mg\cos\theta_c \implies \tan\theta_c=\mu_s.
+\end{equation}
+Therefore, the critical angle at which the block starts sliding down the incline is
+\begin{equation}
+\boxed{\theta_c=\arctan(\mu_s)}.
+\end{equation}
+For $\theta<\theta_c$, static friction is sufficient to keep the block at rest. At $\theta=\theta_c$, static friction reaches its maximum value and the block is on the verge of sliding. For $\theta>\theta_c$, the block starts sliding down the incline, and the friction force becomes kinetic friction.
+
+
+\subsection{Mass-Pulley System}
+Two blocks of unequal masses are connected by a string over a smooth pulley as shown in Fig.~\ref{fig:mass-pulley-system}. If the coefficient of kinetic friction is $\mu_k$ between the heavier block and the surface, write down the equations of motion and solve them to find the acceleration of the blocks and the tension in the string.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{figures/mass-pulley-system.png}
+\caption{Two blocks of unequal masses connected by a string over a smooth pulley. The heavier block is on a horizontal surface with kinetic friction, while the lighter block hangs vertically.}
+\label{fig:mass-pulley-system}
+\end{figure}
+
+\textbf{Solution:}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/mass-pulley-system-fbd.png}
+\caption{Free-body diagrams of the two blocks in the mass-pulley system. The forces acting on each block are shown, including the tension in the string, the weight of each block, and the kinetic friction acting on the heavier block.}
+\label{fig:mass-pulley-system-fbd}
+\end{figure}
+
+\subsection{A ``More Realistic'' Free Fall and Terminal Speed}
+A particle is released from a height $h$ with initial velocity $v_0 = 0$ and falls under the influence of gravity. The particle experiences a resistive force due to air resistance, which is proportional to its velocity: $F_r = -kv$, where $k$ is a positive constant that characterizes the strength of the resistive force. 
+\begin{enumerate}
+    \item[(a)] Write down the equation of motion and solve it to find the velocity of the particle as function of time.
+    \item[(b)] Determine the terminal speed of the particle.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) The equation of motion is given by Newton's second law can be written in a scalar form as
+\begin{equation}
+m\ddot{y} = -mg - kv \implies m\frac{dv}{dt} = -mg - kv,
+\end{equation}
+where $y$ is the position of the particle along the vertical direction. This is a first-order linear ordinary differential equation for the velocity $v(t)$. It can be solved using an integrating factor or by separation of variables. Rearranging gives
+\begin{equation}
+\frac{dv}{dt} + \frac{k}{m}v = -g.
+\end{equation}
+The integrating factor is $e^{(k/m)t}$, so multiplying both sides gives
+\begin{equation}
+e^{(k/m)t}\frac{dv}{dt} + \frac{k}{m}e^{(k/m)t}v = -ge^{(k/m)t}.
+\end{equation}
+The left-hand side can be recognized as the derivative of $ve^{(k/m)t}$, so we have
+\begin{equation}\frac{d}{dt}\left(ve^{(k/m)t}\right) = -ge^{(k/m)t}.
+\end{equation}
+Integrating both sides with respect to $t$ gives
+\begin{equation}
+ve^{(k/m)t} = -\frac{mg}{k}e^{(k/m)t} + C,
+\end{equation}
+where $C$ is the constant of integration. Solving for $v(t)$ gives
+\begin{equation}
+v(t) = -\frac{mg}{k} + Ce^{-(k/m)t}.
+\end{equation}
+Using the initial condition $v(0) = 0$, we find $C = \frac{mg}{k}$, so the solution is
+\begin{equation}
+v(t) = -\frac{mg}{k}\left(1 - e^{-(k/m)t}\right).
+\label{eq:velocity-with-air-resistance}
+\end{equation}
+The plot of $v(t)$ is shown in Fig.~\ref{fig:figures/terminal-speed.png}.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/terminal-speed.png}
+\caption{Velocity of a particle falling under gravity with air resistance proportional to its velocity. The velocity approaches the terminal speed $v_{\text{terminal}} = \frac{mg}{k}$ as $t \to \infty$.}
+\label{fig:figures/terminal-speed.png}
+\end{figure}
+
+(b) The terminal speed is the speed at which the net force on the particle becomes zero, meaning that the resistive force balances the gravitational force. Setting $m\frac{dv}{dt} = 0$ gives
+\begin{equation}
+0 = -mg - kv_{\text{terminal}} \implies v_{\text{terminal}} = -\frac{mg}{k}.
+\end{equation}
+The negative sign indicates that the terminal speed is directed downward. The magnitude of the terminal speed is
+\begin{equation}
+\boxed{v_{\text{terminal}} = \frac{mg}{k}},
+\end{equation}
+which agrees with the long-time limit of Eq.~\eqref{eq:velocity-with-air-resistance} as $t \to \infty$.
+
+\subsection{Projectile Motion}
+A particle is projected from the ground with an initial speed $v_0$ at an angle $\theta$ above the horizontal.
+\begin{enumerate}
+    \item [(a)] Find the time of flight ($t_{\text{flight}}$) of the particle.
+    \item [(b)] Find the maximum height ($y_{\text{max}}$) reached by the particle.
+    \item [(c)] Find the horizontal range ($x_{\text{max}}$) of the particle.
+    \item [(d)] Find the trajectory equation $y(x)$ of the particle.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/projectile.png}
+\caption{Projectile motion of a particle launched with initial speed $v_0$ at an angle $\theta$ above the horizontal. The motion can be analyzed by decomposing the initial velocity into horizontal and vertical components.}
+\label{fig:projectile-motion}
+\end{figure}
+
+\textbf{Solution:}
+
+The motion can be divided into horizontal and vertical components. The horizontal motion is uniform, i.e., the horizontal velocity is constant, while the vertical motion is uniformly accelerated due to gravity.  The initial velocity can be decomposed into horizontal and vertical components:
+\begin{equation}
+v_{0x} = v_0 \cos \theta, \quad v_{0y} = v_0 \sin \theta.
+\end{equation}
+
+(a) To determine the time of flight, we analyze the vertical motion. The particle is acted upon only by the force of gravity; yet again, this is a constant force problem as considered in Ex.~\ref{ex:constant-force}. Therefore, the vertical acceleration is $a_y = -g$. The vertical velocity as a function of time is given by
+\begin{equation}
+v_y(t) = v_{0y} - gt.
+\end{equation}
+
+To find the time of flight, we can find the time where the velocity becomes zero at the maximum height, and then double it to account for the descent back to the ground. Setting $v_y(t) = 0$ gives
+\begin{equation}
+0 = v_{0y} - gt_{\text{up}} \implies t_{\text{up}} = \frac{v_{0y}}{g} = \frac{v_0 \sin \theta}{g}.
+\end{equation}
+The total time of flight is then
+\begin{equation}
+    \boxed{
+t_{\text{flight}} = 2 t_{\text{up}} = \frac{2 v_0 \sin \theta}{g}}.
+\end{equation}
+
+(b) We know that the maximum height is reached when the vertical velocity becomes zero. The height at that time can be found using the vertical motion equation by using Eq.~\eqref{eq:constant-force-motion} with $a_y = -g$, $v_{0y} = v_0 \sin \theta$, and $y_0 = 0$:
+\begin{equation}
+y(t) = v_{0y} t - \frac{1}{2} g t^2.
+\end{equation}
+
+
+Using the vertical motion equation, we can find the maximum height:
+\begin{equation}
+y_{\text{max}} = v_{0y} t_{\text{up}} - \frac{1}{2} g t_{\text{up}}^2 = v_0 \sin \theta \cdot \frac{v_0 \sin \theta}{g} - \frac{1}{2} g \left(\frac{v_0 \sin \theta}{g}\right)^2.
+\end{equation}
+
+\begin{equation}
+    \boxed{
+y_{\text{max}} = \frac{v_0^2 \sin^2 \theta}{2g}}.
+\end{equation}
+
+(c) The horizontal range can be found by determining the horizontal distance traveled during the total time of flight. The horizontal motion is uniform, so the horizontal velocity is constant:
+\begin{equation}
+v_x = v_{0x} = v_0 \cos \theta.
+\end{equation}
+
+The horizontal range is then
+\begin{equation}
+    x_{\text{max}} = v_{x0} t_{\text{flight}} = v_0 \cos \theta \cdot \frac{2 v_0 \sin \theta}{g}.
+\end{equation}
+Using the double angle identity $\sin 2\theta = 2 \sin \theta \cos \theta$, we can simplify the expression:
+\begin{equation}
+    \boxed{x_{\text{max}} = \frac{v_0^2 \sin 2\theta}{g}}.
+\end{equation}
+
+(d) The trajectory equation $y(x)$ can be found by eliminating time $t$ from the horizontal and vertical motion equations. From the horizontal motion, we have
+\begin{equation}
+x(t) = v_{0x} t \implies t = \frac{x}{v_{0x}} = \frac{x}{v_0 \cos \theta}.
+\end{equation}
+Substituting this expression for $t$ into the vertical motion equation gives
+\begin{equation}
+y(x) = v_{0y} \left(\frac{x}{v_0 \cos \theta}\right) - \frac{1}{2} g \left(\frac{x}{v_0 \cos \theta}\right)^2 = x \tan \theta - \frac{g x^2}{2 v_0^2 \cos^2 \theta}.
+\end{equation}
+Thus, the trajectory equation is
+\begin{equation}
+    \boxed{y(x) = x \tan \theta - \frac{g x^2}{2 v_0^2 \cos^2 \theta}}.
+\end{equation}
+
+Assigning $A = \frac{g}{2 v_0^2 \cos^2 \theta}$, and $B = \tan \theta$, we can write the trajectory equation as
+\begin{equation}
+    \boxed{y(x) = Bx - Ax^2}
+\end{equation}
+which is a quadratic equation in $x$, representing a parabolic trajectory.
+
+\subsection{Force law from a given speed function}
+A particle of mass $m$ has speed $v(x) = \alpha / x$ where $\alpha$ is a positive constant and $x$ is the position of the particle along a straight line. Find the force responsible for this motion as a function of position $x$.
+
+\textbf{Solution:} 
+\begin{equation}
+    F = m a = m \frac{dv}{dt} = m \frac{dv}{dx} \frac{dx}{dt} = m v \frac{dv}{dx} = m \left(\frac{\alpha}{x}\right) \left(-\frac{\alpha}{x^2}\right) = -\frac{m \alpha^2}{x^3}.
+\end{equation}
+
+
+
+\subsection{Circular motion}
+A particle of mass $m$ moves in a circular path of radius $r$ with constant speed $v$. The motion is uniform circular motion.
+
+\begin{enumerate}
+    \item[(a)] Write down the acceleration of the particle and its direction. What is the corresponding force acting on the particle?
+    \item[(b)] Calculate the acceleration of the particle by using geometry; that is, by using the change in the velocity vector over a small time interval $dt$. 
+    \item[(c)] Instead of considering two very close velocity vectors seperated by the time interval $dt$, consider two velocity vectors seperated by a finite time interval so that the velocity vectors will be at the opposite ends of the diameter of the circle. Calculate the change in the velocity vector and the corresponding acceleration. Compare it with the result obtained in part (b).
+    \item[(c)] What is the kinetic energy of the particle? 
+    \item[(d)] Assume that we have $N$ particles of different masses $m_i$ ($i = 1, 2, \ldots, N$) moving in circular paths of different radii $r_i$ with different constant speeds $v_i$. Write down the total kinetic energy of the system of particles.
+    \item[(e)] What if the particles have the same angular frequency $\omega$? Write down the total kinetic energy of the system of particles in terms of $\omega$ and $r_i$.
+    \item[(f)] What is the angular momentum of the particle? Is there any torque acting on the particle?  Express the angular momentum in terms of the moment of inertia $I$ and angular frequency $\omega$.
+
+\end{enumerate}
+
+\textbf{Solution:} 
+(a) As we have seen in Kinematics, the position vector of a particle in circular motion is given by
+\begin{equation}
+    \mathbf{r}(t) = r \cos(\omega t) \hat{i} + r \sin(\omega t) \hat{j},
+\end{equation}
+where $r$ is the radius of the circle and $\omega$ is the angular frequency. The second derivative of the position vector with respect to time gives the acceleration:
+\begin{equation}
+    \mathbf{a}(t) = -\omega^2 r \cos(\omega t) \hat{i} - \omega^2 r \sin(\omega t) \hat{j} = -\omega^2 \mathbf{r}(t).
+\end{equation}
+The acceleration is directed toward the center of the circle, which is called centripetal acceleration, and its magnitude is given by
+\begin{equation}
+    a = \omega^2 r = \frac{v^2}{r},
+\end{equation}
+where $v = \omega r$ is the speed of the particle. The direction of the acceleration is always toward the center of the circle, which is perpendicular to the velocity vector.
+
+The corresponding force acting on the particle is given by Newton's second law:
+\begin{equation}
+    \mathbf{F} = m \mathbf{a} = -m \omega^2 \mathbf{r}(t) = -\frac{m v^2}{r} \hat{r},
+\end{equation}
+where $\hat{r}$ is the unit vector pointing from the particle toward the center of the circle. The force is called the \emph{centripetal force}, and it is responsible for keeping the particle in circular motion. The magnitude of the centripetal force is given by
+\begin{equation}
+    F = \frac{m v^2}{r}.
+\end{equation}
+
+(b) Let us consider two velocity vectors $\mathbf{v}_1$ and $\mathbf{v}_2$ at two different points on the circle separated by a small angle $ d\theta$ as shown in the Fig.~\ref{fig:geometric-acceleration}. Since we consider a very small angle $d\theta$, the arc length is approximately equal to the length of $|d\mathbf{v}|$. The change in the velocity vector is given by
+\begin{equation}
+    dv \approx v d\theta \implies a = \frac{d v}{dt} \approx \frac{v d\theta}{dt} = \frac{v}{R}\frac{(Rd\theta)}{dt} = \frac{v}{R}\frac{ds}{dt} = \frac{v^2}{R},
+\end{equation}
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/geometric-acceleration.png}
+\caption{Velocity vectors of a particle in circular motion at two different points on the circle separated by a small angle $d\theta$. The change in the velocity vector $\Delta \mathbf{v}$ is directed toward the center of the circle.}
+\label{fig:geometric-acceleration}
+\end{figure}
+
+(c) Let us consider two velocity vectors $\mathbf{v}_1$ and $\mathbf{v}_2$ at two different points on the circle separated by an angle of $180^\circ$. The change in the velocity vector is given by
+\begin{equation}
+    \Delta \mathbf{v} = \mathbf{v}_2 - \mathbf{v}_1 = -\mathbf{v}_1 - \mathbf{v}_1 = -2\mathbf{v}_1.
+\end{equation}
+The magnitude of the change in the velocity vector is given by
+\begin{equation}
+    |\Delta \mathbf{v}| = 2v.
+\end{equation} The time interval between the two velocity vectors is given by
+\begin{equation}
+    \Delta t = \frac{T}{2} = \frac{\pi}{\omega},
+\end{equation}
+where $T = 2\pi/\omega$ is the period of the circular motion. Therefore, the magnitude of the acceleration is given by
+\begin{equation}
+    a = \frac{|\Delta \mathbf{v}|}{\Delta t} = \frac{2v}{\pi/\omega} = \frac{2\omega v}{\pi} = \frac{2\omega^2 r}{\pi}.
+\end{equation}
+This is the average acceleration over the time interval $\Delta t$. The direction of the acceleration is toward the center of the circle, which is consistent with the result obtained in part (b). The magnitude of the acceleration obtained in part (b) is $a = \omega^2 r$, which is the instantaneous acceleration at any point on the circle. The average acceleration over a finite time interval is less than the instantaneous acceleration, but the direction is the same. This is something that we would expect since some acceleration vectors are cancelled out during the averaging.
+
+(b) The kinetic energy of the particle is given by
+\begin{equation}
+    K = \frac{1}{2} m v^2.
+\end{equation}
+which can also be expressed in terms of the angular frequency as
+\begin{equation}
+    K = \frac{1}{2} m (\omega r)^2 = \frac{1}{2} m \omega^2 r^2.
+\end{equation}
+
+(c) The total kinetic energy of the system of $N$ particles is given by the sum of the kinetic energies of each particle:
+\begin{equation}
+    K_{\text{total}} = \sum_{i=1}^{N} \frac{1}{2} m_i v_i^2 = \sum_{i=1}^{N} \frac{1}{2} m_i (\omega_i r_i)^2 = \sum_{i=1}^{N} \frac{1}{2} m_i \omega_i^2 r_i^2.
+\end{equation}
+
+(d) If the particles have the same angular frequency $\omega$, then the total kinetic energy of the system can be expressed as
+\begin{equation}
+    K_{\text{total}} = \sum_{i=1}^{N} \frac{1}{2} m_i \omega^2 r_i^2 = \frac{1}{2} \omega^2 \left(\sum_{i=1}^{N} m_i r_i^2\right).
+\end{equation}
+The term in the parantheses is called the \emph{moment of inertia} of the system of particles about the axis of rotation, denoted by $I$:
+\begin{equation}
+    I = \sum_{i=1}^{N} m_i r_i^2.
+    \label{eq:moment-of-inertia}
+\end{equation}
+It is a measure of how the mass is distributed with respect to the axis of rotation; the larger the scattering of the masses from the axis, the larger the moment of inertia. The assumption of the same angular frequency $\omega$ is equivalent to assuming that the system of particles is rigidly rotating about the axis of rotation. Therefore, the total kinetic energy of a rigidly rotating system of particles can be expressed in terms of its moment of inertia and angular frequency as
+\begin{equation}
+    K_{\text{total}} = \frac{1}{2} I \omega^2.
+\end{equation}
+This is the rotational analog of the kinetic energy of a particle moving in a straight line, $K = \frac{1}{2} m v^2$ where $I$ plays the role of mass $m$ and $\omega$ plays the role of speed $v$. It directly follows from Eq.~\ref{eq:moment-of-inertia} that the moment of inertia of a single particle of mass $m$ moving in a circular path of radius $r$ is given by
+\begin{equation}
+    I = m r^2.
+\end{equation}
+
+
+(e) The angular momentum of the particle about the center of the circle is given by
+\begin{equation}
+    \mathbf{L} = \mathbf{r} \times m \mathbf{v} = m r^2 \omega \mathbf{k},
+\end{equation}
+where $\mathbf{k}$ is the unit vector perpendicular to the plane of motion. The torque acting on the particle is given by
+\begin{equation}
+    \boldsymbol{\tau} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times (-m \omega^2 \mathbf{r}) = 0,
+\end{equation}
+since the force is directed toward the center of the circle and is therefore parallel to the position vector. Thus, there is no torque acting on the particle, and the angular momentum is conserved.
+
+We can express the angular momentum of the particle undergoing a uniform circular motion in terms of the moment of inertia $I$ and angular frequency $\omega$,
+\begin{equation}
+    \mathbf{L} = I \omega \mathbf{k}.
+\end{equation}
+This form of angular momentum is the rotational analog of the linear momentum of a particle moving in a straight line, $\mathbf{p} = m \mathbf{v}$, where $I$ plays the role of mass $m$ and $\omega$ plays the role of speed $v$.
+
+\subsection{Elastic collision of two hockey pucks -- 1}
+
+Two hockey pucks with identical masses are on a flat, horizontal ice hockey rink. Black puck is motionless and white is moving 2.5 m/s toward the black puck. The two pucks collide. After the collision, the black puck moves at 2.5 m/s in the same direction as the white puck was moving. 
+
+\begin{enumerate}
+    \item [(a)] What is the speed of the white puck after the collision?
+    \item [(b)] Is the energy conserved in this collision? If so, what is the total kinetic energy before and after the collision?
+\end{enumerate}
+
+\textbf{Solution:} 
+
+(a) Let $m$ be the mass of each puck, $v_{1i}$ and $v_{2i}$ be the initial velocities of the white and black pucks, respectively, and $v_{1f}$ and $v_{2f}$ be their final velocities after the collision. The conservation of momentum gives us:
+\begin{equation}
+m v_{1i} + m v_{2i} = m v_{1f} + m v_{2f}.
+\end{equation}
+Substituting the known values:
+\begin{equation}
+m (2.5) + m (0) = m v_{1f} + m (2.5).
+\end{equation}
+Dividing through by $m$ and simplifying:
+\begin{equation}
+2.5 = v_{1f} + 2.5 \implies v_{1f} = 0.
+\end{equation}
+Thus, the speed of the white puck after the collision is $\boxed{0 \text{m/s}}$.
+
+(b) The total kinetic energy before the collision is:
+\begin{equation}
+K_{i} = \frac{1}{2} m v_{1i}^2 + \frac{1}{2} m v_{2i}^2 = \frac{1}{2} m (2.5)^2 + \frac{1}{2} m (0)^2 = \frac{1}{2} m (6.25) = 3.125 m.
+\end{equation}
+The total kinetic energy after the collision is:
+\begin{equation}
+K_{f} = \frac{1}{2} m v_{1f}^2 + \frac{1}{2} m v_{2f}^2 = \frac{1}{2} m (0)^2 + \frac{1}{2} m (2.5)^2 = \frac{1}{2} m (6.25) = 3.125 m.
+\end{equation}
+Since $K_{i} = K_{f}$, the energy is conserved in this collision, and the total kinetic energy before and after the collision is $\boxed{3.125 m}$. If the energy is conserved before and after the collision, then the collision is called an \emph{elastic collision} meaning that no energy was lost to heat, sound, or deformation of the pucks.
+
+
+
+\subsection{Elastic collision of two hockey pucks -- 2}
+Two hockey pucks with identical masses collide as shown in Fig.~\ref{fig:hockey-pucks}. Find the final velocities of the two pucks after the collision.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/elastic-collision.png}
+\caption{aa}
+\label{fig:hockey-pucks}
+\end{figure}
+
+\textbf{Solution:}
+The momentum vector has to stay the same before and after the collision. Before the collision, the momentum of the system is
+\begin{equation}
+\mathbf{p}_i =  2 \text{kg} \times 5 \mathbf{i} \frac{\text{m}}{\text{s}}  = 10 \mathbf{i} \frac{\text{kg m}}{\text{s}} \implies \mathbf{p}_f = 10 \mathbf{i} \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+
+We know the directions of the two pucks after the collision, so we can decompose the $\mathbf{p}_f$ into its components along these directions as shown in Fig.~\ref{fig:hockey-pucks-solution}. Therefore, we have
+\begin{equation}
+|\mathbf{p}_{A,f}| = 10 \cos(30^\circ) = 10 \frac{\sqrt{3}}{2} = 5\sqrt{3} \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+\begin{equation}
+|\mathbf{p}_{B,f}| = 10 \sin(30^\circ) = 10 \frac{1}{2} = 5 \frac{\text{kg m}}{\text{s}}.
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{figures/elastic-collision-solution.png}
+\caption{aa}
+\label{fig:hockey-pucks-solution}
+\end{figure}
+
+
+\subsection{Inelastic collision of two hockey pucks}
+
+A hockey puck of mass $m_1 = 2\,\mathrm{kg}$ moves with velocity
+$v_1 = 5\,\mathrm{m/s}$ toward a stationary hockey puck of mass
+$m_2 = 3\,\mathrm{kg}$. Assume that the collision is one-dimensional
+and that the external impulse during the collision is negligible.
+The two pucks collide and stick together.
+\begin{enumerate}
+    \item[(a)] Find the final velocity of the combined pucks.
+    \item[(b)] Determine the mechanical energy lost in the collision.
+    \item[(c)] If instead the pucks separate after the collision,
+    and half of the initial kinetic energy is lost, find their
+    final velocities.
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{(a)}
+When two objects collide and stick together, the collision is called
+a \emph{perfectly inelastic collision}. The total momentum is conserved
+when the external impulse is negligible. Since there is no defined potential energy, the mechanical energy of the system is solely kinetic energy. Kinetic energy is not
+conserved: some of it is converted into internal energy, such as
+heating and deformation. 
+
+Choose the positive $x$-direction along the initial motion of the
+first puck. Conservation of momentum gives
+\begin{equation}
+    m_1v_1 + m_2v_2 = (m_1+m_2)v_f.
+\end{equation}
+Since $v_2=0$, the common final velocity is
+\begin{equation}
+    v_f = \frac{m_1v_1}{m_1+m_2}
+    = \frac{(2\,\mathrm{kg})(5\,\mathrm{m/s})}
+    {2\,\mathrm{kg}+3\,\mathrm{kg}}
+    = \boxed{2\,\mathrm{m/s}}.
+\end{equation}
+The combined pucks move in the initial direction of the first puck.
+
+\textbf{(b)}
+The initial kinetic energy is
+\begin{equation}
+    K_i = \frac{1}{2}m_1v_1^2+\frac{1}{2}m_2v_2^2
+    = \frac{1}{2}(2\,\mathrm{kg})(5\,\mathrm{m/s})^2
+    = 25\,\mathrm{J}.
+\end{equation}
+The final kinetic energy is
+\begin{equation}
+    K_f = \frac{1}{2}(m_1+m_2)v_f^2
+    = \frac{1}{2}(5\,\mathrm{kg})(2\,\mathrm{m/s})^2
+    = 10\,\mathrm{J}.
+\end{equation}
+Therefore, the kinetic energy lost is
+\begin{equation}
+    K_{\mathrm{lost}} = K_i-K_f
+    = 25\,\mathrm{J}-10\,\mathrm{J}
+    = \boxed{15\,\mathrm{J}}.
+\end{equation}
+This energy is converted into other forms; it is not destroyed.
+The change in kinetic energy is
+$\Delta K = K_f-K_i=-15\,\mathrm{J}$.
+
+\textbf{(c)}
+Half of the initial kinetic energy is lost, so
+\begin{equation}
+    K_f = \frac{1}{2}K_i = 12.5\,\mathrm{J}.
+\end{equation}
+Let $v_{1f}$ and $v_{2f}$ be the signed final velocities.
+Conservation of momentum and the specified final kinetic energy give
+\begin{align}
+    m_1v_{1f}+m_2v_{2f} &= m_1v_1,\\
+    \frac{1}{2}m_1v_{1f}^2+\frac{1}{2}m_2v_{2f}^2
+    &= 12.5\,\mathrm{J}.
+\end{align}
+From the momentum equation,
+\begin{equation}
+    v_{2f}
+    = \frac{m_1v_1-m_1v_{1f}}{m_2}
+    = \frac{10\,\mathrm{m/s}-2v_{1f}}{3}.
+\end{equation}
+Substituting this expression into the kinetic energy equation gives
+\begin{equation}
+    (1\,\mathrm{kg})v_{1f}^2
+    + \frac{3}{2}\,\mathrm{kg}
+    \left(\frac{10\,\mathrm{m/s}-2v_{1f}}{3}\right)^2
+    = 12.5\,\mathrm{J}.
+\end{equation}
+Completing the square yields
+\begin{equation}
+    10\,\mathrm{J}
+    + \frac{5}{3}\,\mathrm{kg}
+    \left(v_{1f}-2\,\mathrm{m/s}\right)^2
+    = 12.5\,\mathrm{J}.
+\end{equation}
+Therefore,
+\begin{equation}
+    v_{1f}
+    = \left(2\pm\frac{\sqrt{6}}{2}\right)\mathrm{m/s},
+    \qquad
+    v_{2f}
+    = \left(2\mp\frac{\sqrt{6}}{3}\right)\mathrm{m/s}.
+\end{equation}
+
+To select the physically relevant solution, note that the first puck
+approaches the second puck from behind. After the collision, the pucks
+must separate, which requires
+\begin{equation}
+    v_{2f}>v_{1f}.
+\end{equation}
+Thus,
+\begin{equation}
+    \boxed{
+    v_{1f}
+    = \left(2-\frac{\sqrt{6}}{2}\right)\mathrm{m/s}
+    \approx 0.775\,\mathrm{m/s}
+    }
+\end{equation}
+and
+\begin{equation}
+    \boxed{
+    v_{2f}
+    = \left(2+\frac{\sqrt{6}}{3}\right)\mathrm{m/s}
+    \approx 2.816\,\mathrm{m/s}
+    }.
+\end{equation}
+The other algebraic solution has $v_{1f}>v_{2f}$ and corresponds to
+approaching rather than separating pucks, so it cannot describe the
+state immediately after this collision.
+
+Both final velocities are positive. The first puck slows down,
+while the second puck moves forward faster than the first.
+
+
+
+\subsection{Conservation of angular momentum}
+
+A ceiling fan with moment of inertia $I$ and radius $R$ is freely rotating with angular velocity $\omega_i$. A mouse of mass $m$ jumps onto the outer edge of the fan
+with zero tangential velocity relative to the ground and remains there. Assuming that no external torque acts about the fan's rotation axis, determine the ratio of the final angular velocity to the initial angular
+velocity of the fan.
+
+\textbf{Solution:}
+Since no external torque acts about the rotation axis, the total angular momentum of the system is conserved. Initially, only the fan contributes to the angular momentum because the mouse has zero tangential velocity. Therefore,
+\begin{equation}
+    L_i = I\omega_i.
+\end{equation}
+After the mouse lands on the fan, they rotate together with angular velocity $\omega_f$. Since the mouse can be treated as a point mass at a distance $R$ from the rotation axis, its moment of inertia is $mR^2$. The final angular momentum is therefore
+\begin{equation}
+    L_f = (I+mR^2)\omega_f.
+\end{equation}
+From conservation of angular momentum,
+\begin{equation}
+    L_i = L_f
+    \implies
+    I\omega_i = (I+mR^2)\omega_f.
+\end{equation}
+Solving for the ratio of the final to the initial angular velocity, we obtain
+\begin{equation}
+    \boxed{
+    \frac{\omega_f}{\omega_i}
+    = \frac{I}{I+mR^2}
+    }.
+\end{equation}
+
+Since $I/(I+mR^2)<1$, the angular velocity decreases after the mouse lands on the fan. This is because the total moment of inertia increases while the total angular momentum remains constant.
+
+\subsection{Energy and Conservation of Angular Momentum -- 1}
+
+An ice skater with moment of inertia $I$ and angular velocity $\omega_i$ is spinning with her arms extended. The skater then pulls her arms in, reducing her moment of inertia to $I/2$. Assuming that no external torque acts about her rotation axis,
+\begin{enumerate}
+    \item[(a)] Determine the final angular velocity of the skater.
+    \item[(b)] Determine whether the rotational kinetic energy
+    is conserved. If not, calculate the change in rotational
+    kinetic energy and explain its physical origin.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) Since no external torque acts about the rotation axis, the angular momentum of the skater is conserved. Initially, the skater has moment of inertia $I$ and angular velocity $\omega_i$, so the initial angular momentum is $L_i=I\omega_i$. After pulling her arms in, her moment of inertia becomes $I/2$, and her final angular velocity is $\omega_f$. The final angular momentum is therefore $L_f=(I/2)\omega_f$.
+
+From conservation of angular momentum, we have
+\begin{equation}
+    L_i=L_f
+    \implies I\omega_i=\frac{I}{2}\omega_f.
+\end{equation}
+Solving for the final angular velocity, we obtain
+\begin{equation}
+    \boxed{\omega_f=2\omega_i}.
+\end{equation}
+Therefore, the skater's angular velocity doubles when her moment of inertia is reduced by half.
+
+(b) The initial rotational kinetic energy of the skater is
+\begin{equation}
+    K_i=\frac{1}{2}I\omega_i^2.
+\end{equation}
+After pulling her arms in, her moment of inertia is reduced to $I/2$, while her angular velocity increases to $\omega_f=2\omega_i$. Therefore, the final rotational kinetic energy is
+\begin{equation}
+    K_f=\frac{1}{2}\left(\frac{I}{2}\right)\omega_f^2
+    =\frac{1}{2}\left(\frac{I}{2}\right)(2\omega_i)^2
+    =I\omega_i^2.
+\end{equation}
+Comparing the initial and final kinetic energies, we find
+\begin{equation}
+    \boxed{K_f=2K_i}.
+\end{equation}
+Thus, the rotational kinetic energy is not conserved; it doubles. The change in rotational kinetic energy is
+\begin{equation}
+    \Delta K=K_f-K_i
+    =I\omega_i^2-\frac{1}{2}I\omega_i^2
+    =\boxed{\frac{1}{2}I\omega_i^2}.
+\end{equation}
+The increase in rotational kinetic energy comes from the work performed by the skater's muscles while pulling her arms inward. Therefore, although angular momentum is conserved in the absence of external torque, rotational kinetic energy need not be conserved when the moment of inertia changes.
+
+\subsection{Energy and Conservation of Angular Momentum -- 2}
+
+A uniform thin rod of mass $M=3\,\mathrm{kg}$ and length
+$L=2\,\mathrm{m}$ rotates counterclockwise in a horizontal
+plane about a frictionless vertical axis passing through
+its center. Its initial angular velocity is
+$\omega_i=4\,\mathrm{rad/s}$. A small lump of clay of mass
+$m=1\,\mathrm{kg}$ moves horizontally with a speed of
+$v=6\,\mathrm{m/s}$ and strikes one end of the rod.
+At the moment of impact, the clay moves tangentially
+to the circular path of the rod's end, in the clockwise
+direction, and sticks to the rod.
+
+The moment of inertia of a uniform thin rod about an
+axis passing through its center and perpendicular to
+its length is $I=ML^2/12$.
+
+\begin{enumerate}
+    \item[(a)] Determine the angular velocity of the
+    rod immediately after the collision, including
+    its direction of rotation.
+    \item[(b)] Calculate the mechanical energy lost
+    during the collision.
+    \item[(c)] Determine the minimum speed of the clay
+    required to reverse the direction of rotation
+    of the rod.
+\end{enumerate}
+
+\textbf{Solution:}
+
+(a) Since no external torque acts about the rotation
+axis, the total angular momentum of the rod and clay
+is conserved during the collision.
+
+We choose the counterclockwise direction as positive.
+Initially, the angular momentum of the system is the
+sum of the angular momentum of the rod and the clay:
+\begin{equation}
+    L_i = I\omega_i - mv\frac{L}{2}.
+\end{equation}
+The minus sign appears because the clay moves in the
+clockwise direction, opposite to the initial rotation
+of the rod.
+
+The moment of inertia of the rod is
+\begin{equation}
+    I = \frac{ML^2}{12}
+    = \frac{3\cdot 2^2}{12}
+    = 1\,\mathrm{kg\,m^2}.
+\end{equation}
+
+After the collision, the clay remains attached to the
+end of the rod. Therefore, the total moment of inertia
+becomes
+\begin{equation}
+    I_f = I + m\left(\frac{L}{2}\right)^2.
+\end{equation}
+
+Since the rod and clay rotate together with angular
+velocity $\omega_f$, the final angular momentum is
+\begin{equation}
+    L_f =
+    \left(I+\frac{mL^2}{4}\right)\omega_f.
+\end{equation}
+
+Applying conservation of angular momentum,
+\begin{equation}
+    I\omega_i - \frac{mvL}{2}
+    = \left(I+\frac{mL^2}{4}\right)\omega_f.
+\end{equation}
+Solving for the final angular velocity,
+\begin{equation}
+    \omega_f =
+    \frac{I\omega_i-mvL/2}
+    {I+mL^2/4}.
+\end{equation}
+
+Substituting the numerical values,
+\begin{equation}
+    \omega_f =
+    \frac{1\cdot 4-1\cdot 6\cdot 1}
+    {1+1\cdot 1^2}
+    = \boxed{-1\,\mathrm{rad/s}}.
+\end{equation}
+
+The negative sign indicates that the rod reverses
+its direction of rotation and rotates clockwise
+after the collision.
+
+
+(b) The initial kinetic energy of the system is the
+sum of the rotational kinetic energy of the rod
+and the translational kinetic energy of the clay:
+\begin{equation}
+    K_i = \frac{1}{2}I\omega_i^2
+    +\frac{1}{2}mv^2.
+\end{equation}
+Substituting the numerical values,
+\begin{equation}
+    K_i = \frac{1}{2}(1)(4^2)
+    +\frac{1}{2}(1)(6^2)
+    = 8+18=26\,\mathrm{J}.
+\end{equation}
+
+After the collision, the rod and clay rotate
+together. Their total kinetic energy is
+\begin{equation}
+    K_f = \frac{1}{2}
+    \left(I+\frac{mL^2}{4}\right)\omega_f^2.
+\end{equation}
+Substituting the numerical values,
+\begin{equation}
+    K_f = \frac{1}{2}(1+1)(-1)^2
+    = 1\,\mathrm{J}.
+\end{equation}
+
+The mechanical energy lost during the collision is
+therefore
+\begin{equation}
+    \Delta K = K_i-K_f
+    = 26-1
+    = \boxed{25\,\mathrm{J}}.
+\end{equation}
+
+Although angular momentum is conserved, kinetic
+energy is not conserved because the collision is
+perfectly inelastic. Part of the initial mechanical
+energy is converted into other forms, such as
+internal energy and deformation.
+
+
+(c) To reverse the direction of rotation, the final
+angular velocity must be negative:
+\begin{equation}
+    \omega_f < 0.
+\end{equation}
+Since the denominator in the expression for
+$\omega_f$ is always positive, this condition
+requires
+\begin{equation}
+    I\omega_i-\frac{mvL}{2}<0.
+\end{equation}
+Rearranging, we obtain
+\begin{equation}
+    v>\frac{2I\omega_i}{mL}.
+\end{equation}
+
+Using $I=ML^2/12$, this becomes
+\begin{equation}
+    v>\frac{ML\omega_i}{6m}.
+\end{equation}
+
+Substituting the numerical values,
+\begin{equation}
+    v>\frac{3\cdot 2\cdot 4}{6\cdot 1}
+    = 4\,\mathrm{m/s}.
+\end{equation}
+
+Therefore, the threshold speed is
+\begin{equation}
+    \boxed{v_c=4\,\mathrm{m/s}}.
+\end{equation}
+
+At exactly $v=v_c$, the total initial angular
+momentum vanishes, and the rod comes to rest
+immediately after the collision. For $v>v_c$,
+the rod reverses its direction of rotation.
+
+
+\subsection{Scalar fields and vector fields}
+Given the potential $U(x) = ax^2 + by^2$, find the corresponding force field $\mathbf{F}(x,y)$.
+
+\textbf{Solution:} The force field is given by $\mathbf{F}(x,y) = -\nabla U(x,y)$. Computing the gradient, we get
+\begin{equation}
+    \mathbf{F}(x,y) = -\left(\frac{\partial U}{\partial x} \hat{i} + \frac{\partial U}{\partial y} \hat{j}\right) = -\left(2ax \hat{i} + 2by \hat{j}\right).
+\end{equation}
+Thus, the force field is
+\begin{equation}
+    \boxed{\mathbf{F}(x,y) = -2ax \hat{i} - 2by \hat{j}}.
+\end{equation}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/potential-force.pdf}
+    \caption{Potential energy $U=x^2+y^2$ and its force field $\mathbf{F}=-\nabla U=(-2x,-2y)$, in scaled units. The force points inward, perpendicular to the circular equipotential curves, and its magnitude increases linearly with distance from the origin. The origin is a stable equilibrium.}
+    \label{fig:bowl-potential-force}
+\end{figure}
+
+
+\subsection{Potential energy for the motion close to the surface of the earth}
+A particle of mass $m$ is raised to a height $h$ above the ground. Assume that the gravitational force is constant near the surface of the earth.
+
+\begin{enumerate}
+    \item [(a)] Show that gravitational force is conservative.
+    \item [(b)] Determine the work done by the gravitational force on the particle as it moves from the ground to a height $h$.
+    \item [(c)] How much work is done by us in raising the particle to a height $h$?
+\end{enumerate}
+
+\textbf{Solution:} 
+
+(a) When the distance from the Earth's surface is much smaller than the Earth's radius, the gravitational field can be approximated as uniform. In this approximation, the gravitational force acting on a particle of mass $m$ is given by
+\begin{equation}
+    \mathbf{F} = -mg\hat{\mathbf{z}},
+\end{equation}
+where $g$ is the gravitational acceleration and $\hat{\mathbf{z}}$
+is the unit vector pointing vertically upward. Recall that a force is conservative if the work done in
+moving a particle between two points is independent of the path taken. To verify this property for gravity, consider a particle moving from an initial position $A$ to a final position $B$ along an arbitrary path $C$.
+
+The work done by the gravitational force is
+\begin{equation}
+    W_{AB} = \int_C \mathbf{F}\cdot d\mathbf{r},
+\end{equation}
+where the infinitesimal displacement vector is
+\begin{equation}
+    d\mathbf{r}
+    = dx\hat{\mathbf{x}}
+    + dy\hat{\mathbf{y}}
+    + dz\hat{\mathbf{z}}.
+\end{equation}
+
+Substituting the gravitational force into the work integral,
+we obtain
+\begin{equation}
+\begin{aligned}
+    W_{AB}
+    &= \int_C (-mg\hat{\mathbf{z}})\cdot d\mathbf{r} \\
+    &= -mg\int_C \hat{\mathbf{z}}\cdot d\mathbf{r} \\
+    &= -mg\int_C dz \\
+    &= -mg\int_{z_A}^{z_B} dz.
+\end{aligned}
+\end{equation}
+Evaluating the integral gives
+\begin{equation}
+    \boxed{W_{AB} = -mg(z_B-z_A).}
+\end{equation}
+
+Notice that the work done by gravity depends only on the
+initial and final heights, $z_A$ and $z_B$, and not on the
+particular path followed by the particle. Therefore, the
+gravitational force is conservative.
+
+In particular, if the particle moves along a closed path,
+its initial and final positions coincide, so $z_A=z_B$.
+Consequently,
+\begin{equation}
+    \boxed{\oint_C \mathbf{F}\cdot d\mathbf{r}=0,}
+\end{equation}
+which is another defining property of a conservative force. Note that the assumption of a uniform gravitational field is an approximation valid near the Earth's surface. We will see that the full Newtonian gravitational force,
+$\mathbf{F}=-GMm\hat{\mathbf{r}}/r^2$, is also conservative.
+
+(b) The work done by the gravitational force on the particle as it moves from the ground ($z_A=0$) to a height $h$ ($z_B=h$) is
+\begin{equation}
+    W_{AB} = -mg(h-0) = -mgh.
+\end{equation}
+
+(c) The work done by us in raising the particle to a height $h$ is the negative of the work done by gravity:
+\begin{equation}
+    W_{us} = -W_{AB} = mgh.
+\end{equation}
+
+
+\subsection{Horsepower}
+
+In British engineering units, the unit of power is the horsepower (hp). One horsepower is defined as the power required to lift 550 pounds by 1 foot in 1 second. In SI units, it is approximately (according to DIN; German Institute for Standardization) defined as the power required to lift 75 kg by 1 meter in 1 second. 
+
+\begin{enumerate}
+    \item[(a)] Write 1 horsepower in SI units.
+    \item[(b)] If a car has a 200 hp engine, what is the maximum power output of the engine in watts?
+\end{enumerate}
+
+\textbf{Solution:}
+(a) The work done in lifting 75 kg by 1 meter is
+\begin{equation}
+W = mgh = (75 \text{ kg})(9.8 \text{ m/s}^2)(1 \text{ m}) = 735 \text{ J}. 
+\end{equation}
+Since this work is done in 1 second, the power is
+\begin{equation}
+P = \frac{W}{t} = \frac{735 \text{ J}}{1 \text{ s}} = 735 \text{ W}.
+\end{equation}
+Therefore, 1 horsepower is approximately $\boxed{735 \text{ W}}$.
+
+(b) The maximum power output of a 200 hp engine is
+\begin{equation}
+P_{\text{max}} = 200 \text{ hp} \times 735 \text{ W/hp} = 147,000 \text{ W} = 147 \text{kW}.
+\end{equation}
+Therefore, the maximum power output of the engine is $\boxed{147 \text{kW}}$. In other words, a 200 hp engine can deliver a maximum energy of 147 kJ in 1 second.
+
+
+
+\subsection{Impulse}
+A block of mass crashes into a wall blabla...
+
+
+
+\subsection{Infinite time required to reach point $x=-1$}
+
+\subsection{Stable and Unstable Equilibrium Points -- 1}
+Find the stable and unstable equilibrium points of the potential energy function $U(x) = k(x^3-3x)$ given in Sec.~\ref{sec:more-potential-energy} and justify your answers mathematically using the second derivative of the potential energy.
+
+\textbf{Solution:} The equilibrium points are found by setting the force, $F(x)=-dU/dx$, equal to zero. Equivalently, we set the first derivative of the potential energy to zero:
+\begin{equation}
+    \frac{dU}{dx} = k(3x^2-3)
+    = 3k(x^2-1)
+    = 3k(x-1)(x+1) = 0.
+\end{equation}
+This gives us two equilibrium points: $x=-1$ and $x=1$.
+
+To determine the stability of each equilibrium point, we compute the second derivative of the potential energy:
+\begin{equation}
+    U''(x) = \frac{d^2U}{dx^2} = 6kx.
+\end{equation}
+An equilibrium point is stable if $U''(x)>0$, corresponding to a local minimum of the potential energy, and unstable if $U''(x)<0$, corresponding to a local maximum.
+
+At $x=-1$, we have
+\begin{equation}
+    U''(-1)=-6k<0,
+\end{equation}
+so the equilibrium at $x=-1$ is unstable.
+
+At $x=1$, we have
+\begin{equation}
+    U''(1)=6k>0,
+\end{equation}
+so the equilibrium at $x=1$ is stable.
+
+\subsection{Stable and Unstable Equilibrium Points -- 2}
+
+A particle of mass $m$ moves along the $x$-axis under the influence of a conservative force described by the potential energy function
+\begin{equation}
+    U(x) = U_0 \left[\left(\frac{x}{a}\right)^4 - 2\left(\frac{x}{a}\right)^2\right],
+\end{equation}
+where $U_0>0$ and $a>0$ are constants.
+
+\begin{enumerate}
+    \item[(a)] Determine the force $F(x)$ acting on the particle as a function of its position.
+
+    \item[(b)] Find all equilibrium positions of the particle, i.e., the positions at which the net force vanishes.
+
+    \item[(c)] Determine which equilibrium positions are stable and which are unstable. Justify your answers mathematically using the second derivative of the potential energy.
+\end{enumerate}
+
+\textbf{Solution:}
+(a) The force is given by $F(x) = -\frac{dU}{dx}$. Taking the derivative, we get
+\begin{equation}
+    F(x) = -U_0 \left[4\left(\frac{x}{a}\right)^3 - 4\left(\frac{x}{a}\right)\right] = 4U_0\left(\frac{x}{a}\right)\left[\left(\frac{x}{a}\right)^2 - 1\right].
+\end{equation}
+
+(b) The equilibrium positions are found by setting $F(x) = 0$:
+\begin{equation}
+    4U_0\left(\frac{x}{a}\right)\left[\left(\frac{x}{a}\right)^2 - 1\right] = 0.
+\end{equation}
+This gives us three equilibrium positions: $x = 0$, $x = a$, and $x = -a$.
+
+(c) To determine the stability of each equilibrium position, we compute the second derivative of the potential energy:
+\begin{equation}
+    U''(x) = \frac{d^2U}{dx^2} = \frac{4U_0}{a^2}\left[3\left(\frac{x}{a}\right)^2 - 1\right].
+\end{equation}
+At $x = 0$, we have $U''(0) = -\frac{4U_0}{a^2} < 0$, so the equilibrium at $x = 0$ is unstable.
+At $x = a$ and $x = -a$, we have $U''(a) = U''(-a) = \frac{8U_0}{a^2} > 0$, so the equilibria at these points are stable.
+
+
+\subsection{Mechanical energy as the first integral of Newton's second axiom}
+Show that the mechanical energy $E = K + U$  can be derived by integrating Newton's second law for a particle moving in one dimension under the influence of a conservative force $F(x)=-dU/dx$.
+
+\textbf{Solution:} For a particle of mass $m$ moving in one dimension, Newton's second axiom:
+\begin{equation}
+    F(x) = m\frac{dv}{dt},
+\end{equation}
+where $v = dx/dt$ is the velocity of the particle. Using the chain rule, we can express the acceleration as
+\begin{equation}
+    \frac{dv}{dt} = \frac{dv}{dx}\frac{dx}{dt} = v\frac{dv}{dx}.
+\end{equation}
+Substituting this into Newton's second law, we have
+\begin{equation}
+    F(x) = m v \frac{dv}{dx}.
+\end{equation}
+Rearranging, we obtain
+\begin{equation}
+    F(x) dx = m v dv.
+\end{equation}
+Integrating both sides, we get
+\begin{equation}
+    \int F(x) dx = \int m v dv.
+\end{equation}
+The left-hand side can be expressed in terms of the potential energy $U(x)$, since
+\begin{equation}
+    F(x) = -\frac{dU}{dx} \implies \int F(x) dx = -U(x) + C,
+\end{equation}
+where $C$ is an integration constant. The right-hand side evaluates to
+\begin{equation}
+    \int m v dv = \frac{1}{2} m v^2 + C'.
+\end{equation}
+Combining these results, we have
+\begin{equation}
+    -U(x) + C = \frac{1}{2} m v^2 + C'.
+\end{equation}
+Rearranging, we find
+\begin{equation}
+    \frac{1}{2} m v^2 + U(x) = C - C' \coloneqq E,
+\end{equation}
+where $E$ is the total mechanical energy of the particle, which is conserved in the absence of non-conservative forces. Thus, we have derived the expression for the mechanical energy as the first integral of Newton's second law for a particle moving under a conservative force.
+
+
+
+\subsection{Using Total Energy as the Equation of Motion for a Particle Under a Constant Force}
+
+Starting from $E = K + U$, derive $x(t)$ for a particle under a constant force $F$ and show that it is equivalent to the solution obtained from Newton's second law.
+
+\textbf{Solution:}
+The total energy of the particle is given by
+\begin{equation}
+    E = \frac{1}{2}mv^2 + U(x),
+\end{equation}
+where $m$ is the mass of the particle, $v$ is its velocity, and $U(x)$ is the potential energy. For a constant force $F$,
+\begin{equation}
+    F = -\frac{dU}{dx}
+    \implies dU = -F\,dx
+    \implies U(x) = -Fx + C,
+\end{equation}
+where $C$ is a constant. Since the potential energy is defined up to an arbitrary constant, we can set $C = 0$ without loss of generality. The total energy becomes
+\begin{equation}
+    E = \frac{1}{2}mv^2 - Fx.
+\end{equation}
+
+Solving for the velocity, we obtain
+\begin{equation}
+    \frac{1}{2}mv^2 = E + Fx
+    \implies
+    v = \frac{dx}{dt}
+    = \pm\sqrt{\frac{2}{m}(E+Fx)}.
+\end{equation}
+The sign depends on the direction of motion. Let us first consider a particle with a positive initial velocity, $v_0>0$, and assume that its velocity remains positive over the time interval considered. We then have
+\begin{equation}
+    \frac{dx}{dt} = \sqrt{\frac{2}{m}(E+Fx)}.
+\end{equation}
+Separating the variables gives
+\begin{equation}
+    \frac{dx}{\sqrt{E+Fx}}
+    = \sqrt{\frac{2}{m}}\,dt.
+\end{equation}
+
+Integrating both sides from the initial position $x_0$ at time $t_0$ to the position $x(t)$ at time $t$, we obtain
+\begin{equation}
+    \int_{x_0}^{x(t)}
+    \frac{dx}{\sqrt{E+Fx}}
+    =
+    \sqrt{\frac{2}{m}}
+    \int_{t_0}^{t}dt.
+\end{equation}
+
+Assuming $F\neq 0$, and using the substitution $u = E + Fx$, we have $du = F\,dx$, and the integral on the left-hand side is
+\begin{equation}
+    \frac{1}{F} \int u^{-1/2} du = \frac{1}{F} \cdot 2u^{1/2} = \frac{2}{F}\sqrt{u} = \frac{2}{F}\sqrt{E+Fx}.
+\end{equation}
+Therefore,
+\begin{equation}
+    \frac{2}{F}
+    \left[
+        \sqrt{E+Fx(t)}
+        -\sqrt{E+Fx_0}
+    \right]
+    =
+    \sqrt{\frac{2}{m}}(t-t_0).
+\end{equation}
+
+Rearranging, we find
+\begin{equation}
+    \sqrt{E+Fx(t)}
+    =
+    \sqrt{E+Fx_0}
+    +\frac{F}{\sqrt{2m}}(t-t_0).
+    \label{eq:energy-motion-solution}
+\end{equation}
+
+At the initial position $x_0$, the total energy is
+\begin{equation}
+    E = \frac{1}{2}mv_0^2-Fx_0,
+\end{equation}
+which implies
+\begin{equation}
+    \sqrt{E+Fx_0}
+    = \sqrt{\frac{m}{2}}\,v_0,
+\end{equation}
+where we have used $v_0>0$. Substituting this into Eq.~\eqref{eq:energy-motion-solution} expression gives
+\begin{equation}
+    \sqrt{E+Fx(t)}
+    =
+    \sqrt{\frac{m}{2}}\,v_0
+    +\frac{F}{\sqrt{2m}}(t-t_0).
+\end{equation}
+
+Squaring both sides, we obtain
+\begin{equation}
+    E+Fx(t)
+    =
+    \frac{m}{2}v_0^2
+    +Fv_0(t-t_0)
+    +\frac{F^2}{2m}(t-t_0)^2.
+\end{equation}
+
+Using the initial energy
+$E=\frac{1}{2}mv_0^2-Fx_0$,
+we can simplify this expression to
+\begin{equation}
+    Fx(t)
+    =
+    Fx_0+Fv_0(t-t_0)
+    +\frac{F^2}{2m}(t-t_0)^2.
+\end{equation}
+
+Finally, dividing both sides by $F$, we obtain
+\begin{equation}
+    \boxed{
+    x(t)=x_0+v_0(t-t_0)
+    +\frac{F}{2m}(t-t_0)^2
+    }.
+\end{equation}
+
+This is precisely the familiar equation of motion for a particle under constant acceleration,
+\begin{equation}
+    x(t)=x_0+v_0(t-t_0)
+    +\frac{1}{2}a(t-t_0)^2,
+\end{equation}
+where $a=F/m$, according to Newton's second law.
+
+The same result is obtained for a negative initial velocity by choosing the negative square-root branch. If the particle changes direction, the appropriate branch must be changed at the turning point. For $F=0$, the energy equation gives constant speed, and the initial direction determines the uniform motion
+$x(t)=x_0+v_0(t-t_0)$.
+
+\textbf{Remark:}
+The conservation of mechanical energy determines the magnitude of the velocity but not its direction.
+\end{document}
