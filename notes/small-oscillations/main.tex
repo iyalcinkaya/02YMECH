@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
 \usepackage{tikz}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -83,6 +84,7 @@ Rearranging this equation gives
 where we have introduced the positive parameter
 \begin{equation}
     \omega_0\coloneqq\sqrt{\frac{k}{m}}.
+    \label{eq:natural-angular-frequency}
 \end{equation}
 
 This is a second-order linear homogeneous differential equation describing \textit{simple harmonic motion}. The physical meaning of $\omega_0$ will become clear when we solve this equation and examine the resulting motion.
@@ -176,10 +178,14 @@ solution in the more compact form
     x(t)=C\cos(\omega_0 t)+D\sin(\omega_0 t).
     \label{eq:general-solution}
 \end{equation}
-The constants $C$ and $D$ are determined by the
-initial conditions. This general solution can also be expressed in terms of the \emph{amplitude} and \emph{phase} of the oscillation. To see this, we start from Eq.~\ref{eq:general-solution} and use Euler's formula to rewrite the trigonometric functions in terms of complex exponentials:
+The constants $C$ and $D$ are determined by the initial conditions. 
+
+\subsection{Amplitude-Phase Form of the General Solution}
+
+This general solution given in Eq.~\ref{eq:general-solution} can also be expressed in terms of the \emph{amplitude} and \emph{phase} of the oscillation. To see this, we start from Eq.~\ref{eq:general-solution} and use Euler's formula to rewrite the trigonometric functions in terms of complex exponentials:
 \begin{align}
     x(t)
+    &=C\operatorname{Re}\left[e^{i\omega_0 t}\right]+D\operatorname{Re}\left[-i e^{i\omega_0 t}\right]\nonumber\\
     &=\operatorname{Re}\left[
     Ce^{i\omega_0 t}-iDe^{i\omega_0 t}
     \right]\nonumber\\
@@ -189,19 +195,12 @@ initial conditions. This general solution can also be expressed in terms of the 
 \end{align}
 where $\operatorname{Re}$ denotes the real part of a complex number. We now introduce the complex number
 \begin{equation}
-    Z=C-iD,
+    Z\coloneqq C-iD,
 \end{equation}
-which is called a \emph{phasor} or \emph{complex amplitude}. Recall that any nonzero complex number can be expressed in polar form as
+which is constant and called a \emph{phasor} or \emph{complex amplitude}. Recall that any nonzero complex number can be expressed in polar form as $Z=Re^{i\phi}$, where $R=|Z|$ is its magnitude and $\phi$ is its argument. Since $Z=C-iD$, its magnitude and argument can be determined from the real and imaginary parts:
 \begin{equation}
-    Z=Re^{i\phi},
-\end{equation}
-where $R=|Z|$ is its magnitude and $\phi$ is its argument (the angle it makes with the positive real axis). Since $Z=C-iD$, its magnitude is
-\begin{equation}
-    \boxed{R=\sqrt{C^2+D^2},}
-\end{equation}
-and its argument $\phi$ is determined by
-\begin{equation}
-    \arctan\left(-\frac{D}{C}\right)=\phi.
+    R=\sqrt{C^2+D^2},\qquad 
+    \phi=\arctan\left(-\frac{D}{C}\right).
 \end{equation}
 
 Substituting the polar form of $Z$ into the expression for the displacement gives
@@ -215,12 +214,15 @@ Substituting the polar form of $Z$ into the expression for the displacement give
 \end{align}
 Finally, using Euler's formula, we obtain
 \begin{equation}
-    \boxed{x(t)=R\cos(\omega_0 t+\phi).}
+    x(t)=R\cos(\omega_0 t+\phi).
     \label{eq:amplitude-phase-form}
 \end{equation}
-
-This is called the \emph{amplitude-phase form} of the general solution. The constant $R\geq 0$ is the \emph{amplitude}, representing the maximum displacement of the particle from its equilibrium position, while $\phi$ is the \emph{initial phase} (or \emph{phase constant}), which determines the position of the particle within its oscillation cycle at $t=0$.
-
+This is called the \emph{amplitude-phase form} of the general solution.  Recalling that $C=x_0$ and $D=v_0/\omega_0$, the amplitude and the initial phase can be expressed in terms of the initial conditions as
+\begin{equation}
+    R=\sqrt{x_0^2+\frac{v_0^2}{\omega_0^2}},\qquad 
+    \phi=\arctan\left(-\frac{v_0}{\omega_0 x_0}\right).
+    \label{eq:amplitude-phase-initial-conditions}
+\end{equation}
 The phasor representation also provides a geometric interpretation of the motion as shown in Fig.~\ref{fig:phasor-representation}. The complex quantity $Re^{i(\omega_0 t+\phi)}$ represents a vector of constant length $R$ rotating counterclockwise in the complex plane with angular velocity $\omega_0$. The projection of this rotating vector onto the real axis gives the physical displacement $x(t)$ of the particle.
 
 \begin{figure}[!htbp]
@@ -230,21 +232,31 @@ The phasor representation also provides a geometric interpretation of the motion
     \label{fig:phasor-representation}
 \end{figure}
 
-Recalling that $C=x_0$ and $D=v_0/\omega_0$,
-the amplitude can be expressed in terms of the
-initial conditions as
+\subsection{Physical Interpretation of the General Solution}
+
+In the general solution given in Eq.~\eqref{eq:amplitude-phase-form}, the constant $R\geq 0$ is called the \emph{amplitude}, representing the maximum displacement of the particle from its equilibrium position. The constant $\phi$ is called the \emph{initial phase} (or \emph{phase constant}), which determines where in its oscillation cycle the particle is at $t=0$. In other words, the initial phase determines at what point in the oscillation we start our chronometer. The constant $\omega_0$ is the \emph{angular frequency}, which determines how rapidly the particle oscillates. Recall from Eq.~\eqref{eq:natural-angular-frequency} that $\omega_0=\sqrt{k/m}$, where $k$ is the force constant and $m$ is the mass of the particle. Thus, a stiffer system (larger $k$) or a lighter particle (smaller $m$) oscillates more rapidly. In Fig.~\ref{fig:general-solution}, you can see how $x(t)$ varies with time.
+
+The motion is \emph{periodic}, meaning that both the position and velocity of the particle repeat after a fixed time interval called the \emph{period} $T$. For simple harmonic motion, the period is
 \begin{equation}
-    \boxed{
-    R=\sqrt{x_0^2+\frac{v_0^2}{\omega_0^2}}.
-    }
+    T=\frac{2\pi}{\omega_0}.
 \end{equation}
-Similarly, the initial phase is determined by
+The \emph{frequency} $f$ is the number of complete oscillations
+per unit time and is given by
 \begin{equation}
-    \cos\phi=\frac{x_0}{R},
-    \qquad
-    \sin\phi=-\frac{v_0}{\omega_0 R}.
+    f=\frac{1}{T}=\frac{\omega_0}{2\pi}.
 \end{equation}
-Thus, both the amplitude and the initial phase are determined by the initial position and velocity. In the special case $R=0$, the particle remains at its equilibrium position, $x(t)=0$, and the phase $\phi$ is undefined.
+The frequency is measured in hertz (Hz), while the angular frequency is measured in radians per second (rad/s).
+
+As shown in Eq.~\eqref{eq:amplitude-phase-initial-conditions}, both the amplitude $R$ and the initial phase $\phi$ are determined by the initial position and velocity of the particle. Unlike these two quantities, the angular frequency $\omega_0$ depends only on the physical properties of the oscillator and not on its initial conditions. Consequently, the period of simple harmonic motion is independent of the amplitude of oscillation.
+
+Finally, in the special case $R=0$, the particle remains at its equilibrium position, $x(t)=0$, and the phase $\phi$ is undefined.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/general-solution.png}
+    \caption{General solution of simple harmonic motion. The particle oscillates about the equilibrium position with amplitude $R$ and angular frequency $\omega_0$. The initial phase $\phi$ determines the starting point of the oscillation at $t=0$.}
+    \label{fig:general-solution}
+\end{figure}
 
 \subsection{Energy of Simple Oscillations}
 The mechanical energy of a particle undergoing simple oscillation
@@ -591,10 +603,56 @@ This result shows that the quality factor is directly proportional to the number
 
 
 
+\section{Phase Space and Phase Trajectories}
+
+The \emph{state} of a particle undergoing one-dimensional oscillatory motion is completely specified at any instant by its position $x(t)$ and velocity $\dot{x}(t)$. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a point in phase space, and as time progresses, this point traces out a curve called a \emph{phase trajectory}. To determine the phase trajectory of a simple harmonic oscillator, we eliminate time from the equations for position and velocity:
+\begin{align}
+    x(t) &= R\cos(\omega_0 t+\phi),\\
+    \dot{x}(t) &= -R\omega_0\sin(\omega_0 t+\phi).
+\end{align}
+Squaring both equations, adding them, and using the identity
+$\sin^2\theta+\cos^2\theta=1$, we obtain
+\begin{equation}
+    \frac{x^2}{R^2}
+    +\frac{\dot{x}^2}{R^2\omega_0^2}=1.
+\end{equation}
+This is the equation of an ellipse in phase space, with semi-axes $R$ and $R\omega_0$. Recall that the total mechanical energy of a simple harmonic oscillator is conserved and can be expressed in terms of its amplitude as
+\begin{equation}
+    E=\frac{1}{2}kR^2
+    =\frac{1}{2}m\omega_0^2R^2.
+\end{equation}
+Substituting this expression into the equation of
+the ellipse gives
+\begin{equation}
+    \frac{x^2}{2E/k}
+    +\frac{\dot{x}^2}{2E/m}=1.
+\end{equation}
+Thus, the phase trajectories form a family of ellipses, each corresponding to a different value of the conserved mechanical energy $E$. As the particle oscillates, its state moves clockwise along the corresponding ellipse, completing one revolution during each oscillation period.
+
+\subsection{Description of Time Evolution in Phase Space}
+Let us denote the state of the particle at time $t$ by the vector
+\begin{equation}
+    \mathbf{X}(t)=\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
+\end{equation}
+Note that this vector lives in the abstract phase space, which is a two-dimensional space with coordinates $(x, \dot{x})$. It does not correspond to a point in physical space. However, it is still a vector in the sense that it has both magnitude and direction. For example, if we consider the time rate of change of this vector, we consider the time rate of change of the each component. Thus, we get the velocity of the particle in phase space,
+\begin{equation}
+    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}.
+\end{equation}
+where the first component is the velocity and the second component is the acceleration of the particle. The second component is defined by Newton's second law. The time evolution of the state vector is governed by the equation
+\begin{equation}
+    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}
+    =\begin{bmatrix}\dot{x}(t)\\-\omega_0^2 x(t)\end{bmatrix}
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\mathbf{X}(t).
+\end{equation}
+This is a first-order linear differential equation for the state vector $\mathbf{X}(t)$, which can be solved using standard techniques. The solution describes how the state of the particle evolves in phase space over time. The matrix
+\begin{equation}
+    \mathbf{A}=\begin{pmatrix}0&1\\-\omega_0^2&0\end{pmatrix}
+\end{equation}
+is called the \emph{system matrix}, and its eigenvalues determine the stability and nature of the motion. For a simple harmonic oscillator, the eigenvalues are purely imaginary, indicating that the motion is stable and oscillatory. The corresponding eigenvectors define the directions in phase space along which the state vector evolves. The phase trajectories are closed curves, reflecting the periodic nature of the motion.
 
 
-\section{Phase Space Analysis}
-The \emph{state} of a particle undergoing a small oscillation is completely specified as a function of time if two quantities are given at every instant of time: the position $x(t)$ and the velocity $\dot{x}(t)$. We may consider these quantities to be coordinates in two dimensional space, called \emph{phase space}. The position $x$ is plotted along the horizontal axis, while the velocity $\dot{x}$ is plotted along the vertical axis. The state of the particle at any instant of time is represented by a point in phase space, and the motion of the particle traces out a curve in this space as time progresses. This curve is called a \emph{phase trajectory}.
+
+
 \section{Driven Oscillations}
 
 
