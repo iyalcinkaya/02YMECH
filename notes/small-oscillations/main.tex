@@ -51,7 +51,7 @@ where $k\equiv U''(x_0)>0$. It is worth emphasizing that the approximation for t
     \label{fig:small-oscillations}
 \end{figure}
 
-Using the quadratic approximation, we can derive the force acting on the particle:
+Our initial assumption of having a potential energy function directly means that we are considering a conservative force. Therefore, using the quadratic approximation, we can derive the force acting on the particle:
 \begin{equation}
     F(x)=-\frac{dU}{dx}\approx -k(x-x_0).
 \end{equation}
@@ -212,7 +212,7 @@ Substituting the polar form of $Z$ into the expression for the displacement give
     \nonumber\\
     &=\operatorname{Re}\left[Re^{i(\omega_0 t+\phi)}\right].
 \end{align}
-Finally, using Euler's formula, we obtain
+Using Euler's formula, we obtain
 \begin{equation}
     x(t)=R\cos(\omega_0 t+\phi).
     \label{eq:amplitude-phase-form}
@@ -235,6 +235,8 @@ The phasor representation also provides a geometric interpretation of the motion
 \subsection{Physical Interpretation of the General Solution}
 
 In the general solution given in Eq.~\eqref{eq:amplitude-phase-form}, the constant $R\geq 0$ is called the \emph{amplitude}, representing the maximum displacement of the particle from its equilibrium position. The constant $\phi$ is called the \emph{initial phase} (or \emph{phase constant}), which determines where in its oscillation cycle the particle is at $t=0$. In other words, the initial phase determines at what point in the oscillation we start our chronometer. The constant $\omega_0$ is the \emph{angular frequency}, which determines how rapidly the particle oscillates. Recall from Eq.~\eqref{eq:natural-angular-frequency} that $\omega_0=\sqrt{k/m}$, where $k$ is the force constant and $m$ is the mass of the particle. Thus, a stiffer system (larger $k$) or a lighter particle (smaller $m$) oscillates more rapidly. In Fig.~\ref{fig:general-solution}, you can see how $x(t)$ varies with time.
+
+The constant $\omega_0$ is also called the \emph{natural angular frequency} or \emph{natural oscillation frequency} of the system, as it characterizes the intrinsic oscillatory behavior of the system in the absence of any external forces or damping. The natural angular frequency is a fundamental property of the system and depends only on its physical characteristics, such as the mass and stiffness. It is important to note that $\omega_0$ is independent of the initial conditions, meaning that all particles with the same mass and force constant will oscillate with the same natural angular frequency, regardless of their initial position or velocity.
 
 The motion is \emph{periodic}, meaning that both the position and velocity of the particle repeat after a fixed time interval called the \emph{period} $T$. For simple harmonic motion, the period is
 \begin{equation}
@@ -291,7 +293,7 @@ Hence, the mechanical energy of a simple oscillator is constant and proportional
 
 
 \section{Damped Oscillations}  
-If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. The retarding force can be expressed as
+If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle\footnote{Note that this is just a simple model that we can easily solve analytically. In real-life situations, the retarding force can be more complex and may depend on other factors such as the shape and size of the particle, the properties of the medium, and the frequency of the oscillation.}, which is a common situation in many physical systems. The retarding force can be expressed as
 \begin{equation}
     F_\text{r}=-b\dot{x},
 \end{equation}
@@ -484,6 +486,9 @@ Since the left-hand side is a strictly increasing
 function of time, this equation can have at most one solution. Consequently, the particle may cross equilibrium once, depending on its initial conditions, but it cannot undergo oscillatory motion.
 
 
+\subsection{Comparison of Damping Regimes}
+
+
 
 
 
@@ -605,7 +610,30 @@ This result shows that the quality factor is directly proportional to the number
 
 \section{Phase Space and Phase Trajectories}
 
-The \emph{state} of a particle undergoing one-dimensional oscillatory motion is completely specified at any instant by its position $x(t)$ and velocity $\dot{x}(t)$. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a point in phase space, and as time progresses, this point traces out a curve called a \emph{phase trajectory}. To determine the phase trajectory of a simple harmonic oscillator, we eliminate time from the equations for position and velocity:
+The \emph{state} of a particle at any instant is defined to be specified by its position $x(t)$ and velocity $\dot{x}(t)$. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a vector in phase space,
+\begin{equation}
+    \mathbf{X}(t)=\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
+\end{equation}
+
+and as time progresses, this vector traces out a curve called a \emph{phase trajectory} as shown in Fig.~\ref{fig:phase-space-trajectories}(a). The phase trajectory provides a visual representation of the motion of the particle, showing how its position and velocity change over time.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/state-in-phase-space.png}
+    \caption{(a) State of a mechanical system in phase space. The state of the particle is represented by a vector $\mathbf{X}(t)$, which traces out a phase trajectory as time progresses. (b) Displacement of the state vector in phase space defining the ``velocity'' of the state vector, $V_{\text{avg}} = \frac{\Delta\mathbf{X}}{\Delta t}$.}
+    \label{fig:phase-space-trajectories}
+\end{figure}
+
+Note that this vector lives in the abstract phase space, which is a two-dimensional space with coordinates $(x, \dot{x})$. It does not correspond to a point in physical space. However, it is still a vector in the sense that it has both magnitude and direction. For example, if we consider the time rate of change of this vector, we consider the time rate of change of the each component as shown in Fig.~\ref{fig:phase-space-trajectories}(b). Thus, we get the velocity of the particle in phase space,
+\begin{equation}
+    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}.
+\end{equation}
+where the first component is the velocity and the second component is the acceleration of the particle. The second component is defined by Newton's second law.
+
+
+\subsection{Time Evolution in Phase Space for Oscillatory Motion}
+
+Eliminating time from the equations for position and velocity for small oscillations leads to the equation of the phase trajectory:
 \begin{align}
     x(t) &= R\cos(\omega_0 t+\phi),\\
     \dot{x}(t) &= -R\omega_0\sin(\omega_0 t+\phi).
@@ -619,7 +647,7 @@ $\sin^2\theta+\cos^2\theta=1$, we obtain
 This is the equation of an ellipse in phase space, with semi-axes $R$ and $R\omega_0$. Recall that the total mechanical energy of a simple harmonic oscillator is conserved and can be expressed in terms of its amplitude as
 \begin{equation}
     E=\frac{1}{2}kR^2
-    =\frac{1}{2}m\omega_0^2R^2.
+    =\frac{1}{2}m\omega_0^2R^2 \implies R^2=\frac{2E}{k}=\frac{2E}{m\omega_0^2}.
 \end{equation}
 Substituting this expression into the equation of
 the ellipse gives
@@ -627,33 +655,178 @@ the ellipse gives
     \frac{x^2}{2E/k}
     +\frac{\dot{x}^2}{2E/m}=1.
 \end{equation}
-Thus, the phase trajectories form a family of ellipses, each corresponding to a different value of the conserved mechanical energy $E$. As the particle oscillates, its state moves clockwise along the corresponding ellipse, completing one revolution during each oscillation period.
-
-\subsection{Description of Time Evolution in Phase Space}
-Let us denote the state of the particle at time $t$ by the vector
-\begin{equation}
-    \mathbf{X}(t)=\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
-\end{equation}
-Note that this vector lives in the abstract phase space, which is a two-dimensional space with coordinates $(x, \dot{x})$. It does not correspond to a point in physical space. However, it is still a vector in the sense that it has both magnitude and direction. For example, if we consider the time rate of change of this vector, we consider the time rate of change of the each component. Thus, we get the velocity of the particle in phase space,
-\begin{equation}
-    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}.
-\end{equation}
-where the first component is the velocity and the second component is the acceleration of the particle. The second component is defined by Newton's second law. The time evolution of the state vector is governed by the equation
+Thus, semi-major and semi-minor axes of the ellipse are determined by the total mechanical energy $E$ of the oscillator as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(a). The phase trajectories form a family of ellipses, each corresponding to a different value of the conserved mechanical energy $E$ as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(b). As the particle oscillates, its state moves clockwise along the corresponding ellipse, completing one revolution during each oscillation period as shown in Fig.~\ref{fig:phase-space-trajectories}. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/phase-trajectory-simple-oscillation.png}
+    \caption{(a) Phase trajectory of a simple harmonic oscillator in phase space. (b) The trajectory is an ellipse, with semi-major and semi-minor axes determined by the total mechanical energy $E$ of the oscillator.}
+    \label{fig:phase-trajectory-simple-oscillation}
+\end{figure}
+The time evolution of the state vector is governed by the equation
 \begin{equation}
     \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}
     =\begin{bmatrix}\dot{x}(t)\\-\omega_0^2 x(t)\end{bmatrix}
-    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\mathbf{X}(t).
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}=\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\mathbf{X}(t).
 \end{equation}
-This is a first-order linear differential equation for the state vector $\mathbf{X}(t)$, which can be solved using standard techniques. The solution describes how the state of the particle evolves in phase space over time. The matrix
+where the matrix 
 \begin{equation}
-    \mathbf{A}=\begin{pmatrix}0&1\\-\omega_0^2&0\end{pmatrix}
+    \hat{S} \coloneqq \begin{pmatrix}0&1\\-\omega_0^2&0\end{pmatrix}
 \end{equation}
-is called the \emph{system matrix}, and its eigenvalues determine the stability and nature of the motion. For a simple harmonic oscillator, the eigenvalues are purely imaginary, indicating that the motion is stable and oscillatory. The corresponding eigenvectors define the directions in phase space along which the state vector evolves. The phase trajectories are closed curves, reflecting the periodic nature of the motion.
+is called the \emph{system matrix}. By using this terminology, now we can write the time evolution of the sistem in a compact form as
+\begin{equation}
+    \dot{\mathbf{X}} = \hat{S}\mathbf{X}.
+\end{equation}
+This is a first-order linear differential equation for the state vector $\mathbf{X}(t)$, which can be solved using standard techniques which is out of the scope of this text. However, even without getting into the details of the solution of this equation, a lot of important conclusion can be drawn from this simple relation as listed below:
+
+\textbf{Conclusion 1:} The time rate of change of a vectoral quantity (in this case, the state vector $\mathbf{X}$) can be obtained by reorganizing its components according to the prescription given by the system matrix $\hat{S}$:
+\begin{equation}
+    \frac{d}{dt}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
+\end{equation}
+
+\textbf{Conclusion 2:} Note that the system matrix is only a function of the natural angular frequency $\omega_0$ of the system. Therefore, the time evolution of the state vector is determined solely by the properties of the system, and not by the initial conditions. The initial conditions only determine which phase trajectory the system will follow in phase space. 
+
+\textbf{Conclusion 3:} Once we are given the initial conditions at some arbitrary time $t_0$, $x(t_0)$ and $\dot{x}(t_0)$, or in other words, if we are given the initial ``state'' $\mathbf{X}(t_0)$ of the system, we can approximately determine the state of the system at a later time $t_0+dt$
+\begin{equation}
+    \mathbf{X}(t_0+dt) \approx \mathbf{X}(t_0) + \dot{\mathbf{X}}(t_0) dt = \mathbf{X}(t_0) + \hat{S}\mathbf{X}(t_0) dt.
+\end{equation}
+The quality of the approximation improves as $dt$ becomes smaller. By repeating this process, we can determine the state of the system at any later time $t_0+n dt$ for any positive integer $n$. In this way, we can trace out the phase trajectory of the system in phase space.
+
+Note that the state of the system at the later time only depends on the current state of the system and the system properties, and not on the history of the system. This is a manifestation of the \emph{Markov property}, which states that the future state of a system depends only on its present state, and not on its past states. This property is a fundamental feature of many physical systems, and it allows us to describe their dynamics using differential equations. 
+
+\textbf{Conclusion 4:} Note again that the system matrix $\hat{S}$ is a ``passive transformation'' such that it does not change in time once the system properties are set, and it acts on any initial state vector in the phase space in the same way. This leads us to conceptually generalize the idea of time evolution in such a way that we can start thinking about the phase space  consisting of infinitely many number of possible initial states represented by dots so that we can assign a ``velocity vector'' associated with the transformation $\hat{S}$ to each of this dots converting this scalar field into a vector field in the phase space as shown in Fig.~\ref{fig:phase-vector-space}. This velocity vector field does not change in time. Therefore, if we pictoriolly represent initial state of the system by a ``ball'' in the phase space, then the matrix $\hat{S}$ define the local ``kickers'' for each point in the phase space so that whenever they have a ball in front of them, they kick it in the predefined (by the system matrix) certain direction with a certain speed and pass it to the one next to it. In this way, the ball will move in the phase space and trace out a phase trajectory as time progresses. This is a very useful way of visualizing the dynamics of the system in phase space, and it can be used to gain insight into the behavior of the system under different initial conditions. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/phase-vector-space.png}
+    \caption{Phase space vector field. (a) Starting from an initial state, the state vector traces out a phase trajectory as it moves through the vector field. (b) The system matrix $\hat{S}$ defines a velocity vector at each point in phase space, which determines the direction and speed of the state vector's motion. }
+    \label{fig:phase-vector-space}
+\end{figure}
 
 
+
+
+
+For the damped oscillation, time rate of change of the state vector becomes
+
+\begin{equation}
+    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}
+    =\begin{bmatrix}\dot{x}(t)\\-2\gamma\dot{x}-\omega_0^2 x(t)\end{bmatrix}
+    =\begin{bmatrix}0&1\\-\omega_0^2&-2\gamma\end{bmatrix}\mathbf{X}(t).
+\end{equation}
+
+TO BE CONTINUED...
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/phase-space-damped-oscillator.png}
+    \caption{Phase trajectory of a damped harmonic oscillator in phase space. The trajectory is a spiral, with the particle eventually approaching the equilibrium position at the origin.}
+    \label{fig:phase-trajectory-damped-oscillation}
+\end{figure}
 
 
 \section{Driven Oscillations}
+We will consider now that the particle which does damped oscillatory motion is also subjected to an external periodic driving force, $F(t)$. These kind of oscillations are called \emph{driven oscillations}. 
+
+An intuitive example of driven oscillations is a child on a swing. The child can be thought of as a damped oscillator, with the swing providing the restoring force. If the child pumps their legs at the right frequency, they can increase the amplitude of their swinging motion. In this case, the external driving force is provided by the child's legs, which are applying a periodic force to the swing.
+
+The net force acting on the particle is the sum of the restoring force, the damping force, and the external driving force:
+\begin{enumerate}
+    \item Restoring force: $F_\text{restoring}=-kx(t)$
+    \item Damping force: $F_\text{damping}=-b\dot{x}(t)$
+    \item External driving force: $F_\text{driving}=F(t)=F_0\cos(\omega t)$
+\end{enumerate}
+
+In general, the external driving force can be any function of time, but for simplicity, we will consider a sinusoidal driving force of the form $F(t)=F_0\cos(\omega t)$, where $F_0$ is the amplitude of the driving force and $\omega$ is its angular frequency. The total force acting on the system and the corresponding equation of motion can be written as
+\begin{equation}
+    F_\text{net}=F_\text{r}+F_\text{d}+F_\text{drive}=-kx(t)-b\dot{x}(t)+F_0\cos(\omega t)=m\ddot{x}(t).
+\end{equation}
+Rearranging this equation gives the equation of motion for a driven damped harmonic oscillator:
+\begin{equation}
+    m\ddot{x}(t)+b\dot{x}(t)+kx(t)=F_0\cos(\omega t).
+\end{equation}
+Or, in terms of the natural angular frequency $\omega_0$ and the damping constant $\gamma$, we can write
+\begin{equation}
+    \ddot{x}(t)+2\gamma\dot{x}(t)+\omega_0^2 x(t)=\frac{F_0}{m}\cos(\omega t).
+    \label{eq:driven-oscillator-eom}
+\end{equation}
+This is a second-order linear nonhomogeneous differential equation with constant coefficients. It is nonhomogeneous because of the explicit time-dependent driving force on the right-hand side. Before getting into the solution of this equation, let us first discuss what would we expect from the solution. 
+
+Assume a weakly damped system was oscillating on its own approximately with frequency $\omega_0$. If an external force starts ``shaking'' the system, in the beginning, the system will resist to obey the external force because of its intertia and previous motion. However, as the external force persistently continues to act on the system, the system will eventually ``give in'' and start to oscillate with the same frequency as the external force. This is called \emph{steady-state motion}. In addition to this steady-state motion, there will also be a transient motion that depends on the initial conditions of the system. The transient motion will eventually die out due to damping, leaving only the steady-state motion.
+
+From this point of view, we would expect two different behaviors from the general solution of the equation of motion: a transient motion that decays over time and a steady-state motion that persists indefinitely. The transient motion is called the \emph{complementary solution} $x_\text{c}(t)$ and it is the same as the solution of the homogeneous equation (the equation without the driving force). The steady-state motion is called the \emph{particular solution} $x_\text{p}(t)$ and it is a specific solution of the nonhomogeneous equation that depends on the form of the driving force. Therefore, the general solution of the equation of motion can be expressed as the sum of the complementary and particular solutions:
+\begin{equation}
+    x(t)=x_\text{c}(t)+x_\text{p}(t).
+\end{equation}
+We already know from previous section that the complementary solution dies out as $t \to \infty$:
+\begin{equation}
+    \lim_{t\to\infty}x_\text{c}(t)=0 \implies \lim_{t\to\infty}x(t)=x_\text{p}(t).
+\end{equation}
+
+
+
+Following the above discussion, we actually know the form of the particular solution. Since the driving force is sinusoidal, we expect the particular solution to also be sinusoidal with the same frequency as the driving force, but with a different amplitude and phase. Therefore, we can write
+\begin{equation}
+    x_\text{p}(t)=A\cos(\omega t-\delta),
+    \label{eq:particular-solution-ansatz}
+\end{equation}
+where $A$ is the amplitude of the steady-state motion and $\delta$ is the phase difference between the driving force and the steady-state motion. This form of the solution provides us with the most general description of the steady-state motion of a driven damped harmonic oscillator regarding the points discussed above. The amplitude $A$ and phase $\delta$ can be determined by substituting the particular solution into the equation of motion and solving for $A$ and $\delta$. This can be done by differentiating the particular solution twice and substituting it into the equation of motion. However, the calculations can be quite involved because of the trigonometric functions. Instead, we can so the same calculations in a more elegant way by using complex numbers. 
+
+Instead of using Eq.~\eqref{eq:particular-solution-ansatz} as a solution ansatz, let us switch to the complex plane by expanding it with a complex component:
+\begin{equation}
+    z_\text{p}(t)=A\cos(\omega t-\delta)+iA\sin(\omega t-\delta)=Ae^{i(\omega t-\delta)}.
+    \label{eq:particular-solution-complex}
+\end{equation}
+
+From now on, we also think that the equation of motion is also extended to the complex plane by allowing the position $x(t)$ to be a complex function $z(t)$. Therefore, we can write the equation of motion (Eq.~\eqref{eq:driven-oscillator-eom}) in the complex plane as
+\begin{equation}
+    \ddot{z}(t)+2\gamma\dot{z}(t)+\omega_0^2 z(t)=\frac{F_0}{m}e^{i\omega t}.
+\end{equation}
+
+Note that we effectively changed nothing by switching to the complex plane since derivation is a linear operation, and actually, it corresponds to considering the same differential equation twice, once for the real part and once for the imaginary part,
+\begin{equation}
+    \frac{d^2}{dt^2}\left[x_\text{p}(t)+iy_\text{p}(t)\right]
+    +2\gamma\frac{d}{dt}\left[x_\text{p}(t)+iy_\text{p}(t)\right]
+    +\omega_0^2\left[x_\text{p}(t)+iy_\text{p}(t)\right]
+    =\frac{F_0}{m}\left[\cos(\omega t)+i\sin(\omega t)\right].
+\end{equation}
+where $x_\text{p}(t)$ and $y_\text{p}(t)$ are the real and imaginary parts of the complex solution $z_\text{p}(t)$, respectively. As you can see real and imaginary part do not mix together. The real part of the complex solution corresponds to the physical solution we are interested in, while the imaginary part is an auxiliary function that helps us simplify the calculations. The rest of the calculation is straightforward. We can differentiate the complex solution twice and substitute it into the equation of motion to solve for the amplitude $A$ and phase $\delta$:
+\begin{align}
+    \dot{z}_\text{p}(t) &= i\omega Ae^{i(\omega t-\delta)},\\
+    \ddot{z}_\text{p}(t) &= -\omega^2 Ae^{i(\omega t-\delta)}.
+\end{align}
+Substituting these expressions into the equation of motion gives
+\begin{equation}
+    \left[-\omega^2+2i\gamma\omega+\omega_0^2\right]Ae^{i(\omega t-\delta)}=\frac{F_0}{m}e^{i\omega t}.
+\end{equation}
+Dividing both sides by $e^{i\omega t}$ and rearranging gives
+\begin{equation}
+    \left[-\omega^2+2i\gamma\omega+\omega_0^2\right]A=\frac{F_0}{m}e^{i\delta}=\frac{F_0}{m}\left[\cos(\delta)+i\sin(\delta)\right].
+\end{equation}
+Real and imaginary parts of this equation can be separated to give two equations for the amplitude $A$ and phase $\delta$:
+\begin{align}
+    A\left(\omega_0^2-\omega^2\right) &= \frac{F_0}{m}\cos(\delta),\\
+    2\gamma\omega A &= \frac{F_0}{m}\sin(\delta).
+\end{align}
+Squaring both equations and adding them gives
+\begin{equation}
+    A^2\left[\left(\omega_0^2-\omega^2\right)^2+(2\gamma\omega)^2\right]=\left(\frac{F_0}{m}\right)^2.
+\end{equation}
+Taking the square root of both sides gives the amplitude of the steady-state motion:
+\begin{equation}
+    A=\frac{F_0/m}{\sqrt{\left(\omega_0^2-\omega^2\right)^2+(2\gamma\omega)^2}}.
+\end{equation}
+The phase difference $\delta$ can be determined by taking the ratio of the imaginary and real parts of the equation:
+\begin{equation}
+    \tan(\delta)=\frac{2\gamma\omega}{\omega_0^2-\omega^2} \implies \delta=\arctan\left(\frac{2\gamma\omega}{\omega_0^2-\omega^2}\right).
+\end{equation}
+
+\subsection{How to read amplitude and phase equations}
+\begin{enumerate}
+    \item[(a)] $F_0$ is the amplitude of the driving force and it is in the numerator of the amplitude equation. Therefore, increasing the driving force will increase the amplitude of the steady-state motion or vice versa.
+    \item[(b)] $\gamma$ is the damping constant and it is in the denominator of the amplitude equation. Therefore, increasing the damping will decrease the amplitude of the steady-state motion or vice versa.
+    \item[(c)] What if $\omega$, the angular frequency of the driving force, is a very small number, $\omega \ll 1$? It physically means that driving force oscillates so slow that the particle directly follows the driving force. At each instant of time, we would expect the restoring force to be approximately equal to the driving force. 
+\end{enumerate}
 
 
 \section{Worked Examples}
