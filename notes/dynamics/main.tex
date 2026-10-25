@@ -1791,4 +1791,64 @@ $x(t)=x_0+v_0(t-t_0)$.
 
 \textbf{Remark:}
 The conservation of mechanical energy determines the magnitude of the velocity but not its direction.
+
+
+\subsection{Velocity with respect to distance}
+A block of mass $m$ slides down a frictionless incline of height $h$ and inclination angle $\theta$. Find the velocity of the block after it moves from rest a distance $x$ down the incline.
+
+\textbf{Solution 1:}
+We know that the block accelerates down the incline due to the component of gravity along the incline, which is $mg\sin\theta$. Therefore, the acceleration of the block is
+\begin{equation}
+    \ddot{x} = g\sin\theta.
+\end{equation}
+Multiplying both sides by $2\dot{x}$, we have
+\begin{equation}
+    2\dot{x}\ddot{x} = 2g\sin\theta\dot{x}.
+\end{equation}
+The left-hand side is the derivative of $\dot{x}^2$, so we can write
+\begin{equation}
+    \frac{d}{dt}(\dot{x}^2) = 2g\sin\theta\dot{x}.
+\end{equation}
+Integrating both sides with respect to time, we get
+\begin{equation}
+    \dot{x}^2 = 2g\sin\theta x + C,
+\end{equation}
+where $C$ is a constant of integration. Since the block starts from rest, $\dot{x}(0) = 0$, and $x(0) = 0$. Therefore, $C = 0$, and we have
+\begin{equation}
+    \dot{x}^2 = 2g\sin\theta x.
+\end{equation}
+Taking the square root of both sides, we find
+\begin{equation}
+    \boxed{\dot{x} = \sqrt{2g\sin\theta x}}.
+\end{equation}
+
+This is the velocity of the block as a function of the distance it has traveled down the incline.
+
+\textbf{Solution 2:}
+Alternatively, we can use the conservation of mechanical energy. The initial potential energy of the block at height $h$ is $U_i = mgh$, and the initial kinetic energy is $K_i = 0$. As the block slides down a distance $x$ along the incline, it loses potential energy and gains kinetic energy. The change in height corresponding to the distance $x$ down the incline is $h - x\sin\theta$. Therefore, the final potential energy is
+\begin{equation}
+    U_f = mg(h - x\sin\theta),
+\end{equation}
+and the final kinetic energy is
+\begin{equation}
+    K_f = \frac{1}{2}m\dot{x}^2.
+\end{equation}
+Applying the conservation of mechanical energy, we have
+\begin{equation}
+    U_i + K_i = U_f + K_f
+    \implies mgh = mg(h - x\sin\theta) + \frac{1}{2}m\dot{x}^2.
+\end{equation}
+Simplifying, we get
+\begin{equation}
+    mgx\sin\theta = \frac{1}{2}m\dot{x}^2.
+\end{equation}
+Dividing both sides by $m$ and multiplying by 2, we find
+\begin{equation}
+    \dot{x}^2 = 2g\sin\theta x,
+\end{equation}
+which leads to the same result as before:
+\begin{equation}
+    \boxed{\dot{x} = \sqrt{2g\sin\theta x}}.
+\end{equation}
+
 \end{document}

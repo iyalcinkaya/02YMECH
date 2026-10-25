@@ -487,7 +487,16 @@ function of time, this equation can have at most one solution. Consequently, the
 
 
 \subsection{Comparison of Damping Regimes}
+The underdamped motion is the only case that exhibits oscillatory behavior, while the critically damped and overdamped cases do not oscillate. The critically damped case represents the fastest approach to equilibrium without oscillation, while the overdamped case results in a slower approach to equilibrium. The underdamped case exhibits oscillatory motion with exponentially decaying amplitude, while the critically damped and overdamped cases do not oscillate and approach equilibrium at different rates. The comparison of the three damping regimes is illustrated in Fig.~\ref{fig:damping-regimes}.
 
+The critically damped case is often considered the optimal damping scenario for systems that require a quick return to equilibrium without overshooting, such as in automotive suspension systems, certain types of mechanical clocks, pneumatic-actuated systems and screen door closure systems. The overdamped case, while slower, may be preferred in situations where overshooting must be avoided at all costs, even if it means a longer time to reach equilibrium. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/damping-regimes-comparison.png}
+    \caption{Comparison of the three damping regimes: underdamped, critically damped, and overdamped. The underdamped case exhibits oscillatory motion with exponentially decaying amplitude, while the critically damped and overdamped cases do not oscillate and approach equilibrium at different rates.}
+    \label{fig:damping-regimes}
+\end{figure}
 
 
 
@@ -659,7 +668,7 @@ Thus, semi-major and semi-minor axes of the ellipse are determined by the total 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.99\textwidth]{figures/phase-trajectory-simple-oscillation.png}
-    \caption{(a) Phase trajectory of a simple harmonic oscillator in phase space. (b) The trajectory is an ellipse, with semi-major and semi-minor axes determined by the total mechanical energy $E$ of the oscillator.}
+    \caption{(a) Phase trajectory of a simple harmonic oscillator in phase space. (b) The trajectory is an ellipse, with semi-major and semi-minor axes determined by the total mechanical energy $E$ of the oscillator. Note that the phase trajectories bolong to different energies never intersect each other. If they did, a given initial state would lead to two different energies, which is not possible.}
     \label{fig:phase-trajectory-simple-oscillation}
 \end{figure}
 The time evolution of the state vector is governed by the equation
@@ -763,9 +772,14 @@ We already know from previous section that the complementary solution dies out a
     \lim_{t\to\infty}x_\text{c}(t)=0 \implies \lim_{t\to\infty}x(t)=x_\text{p}(t).
 \end{equation}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/full-damped-solution.png}
+    \caption{Two examples of driven damped harmonic oscillators with different driving frequencies. The transient motion dies out over time, leaving only the steady-state motion.}
+    \label{fig:driven-oscillator-examples}
+\end{figure}
 
-
-Following the above discussion, we actually know the form of the particular solution. Since the driving force is sinusoidal, we expect the particular solution to also be sinusoidal with the same frequency as the driving force, but with a different amplitude and phase. Therefore, we can write
+Two examples of this combined behavior of particular and complementary solutions is given in Fig~ \ref{fig:driven-oscillator-examples}. Following the above discussion, we actually know the form of the particular solution. Since the driving force is sinusoidal, we expect the particular solution to also be sinusoidal with the same frequency as the driving force, but with a different amplitude and phase. Therefore, we can write
 \begin{equation}
     x_\text{p}(t)=A\cos(\omega t-\delta),
     \label{eq:particular-solution-ansatz}
@@ -819,19 +833,219 @@ Taking the square root of both sides gives the amplitude of the steady-state mot
 The phase difference $\delta$ can be determined by taking the ratio of the imaginary and real parts of the equation:
 \begin{equation}
     \tan(\delta)=\frac{2\gamma\omega}{\omega_0^2-\omega^2} \implies \delta=\arctan\left(\frac{2\gamma\omega}{\omega_0^2-\omega^2}\right).
+    \label{eq:phase-difference}
 \end{equation}
+
+The amplitude and phase equations are the most important results of this section, and they provide a complete description of the steady-state motion of a driven damped harmonic oscillator. The amplitude equation shows how the amplitude of the steady-state motion depends on the driving frequency $\omega$, the natural frequency $\omega_0$, the damping constant $\gamma$, and the amplitude of the driving force $F_0$. The phase equation shows how the phase difference between the driving force and the steady-state motion depends on the same parameters. In Fig.~\ref{fig:amplitude-phase-vs-frequency}, we plot the amplitude and phase equations as functions of the driving frequency $\omega$.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/amplitude-phase.png}
+    \caption{Amplitude and phase difference of the steady-state motion as a function of the driving frequency $\omega$.}
+    \label{fig:amplitude-phase-vs-frequency}
+\end{figure}
 
 \subsection{How to read amplitude and phase equations}
 \begin{enumerate}
     \item[(a)] $F_0$ is the amplitude of the driving force and it is in the numerator of the amplitude equation. Therefore, increasing the driving force will increase the amplitude of the steady-state motion or vice versa.
     \item[(b)] $\gamma$ is the damping constant and it is in the denominator of the amplitude equation. Therefore, increasing the damping will decrease the amplitude of the steady-state motion or vice versa.
-    \item[(c)] What if $\omega$, the angular frequency of the driving force, is a very small number, $\omega \ll 1$? It physically means that driving force oscillates so slow that the particle directly follows the driving force. At each instant of time, we would expect the restoring force to be approximately equal to the driving force. 
+    \item[(c)] What if $\omega$, the angular frequency of the driving force, is a very small number, $\omega \ll 1$? It physically means that driving force oscillates so slow that the particle directly follows the driving force. At each instant of time, we would expect the restoring force to be approximately equal to the driving force, i.e. $kx(t)\approx F_0\cos(\omega t)$. Therefore, the amplitude of the steady-state motion should be approximately $A\approx F_0/k$. This is exactly what we get from the amplitude equation in this limit:
+    \begin{equation}
+        A\approx\frac{F_0/m}{\sqrt{\omega_0^2}}=\frac{F_0/m}{\omega_0^2}=\frac{F_0/m}{k/m}=\frac{F_0}{k}.
+    \end{equation}
+    Also, since the particle is directly following the driving force, we would expect the phase difference to be approximately zero, $\delta\approx 0$. This is exactly what we get from the phase equation in this limit:
+    \begin{equation}
+        \delta\approx\arctan\left(\frac{0}{\omega_0^2}\right)=\arctan(0)=0.
+    \end{equation}
+    \item[(d)] What if $\omega$, the angular frequency of the driving force, is equal to the natural angular frequency of the system, $\omega=\omega_0$? 
+    \begin{equation}
+        A=\frac{F_0/m}{\sqrt{(2\gamma\omega_0)^2}}=\frac{F_0/m}{2\gamma\omega_0}.
+    \end{equation}
+    Remember that the quality factor is defined as $Q=\omega_0/2\gamma$. Therefore, we can write the amplitude at resonance as
+    \begin{equation}
+        A_\text{res}=\frac{F_0/m}{2\gamma\omega_0}=\frac{F_0/m}{\omega_0^2}\frac{\omega_0}{2\gamma}=\frac{F_0/k}{2\gamma/\omega_0}=\frac{F_0/k}{1/Q}=Q\frac{F_0}{k}.
+    \end{equation}
+    Therefore, the amplitude at resonance is $Q$ times larger than the amplitude at low frequencies. This is a very important result, and it shows that the quality factor is a measure of how much the amplitude of the steady-state motion is amplified at resonance.
+    The phase difference at resonance is
+    \begin{equation}
+        \delta=\arctan\left(\frac{2\gamma\omega_0}{\omega_0^2-\omega_0^2}\right)=\arctan(\infty)=\frac{\pi}{2}.
+    \end{equation}
+    \item[(e)] What if $\omega$, the angular frequency of the driving force, is a very large number, $\omega \gg 1$? It physically means that driving force oscillates so fast that the particle cannot follow the driving force. At each instant of time, we would expect the particle to be approximately at rest, i.e. $x(t)\approx 0$. Therefore, the amplitude of the steady-state motion should be approximately $A\approx 0$. This is exactly what we get from the amplitude equation in this limit:
+    \begin{equation}
+        A\approx\frac{F_0/m}{\sqrt{\omega^4}}=\frac{F_0/m}{\omega^2}\approx 0.
+    \end{equation}
+    In Eq.~\ref{eq:phase-difference}, as we increase $\omega$, the parameter of the $\arctan$ function goes to zero from the left. Therefore, the phase difference approaches $\pi$ from below, $\delta\to\pi^-$. This means that the particle is approximately at rest, and the driving force is approximately equal to the restoring force, but in the opposite direction, $F_0\cos(\omega t)\approx -kx(t)$.
+    \item[(f)] The maximum of the amplitude occurs not at the resonance frequency $\omega_0$, but at a slightly lower frequency $\omega_\text{max}$:
+    \begin{equation}
+    \frac{dA}{d\omega}=\frac{F_0}{m}\left[-\frac{1}{2}\left(4\gamma^2\omega^2+(\omega^2-\omega_0^2)^2\right)\right]^{-3/2}\left(8\gamma^2\omega+4\omega(\omega^2-\omega_0^2)\right)=0.
+    \end{equation}
+    \begin{equation}
+        8\gamma^2\omega+4\omega(\omega^2-\omega_0^2)=0 \implies 2\gamma^2+\omega^2-\omega_0^2=0 \implies \omega_\text{max}=\sqrt{\omega_0^2-2\gamma^2}.
+    \end{equation}
+    Therefore, $\omega_\text{max}<\omega_0$. We can also write $\omega_\text{max}$ in terms of the quality factor $Q$:
+    \begin{equation}
+        \omega_\text{max}=\sqrt{\omega_0^2-2\gamma^2}=\omega_0\sqrt{1-\frac{1}{2Q^2}}.
+    \end{equation}
+    If we plug $\omega_\text{max}$ into the amplitude equation, we can find the maximum amplitude:
+    \begin{equation}
+        A_\text{max}=\frac{F_0/m}{\sqrt{(\omega_0^2-\omega_\text{max}^2)^2+(2\gamma\omega_\text{max})^2}}=\frac{F_0/m}{\sqrt{(2\gamma^2)^2+(2\gamma\sqrt{\omega_0^2-2\gamma^2})^2}}=\frac{F_0/m}{2\gamma\sqrt{\omega_0^2-\gamma^2}}.
+    \end{equation}
+    In terms of the quality factor $Q$, we can write
+    \begin{equation}
+        A_\text{max}=\frac{F_0/m}{2\gamma\sqrt{\omega_0^2-\gamma^2}}=\frac{F_0/m}{2\gamma\omega_0\sqrt{1-\frac{1}{4Q^2}}}=\frac{F_0/k}{\sqrt{1-\frac{1}{4Q^2}}}\frac{1}{2\gamma/\omega_0}=\frac{F_0/k}{\sqrt{1-\frac{1}{4Q^2}}}\frac{1}{1/Q}=\frac{F_0}{k}\frac{Q}{\sqrt{1-\frac{1}{4Q^2}}}.
+    \end{equation}
+    For example, for a very low quality factor like $Q=5$:
+    \begin{equation}
+        \omega_\text{max}=\sqrt{\omega_0^2-2\gamma^2}=\omega_0\sqrt{1-\frac{1}{2Q^2}}=\omega_0\sqrt{1-\frac{1}{50}}\approx 0.99\omega_0.
+    \end{equation}
+    Therefore, even for this very low quality factor, the maximum amplitude occurs at a frequency that is very close to the natural frequency of the system. For a higher quality factors the difference between $\omega_\text{max}$ and $\omega_0$ becomes even smaller. When we compare the maximum amplitude $A_\text{max}$ with the amplitude at resonance $A_\text{res}$, we can see that they are very close to each other for a low quality factor like $Q=5$:
+    \begin{equation}
+        A_\text{max}=\frac{F_0}{k}\frac{Q}{\sqrt{1-\frac{1}{4Q^2}}}=\frac{F_0}{k}\frac{5}{\sqrt{1-\frac{1}{100}}}\approx 5.025\frac{F_0}{k}, \quad A_\text{res}=Q\frac{F_0}{k}=5\frac{F_0}{k}.
+    \end{equation}
+    In Fig.~\ref{fig:amplitude-response}, we plot the amplitude response of a driven damped harmonic oscillator for different quality factors. As we can see, the maximum amplitude occurs at a frequency that is very close to the natural frequency of the system, and the difference between $\omega_\text{max}$ and $\omega_0$ becomes smaller as the quality factor increases.
+
+    Even if the maximum amplitude occurs at a frequency $\omega_\text{max}$, the amplitude at resonance $A_\text{res}$ is still a very good approximation for the maximum amplitude $A_\text{max}$, especially for high quality factors. For this reason, by definiton, the natural oscillation frequency $\omega_0$ is also called the \emph{resonance frequency} of the system, and the amplitude at resonance $A_\text{res}$ is also called the \emph{resonance amplitude} of the system. 
 \end{enumerate}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/amplitude-response.png}
+    \caption{Amplitude response of a driven damped harmonic oscillator for different quality factors. The maximum amplitude occurs at a frequency that is very close to the natural frequency of the system, and the difference between $\omega_\text{max}$ and $\omega_0$ becomes smaller as the quality factor increases.}
+    \label{fig:amplitude-response}
+\end{figure}
+
 
 
 \section{Worked Examples}
-\subsection{Work done by the spring force}
-\subsection{Simple pendulum}
+\subsection{Work, Potential Energy, and Energy Conservation in a Spring}
+
+We are given a spring-mass system with a spring constant $k$ and a mass $m$. By using the definition of work,
+\begin{enumerate}
+    \item[(a)] Calculate the potential energy of the spring at a point $x_0$ with respect to its equilibrium position, where $U(0)=0$.
+    \item[(b)] Calculate the work done by an external agent to bring the mass quasistatically from a point $x_0$ to the equilibrium position of the spring.
+    \item[(c)] If the force applied by an external agent is twice as large as the spring force in magnitude but opposite in direction at every position, calculate the work done by the external agent to bring the mass from a point $x_1$ to $x_2$, where $x_1<x_2$.
+\end{enumerate}
+
+\textbf{Solution:}
+
+According to Hooke's law, the force exerted by the spring is
+\begin{equation}
+    F_s(x)=-kx.
+\end{equation}
+When the mass is moved quasistatically, the external force balances the spring force:
+\begin{equation}
+    F_{\text{ext}}(x)=-F_s(x)=kx.
+\end{equation}
+
+\begin{enumerate}
+    \item[(a)] The work done by an external agent in moving the mass quasistatically from the equilibrium position to $x_0$ is stored as potential energy in the spring, since the kinetic energy of the mass does not change. Therefore,
+    \begin{equation}
+        U(x_0)=W_{\text{ext}}
+        =\int_0^{x_0}F_{\text{ext}}(x)\,dx
+        =\int_0^{x_0}kx\,dx
+        =\boxed{\frac{1}{2}kx_0^2}.
+    \end{equation}
+
+    \item[(b)] When the mass is moved quasistatically from $x_0$ to the equilibrium position, the external force remains equal and opposite to the spring force. Thus,
+    \begin{equation}
+        W_{\text{ext}}
+        =\int_{x_0}^{0}F_{\text{ext}}(x)\,dx
+        =\int_{x_0}^{0}kx\,dx
+        =\boxed{-\frac{1}{2}kx_0^2}.
+    \end{equation}
+    The external agent does negative work because its force opposes the displacement toward equilibrium. The spring does an equal amount of positive work:
+    \begin{equation}
+        W_s=-W_{\text{ext}}=\frac{1}{2}kx_0^2.
+    \end{equation}
+    Consequently, the decrease in potential energy is equal to the work done by the spring.
+
+    \item[(c)] The external force is twice as large as the spring force in magnitude and acts in the opposite direction:
+    \begin{equation}
+        F_{\text{ext}}(x)=-2F_s(x)=2kx.
+    \end{equation}
+    Therefore, the work done by the external agent from $x_1$ to $x_2$ is
+    \begin{equation}
+        W_{\text{ext}}
+        =\int_{x_1}^{x_2}F_{\text{ext}}(x)\,dx
+        =\int_{x_1}^{x_2}2kx\,dx
+        =\boxed{k(x_2^2-x_1^2)}.
+    \end{equation}
+
+    Since the external force is not balanced by the spring force, the kinetic energy of the mass can change. Assuming no other forces do work, the work-energy theorem gives
+    \begin{equation}
+        \Delta K=W_{\text{ext}}+W_s,
+    \end{equation}
+    where
+    \begin{equation}
+        W_s=\int_{x_1}^{x_2}(-kx)\,dx
+        =-\frac{1}{2}k(x_2^2-x_1^2).
+    \end{equation}
+    Hence,
+    \begin{equation}
+        \boxed{\Delta K=\frac{1}{2}k(x_2^2-x_1^2)}.
+    \end{equation}
+    Thus, half of the external work changes the spring's potential energy, while the remaining half changes the kinetic energy of the mass:
+    \begin{equation}
+        W_{\text{ext}}=\Delta U+\Delta K.
+    \end{equation}
+\end{enumerate}
+
+\subsection{Simple (mathematical) pendulum}
+A mass $m$ is suspended from a fixed point by a light, inextensible string of length $L$ as shown in Figure \ref{fig:simple-pendulum}. The mass is displaced to an angle $\theta_0$ from the vertical and released from rest.
+\begin{enumerate}
+    \item [(a)] Write down the equation of motion for the pendulum.
+    \item [(b)] Determine the period of oscillation for small angles.
+    \item[(c)] How the angular displacement, angular velocity and angular acceleration of the pendulum vary with time for small angles?
+\end{enumerate}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/simple-pendulum.png}
+    \caption{Simple pendulum. A mass $m$ is suspended from a fixed point by a light, inextensible string of length $L$. The mass is displaced to an angle $\theta_0$ from the vertical and released from rest.}
+    \label{fig:simple-pendulum}
+\end{figure}
+
+\textbf{Solution:}
+
+(a) Since the particle always moves along a circular arc, thinking in terms of the rotational form of Newton's second law is more convenient. The torque about the pivot point is given by
+\begin{equation}
+    \tau=-mgL\sin\theta,
+\end{equation}
+where the negative sign indicates that the torque acts to restore the pendulum to its equilibrium position. The moment of inertia of the mass about the pivot point is
+\begin{equation}
+    I=mL^2.
+\end{equation}
+Therefore, the equation of motion for the pendulum is
+\begin{equation}
+    I\ddot{\theta}=\tau \implies mL^2\ddot{\theta}=-mgL\sin\theta \implies \ddot{\theta}+\frac{g}{L}\sin\theta=0.
+\end{equation}
+
+(b) For small angles, we can use the small-angle approximation $\sin\theta\approx\theta$. Therefore, the equation of motion becomes
+\begin{equation}
+    \ddot{\theta}+\frac{g}{L}\theta=0.
+    \label{eq:simple-pendulum-eom}
+\end{equation}
+This is a simple harmonic oscillator equation with angular frequency
+\begin{equation}
+    \omega_0=\sqrt{\frac{g}{L}}.
+\end{equation}
+The period of oscillation is given by
+\begin{equation}
+    T=\frac{2\pi}{\omega_0}=2\pi\sqrt{\frac{L}{g}}.
+\end{equation}
+
+(c) Since Eq. \eqref{eq:simple-pendulum-eom} is a simple oscillator equation, we already know the general solution:
+\begin{equation}
+    \theta(t)=\theta_0\cos(\omega_0 t),
+\end{equation}
+where $\theta_0$ is the initial angular displacement. The angular velocity as a function of time is given by
+\begin{equation}
+    \omega(t)=\dot{\theta}(t)=-\theta_0\omega_0\sin(\omega_0 t).
+\end{equation}
+The angular acceleration as a function of time is given by
+\begin{equation}
+    \alpha(t)=\dot{\omega}(t)=-\theta_0\omega_0^2\cos(\omega_0 t).
+\end{equation}
 
 \subsection{Crossing the Equilibrium Position in Critically Damped Motion}
 
@@ -906,5 +1120,177 @@ equilibrium again. This illustrates that critical damping
 does not necessarily prevent a particle from crossing
 equilibrium; rather, it prevents repeated oscillations
 about equilibrium.
+
+\subsection{Kinetic energy resonance in a driven damped harmonic oscillator}
+
+At which driving frequency $\omega$ does the average kinetic energy
+of a driven damped harmonic oscillator reach its maximum?
+
+\textbf{Solution:}
+
+The steady-state displacement of a driven damped harmonic oscillator is
+\begin{equation}
+    x(t)=A\cos(\omega t+\phi),
+\end{equation}
+where $\omega$ is the driving frequency, $A$ is the displacement amplitude, and $\phi$ is the phase. The corresponding velocity is
+\begin{equation}
+    v(t)=\dot{x}(t)=-\omega A\sin(\omega t+\phi).
+\end{equation}
+Therefore, the instantaneous kinetic energy is
+\begin{equation}
+    T(t)=\frac{1}{2}mv^2(t)
+    =\frac{1}{2}m\omega^2A^2\sin^2(\omega t+\phi).
+\end{equation}
+The average kinetic energy over one complete period $P=2\pi/\omega$ is defined as
+\begin{equation}
+    \langle T\rangle
+    =\frac{1}{P}\int_0^P T(t)\,dt.
+\end{equation}
+
+Substituting the instantaneous kinetic energy gives
+\begin{align}
+    \langle T\rangle
+    &=\frac{m\omega^2A^2}{2P}
+      \int_0^P\sin^2(\omega t+\phi)\,dt \\
+    &=\frac{m\omega^2A^2}{4P}
+      \int_0^P[1-\cos(2\omega t+2\phi)]\,dt \\
+    &=\frac{1}{4}m\omega^2A^2,
+\end{align}
+where we used the identity
+$\sin^2\theta=(1-\cos 2\theta)/2$ and the fact that
+the cosine term averages to zero over a complete period. The steady-state displacement amplitude is
+\begin{equation}
+    A=\frac{F_0/m}
+    {\sqrt{(\omega_0^2-\omega^2)^2+4\gamma^2\omega^2}},
+\end{equation}
+where $F_0$ is the amplitude of the driving force,
+$\omega_0$ is the natural frequency, and $\gamma>0$
+is the damping constant. Substituting this expression into the average kinetic energy,
+we obtain
+\begin{equation}
+    \langle T\rangle
+    =\frac{F_0^2}{4m}
+    \frac{\omega^2}
+    {(\omega_0^2-\omega^2)^2+4\gamma^2\omega^2}.
+\end{equation}
+For $\omega>0$, dividing the numerator and denominator
+by $\omega^2$ gives
+\begin{equation}
+    \langle T\rangle
+    =\frac{F_0^2}{4m}
+    \frac{1}
+    {(\omega_0^2/\omega-\omega)^2+4\gamma^2}.
+\end{equation}
+The average kinetic energy is maximized when the denominator is minimized. Since the squared term is nonnegative, its minimum occurs when
+\begin{equation}
+    \frac{\omega_0^2}{\omega}-\omega=0.
+\end{equation}
+Thus, the driving frequency at which the average kinetic
+energy reaches its maximum is
+\begin{equation}
+    \boxed{\omega_{\mathrm{res}}=\omega_0.}
+\end{equation}
+
+\textbf{Conclusion:}
+The kinetic energy resonance occurs at the natural frequency
+$\omega_0$, independently of the damping constant $\gamma$.
+This differs from displacement resonance, which occurs at
+\begin{equation}
+    \omega_{\mathrm{res}}^{(x)}
+    =\sqrt{\omega_0^2-2\gamma^2},
+\end{equation}
+provided $\gamma<\omega_0/\sqrt{2}$. That's the reason why we call the natural frequency $\omega_0$ the resonance frequency of the system.
+
+\subsection{Amplitude damping}
+The amplitude of a lightly damped oscillator decreases by $5\%$ each cycle. What percentage of mechanical energy is lost per cycle?
+
+\textbf{Solution:}
+The mechanical energy of a harmonic oscillator is proportional to the square of its amplitude. If the amplitude decreases by $5\%$ each cycle, the new amplitude after one cycle is
+\begin{equation}
+    A_\text{new}=0.95A_\text{old}.
+\end{equation}
+The mechanical energy after one cycle is
+\begin{equation}
+    E_\text{new}\propto A_\text{new}^2=(0.95A_\text{old})^2=0.9025A_\text{old}^2.
+\end{equation}
+Therefore, the percentage of mechanical energy lost per cycle is
+\begin{equation}
+    \text{Percentage lost} = \left(1 - \frac{E_\text{new}}{E_\text{old}}\right) \times 100\% = \left(1 - 0.9025\right) \times 100\% = 9.75\%.
+\end{equation}
+
+\subsection{Coupled Oscillators}
+
+Consider two masses $m_1$ and $m_2$ connected by a spring with spring constant $k$, moving along a frictionless horizontal surface. Let $x_1$ and $x_2$ denote their displacements from their respective equilibrium positions. Show that the relative displacement $x=x_2-x_1$ undergoes simple harmonic motion, and determine its angular frequency.
+
+\textbf{Solution:}
+
+By Newton's second law, the equations of motion are
+\begin{align}
+    m_1\ddot{x}_1 &= k(x_2-x_1),\\
+    m_2\ddot{x}_2 &= -k(x_2-x_1).
+\end{align}
+
+Introducing the relative displacement $x=x_2-x_1$,
+we obtain
+\begin{equation}
+    \ddot{x}=\ddot{x}_2-\ddot{x}_1
+    =-k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)x.
+\end{equation}
+
+Rearranging,
+\begin{equation}
+    \ddot{x}
+    +k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)x=0.
+\end{equation}
+
+Comparing with the equation of a simple harmonic oscillator,
+$\ddot{x}+\omega^2x=0$, we find
+\begin{equation}
+    \boxed{\omega=
+    \sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}}.
+\end{equation}
+
+Thus, although both masses are free to move, their
+relative displacement undergoes simple harmonic motion with angular frequency $\omega$. We define the reduced mass $\mu$ as
+\begin{equation}
+    \frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2} \implies \mu=\frac{m_1 m_2}{m_1+m_2}.
+\end{equation}
+Therefore, the angular frequency can also be expressed as
+\begin{equation}
+    \omega=\sqrt{\frac{k}{\mu}}.
+\end{equation}
+
+\subsection{Determining the damping constant from amplitude decay}
+
+The amplitude of a damped harmonic oscillator reduces to the half of its initial value in $1$ second. Find the damping constant $\gamma$.
+
+\textbf{Solution:}
+The amplitude of a damped harmonic oscillator is given by
+\begin{equation}
+    A(t)=A_0 e^{-\gamma t}.
+\end{equation}
+If the amplitude reduces to half its initial value in $1$ second, then
+\begin{equation}
+    \frac{1}{2}A_0=A_0 e^{-\gamma \cdot 1}.
+\end{equation}
+Simplifying,
+\begin{equation}
+    \frac{1}{2}=e^{-\gamma}.
+\end{equation}
+Taking the natural logarithm of both sides,
+\begin{equation}
+    \ln\left(\frac{1}{2}\right)=-\gamma.
+\end{equation}
+Therefore,
+\begin{equation}
+    \boxed{\gamma=\ln(2)}.
+\end{equation}
+
+\subsection{Block}
+A block of mass $m$ is sliding on a horizontal surface. At time $t=0$, its velocity is $v_0$. There is a spring with spring constant $k$ attached to a wall. The block collides with the spring and compresses it. 
+\begin{enumerate}
+    \item[(a)] Determine the maximum compression of the spring.
+    \item[(b)] Determine the time it takes for the block to reach maximum compression.
+\end{enumerate}
 
 \end{document}
