@@ -16,13 +16,39 @@
 
 \begin{document}
 \maketitle
-In this Chapter, hede hödö hödö...
+In this Chapter, we will consider a seemly abstract problem: the motion of a particle under the influence of a force that is always directed towards or away from a fixed point in space. This type of force is called a \textit{central force}. Even though the problem is abstract for there actually is no such thing as a central force in nature, the problem is of great importance because it can be used to model the motion of planets and satellites under the influence of gravity, the motion of electrons around a nucleus under the influence of electrostatic forces, and many other physical phenomena.
 
+We will begin by introducing spherical coordinates, which are the most convenient coordinate system for describing central-force motion. Then, we will define what a central force is and discuss some of its direct consequences. Finally, we will work through some examples to illustrate the concepts.
+
+\section{Spherical Coordinates}
+In three-dimensional space, a point can be represented in spherical coordinates $(r, \theta, \phi)$, where $r$ is the radial distance from the origin, $\theta$ is the polar angle measured from the positive $z$-axis, and $\phi$ is the azimuthal angle measured from the positive $x$-axis in the $xy$-plane. The relationships between Cartesian coordinates $(x, y, z)$ and spherical coordinates are given by:
+\begin{align}
+    x &= r \sin\theta \cos\phi,\\
+    y &= r \sin\theta \sin\phi,\\
+    z &= r \cos\theta.
+\end{align}
 
 
 \section{Definition of Central Force}
+A force is central if:
+\begin{enumerate}
+    \item[(i)] it is towards or away from a fixed point (the center of force).
+    \item[(ii)] the magnitude of the force is only proportional to the distance from the center of force.
+\end{enumerate}
+Above assumptions can mathematically be expressed as
+\begin{equation}
+    \mathbf{F}(\mathbf{r})=f(r)\hat{\mathbf{r}},
+\end{equation}
+where $f(r)$ is a scalar function of the distance $r$ from the center of force, and $\hat{\mathbf{r}}$ is the unit vector in the direction of $\mathbf{r}$.
+
+
 
 \section{Direct Consequences of the Definitions}
+
+\begin{enumerate}
+    \item[(i)] Central force cannot apply any torque on the particle. Therefore, the angular momentum of the particle is conserved.
+\end{enumerate}
+
 
 \section{Worked Examples}
 \subsection{Work and kinetic energy in a rotating system}

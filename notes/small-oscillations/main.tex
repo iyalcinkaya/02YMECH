@@ -1286,11 +1286,195 @@ Therefore,
     \boxed{\gamma=\ln(2)}.
 \end{equation}
 
-\subsection{Block}
-A block of mass $m$ is sliding on a horizontal surface. At time $t=0$, its velocity is $v_0$. There is a spring with spring constant $k$ attached to a wall. The block collides with the spring and compresses it. 
+\subsection{Spring Compression with and without Friction}
+
+A block of mass $m$ slides on a horizontal surface toward an ideal
+massless spring of spring constant $k$ attached to a wall. At $t=0$,
+the block first touches the initially uncompressed spring with speed
+$v_0$. Determine the maximum compression of the spring:
 \begin{enumerate}
-    \item[(a)] Determine the maximum compression of the spring.
-    \item[(b)] Determine the time it takes for the block to reach maximum compression.
+    \item[(a)] if the floor is frictionless;
+    \item[(b)] if the coefficient of kinetic friction between the block
+    and the floor is $\mu_k$.
 \end{enumerate}
+
+\textbf{Solution:}
+
+At maximum compression, the block is momentarily at rest.
+
+\begin{enumerate}
+    \item[(a)] On a frictionless floor, mechanical energy is conserved.
+    The initial kinetic energy is converted entirely into spring
+    potential energy:
+    \begin{equation}
+        \frac{1}{2}mv_0^2 = \frac{1}{2}kx_{\max}^2.
+    \end{equation}
+    Therefore,
+    \begin{equation}
+        \boxed{x_{\max} = v_0\sqrt{\frac{m}{k}}}.
+    \end{equation}
+
+    \item[(b)] During compression, the kinetic friction force has
+    constant magnitude $\mu_k mg$ and acts opposite to the block's
+    motion. Its work is
+    \begin{equation}
+        W_{\mathrm{friction}} = -\mu_k mgx_{\max}.
+    \end{equation}
+    The work done by friction equals the change in mechanical energy:
+    \begin{equation}
+        -\mu_k mgx_{\max}
+        = \frac{1}{2}kx_{\max}^2 - \frac{1}{2}mv_0^2.
+    \end{equation}
+    Equivalently,
+    \begin{equation}
+        \frac{1}{2}mv_0^2
+        = \frac{1}{2}kx_{\max}^2 + \mu_k mgx_{\max}.
+    \end{equation}
+    Rearranging gives the quadratic equation
+    \begin{equation}
+        kx_{\max}^2 + 2\mu_k mgx_{\max} - mv_0^2 = 0.
+    \end{equation}
+    Taking the nonnegative root,
+    \begin{equation}
+        \boxed{
+            x_{\max}
+            = \frac{\sqrt{(\mu_k mg)^2 + kmv_0^2} - \mu_k mg}{k}
+        }.
+    \end{equation}
+    For $\mu_k=0$, this expression reduces to the frictionless result.
+\end{enumerate}
+
+
+\subsection{Beats and Resonance in an Undamped Driven Oscillator}
+
+An undamped spring--mass system has mass $m$, spring constant $k$,
+and natural angular frequency
+\begin{equation}
+    \omega_0=\sqrt{\frac{k}{m}}.
+\end{equation}
+Initially, the mass is at rest at equilibrium:
+\begin{equation}
+    x(0)=0,
+    \qquad
+    \dot{x}(0)=0.
+\end{equation}
+At $t=0$, an external force is switched on:
+\begin{equation}
+    F(t)=F_0\cos(\omega t),
+    \qquad t\geq0,
+\end{equation}
+where $F_0>0$ and $\omega>0$.
+
+\begin{enumerate}
+    \item[(a)] Find $x(t)$ for $\omega\neq\omega_0$, satisfying both
+    initial conditions.
+
+    \item[(b)] For $|\omega-\omega_0|\ll\omega_0$, rewrite the solution
+    to identify the rapid oscillation and the slowly varying amplitude
+    envelope. Find the time between successive maxima of this envelope.
+
+    \item[(c)] Take the limit $\omega\to\omega_0$ to obtain the motion
+    at exact resonance. Describe how the amplitude changes with time.
+\end{enumerate}
+
+\textit{Hint:} You may use
+\begin{equation}
+    \cos a-\cos b
+    =-2\sin\left(\frac{a+b}{2}\right)
+       \sin\left(\frac{a-b}{2}\right).
+\end{equation}
+
+Also, the general amplitude expression for driven oscillations is given by
+\begin{equation}
+    A(\omega) = \frac{F_0}{m\sqrt{(\omega_0^2-\omega^2)^2 + (2\gamma\omega)^2}},
+\end{equation}
+
+
+\textbf{Solution.}
+
+\begin{enumerate}
+    \item[(a)] The equation of motion is
+    \begin{equation}
+        \ddot{x}+\omega_0^2x=\frac{F_0}{m}\cos(\omega t).
+    \end{equation}
+    For $\omega\neq\omega_0$, a particular solution is
+    \begin{equation}
+        x_{\mathrm p}(t)
+        =\frac{F_0}{m(\omega_0^2-\omega^2)}\cos(\omega t).
+    \end{equation}
+    Adding the homogeneous solution gives
+    \begin{equation}
+        x(t)=C\cos(\omega_0t)+D\sin(\omega_0t)
+        +\frac{F_0}{m(\omega_0^2-\omega^2)}\cos(\omega t).
+    \end{equation}
+    The initial conditions require
+    \begin{equation}
+        C=-\frac{F_0}{m(\omega_0^2-\omega^2)},
+        \qquad D=0.
+    \end{equation}
+    Hence,
+    \begin{equation}
+        \boxed{
+        x(t)=\frac{F_0}{m(\omega_0^2-\omega^2)}
+        \left[\cos(\omega t)-\cos(\omega_0t)\right].
+        }
+    \end{equation}
+
+    \item[(b)] Applying the trigonometric identity gives
+    \begin{equation}
+        x(t)=\frac{2F_0}{m(\omega^2-\omega_0^2)}
+        \sin\left(\frac{\omega+\omega_0}{2}t\right)
+        \sin\left(\frac{\omega-\omega_0}{2}t\right).
+    \end{equation}
+    When $|\omega-\omega_0|\ll\omega_0$, the first sine describes
+    a rapid oscillation with angular frequency
+    \begin{equation}
+        \omega_{\mathrm{rapid}}
+        =\frac{\omega+\omega_0}{2}\approx\omega_0.
+    \end{equation}
+    The slowly varying, nonnegative amplitude envelope is
+    \begin{equation}
+        A_{\mathrm{env}}(t)
+        =\frac{2F_0}{m|\omega^2-\omega_0^2|}
+        \left|
+        \sin\left(\frac{\omega-\omega_0}{2}t\right)
+        \right|.
+    \end{equation}
+    Successive maxima of $|\sin u|$ are separated by $\pi$ in its
+    argument. Therefore, the beat period is
+    \begin{equation}
+        \boxed{
+        T_{\mathrm{beat}}=\frac{2\pi}{|\omega-\omega_0|}.
+        }
+    \end{equation}
+
+    \item[(c)] Taking the limit at fixed $t$, using
+    l'Hopital's rule, gives
+    \begin{equation}
+        \lim_{\omega\to\omega_0}
+        \frac{\cos(\omega t)-\cos(\omega_0t)}
+             {\omega_0^2-\omega^2}
+        =\lim_{\omega\to\omega_0}
+        \frac{-t\sin(\omega t)}{-2\omega}
+        =\frac{t\sin(\omega_0t)}{2\omega_0}.
+    \end{equation}
+    Thus, at exact resonance,
+    \begin{equation}
+        \boxed{
+        x(t)=\frac{F_0}{2m\omega_0}\,t\sin(\omega_0t).
+        }
+    \end{equation}
+    The amplitude envelope grows linearly:
+    \begin{equation}
+        \boxed{
+        A_{\mathrm{env}}(t)=\frac{F_0}{2m\omega_0}\,t.
+        }
+    \end{equation}
+    There is no bounded steady-state response at exact resonance
+    in this ideal undamped model. The external force continually
+    supplies energy to the oscillator.
+\end{enumerate}
+
+
 
 \end{document}
