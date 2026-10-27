@@ -617,37 +617,44 @@ This result shows that the quality factor is directly proportional to the number
 
 
 
+
+
+
+
+
+
+
+
 \section{Phase Space and Phase Trajectories}
 
-The \emph{state} of a particle at any instant is defined to be specified by its position $x(t)$ and velocity $\dot{x}(t)$. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a vector in phase space,
+The \emph{state} of a particle undergoing one-dimensional Newtonian motion is specified by its position $x(t)$ and velocity $\dot{x}(t)$, provided that the force is determined by these quantities and possibly time. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a vector in phase space,
 \begin{equation}
-    \mathbf{X}(t)=\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
+    \mathbf{X}(t)=\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix},
 \end{equation}
-
-and as time progresses, this vector traces out a curve called a \emph{phase trajectory} as shown in Fig.~\ref{fig:phase-space-trajectories}(a). The phase trajectory provides a visual representation of the motion of the particle, showing how its position and velocity change over time.
+and as time progresses, the tip of this vector traces out a curve called a \emph{phase trajectory}, as shown in Fig.~\ref{fig:phase-space-trajectories}(a). The phase trajectory provides a visual representation of the motion of the particle, showing how its position and velocity change together.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/state-in-phase-space.png}
-    \caption{(a) State of a mechanical system in phase space. The state of the particle is represented by a vector $\mathbf{X}(t)$, which traces out a phase trajectory as time progresses. (b) Displacement of the state vector in phase space defining the ``velocity'' of the state vector, $V_{\text{avg}} = \frac{\Delta\mathbf{X}}{\Delta t}$.}
+    \caption{(a) State of a mechanical system in phase space. The state of the particle is represented by a vector $\mathbf{X}(t)$, whose tip traces out a phase trajectory as time progresses. (b) Displacement of the state vector in phase space defining its average ``velocity,'' $\mathbf{V}_{\text{avg}} = \frac{\Delta\mathbf{X}}{\Delta t}$.}
     \label{fig:phase-space-trajectories}
 \end{figure}
 
-Note that this vector lives in the abstract phase space, which is a two-dimensional space with coordinates $(x, \dot{x})$. It does not correspond to a point in physical space. However, it is still a vector in the sense that it has both magnitude and direction. For example, if we consider the time rate of change of this vector, we consider the time rate of change of the each component as shown in Fig.~\ref{fig:phase-space-trajectories}(b). Thus, we get the velocity of the particle in phase space,
+Note that this vector lives in the abstract phase space with coordinates $(x,\dot{x})$. A point in this space represents a state, not a position in physical space. Moreover, since position and velocity have different physical dimensions, the plotted length and direction of the state vector depend on the chosen axis scales. Nevertheless, we can take the time rate of change of this vector by taking the time rate of change of each component, as shown in Fig.~\ref{fig:phase-space-trajectories}(b). Thus, we get the velocity of the state in phase space,
 \begin{equation}
-    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}.
+    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix},
 \end{equation}
-where the first component is the velocity and the second component is the acceleration of the particle. The second component is defined by Newton's second law.
+where the first component is the velocity and the second component is the acceleration of the particle. The second component is determined by Newton's second law.
 
 
 \subsection{Time Evolution in Phase Space for Oscillatory Motion}
 
-Eliminating time from the equations for position and velocity for small oscillations leads to the equation of the phase trajectory:
+For undamped, unforced simple harmonic motion, the position measured from equilibrium and the velocity are given by
 \begin{align}
     x(t) &= R\cos(\omega_0 t+\phi),\\
     \dot{x}(t) &= -R\omega_0\sin(\omega_0 t+\phi).
 \end{align}
-Squaring both equations, adding them, and using the identity
+Eliminating time from these equations leads to the equation of the phase trajectory. For $R>0$, dividing the first equation by $R$ and the second by $R\omega_0$, squaring both equations, adding them, and using the identity
 $\sin^2\theta+\cos^2\theta=1$, we obtain
 \begin{equation}
     \frac{x^2}{R^2}
@@ -656,64 +663,88 @@ $\sin^2\theta+\cos^2\theta=1$, we obtain
 This is the equation of an ellipse in phase space, with semi-axes $R$ and $R\omega_0$. Recall that the total mechanical energy of a simple harmonic oscillator is conserved and can be expressed in terms of its amplitude as
 \begin{equation}
     E=\frac{1}{2}kR^2
-    =\frac{1}{2}m\omega_0^2R^2 \implies R^2=\frac{2E}{k}=\frac{2E}{m\omega_0^2}.
+    =\frac{1}{2}m\omega_0^2R^2
+    \implies R^2=\frac{2E}{k}=\frac{2E}{m\omega_0^2}.
 \end{equation}
-Substituting this expression into the equation of
-the ellipse gives
+Substituting this expression into the equation of the ellipse gives
 \begin{equation}
     \frac{x^2}{2E/k}
     +\frac{\dot{x}^2}{2E/m}=1.
 \end{equation}
-Thus, semi-major and semi-minor axes of the ellipse are determined by the total mechanical energy $E$ of the oscillator as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(a). The phase trajectories form a family of ellipses, each corresponding to a different value of the conserved mechanical energy $E$ as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(b). As the particle oscillates, its state moves clockwise along the corresponding ellipse, completing one revolution during each oscillation period as shown in Fig.~\ref{fig:phase-space-trajectories}. 
+Thus, for fixed $m$ and $k$, the semi-axes of the ellipse are determined by the total mechanical energy $E$ of the oscillator, as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(a). The phase trajectories form a family of ellipses, each corresponding to a different positive value of the conserved mechanical energy $E$, as shown in Fig.~\ref{fig:phase-trajectory-simple-oscillation}(b). As the particle oscillates, its state moves clockwise along the corresponding ellipse, completing one revolution during each oscillation period. For $E=0$, the particle remains at rest at equilibrium, and the phase trajectory reduces to the origin.
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.99\textwidth]{figures/phase-trajectory-simple-oscillation.png}
-    \caption{(a) Phase trajectory of a simple harmonic oscillator in phase space. (b) The trajectory is an ellipse, with semi-major and semi-minor axes determined by the total mechanical energy $E$ of the oscillator. Note that the phase trajectories bolong to different energies never intersect each other. If they did, a given initial state would lead to two different energies, which is not possible.}
+    \caption{(a) Phase trajectory of a simple harmonic oscillator in phase space. (b) A family of elliptical trajectories, with semi-axes determined by the total mechanical energy $E$ of the oscillator for fixed $m$ and $k$. Note that phase trajectories belonging to different energies never intersect each other. If they did, a given state would have two different energies, which is not possible.}
     \label{fig:phase-trajectory-simple-oscillation}
 \end{figure}
+
 The time evolution of the state vector is governed by the equation
 \begin{equation}
-    \frac{d\mathbf{X}}{dt}=\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}
-    =\begin{bmatrix}\dot{x}(t)\\-\omega_0^2 x(t)\end{bmatrix}
-    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}=\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\mathbf{X}(t).
+    \frac{d\mathbf{X}}{dt}
+    =\begin{bmatrix}\dot{x}(t)\\\ddot{x}(t)\end{bmatrix}
+    =\begin{bmatrix}\dot{x}(t)\\-\omega_0^2x(t)\end{bmatrix}
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}
+    \begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\mathbf{X}(t),
 \end{equation}
-where the matrix 
+where the matrix
 \begin{equation}
-    \hat{S} \coloneqq \begin{pmatrix}0&1\\-\omega_0^2&0\end{pmatrix}
+    \hat{S} \equiv \begin{pmatrix}0&1\\-\omega_0^2&0\end{pmatrix}
 \end{equation}
-is called the \emph{system matrix}. By using this terminology, now we can write the time evolution of the sistem in a compact form as
+is called the \emph{system matrix}. By using this terminology, we can now write the time evolution of the system in a compact form as
 \begin{equation}
     \dot{\mathbf{X}} = \hat{S}\mathbf{X}.
 \end{equation}
-This is a first-order linear differential equation for the state vector $\mathbf{X}(t)$, which can be solved using standard techniques which is out of the scope of this text. However, even without getting into the details of the solution of this equation, a lot of important conclusion can be drawn from this simple relation as listed below:
+This is a first-order linear differential equation for the state vector $\mathbf{X}(t)$, which can be solved using standard techniques that are beyond the scope of this text. However, even without getting into the details of the solution of this equation, several conclusions can be drawn from this simple relation, as listed below:
 
-\textbf{Conclusion 1:} The time rate of change of a vectoral quantity (in this case, the state vector $\mathbf{X}$) can be obtained by reorganizing its components according to the prescription given by the system matrix $\hat{S}$:
+\textbf{Conclusion 1:} The time rate of change of the state vector $\mathbf{X}$ can be obtained by combining its components according to the prescription given by the system matrix $\hat{S}$:
 \begin{equation}
     \frac{d}{dt}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}
-    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}\begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
+    =\begin{bmatrix}0&1\\-\omega_0^2&0\end{bmatrix}
+    \begin{bmatrix}x(t)\\\dot{x}(t)\end{bmatrix}.
 \end{equation}
 
-\textbf{Conclusion 2:} Note that the system matrix is only a function of the natural angular frequency $\omega_0$ of the system. Therefore, the time evolution of the state vector is determined solely by the properties of the system, and not by the initial conditions. The initial conditions only determine which phase trajectory the system will follow in phase space. 
+\textbf{Conclusion 2:} Note that the system matrix is only a function of the natural angular frequency $\omega_0$ of the system. Therefore, the evolution law is determined solely by the properties of the system, and not by the initial conditions. The initial conditions determine which phase trajectory the system will follow in phase space and the starting point on that trajectory. Thus, the actual time-dependent state depends on both the system properties and the initial conditions.
 
-\textbf{Conclusion 3:} Once we are given the initial conditions at some arbitrary time $t_0$, $x(t_0)$ and $\dot{x}(t_0)$, or in other words, if we are given the initial ``state'' $\mathbf{X}(t_0)$ of the system, we can approximately determine the state of the system at a later time $t_0+dt$
+\textbf{Conclusion 3:} Once we are given the initial conditions at some arbitrary time $t_0$, $x(t_0)$ and $\dot{x}(t_0)$, or in other words, if we are given the initial ``state'' $\mathbf{X}(t_0)$ of the system, we can approximately determine the state of the system at a slightly later time $t_0+\Delta t$:
 \begin{equation}
-    \mathbf{X}(t_0+dt) \approx \mathbf{X}(t_0) + \dot{\mathbf{X}}(t_0) dt = \mathbf{X}(t_0) + \hat{S}\mathbf{X}(t_0) dt.
+    \mathbf{X}(t_0+\Delta t)
+    \approx \mathbf{X}(t_0)+\dot{\mathbf{X}}(t_0)\Delta t
+    =\mathbf{X}(t_0)+\hat{S}\mathbf{X}(t_0)\Delta t.
 \end{equation}
-The quality of the approximation improves as $dt$ becomes smaller. By repeating this process, we can determine the state of the system at any later time $t_0+n dt$ for any positive integer $n$. In this way, we can trace out the phase trajectory of the system in phase space.
+By repeating this process, we can approximately determine the state of the system at later times $t_n=t_0+n\Delta t$:
+\begin{equation}
+    \mathbf{X}_{n+1}
+    =\mathbf{X}_n+\hat{S}\mathbf{X}_n\Delta t,
+\end{equation}
+where $\mathbf{X}_n$ is the approximate state at time $t_n$. In this way, we can approximately trace out the phase trajectory of the system in phase space. This procedure is called the \emph{forward Euler method}. The quality of the approximation improves as $\Delta t$ becomes smaller over a fixed time interval. However, this approximation does not conserve the oscillator's energy. Indeed, its component equations are
+\begin{equation}
+    x_{n+1}=x_n+v_n\Delta t,
+    \qquad
+    v_{n+1}=v_n-\omega_0^2x_n\Delta t,
+\end{equation}
+where $v_n$ is the approximate particle velocity at time $t_n$. Substitution into the energy expression gives
+\begin{equation}
+    E_{n+1}
+    =\frac{1}{2}m\left(v_{n+1}^2+\omega_0^2x_{n+1}^2\right)
+    =\left(1+\omega_0^2\Delta t^2\right)E_n.
+\end{equation}
+Thus, for a nonzero initial energy and any fixed nonzero time step, the approximate trajectory gradually spirals outward instead of remaining on an ellipse. Small time steps are therefore necessary for this method to approximate the motion over a finite time interval. There are more sophisticated numerical methods that conserve energy, but they are beyond the scope of this text.
 
-Note that the state of the system at the later time only depends on the current state of the system and the system properties, and not on the history of the system. This is a manifestation of the \emph{Markov property}, which states that the future state of a system depends only on its present state, and not on its past states. This property is a fundamental feature of many physical systems, and it allows us to describe their dynamics using differential equations. 
+Note that the exact future state of the system depends only on the current complete state and the system properties, and not separately on the history of the system. This is a deterministic example of the \emph{Markov property}: once the present state is specified, knowledge of past states provides no additional information about the future. Here, this property holds because position and velocity together form a complete state governed by a closed first-order differential equation.
 
-\textbf{Conclusion 4:} Note again that the system matrix $\hat{S}$ is a ``passive transformation'' such that it does not change in time once the system properties are set, and it acts on any initial state vector in the phase space in the same way. This leads us to conceptually generalize the idea of time evolution in such a way that we can start thinking about the phase space  consisting of infinitely many number of possible initial states represented by dots so that we can assign a ``velocity vector'' associated with the transformation $\hat{S}$ to each of this dots converting this scalar field into a vector field in the phase space as shown in Fig.~\ref{fig:phase-vector-space}. This velocity vector field does not change in time. Therefore, if we pictoriolly represent initial state of the system by a ``ball'' in the phase space, then the matrix $\hat{S}$ define the local ``kickers'' for each point in the phase space so that whenever they have a ball in front of them, they kick it in the predefined (by the system matrix) certain direction with a certain speed and pass it to the one next to it. In this way, the ball will move in the phase space and trace out a phase trajectory as time progresses. This is a very useful way of visualizing the dynamics of the system in phase space, and it can be used to gain insight into the behavior of the system under different initial conditions. 
+\textbf{Conclusion 4:} Note again that the system matrix $\hat{S}$ does not change in time once the system properties are set, and it acts on any state vector in phase space according to the same rule. It maps each state $\mathbf{X}$ to its time derivative $\hat{S}\mathbf{X}$. We can therefore think of phase space as consisting of infinitely many possible states represented by dots, and assign a ``velocity vector'' $\hat{S}\mathbf{X}$ to each of these dots. This defines a vector field in phase space, as shown in Fig.~\ref{fig:phase-vector-space}.
+
+This velocity vector field does not change in time. Therefore, if we pictorially represent the state of the system by a ``ball'' in phase space, the matrix $\hat{S}$ defines a local rule at each point specifying how the ball moves through that point. The ball follows these local velocity vectors continuously and traces out a phase trajectory as time progresses. This is a useful way of visualizing the dynamics of the system under different initial conditions.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.99\textwidth]{figures/phase-vector-space.png}
-    \caption{Phase space vector field. (a) Starting from an initial state, the state vector traces out a phase trajectory as it moves through the vector field. (b) The system matrix $\hat{S}$ defines a velocity vector at each point in phase space, which determines the direction and speed of the state vector's motion. }
+    \caption{Phase-space vector field. (a) Starting from an initial state, the tip of the state vector traces out a phase trajectory as it moves through the vector field. (b) The system matrix $\hat{S}$ defines a velocity vector at each point in phase space, specifying the rates of change of position and velocity at that state.}
     \label{fig:phase-vector-space}
 \end{figure}
-
-
-
 
 
 For the damped oscillation, time rate of change of the state vector becomes
@@ -723,15 +754,6 @@ For the damped oscillation, time rate of change of the state vector becomes
     =\begin{bmatrix}\dot{x}(t)\\-2\gamma\dot{x}-\omega_0^2 x(t)\end{bmatrix}
     =\begin{bmatrix}0&1\\-\omega_0^2&-2\gamma\end{bmatrix}\mathbf{X}(t).
 \end{equation}
-
-TO BE CONTINUED...
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.99\textwidth]{figures/phase-space-damped-oscillator.png}
-    \caption{Phase trajectory of a damped harmonic oscillator in phase space. The trajectory is a spiral, with the particle eventually approaching the equilibrium position at the origin.}
-    \label{fig:phase-trajectory-damped-oscillation}
-\end{figure}
 
 
 \section{Driven Oscillations}
@@ -1046,6 +1068,16 @@ The angular acceleration as a function of time is given by
 \begin{equation}
     \alpha(t)=\dot{\omega}(t)=-\theta_0\omega_0^2\cos(\omega_0 t).
 \end{equation}
+
+
+\subsection{Phase Space Trajectory of a Damped Harmonic Pendulum}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/phase-space-damped-oscillator.png}
+    \caption{Phase trajectory of a damped harmonic pendulum in phase space. The trajectory is a spiral, with the particle eventually approaching the equilibrium position at the origin.}
+    \label{fig:phase-trajectory-damped-oscillation}
+\end{figure}
 
 \subsection{Crossing the Equilibrium Position in Critically Damped Motion}
 
