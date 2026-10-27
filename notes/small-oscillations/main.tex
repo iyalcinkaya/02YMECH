@@ -621,10 +621,6 @@ This result shows that the quality factor is directly proportional to the number
 
 
 
-
-
-
-
 \section{Phase Space and Phase Trajectories}
 
 The \emph{state} of a particle undergoing one-dimensional Newtonian motion is specified by its position $x(t)$ and velocity $\dot{x}(t)$, provided that the force is determined by these quantities and possibly time. These quantities can be regarded as coordinates in a two-dimensional space called \emph{phase space}, with position along the horizontal axis and velocity along the vertical axis. The state of the particle is then represented by a vector in phase space,
@@ -995,7 +991,8 @@ When the mass is moved quasistatically, the external force balances the spring f
 
     Since the external force is not balanced by the spring force, the kinetic energy of the mass can change. Assuming no other forces do work, the work-energy theorem gives
     \begin{equation}
-        \Delta K=W_{\text{ext}}+W_s,
+        \Delta K = \int_{x_1}^{x_2}F_{\text{net}}(x)\,dx
+        =\int_{x_1}^{x_2}\left[F_{\text{ext}}(x)+F_s(x)\right]\,dx =W_{\text{ext}}+W_s
     \end{equation}
     where
     \begin{equation}
@@ -1012,7 +1009,7 @@ When the mass is moved quasistatically, the external force balances the spring f
     \end{equation}
 \end{enumerate}
 
-\subsection{Simple (mathematical) pendulum}
+\subsection{\label{sec:simple-pendulum} Simple (mathematical) pendulum}
 A mass $m$ is suspended from a fixed point by a light, inextensible string of length $L$ as shown in Figure \ref{fig:simple-pendulum}. The mass is displaced to an angle $\theta_0$ from the vertical and released from rest.
 \begin{enumerate}
     \item [(a)] Write down the equation of motion for the pendulum.
@@ -1071,11 +1068,38 @@ The angular acceleration as a function of time is given by
 
 
 \subsection{Phase Space Trajectory of a Damped Harmonic Pendulum}
+Write down the equation of motion for a damped harmonic pendulum without small angle approximation. Then, plot the phase space trajectory of the pendulum in the $\theta$-$\dot{\theta}$ plane. Explain the behavior of the trajectory and how it relates to the damping of the system.
+
+\textbf{Solution:}
+We know from Exercise \ref{sec:simple-pendulum} that the equation of motion for a simple pendulum is
+\begin{equation}
+    \ddot{\theta}+\frac{g}{L}\sin\theta=0.
+\end{equation}
+If we introduce a damping term proportional to the angular velocity, the equation of motion becomes
+\begin{equation}
+    \ddot{\theta}+2\gamma\dot{\theta}+\frac{g}{L}\sin\theta=0,
+\end{equation}
+where $\gamma$ is the damping constant. This is a second-order nonlinear differential equation that describes the motion of a damped harmonic pendulum without small angle approximation. If we represent the state of the pendulum with:
+\begin{equation}
+    \mathbf{\Theta}=\begin{bmatrix}\theta\\\dot{\theta}\end{bmatrix},
+\end{equation}
+we can rewrite the equation of motion as a system of first-order differential equations:
+\begin{equation}
+    \begin{bmatrix}\dot{\theta}\\\ddot{\theta}\end{bmatrix}=\begin{bmatrix}\dot{\theta}\\-2\gamma\dot{\theta}-\frac{g}{L}\sin\theta\end{bmatrix} = \begin{bmatrix}0 & 1 \\ -\frac{g}{L}\frac{\sin\theta}{\theta} & 0 \end{bmatrix} \begin{bmatrix}\theta\\\dot{\theta}\end{bmatrix}.
+\end{equation}
+
+Note that the system is nonlinear due to the $\sin\theta$ term. In other words, in the equation
+\begin{equation}
+    \dot{\mathbf{\Theta}} = \hat{S}\mathbf{\Theta},
+\end{equation}
+the operator $\hat{S}$ is a function of the state vector $\mathbf{\Theta}$. Therefore, the phase space trajectory of the pendulum will depend on the initial conditions and the damping constant $\gamma$. For small angles, the system can be approximated as linear, and the phase space trajectory will be an ellipse. However, for larger angles, the trajectory will deviate from an ellipse and become more complex.
+
+The phase space trajectory of the pendulum can be plotted by numerically solving the system of equations for different initial conditions and plotting $\dot{\theta}$ versus $\theta$. The resulting trajectory will show how the angular displacement and angular velocity evolve over time as shown in Fig.~\ref{fig:phase-trajectory-damped-oscillation}. The trajectory will spiral inward toward the origin, indicating that the pendulum is losing energy due to damping and eventually coming to rest at the equilibrium position. The rate at which the trajectory spirals inward will depend on the damping constant $\gamma$. A larger damping constant will result in a faster decay of the oscillations and a quicker approach to equilibrium.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.99\textwidth]{figures/phase-space-damped-oscillator.png}
-    \caption{Phase trajectory of a damped harmonic pendulum in phase space. The trajectory is a spiral, with the particle eventually approaching the equilibrium position at the origin.}
+    \caption{Phase trajectory of a damped harmonic pendulum in phase space with initial conditions $\theta_0 = 0$ and $\dot{\theta}_0 = 10$. The oscillating  trajectory falls into a spiral pattern indicating that the pendulum makes $4$ full rotations as it loses its energy due to damping and eventually coming to rest at the equilibrium position.}
     \label{fig:phase-trajectory-damped-oscillation}
 \end{figure}
 
@@ -1231,7 +1255,7 @@ This differs from displacement resonance, which occurs at
     \omega_{\mathrm{res}}^{(x)}
     =\sqrt{\omega_0^2-2\gamma^2},
 \end{equation}
-provided $\gamma<\omega_0/\sqrt{2}$. That's the reason why we call the natural frequency $\omega_0$ the resonance frequency of the system.
+provided $\gamma<\omega_0/\sqrt{2}$. This means that the energy pumped into the system is maximized when the driving frequency is set to the natural frequency $\omega_0$. That's the reason why we call the natural frequency $\omega_0$ the resonance frequency of the system; in resonance, the system absorbs energy most efficiently from the driving force.
 
 \subsection{Amplitude damping}
 The amplitude of a lightly damped oscillator decreases by $5\%$ each cycle. What percentage of mechanical energy is lost per cycle?
