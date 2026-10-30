@@ -7,12 +7,12 @@
 \geometry{a4paper, margin=0.7in}
 
 
-\title{02YMECH - Solution 3}
-\date{Assigned for the week of Oct 6, 2025}
-\author{}
-
+\title{Homework assignment for 02YMECH \\ Chapter: Dynamics}
+\date{}
 \begin{document}
 \maketitle
+
+\vspace*{-2cm}
 
 \section*{Solutions}
 
@@ -431,6 +431,189 @@ U(x) = U_0 \left( \frac{x^4}{a^4} - 2 \frac{x^2}{a^2} \right)
     \Delta K = \frac{1}{2}m v^2(a) - 0 = U_0,
     \]
     consistent with $v(a)=\sqrt{2U_0/m}$ found above.
+\end{enumerate}
+
+% 3
+\item \textbf{Explosion and conservation of momentum.}
+
+Total mass before breakup:
+\[
+M = 13~\text{kg}.
+\]
+Masses after breakup:
+\[
+m_1 = 3~\text{kg}, \quad m_2 = 4~\text{kg}, \quad m_3 = 6~\text{kg},
+\]
+with speeds immediately after breakup:
+\[
+\mathbf{v}_1 = (4~\text{m/s})\,\hat{\imath} \quad \text{(east)},
+\qquad
+\mathbf{v}_2 = (3~\text{m/s})\,\hat{\jmath} \quad \text{(north)}.
+\]
+
+Before breakup, the body was at rest, so initial total momentum was zero:
+\[
+\mathbf{p}_\text{total, initial} = \mathbf{0}.
+\]
+Momentum is conserved, so the vector sum of the fragment momenta after breakup must still be zero:
+\[
+m_1 \mathbf{v}_1 + m_2 \mathbf{v}_2 + m_3 \mathbf{v}_3 = \mathbf{0}.
+\]
+Solve for $\mathbf{v}_3$:
+\[
+m_3 \mathbf{v}_3 = - \left( m_1 \mathbf{v}_1 + m_2 \mathbf{v}_2 \right).
+\]
+
+First compute the known momenta:
+\[
+m_1 \mathbf{v}_1 = (3~\text{kg})(4~\text{m/s})\,\hat{\imath}
+= 12\,\hat{\imath}~\text{kg}\cdot\text{m/s},
+\]
+\[
+m_2 \mathbf{v}_2 = (4~\text{kg})(3~\text{m/s})\,\hat{\jmath}
+= 12\,\hat{\jmath}~\text{kg}\cdot\text{m/s}.
+\]
+
+Thus
+\[
+m_1 \mathbf{v}_1 + m_2 \mathbf{v}_2
+= 12\,\hat{\imath} + 12\,\hat{\jmath}
+\quad (\text{kg}\cdot\text{m/s}).
+\]
+
+So
+\[
+m_3 \mathbf{v}_3
+= - (12\,\hat{\imath} + 12\,\hat{\jmath})
+= (-12)\,\hat{\imath} + (-12)\,\hat{\jmath}.
+\]
+
+Since $m_3=6~\text{kg}$,
+\[
+\mathbf{v}_3
+= \frac{1}{6}(-12\,\hat{\imath} - 12\,\hat{\jmath})
+= (-2)\,\hat{\imath} + (-2)\,\hat{\jmath}
+\quad \text{m/s}.
+\]
+
+So the third fragment moves with velocity
+\[
+\mathbf{v}_3 = (-2, -2)~\text{m/s}.
+\]
+
+Speed:
+\[
+v_3 = \sqrt{(-2)^2 + (-2)^2}
+= \sqrt{4+4}
+= \sqrt{8}
+= 2\sqrt{2} \approx 2.83~\text{m/s}.
+\]
+
+Direction: both components are negative, so it moves toward the southwest, at $45^\circ$ below the $-x$ axis (i.e. equally south and west).
+
+We can express the direction angle $\theta$ measured from due west toward south:
+\[
+\tan \theta = \frac{2}{2} = 1
+\quad\Rightarrow\quad
+\theta = 45^\circ.
+\]
+
+Thus $m_3$ moves to the southwest at $2\sqrt{2}~\text{m/s}$.
+
+
+% 4
+\item \textbf{Block on horizontal surface with time-dependent force.}
+
+Given:
+\[
+m = 4~\text{kg}, \qquad
+\mu_s = 0.5, \qquad
+\mu_k = 0.3, \qquad
+g=10~\text{m/s}^2.
+\]
+Applied horizontal force:
+\[
+F(t) = 2t \quad \text{N}.
+\]
+
+Normal force:
+\[
+N = mg = (4)(10) = 40~\text{N}.
+\]
+
+Maximum static friction magnitude:
+\[
+f_s^{\max} = \mu_s N = 0.5 \times 40 = 20~\text{N}.
+\]
+
+Kinetic friction magnitude (once sliding):
+\[
+f_k = \mu_k N = 0.3 \times 40 = 12~\text{N}.
+\]
+
+\begin{enumerate}
+    \item \textit{When does the block start to move?}
+
+    While the block is at rest, friction adjusts to match the applied force $F(t)$ up to a maximum of $20~\text{N}$. The block will start moving when $F(t)$ exceeds $f_s^{\max}$.
+
+    We solve
+    \[
+    F(t) = 20~\text{N}
+    \quad\Rightarrow\quad
+    2t = 20
+    \quad\Rightarrow\quad
+    t = 10~\text{s}.
+    \]
+
+    Interpretation: for $0 \le t < 10~\text{s}$, static friction is enough to hold it in place, so velocity is zero. At $t=10~\text{s}$, motion begins.
+
+    \item \textit{Acceleration immediately after it starts moving.}
+
+    Just after $t = 10~\text{s}$, the block is in motion, so kinetic friction applies with constant magnitude $f_k = 12~\text{N}$ opposing the motion.
+
+    The applied force at $t=10~\text{s}$ is
+    \[
+    F(10) = 2(10) = 20~\text{N}.
+    \]
+
+    Net horizontal force just after motion begins:
+    \[
+    F_{\text{net}} = F - f_k = 20 - 12 = 8~\text{N}.
+    \]
+
+    Newton's second law:
+    \[
+    a = \frac{F_{\text{net}}}{m}
+    = \frac{8}{4}
+    = 2~\text{m/s}^2.
+    \]
+
+    So the block's initial acceleration (once it breaks free) is $2~\text{m/s}^2$.
+
+    \item \textit{Velocity 5 seconds after it starts moving.}
+
+    After $t=10~\text{s}$, the block continues to be pushed by $F(t)=2t$. For $t>10~\text{s}$, it is sliding, so friction is kinetic and constant at $12~\text{N}$.
+
+    For $t>10~\text{s}$:
+    \[
+    F_{\text{net}}(t) = F(t) - f_k = 2t - 12.
+    \]
+    Then the acceleration for $t>10$ is
+    \[
+    a(t) = \frac{F_{\text{net}}(t)}{m}
+    = \frac{2t - 12}{4}
+    = \frac{1}{2}t - 3
+    \quad \text{(m/s$^2$)}.
+    \]
+
+    
+    Integrate from $10$ to $15$ (the velocity at $t=10$ is $0$):
+    \begin{align*}
+    v(15) - v(10)
+    &= \int_{10}^{15} \left( \frac{1}{2}t - 3 \right) dt \\
+    &= \left[ \frac{1}{4}t^2 -3t \right]_{10}^{15} \\
+    &= \frac{65}{4}~\text{m/s}.
+    \end{align*}
 \end{enumerate}
 
 \end{enumerate}

@@ -1531,6 +1531,261 @@ Also, the general amplitude expression for driven oscillations is given by
     supplies energy to the oscillator.
 \end{enumerate}
 
+\subsection{Driven Pendulum with Small Angle Approximation}
+
+A pendulum of mass $m$ and length $L$ is hung from a pivot point and the pivot point is oscillating horizontally as $d(t)=d_0\cos(\omega t)$ as shown in the figure. Assuming small angles, derive the equation of motion for the pendulum and find the steady-state solution for the angular displacement $\theta(t)$.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/driven-pendulum.png}
+    \caption{A pendulum of mass $m$ and length $L$ is driven by a horizontal force $F(t)=F_0\cos(\omega t)$ from the pivot point.}
+    \label{fig:driven-pendulum}
+\end{figure}
+
+
+\textbf{Solution:} 
+
+
+\subsection{Simple pendulum with a horizontally oscillating pivot}
+
+\paragraph{Problem.}
+A simple pendulum consists of a point mass $m$ suspended from a
+massless, inextensible string of length $L$. Its pivot undergoes
+prescribed horizontal motion
+\[
+d(t)=d_0\cos(\omega t),
+\]
+where $d_0$ is the displacement amplitude and $\omega$ is the driving
+angular frequency. Neglect air resistance and friction at the pivot,
+and assume that the string remains taut. Let $\theta(t)$ denote the
+angular displacement from the downward vertical, positive toward the
+positive horizontal direction.
+
+Derive the equation of motion in the small-angle approximation and
+find the periodic forced response for
+$\omega\neq\sqrt{g/L}$. Explain the meaning of ``steady state'' in the
+absence of damping and discuss what happens at resonance.
+
+\paragraph{Solution.}
+Choose an inertial coordinate system with $x$ horizontal and $y$
+vertically upward. Taking the pivot height to be $y=0$, the position
+of the pendulum bob is
+\[
+x(t)=d(t)+L\sin\theta(t),
+\qquad
+y(t)=-L\cos\theta(t).
+\]
+Differentiating once gives
+\[
+\dot{x}=\dot{d}+L\dot{\theta}\cos\theta,
+\qquad
+\dot{y}=L\dot{\theta}\sin\theta.
+\]
+Differentiating again gives
+\[
+\ddot{x}
+=\ddot{d}
++L\ddot{\theta}\cos\theta
+-L\dot{\theta}^{\,2}\sin\theta,
+\]
+\[
+\ddot{y}
+=L\ddot{\theta}\sin\theta
++L\dot{\theta}^{\,2}\cos\theta.
+\]
+
+The unit vector tangent to the circular path relative to the pivot,
+pointing in the direction of increasing $\theta$, is
+\[
+\mathbf{e}_{\theta}=(\cos\theta,\sin\theta).
+\]
+The tangential component of the bob's acceleration is therefore
+\begin{align*}
+a_{\theta}
+&=\ddot{x}\cos\theta+\ddot{y}\sin\theta\\
+&=\ddot{d}\cos\theta
++L\ddot{\theta}\cos^2\theta
+-L\dot{\theta}^{\,2}\sin\theta\cos\theta\\
+&\quad
++L\ddot{\theta}\sin^2\theta
++L\dot{\theta}^{\,2}\cos\theta\sin\theta\\
+&=\ddot{d}\cos\theta+L\ddot{\theta}.
+\end{align*}
+Here the terms proportional to $\dot{\theta}^{\,2}$ cancel because
+the corresponding acceleration is radial.
+
+The string tension is radial and has no tangential component.
+The tangential component of gravity is
+\[
+F_{\theta}=(0,-mg)\cdot\mathbf{e}_{\theta}
+=-mg\sin\theta.
+\]
+Consequently, Newton's second law gives
+\[
+m\left(L\ddot{\theta}+\ddot{d}\cos\theta\right)
+=-mg\sin\theta,
+\]
+or
+\[
+\ddot{\theta}+\frac{g}{L}\sin\theta
+=-\frac{\ddot{d}}{L}\cos\theta.
+\]
+Since
+\[
+\dot{d}=-d_0\omega\sin(\omega t),
+\qquad
+\ddot{d}=-d_0\omega^2\cos(\omega t),
+\]
+the exact equation of motion is
+\[
+\boxed{
+\ddot{\theta}+\frac{g}{L}\sin\theta
+=\frac{d_0\omega^2}{L}\cos(\omega t)\cos\theta.
+}
+\]
+
+\paragraph{Small-angle approximation.}
+For $|\theta|\ll 1$, with $\theta$ measured in radians,
+\[
+\sin\theta=\theta-\frac{\theta^3}{6}+\cdots,
+\qquad
+\cos\theta=1-\frac{\theta^2}{2}+\cdots.
+\]
+Retaining only terms through first order in $\theta$ gives
+\[
+\boxed{
+\ddot{\theta}+\omega_0^2\theta
+=\frac{d_0\omega^2}{L}\cos(\omega t),
+\qquad
+\omega_0=\sqrt{\frac{g}{L}}.
+}
+\]
+The neglected restoring term starts at order $\theta^3$, while the
+neglected correction to the driving term starts at order $\theta^2$.
+No approximation has been made to the prescribed pivot motion.
+
+\paragraph{Periodic forced response away from resonance.}
+For $\omega\neq\omega_0$, seek a particular solution of the form
+\[
+\theta_{\mathrm{p}}(t)=A\cos(\omega t).
+\]
+Its second derivative is
+\[
+\ddot{\theta}_{\mathrm{p}}(t)
+=-A\omega^2\cos(\omega t).
+\]
+Substituting into the linearized equation gives
+\[
+-A\omega^2\cos(\omega t)
++\omega_0^2A\cos(\omega t)
+=\frac{d_0\omega^2}{L}\cos(\omega t).
+\]
+Matching the coefficients of $\cos(\omega t)$ yields
+\[
+A(\omega_0^2-\omega^2)=\frac{d_0\omega^2}{L}.
+\]
+Thus the periodic forced response is
+\[
+\boxed{
+\theta_{\mathrm{p}}(t)
+=\frac{d_0\omega^2}{L(\omega_0^2-\omega^2)}
+\cos(\omega t)
+=\frac{d_0\omega^2}{g-L\omega^2}\cos(\omega t).
+}
+\]
+Its angular amplitude is
+\[
+\Theta=\frac{d_0\omega^2}{|g-L\omega^2|}.
+\]
+For $\omega<\omega_0$, the angular displacement is in phase with the
+pivot displacement. For $\omega>\omega_0$, it is opposite in phase.
+
+The homogeneous equation,
+\[
+\ddot{\theta}_{\mathrm{h}}+\omega_0^2\theta_{\mathrm{h}}=0,
+\]
+has the solution
+\[
+\theta_{\mathrm{h}}(t)
+=C\cos(\omega_0t)+D\sin(\omega_0t).
+\]
+Hence the general solution is
+\[
+\boxed{
+\theta(t)
+=C\cos(\omega_0t)+D\sin(\omega_0t)
++\frac{d_0\omega^2}{g-L\omega^2}\cos(\omega t).
+}
+\]
+The constants $C$ and $D$ are determined by the initial conditions.
+For example, if $\theta(0)=\theta_i$ and
+$\dot{\theta}(0)=v_i$, then
+\[
+C=\theta_i-\frac{d_0\omega^2}{g-L\omega^2},
+\qquad
+D=\frac{v_i}{\omega_0}.
+\]
+
+Without damping, the homogeneous oscillation persists indefinitely.
+Therefore, the periodic forced response is not a uniquely selected
+late-time steady state. It is the solution obtained when the free
+oscillation is absent. In a weakly damped system, the free oscillation
+decays, and the late-time response approaches the expression above
+as damping tends to zero, provided the driving frequency remains
+away from resonance.
+
+The small-angle approximation requires the total angular
+displacement to remain small. For the periodic forced response alone,
+this requires
+\[
+\boxed{
+\frac{d_0\omega^2}{|g-L\omega^2|}\ll 1.
+}
+\]
+If free oscillations are present, their amplitude must also be small.
+
+\paragraph{Resonance.}
+At $\omega=\omega_0$, the linearized equation becomes
+\[
+\ddot{\theta}+\omega_0^2\theta
+=\frac{d_0\omega_0^2}{L}\cos(\omega_0t).
+\]
+The previous periodic ansatz fails because it solves the homogeneous
+equation. Instead, try
+\[
+\theta_{\mathrm{p}}(t)=Bt\sin(\omega_0t).
+\]
+Differentiating gives
+\[
+\dot{\theta}_{\mathrm{p}}
+=B\sin(\omega_0t)+B\omega_0t\cos(\omega_0t),
+\]
+\[
+\ddot{\theta}_{\mathrm{p}}
+=2B\omega_0\cos(\omega_0t)
+-B\omega_0^2t\sin(\omega_0t).
+\]
+Therefore,
+\[
+\ddot{\theta}_{\mathrm{p}}+\omega_0^2\theta_{\mathrm{p}}
+=2B\omega_0\cos(\omega_0t).
+\]
+Matching coefficients gives
+\[
+2B\omega_0=\frac{d_0\omega_0^2}{L},
+\qquad
+B=\frac{d_0\omega_0}{2L}.
+\]
+The resonant particular solution is consequently
+\[
+\boxed{
+\theta_{\mathrm{p}}(t)
+=\frac{d_0\omega_0}{2L}\,t\sin(\omega_0t).
+}
+\]
+There is no bounded periodic forced response at resonance in the
+undamped linear model. The growing amplitude eventually violates
+the small-angle approximation.
 
 
 \end{document}
