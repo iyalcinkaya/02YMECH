@@ -10,23 +10,16 @@
 \setlength{\parskip}{0.75em}
 
 
-\title{Chapter 3: Central-Force Motion}
+\title{Chapter 5: Central-Force Motion}
 \author{İskender Yalçınkaya, PhD}
 \date{\today}
 
 \begin{document}
 \maketitle
-In this Chapter, we will consider a seemly abstract problem: the motion of a particle under the influence of a force that is always directed towards or away from a fixed point in space. This type of force is called a \textit{central force}. Even though the problem is abstract for there actually is no such thing as a central force in nature, the problem is of great importance because it can be used to model the motion of planets and satellites under the influence of gravity, the motion of electrons around a nucleus under the influence of electrostatic forces, and many other physical phenomena.
+In this chapter, we will consider a seemingly abstract problem: the motion of a particle under the influence of a force that is always directed towards or away from a fixed point in space. This type of force is called a central force. Although this may initially seem like an abstract problem, since in reality the body exerting the force is not necessarily fixed in space, it is of great importance in physics. In particular, it can be used to model the motion of planets and satellites under the influence of gravity, the motion of electrons around atomic nuclei under the influence of electrostatic forces, and many other physical phenomena.
 
-We will begin by introducing spherical coordinates, which are the most convenient coordinate system for describing central-force motion. Then, we will define what a central force is and discuss some of its direct consequences. Finally, we will work through some examples to illustrate the concepts.
+We will begin by defining what a central force is, and then we will derive some important consequences of this definition. Finally, we will solve some problems to illustrate the concepts.
 
-\section{Spherical Coordinates}
-In three-dimensional space, a point can be represented in spherical coordinates $(r, \theta, \phi)$, where $r$ is the radial distance from the origin, $\theta$ is the polar angle measured from the positive $z$-axis, and $\phi$ is the azimuthal angle measured from the positive $x$-axis in the $xy$-plane. The relationships between Cartesian coordinates $(x, y, z)$ and spherical coordinates are given by:
-\begin{align}
-    x &= r \sin\theta \cos\phi,\\
-    y &= r \sin\theta \sin\phi,\\
-    z &= r \cos\theta.
-\end{align}
 
 
 \section{Definition of Central Force}
@@ -38,19 +31,289 @@ A force is central if:
 Above assumptions can mathematically be expressed as
 \begin{equation}
     \mathbf{F}(\mathbf{r})=f(r)\hat{\mathbf{r}},
+    \label{eq:central-force}
 \end{equation}
-where $f(r)$ is a scalar function of the distance $r$ from the center of force, and $\hat{\mathbf{r}}$ is the unit vector in the direction of $\mathbf{r}$.
+where $f(r)$ is a scalar function of the distance $r$ from the center of force, and $\hat{\mathbf{r}}$ is the unit vector in the direction of the position vector $\mathbf{r}$.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/central-force.png}
+    \caption{A central force is always directed towards or away from a fixed point in space, called the center of force. The magnitude of the force depends only on the distance from the center of force.}
+    \label{fig:central-force}
+\end{figure}
 
 
 \section{Direct Consequences of the Definitions}
+From Eq.~\ref{eq:central-force}, we can draw $3$ direct important conclusions:
 
 \begin{enumerate}
     \item[(i)] Central force cannot apply any torque on the particle. Therefore, the angular momentum of the particle is conserved.
+    \[
+    \mathbf{\tau} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times (f(r)\hat{\mathbf{r}}) = f(r) \mathbf{r} \times \hat{\mathbf{r}} = 0.
+    \]
+    since $\mathbf{r}$ and $\hat{\mathbf{r}}$ are parallel. Therefore, the angular momentum of the particle is conserved:
+    \[
+    \tau = \frac{d\mathbf{L}}{dt} = 0 \implies \mathbf{L} = \text{constant}.
+    \]
+    \item[(ii)] The motion of the particle is confined to a plane. This is because the angular momentum vector $\mathbf{L} = \mathbf{r} \times \mathbf{p}$ is constant in direction, and the position vector $\mathbf{r}$ always lies in the plane perpendicular to $\mathbf{L}$.
+    \item[(iii)] The position vector of the particle sweeps out equal areas in equal times, i.e., the areal velocity is constant. This is a direct consequence of the conservation of angular momentum. The areal velocity is given by:
+    \[
+    dA= \frac{1}{2}|\mathbf{r} \times d\mathbf{r}| = \frac{1}{2}|\mathbf{r} \times \mathbf{v}dt| \implies \frac{dA}{dt} = \frac{1}{2}|\mathbf{r} \times \mathbf{v}| = \frac{1}{2m}|\mathbf{r} \times m\mathbf{v}| =\frac{L}{2m},
+    \]
+    where $L$ is the magnitude of the angular momentum and $m$ is the mass of the particle. Since $L$ is constant, the areal velocity $dA/dt$ is also constant, i.e, $A(t)$ is a linear function of time. 
 \end{enumerate}
+
+\section{Polar Coordinates}
+
+We have been using Cartesian coordinates to describe the motion of a particle. However, Cartesian coordinates are not the best choice for central-force motion as motion involves forces whose directions change with the position of the particle.
+
+The central force always acts along the line connecting the particle to a fixed point, which we choose as the origin. Furthermore, since the force produces no torque about this point, the angular momentum of the particle is conserved, and its motion is confined to a plane. It is therefore more convenient to describe the motion using polar coordinates, in which the position of the particle is specified by its distance $r$ from the origin and the angle $\theta$ it makes with a fixed reference direction as shown in Fig.~\ref{fig:polar-coordinates}(a). 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/polar-coordinates.png}
+    \caption{(a) The position of a particle in polar coordinates is specified by its distance $r$ from the origin and the angle $\theta$ it makes with a fixed reference direction. (b) The unit vectors $\mathbf{e}_r$ and $\mathbf{e}_\theta$ are not fixed in direction, but change as the particle moves.}
+    \label{fig:polar-coordinates}
+\end{figure}
+
+The cartesian coordinates $(x,y)$ of the particle are related to its polar coordinates $(r,\theta)$ by the equations:
+\[
+x = r \cos\theta, \quad y = r \sin\theta.
+\]
+
+The main advantage of polar coordinates is that one of the coordinate directions is always aligned with the central force. This allows us to separate the radial and angular components of the motion, considerably simplifying the equations of motion. To take advantage of this coordinate system, we must first derive the expressions for the velocity and acceleration of a particle in polar coordinates.
+
+It is worth noting that we still want to locate the particle in a two-dimensional plane. However, we change our definition for locating the particle: Instead of measuring the perpendicular distance from two perpendicular axes, we measure the distance from a single point (the origin) and the angle from a fixed direction. This simple change in perspective will allow us to write down the velociy and acceleration to contain some new information about the motion of the particle which do not show up in Cartesian coordinates. 
+
+In polar coordinates, unit vectors are not fixed in direction. Their directions change as the particle moves as shown in Fig.~\ref{fig:polar-coordinates}(b). The unit vector $\mathbf{e}_r$ points radially outward from the origin, while the unit vector $\mathbf{e}_\theta$ is perpendicular to $\mathbf{e}_r$ and points in the direction of increasing $\theta$. The position vector of the particle can be expressed as:
+\[
+\mathbf{r} = r \mathbf{e}_r.
+\]
+We can write polar unit vectors in terms of Cartesian unit vectors as:
+\[
+\mathbf{e}_r = \cos\theta \mathbf{i} + \sin\theta \mathbf{j}, \quad
+\mathbf{e}_\theta = -\sin\theta \mathbf{i} + \cos\theta \mathbf{j}.
+\]
+Time derivatives of the polar unit vectors are:
+\[
+\frac{d\mathbf{e}_r}{dt} = -\dot{\theta}\sin\theta \mathbf{i} + \dot{\theta}\cos\theta  \mathbf{j} = \dot{\theta} \mathbf{e}_\theta,
+\quad
+\frac{d\mathbf{e}_\theta}{dt} = -\dot{\theta}\cos\theta  \mathbf{i} - \dot{\theta}\sin\theta  \mathbf{j} = -\dot{\theta} \mathbf{e}_r.
+\]
+
+Or, in a more compact form:
+\begin{equation}
+\dot{\mathbf{e}}_r = \dot{\theta}\mathbf{e}_\theta, \quad
+\dot{\mathbf{e}}_\theta = -\dot{\theta}\mathbf{e}_r.
+\label{eq:polar-unit-vectors-derivatives}
+\end{equation}
+
+Geometrically, these equations can be interpreted as follows: As the particle moves, the unit vectors, $\mathbf{e}_r$ and $\mathbf{e}_\theta$, cannot increase in magnitude. The only way for them to change is through rotation. The unit vector $\mathbf{e}_r$ rotates in the direction of $\mathbf{e}_\theta$ with an angular speed of $\dot{\theta}$: as we increase the angle $\theta$, the unit vector $\mathbf{e}_r$ automatically rotates in the direction $\mathbf{e}_\theta$. Similarly, as $\theta$ increases, the unit vector $\mathbf{e}_\theta$ rotates in the direction opposite to $\mathbf{e}_r$ with an angular speed of $\dot{\theta}$.
+
+\section{Velocity, Acceleration and Angular Momentum in Polar Coordinates}
+The velocity of the particle is the time derivative of its position vector:
+\[
+\mathbf{v} = \dot{\mathbf{r}} = \frac{d}{dt}(r \mathbf{e}_r) = \dot{r} \mathbf{e}_r + r \dot{\mathbf{e}}_r.
+\]
+Using Eq.~\ref{eq:polar-unit-vectors-derivatives}, we can write
+\[
+\mathbf{v} = \dot{r} \mathbf{e}_r + r \dot{\theta} \mathbf{e}_\theta.
+\]
+If we denote the radial and angular components of the velocity as $v_r$ and $v_\theta$, respectively, we have:
+\[
+v_r \coloneqq \dot{r}, \quad v_\theta \coloneqq r \dot{\theta} \implies \mathbf{v} = v_r \mathbf{e}_r + v_\theta \mathbf{e}_\theta.
+\]
+
+Geometrically, the radial component of the velocity, $v_r$, represents the rate at which the distance from the origin is changing, while the angular component, $v_\theta$, represents the rate at which the angle $\theta$ is changing. The angular component can also be interpreted as the tangential speed of the particle along a circular path of radius $r$: $\frac{rd\theta}{dt}= \frac{ds}{dt}$. The speed of the particle is given by the magnitude of the velocity vector:
+\[
+v = |\mathbf{v}| = \sqrt{v_r^2 + v_\theta^2} = \sqrt{\dot{r}^2 + (r\dot{\theta})^2}.
+\]
+The acceleration of the particle is the time derivative of its velocity vector:
+\[
+\mathbf{a} = \dot{\mathbf{v}} = \frac{d}{dt}(\dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta) = \ddot{r}\mathbf{e}_r + \dot{r}\dot{\mathbf{e}}_r + \dot{r}\dot{\theta}\mathbf{e}_\theta + r\ddot{\theta}\mathbf{e}_\theta + r\dot{\theta}\dot{\mathbf{e}}_\theta.
+\]
+Using Eq.~\ref{eq:polar-unit-vectors-derivatives}, we can write
+\begin{equation}
+\mathbf{a} = (\ddot{r} - r\dot{\theta}^2)\mathbf{e}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\mathbf{e}_\theta.
+\label{eq:polar-acceleration}
+\end{equation}
+
+The first term in the radial component of the acceleration, $\ddot{r}$, represents the rate of change of the radial velocity, while the second term, $-r\dot{\theta}^2=-r\omega^2$, represents the centripetal acceleration that arises due to the change in direction of the velocity vector as the particle moves along a curved path. The first term in the angular component of the acceleration, $r\ddot{\theta}$, represents the rate of change of the angular velocity, while the second term, $2\dot{r}\dot{\theta}$, represents the \emph{Coriolis acceleration} that arises due to the change in direction of the radial velocity as the particle moves along a curved path. The Coriolis accelaration will be discussed in more detail in Chapter 7: Motion in Non-Inertial Reference Frames.
+
+If we denote the radial and angular components of the acceleration as $a_r$ and $a_\theta$, respectively, we can write the acceleration in a compact form as:
+\[
+a_r \coloneqq \ddot{r} - r\dot{\theta}^2, \quad a_\theta \coloneqq r\ddot{\theta} + 2\dot{r}\dot{\theta} \implies \mathbf{a} = a_r \mathbf{e}_r + a_\theta \mathbf{e}_\theta.
+\]
+Following its definition, we can write the angular momentum of the particle in polar coordinates as:
+\[
+\mathbf{L} = \mathbf{r} \times m\mathbf{v}
+= (r\mathbf{e}_r) \times m(\dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta)
+= mr^2\dot{\theta}(\mathbf{e}_r \times \mathbf{e}_\theta).
+\]
+Since $\mathbf{e}_r \times \mathbf{e}_\theta$ is a unit vector perpendicular to the plane of motion, we can write
+\[
+\mathbf{L} = mr^2\dot{\theta}\mathbf{k},
+\]
+where $\mathbf{k}$ is a unit vector perpendicular to the plane of motion. Note that even if the quantities $r$ and $\dot{\theta}$ change with time, the product
+\begin{equation}
+L = mr^2\dot{\theta} 
+\label{eq:angular-momentum-polar}
+\end{equation}
+remains constant due to the conservation of angular momentum.
+
+\section{Equation of Motion for Central-Force Motion}
+
+Plugging the expressions for the central force and acceleration in polar coordinates, as given in Eq.~\ref{eq:central-force} and Eq.~\ref{eq:polar-acceleration}, into Newton's second law,
+\[
+f(r)\mathbf{e}_r = m (\ddot{r} - r\dot{\theta}^2)\mathbf{e}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\mathbf{e}_\theta.
+\]
+and equating the coefficients of $\mathbf{e}_r$ and $\mathbf{e}_\theta$ on both sides, we obtain the equations of motion for a particle under the influence of a central force:
+\begin{equation}
+    m(\ddot{r} - r\dot{\theta}^2) = f(r), \quad
+    m(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = 0.
+    \label{eq:central-force-motion}
+\end{equation}
+Here, the first equation describes the radial motion of the particle, while the second equation describes the angular motion. Since we know that $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$, the second equation simply tells us that no net torque is acting on the particle about the origin. The second equation can also be rewritten as:
+\[
+m(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = \frac{d}{dt}(mr^2\dot{\theta}) = \frac{dL}{dt} = 0.
+\]
+Hence, the second equation is simply a restatement of the conservation of angular momentum. The first equation can be rewritten as:
+\[
+m\ddot{r} = f(r) + mr\dot{\theta}^2 = f(r) + \frac{L^2}{mr^3},
+\]
+where we have used the fact that $L = mr^2\dot{\theta}$ is constant. This equation describes the radial motion of the particle under the influence of the central force and the centrifugal force, which arises due to the rotation of the particle about the origin. The centrifugal force is always directed away from the origin and has a magnitude of \( \frac{L^2}{mr^3} \). The effective force acting on the particle in the radial direction is therefore given by
+\[
+f_\text{eff}(r) = f(r) + \frac{L^2}{mr^3}.
+\]
+
+\section{Binet's Equation}
+
+By using the radial and angular equations of motion in Eq.~\ref{eq:central-force-motion}, we can derive a second-order differential equation that relates the trajectory of the particle to the central force acting on it. This equation is known as \emph{Binet's equation}. Starting from the radial equation of motion, we have
+\[
+\ddot{r} - r\dot{\theta}^2 = \frac{f(r)}{m}.
+\]
+
+We will write the terms in left-hand side in a more convenient form. From Eq.~\ref{eq:angular-momentum-polar},  we know $r^2\dot{\theta} \coloneqq h$, where $h$ is a constant. Therefore, we can write 
+\[
+\dot{r} = \frac{dr}{d\theta}\dot{\theta} = \frac{h}{r^2}\frac{dr}{d\theta} \implies \ddot{r}  = \frac{h}{r^2}\frac{d}{d\theta}\left(\frac{h}{r^2}\frac{dr}{d\theta}\right) 
+\]
+Change of variable 
+\[
+u = \frac{1}{r} \implies \frac{du}{d\theta}= -\frac{1}{r^2}\frac{dr}{d\theta} \implies \frac{h}{r^2}\frac{dr}{d\theta} = -h\frac{du}{d\theta} \implies \ddot{r} = -\frac{h^2}{r^2}\frac{d^2u}{d\theta^2}.
+\]
+
+Also
+\[
+\dot{\theta} = \frac{h}{r^2} = hu^2 \implies r\dot{\theta}^2 = \frac{h^2}{r^3} = h^2u^3.
+\]
+Plugging these expressions into the radial equation of motion, we obtain
+\[
+-\frac{h^2}{r^2}\frac{d^2u}{d\theta^2} - h^2u^3 = \frac{f(r)}{m} \implies \frac{d^2u}{d\theta^2} + u = -\frac{f(1/u)}{mh^2u^2}.
+\]
+
+\section{Total Energy of a Particle under Central Force}
+
 
 
 \section{Worked Examples}
+\subsection{Attractive and Repulsive Forces}
+Decide if the following forces are attractive or repulsive for $k > 0$.
+\begin{enumerate}
+    \item[(a)] \( \mathbf{F} = -\frac{3k}{\sqrt{r}} \mathbf{e}_r \)
+    \item[(b)] \( \mathbf{F} = 4kr^2\mathbf{e}_r \)
+    \item[(c)] \( \mathbf{F} = r(r-2)\mathbf{e}_r \)
+\end{enumerate}
+
+\textbf{Solution:}
+
+\begin{enumerate}
+    \item[(a)] The force is attractive because the negative sign indicates that the force is directed towards the origin, and the factor $\frac{3k}{\sqrt{r}}$ is positive for $k > 0$.
+    \item[(b)] The force is repulsive because the positive sign indicates that the force is directed away from the origin, and the factor $4kr^2$ is positive for $k > 0$.
+    \item[(c)] The force is attractive for $0 < r < 2$ and repulsive for $r > 2$. At $r = 0$, the force is undefined, and at $r = 2$, the force is zero.
+\end{enumerate}
+
+\subsection{}
+If a particle moves in a plane according to expressions 
+\[
+\theta(t) = 0.3t+0.2t^2, \quad r(t) = 0.5t+0.4t^2
+\]
+Find its velocity and acceleration at $t = 2$ s.
+
+\textbf{Solution:}
+
+
+
+\subsection{Finding force-law from trajectory}
+Find the force law for the central force that allows a particle to move in a logaritmic spiral trajectory given by \( r = r_0 e^{k\theta} \), where \( r_0 \) and \( k \) are constants. Determine $r(t)$ and $\theta(t)$ for the particle.
+
+\textbf{Solution:}
+
+
+\subsection{Determining the Central Force from an Elliptical Orbit}
+
+A particle of mass $m$ moves along an elliptical orbit under the
+influence of a central force directed toward one of the foci of
+the ellipse. The trajectory is described in polar coordinates by
+\begin{equation}
+    r(\theta)=\frac{p}{1+e\cos\theta},
+\end{equation}
+where $p>0$ is a constant and $0<e<1$ is the eccentricity of
+the ellipse.
+
+Using Binet's equation, determine the central force law $F(r)$
+that produces this orbit. Express your answer in terms of the
+particle's angular momentum $L$, mass $m$, and the parameter $p$.
+
+\textbf{Solution:}
+
+Binet's equation is
+\begin{equation}
+    F(r)=-\frac{L^2}{m}u^2
+    \left(\frac{d^2u}{d\theta^2}+u\right),
+    \qquad u=\frac{1}{r}.
+\end{equation}
+
+From the given trajectory,
+\begin{equation}
+    u(\theta)=\frac{1+e\cos\theta}{p}.
+\end{equation}
+
+Differentiating twice with respect to $\theta$,
+\begin{equation}
+    \frac{du}{d\theta}=-\frac{e}{p}\sin\theta,
+    \qquad
+    \frac{d^2u}{d\theta^2}=-\frac{e}{p}\cos\theta.
+\end{equation}
+
+Therefore,
+\begin{equation}
+    \frac{d^2u}{d\theta^2}+u
+    =-\frac{e}{p}\cos\theta
+    +\frac{1+e\cos\theta}{p}
+    =\frac{1}{p}.
+\end{equation}
+
+Substituting into Binet's equation gives
+\begin{equation}
+    F(r)=-\frac{L^2}{mp}u^2.
+\end{equation}
+
+Since $u=1/r$, we obtain
+\begin{equation}
+    \boxed{F(r)=-\frac{L^2}{mp}\frac{1}{r^2}}.
+\end{equation}
+
+Thus, an elliptical orbit with the center of force at one
+of its foci is produced by an attractive inverse-square force.
+
+
+
+
+
+
+
+
+
 \subsection{Work and kinetic energy in a rotating system}
 
 Two identical small masses, each of mass $m$, are connected to a frictionless vertical rotation axis by two massless rods of adjustable length. The system rotates in a horizontal plane with an initial angular velocity $\omega_i$, and each mass is initially at a distance $r_i$ from the rotation axis. The rods are then shortened, pulling the masses radially inward until their distance from the axis becomes $r_f=r_i/\sqrt{2}$. Assume that no external torque acts about the rotation axis and that the radial velocities of the masses are zero both initially and finally.

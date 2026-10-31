@@ -20,10 +20,10 @@ If you wish to download all materials at once, click the green `<> Code` button 
 | **3. Dynamics**                                |  [📝 View Notes](./notes/dynamics/main.pdf)  |  [📄 View HW](./homework/dynamics/main.pdf)  |  [📝 View Solutions](./solutions/dynamics/main.pdf)  |
 | **4. Small Oscillations**                      |  [📝 View Notes](./notes/small-oscillations/main.pdf)  |      [📄 View HW](./homework/small-oscillations/main.pdf)      |      [📝 View Solutions](./solutions/small-oscillations/main.pdf)      |
 | **5. Central Force Motion**                    |       [📝 View Notes](./notes/central-force-motion/main.pdf)       |       [📄 View HW](./homework/central-force-motion/main.pdf)       |       [📝 View Solutions](./solutions/electrodynamics/main.pdf)       |
-| **6. Dynamics of System of Particles**         |    [📝 View Notes](./notes/dynamics-of-system-of-particles.pdf)    |    [📄 View HW](./homework/dynamics-of-system-of-particles/main.pdf)    |    [📝 View Solutions](./solutions/electromagnetic-waves/main.pdf)    |
-| **7. Motion in a Noninertial Reference Frame** | [📝 View Notes](./notes/motion-in-a-noninertial-reference-frame.pdf) | [📄 View HW](./homework/motion-in-a-noninertial-reference-frame/main.pdf) | [📝 View Solutions](./solutions/motion-in-a-noninertial-reference-frame/main.pdf) |
-| **8. Gravitation**                             | [📝 View Notes](./notes/gravitation.pdf) | [📄 View HW](./homework/gravitation/main.pdf) | [📝 View Solutions](./solutions/gravitation/main.pdf) |
-| **9. Rigid Body Motion**                      | [📝 View Notes](./notes/rigid-body-motion.pdf) | [📄 View HW](./homework/rigid-body-motion/main.pdf) | [📝 View Solutions](./solutions/rigid-body-motion/main.pdf) |
+| **6. Dynamics of System of Particles**         |    [📝 View Notes](./notes/dynamics-of-system-of-particles/main.pdf)    |    [📄 View HW](./homework/dynamics-of-system-of-particles/main.pdf)    |    [📝 View Solutions](./solutions/electromagnetic-waves/main.pdf)    |
+| **7. Motion in a Noninertial Reference Frame** | [📝 View Notes](./notes/motion-in-a-noninertial-reference-frame/main.pdf) | [📄 View HW](./homework/motion-in-a-noninertial-reference-frame/main.pdf) | [📝 View Solutions](./solutions/motion-in-a-noninertial-reference-frame/main.pdf) |
+| **8. Gravitation**                             | [📝 View Notes](./notes/gravitation/main.pdf) | [📄 View HW](./homework/gravitation/main.pdf) | [📝 View Solutions](./solutions/gravitation/main.pdf) |
+| **9. Rigid Body Motion**                      | [📝 View Notes](./notes/rigid-body-motion/main.pdf) | [📄 View HW](./homework/rigid-body-motion/main.pdf) | [📝 View Solutions](./solutions/rigid-body-motion/main.pdf) |
 
 ## Recordings
 
