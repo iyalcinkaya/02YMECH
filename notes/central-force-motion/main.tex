@@ -16,24 +16,22 @@
 
 \begin{document}
 \maketitle
-In this chapter, we will consider a seemingly abstract problem: the motion of a particle under the influence of a force that is always directed towards or away from a fixed point in space. This type of force is called a central force. Although this may initially seem like an abstract problem, since in reality the body exerting the force is not necessarily fixed in space, it is of great importance in physics. In particular, it can be used to model the motion of planets and satellites under the influence of gravity, the motion of electrons around atomic nuclei under the influence of electrostatic forces, and many other physical phenomena.
+In this chapter, we will consider a seemingly abstract problem: the motion of a particle under the influence of a force that is always directed towards or away from a fixed point in space. This type of force is called a \emph{central force}. Although this may initially seem like an abstract problem, since in reality the body exerting the force is not necessarily fixed in space, it is of great importance in physics. In particular, it can be used to model the motion of planets and satellites under the influence of gravity, the motion of electrons around atomic nuclei under the influence of electrostatic forces, and many other physical phenomena.
 
-We will begin by defining what a central force is, and then we will derive some important consequences of this definition. Finally, we will solve some problems to illustrate the concepts.
-
-
+We will begin by defining what a central force is, and then we will derive some important consequences of this definition. We will redefine velocity and acceleration in polar coordinates, which are more suitable for describing central-force motion. We will then derive the equations of motion for a particle under the influence of a central force, and we will discuss how to solve these equations to determine the trajectory of the particle.
 
 \section{Definition of Central Force}
 A force is central if:
 \begin{enumerate}
-    \item[(i)] it is towards or away from a fixed point (the center of force).
+    \item[(i)] it is towards or away from a fixed point called \emph{the center of force}.
     \item[(ii)] the magnitude of the force is only proportional to the distance from the center of force.
 \end{enumerate}
 Above assumptions can mathematically be expressed as
 \begin{equation}
-    \mathbf{F}(\mathbf{r})=f(r)\hat{\mathbf{r}},
+    \mathbf{F}(\mathbf{r})=f(r)\mathbf{e}_r,
     \label{eq:central-force}
 \end{equation}
-where $f(r)$ is a scalar function of the distance $r$ from the center of force, and $\hat{\mathbf{r}}$ is the unit vector in the direction of the position vector $\mathbf{r}$.
+where $f(r)$ is a scalar function of the distance $r$ from the center of force, and $\mathbf{e}_r$ is the unit vector in the direction of the position vector $\mathbf{r}$.
 
 \begin{figure}[h!]
     \centering
@@ -49,9 +47,9 @@ From Eq.~\ref{eq:central-force}, we can draw $3$ direct important conclusions:
 \begin{enumerate}
     \item[(i)] Central force cannot apply any torque on the particle. Therefore, the angular momentum of the particle is conserved.
     \[
-    \mathbf{\tau} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times (f(r)\hat{\mathbf{r}}) = f(r) \mathbf{r} \times \hat{\mathbf{r}} = 0.
+    \mathbf{\tau} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times (f(r)\mathbf{e}_r) = f(r) \mathbf{r} \times \mathbf{e}_r = 0.
     \]
-    since $\mathbf{r}$ and $\hat{\mathbf{r}}$ are parallel. Therefore, the angular momentum of the particle is conserved:
+    since $\mathbf{r}$ and $\mathbf{e}_r$ are parallel. Therefore, the angular momentum of the particle is conserved:
     \[
     \tau = \frac{d\mathbf{L}}{dt} = 0 \implies \mathbf{L} = \text{constant}.
     \]
@@ -81,9 +79,9 @@ The cartesian coordinates $(x,y)$ of the particle are related to its polar coord
 x = r \cos\theta, \quad y = r \sin\theta.
 \]
 
-The main advantage of polar coordinates is that one of the coordinate directions is always aligned with the central force. This allows us to separate the radial and angular components of the motion, considerably simplifying the equations of motion. To take advantage of this coordinate system, we must first derive the expressions for the velocity and acceleration of a particle in polar coordinates.
+The main advantage of polar coordinates is that one of the coordinate directions is always aligned with the central force. This allows us to separate the radial and angular components of the motion, considerably simplifying the equations of motion. 
 
-It is worth noting that we still want to locate the particle in a two-dimensional plane. However, we change our definition for locating the particle: Instead of measuring the perpendicular distance from two perpendicular axes, we measure the distance from a single point (the origin) and the angle from a fixed direction. This simple change in perspective will allow us to write down the velociy and acceleration to contain some new information about the motion of the particle which do not show up in Cartesian coordinates. 
+It is worth noting that we still want to locate the particle in a two-dimensional plane. However, we change our definition for locating the particle: Instead of measuring the perpendicular distance from two perpendicular axes as in Cartesian coordinates, we measure the distance from a single point (the origin) and the angle from a fixed direction. This simple change in perspective will allow us to write down the velociy and acceleration in the following section to contain some new information about the motion of the particle which do not show up in Cartesian coordinates. 
 
 In polar coordinates, unit vectors are not fixed in direction. Their directions change as the particle moves as shown in Fig.~\ref{fig:polar-coordinates}(b). The unit vector $\mathbf{e}_r$ points radially outward from the origin, while the unit vector $\mathbf{e}_\theta$ is perpendicular to $\mathbf{e}_r$ and points in the direction of increasing $\theta$. The position vector of the particle can be expressed as:
 \[
@@ -109,6 +107,18 @@ Or, in a more compact form:
 \end{equation}
 
 Geometrically, these equations can be interpreted as follows: As the particle moves, the unit vectors, $\mathbf{e}_r$ and $\mathbf{e}_\theta$, cannot increase in magnitude. The only way for them to change is through rotation. The unit vector $\mathbf{e}_r$ rotates in the direction of $\mathbf{e}_\theta$ with an angular speed of $\dot{\theta}$: as we increase the angle $\theta$, the unit vector $\mathbf{e}_r$ automatically rotates in the direction $\mathbf{e}_\theta$. Similarly, as $\theta$ increases, the unit vector $\mathbf{e}_\theta$ rotates in the direction opposite to $\mathbf{e}_r$ with an angular speed of $\dot{\theta}$.
+
+The infinitesimal displacements in two perpendicular directions in polar corrdinates are given as $dr$ and $r\,d\theta$ as shown in Figure~\ref{fig:polar-displacement}. Therefore, we can write the infinitesimal displacement as:
+\[
+d\mathbf{r} = dr\,\mathbf{e}_r + r\,d\theta\,\mathbf{e}_\theta.
+\]
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/polar-infinitesimal-displacement.png}
+    \caption{The infinitesimal displacement of a particle in polar coordinates can be expressed as the sum of two perpendicular displacements: $dr$ in the radial direction and $r\,d\theta$ in the angular direction.}
+    \label{fig:polar-displacement}
+\end{figure}
 
 \section{Velocity, Acceleration and Angular Momentum in Polar Coordinates}
 The velocity of the particle is the time derivative of its position vector:
@@ -165,7 +175,7 @@ remains constant due to the conservation of angular momentum.
 
 Plugging the expressions for the central force and acceleration in polar coordinates, as given in Eq.~\ref{eq:central-force} and Eq.~\ref{eq:polar-acceleration}, into Newton's second law,
 \[
-f(r)\mathbf{e}_r = m (\ddot{r} - r\dot{\theta}^2)\mathbf{e}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\mathbf{e}_\theta.
+f(r)\mathbf{e}_r = m (\ddot{r} - r\dot{\theta}^2)\mathbf{e}_r + m(r\ddot{\theta} + 2\dot{r}\dot{\theta})\mathbf{e}_\theta.
 \]
 and equating the coefficients of $\mathbf{e}_r$ and $\mathbf{e}_\theta$ on both sides, we obtain the equations of motion for a particle under the influence of a central force:
 \begin{equation}
@@ -173,17 +183,38 @@ and equating the coefficients of $\mathbf{e}_r$ and $\mathbf{e}_\theta$ on both 
     m(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = 0.
     \label{eq:central-force-motion}
 \end{equation}
-Here, the first equation describes the radial motion of the particle, while the second equation describes the angular motion. Since we know that $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$, the second equation simply tells us that no net torque is acting on the particle about the origin. The second equation can also be rewritten as:
+Here, the first equation describes the radial motion of the particle, while the second equation describes the angular motion. Since we know that $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$, the second equation tells us that no net force is acting on the particle in the tangential direction. Multiplying the second equation by $r$ corresponds to a zero torque, and leads to the conservation of angular momentum:
 \[
-m(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = \frac{d}{dt}(mr^2\dot{\theta}) = \frac{dL}{dt} = 0.
+mr(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = \frac{d}{dt}(mr^2\dot{\theta}) = \frac{dL}{dt} = 0.
 \]
-Hence, the second equation is simply a restatement of the conservation of angular momentum. The first equation can be rewritten as:
+Hence, the second equation is a restatement of the conservation of angular momentum. The first equation can be rewritten as:
 \[
 m\ddot{r} = f(r) + mr\dot{\theta}^2 = f(r) + \frac{L^2}{mr^3},
 \]
-where we have used the fact that $L = mr^2\dot{\theta}$ is constant. This equation describes the radial motion of the particle under the influence of the central force and the centrifugal force, which arises due to the rotation of the particle about the origin. The centrifugal force is always directed away from the origin and has a magnitude of \( \frac{L^2}{mr^3} \). The effective force acting on the particle in the radial direction is therefore given by
+where we have used the fact that $L = mr^2\dot{\theta}$ is constant. This equation describes the radial
+motion of the particle in terms of two contributions: the
+central force $f(r)$ and an additional term arising from
+the angular motion. The latter can be interpreted as an
+\textit{effective centrifugal force},
 \[
-f_\text{eff}(r) = f(r) + \frac{L^2}{mr^3}.
+    F_{\mathrm{cent}}(r) = \frac{L^2}{mr^3},
+\]
+which is always directed away from the origin. This term arises from the rotation of the polar
+coordinate basis and can equivalently be understood
+as the fictitious centrifugal force experienced in
+a reference frame rotating with the radial direction.
+It is not an additional physical interaction, but
+rather a consequence of describing the motion using
+a rotating coordinate basis. We can therefore define the \textit{effective radial force}
+as
+\[
+    f_{\mathrm{eff}}(r)
+    = f(r) + \frac{L^2}{mr^3},
+\]
+so that the radial equation of motion takes the familiar
+one-dimensional form
+\[
+    m\ddot{r} = f_{\mathrm{eff}}(r).
 \]
 
 \section{Binet's Equation}
@@ -211,8 +242,80 @@ Plugging these expressions into the radial equation of motion, we obtain
 -\frac{h^2}{r^2}\frac{d^2u}{d\theta^2} - h^2u^3 = \frac{f(r)}{m} \implies \frac{d^2u}{d\theta^2} + u = -\frac{f(1/u)}{mh^2u^2}.
 \]
 
-\section{Total Energy of a Particle under Central Force}
+\section{Mechanical Energy and Equation of Motion}
 
+We know that if a given force is conservative and the potential energy of the system does not explicitly depend on time, then the mechanical energy of the system is conserved. The infinitesimal work done by the central force is
+\[
+    dW = \mathbf{F}\cdot d\mathbf{r} = f(r)\mathbf{e}_r\cdot
+    \left(dr\,\mathbf{e}_r
+    +r\,d\theta\,\mathbf{e}_\theta\right)
+    = f(r)\,dr,
+\]
+since $\mathbf{e}_r\cdot\mathbf{e}_\theta=0$, see Fig.~\ref{fig:conservative-central}. Therefore, the total work done by the force in moving a particle
+from point $A$ to point $B$ is
+\[
+    W_{AB}=\int_{r_A}^{r_B}f(r)\,dr.
+\]
+Since this integral depends only on the initial and final radial distances, and not on the path taken, the central force is \emph{conservative}. In particular, the work done along any closed path vanishes:
+\[
+    \oint\mathbf{F}\cdot d\mathbf{r}
+    =\oint f(r)\,dr=0.
+\]
+Consequently, we can define a potential energy $U(r)$ such that
+\[
+    f(r)=-\frac{dU}{dr}.
+\]
+
+Thus, every position-dependent central force is conservative wherever the force is well-defined. The mechanical energy of the particle is given by
+\[
+    E = K + U(r) = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) + U(r) = \frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\theta}^2 + U(r),
+\]
+where the first term is the kinetic energy in the radial direction, the second term ($\frac{1}{2}I\omega^2$, with $I=mr^2$) is the kinetic energy in the angular direction, and the third term is the potential energy. Until now, we have only written the mechanical energy in terms of the radial and angular velocities. By plugging in $\dot{\theta} = \frac{L}{mr^2}$, we can incorporate the conservation of angular momentum into the expression and rewrite it as
+\begin{equation}
+    E = \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} + U(r) \implies \dot{r}=\pm\sqrt{\frac{2}{m}\left(E - U(r) - \frac{L^2}{2mr^2}\right)}.
+\end{equation}
+This equation is the first integral of the radial equation of motion for a particle under a central force. Once $U(r)$ is known, it can be solved for $r(t)$. This equation can also be transformed into another form that is more useful for determining the trajectory of the particle. On an interval where $r$ changes monotonically,
+\[
+d\theta = \frac{d\theta}{dt}\frac{dt}{dr}dr = \frac{L}{mr^2} \frac{dt}{dr}dr = \frac{L}{mr^2} \frac{1}{\dot{r}} dr = \pm\frac{L}{r^2}\frac{dr}{\sqrt{2m(E - U(r)) - \frac{L^2}{r^2}}}.
+\]
+Therefore, the trajectory of the particle can be determined by integrating this equation:
+\begin{equation}
+    \theta (r) = \int \frac{\pm L/r^2}{\sqrt{2m\left[E - U(r) - \frac{L^2}{2mr^2}\right]}}dr.
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/conservative-central.png}
+    \caption{The $\mathbf{e}_\theta$ component of $d\mathbf{r}$ does not contribute to the work done by a central force since it is perpendicular to $\mathbf{F}$.}
+    \label{fig:conservative-central}
+\end{figure}
+
+It is not always possible to evaluate this integral analytically, but it can generally be evaluated numerically for a given potential energy function $U(r)$. Some important central-force problems that can be solved analytically are
+\begin{itemize}
+    \item isotropic harmonic oscillator \( f(r) = -kr \),
+    \item inverse-square law \( f(r) = -\frac{k}{r^2} \),
+    \item inverse-cube law \( f(r) = -\frac{k}{r^3} \).
+\end{itemize}
+The first two are of great importance in physics, while the last one is also useful for studying the properties of central-force motion. We will solve the inverse-square law in detail in Sec.~\ref{sec:solution-of-the-equations-of-motion}.
+
+Note that since $L$ is constant, the time rate of change of $\theta$, $\dot{\theta} = \frac{L}{mr^2}$, cannot change its sign as long as $L\neq 0$ and $r>0$. Once $L$ is fixed, the particle can only move in one angular direction around the center of force. However, this does not prevent the radial motion from reversing direction, nor does it imply that the trajectory cannot intersect itself. In fact, central-force trajectories can be closed or self-intersecting. For $L=0$, the motion is purely radial, and the particle may pass through the origin if the force is regular there.
+
+
+
+
+
+
+
+
+
+
+\section{Orbits in Central Force Motion}
+
+\section{Centrifugal Energy and Effective Potential Energy}
+
+\section{Two-Body Problem}
+
+\section{\label{sec:solution-of-the-equations-of-motion}Solution of the Equations of Motion}
 
 
 \section{Worked Examples}

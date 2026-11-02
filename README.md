@@ -29,3 +29,15 @@ If you wish to download all materials at once, click the green `<> Code` button 
 
 The lectures are recorded and are available on YouTube: [2025](https://www.youtube.com/playlist?list=PLHcyKkvX9MRPdaoV0E9BW5ooefuORE0K5)
 
+## License
+
+Copyright (c) 2026 Iskender Yalcinkaya.
+
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0) License.
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Commercial use requires prior permission from the copyright holder.
+
