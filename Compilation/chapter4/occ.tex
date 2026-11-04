@@ -1,0 +1,330 @@
+\documentclass[../main.tex]{subfiles}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+\begin{document}
+
+\chapter{Small Occilations(WIP)}
+
+In this chapter, we will study how physical systems behave in the vicinity of their stable equilibrium points. Such behavior is often referred to as \textit{small oscillations} because the system exhibits oscillatory motion about its equilibrium position, with a displacement that remains small.
+
+We will first examine the simplest case of oscillatory motion, in which a restoring force acts on the system, pushing it back toward its equilibrium position. We will then consider the effects of a retarding force, which dissipates mechanical energy and causes the amplitude of oscillations to decrease over time. Finally, we will study driven oscillations, in which an external periodic force acts on the system, and investigate how the resulting motion depends on the frequency of the driving force, including the phenomenon of resonance. For simplicity, we will restrict our attention to one-dimensional systems throughout this chapter.
+
+\section{Simple Oscillations}
+
+We begin by considering the motion of a particle under a conservative force described by a potential energy function $U(x)$. We make the following three assumptions:
+\begin{enumerate}
+    \item[(i)] $U(x)$ is sufficiently smooth to allow a Taylor expansion about the equilibrium point.
+    \item[(ii)] The potential has a local minimum at $x=x_0$, with $U'(x_0)=0$ and $U''(x_0)>0$, so that $x_0$ is a stable equilibrium point.
+    \item[(iii)] The displacement from equilibrium, $|x-x_0|$, remains ``sufficiently small''.
+\end{enumerate}
+
+Assumption (i) allows us to expand the potential energy about the equilibrium point $x_0$ using a Taylor series:
+\begin{equation}
+    U(x) = U(x_0) + U'(x_0)(x-x_0)
+    + \frac{1}{2}U''(x_0)(x-x_0)^2
+    + \frac{1}{6}U'''(x_0)(x-x_0)^3
+    + \ldots
+\end{equation}
+According to assumption (ii), the first derivative vanishes at equilibrium, $U'(x_0)=0$, while the second derivative is positive, $U''(x_0)>0$. Furthermore, assumption (iii) allows us to neglect the third and higher-order terms compared to the quadratic term. This is what we actually mean when we say that the displacement is ``sufficiently small'' in assumption (iii). Since the reference level of potential energy can be chosen arbitrarily, we may also set $U(x_0)=0$ without loss of generality. We therefore obtain the quadratic approximation
+\begin{equation}
+    U(x) \approx \frac{1}{2}k(x-x_0)^2,
+    \label{eq:quadratic-potential}
+\end{equation}
+where $k\equiv U''(x_0)>0$. It is worth emphasizing that the approximation for the potential energy follows directly from our assumptions and is not limited to specific systems such as springs or pendulums. A wide range of physical systems can be described by a quadratic potential near their stable equilibrium points, provided that the second derivative of the potential at equilibrium is positive. This allows us to study the small oscillations of different physical systems using the same mathematical framework.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/small-oscillation.png}
+    \caption{Small oscillations of a particle about a stable equilibrium point under potential energy $U(x)$. The particle oscillates about the equilibrium position $x_0$ with a small amplitude.}
+    \label{fig:small-oscillations}
+\end{figure}
+
+Using the quadratic approximation, we can derive the force acting on the particle:
+\begin{equation}
+    F(x)=-\frac{dU}{dx}\approx -k(x-x_0).
+\end{equation}
+This is known as \textit{Hooke's law}. The force is proportional to the displacement from equilibrium and always points toward the equilibrium position $x_0$. For this reason, it is called a \textit{restoring force}. The constant $k$ is called the \textit{force constant} or \textit{spring constant}, and it characterizes the stiffness of the system. A larger value of $k$ corresponds to a stiffer system, which requires more force to achieve the same displacement from equilibrium. 
+
+From the experimental point of view, the force constant can be determined by measuring the force required to displace the particle from its equilibrium position and calculating the slope of the force-displacement curve as shown in Fig.~\ref{fig:empirical-force-constant}. The force constant is a fundamental property of the system and depends on its physical characteristics, such as the material properties and geometry.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.58\textwidth]{figures/empirical-force-constant.png}
+    \caption{Empirical determination of the force constant $k$. The slope of the force-displacement curve gives the value of $k$. Note that the linear best-fit line is a model; the idea is there is always a sufficiently small region around the equilibrium point where the force is linear in the displacement. The data points may scatter according to different models as the displacement increaases.}
+    \label{fig:empirical-force-constant}
+\end{figure}
+
+\subsection{Equation of Motion for Simple Oscillations}
+
+The dynamics of the particle are governed by Newton's second law:
+\begin{equation}
+    F_\text{net}=m\ddot{x},
+\end{equation}
+where $m$ is the mass of the particle. Assuming that the restoring force is the only net force acting on the particle, and choosing the origin at the equilibrium position ($x_0=0$), we obtain
+\begin{equation}
+    m\ddot{x}=-kx.
+\end{equation}
+Rearranging this equation gives
+\begin{equation}
+    \ddot{x}+\omega_0^2 x=0,
+    \label{eq:simple-osc-eq-of-motion}
+\end{equation}
+where we have introduced the positive parameter
+\begin{equation}
+    \omega_0\equiv\sqrt{\frac{k}{m}}.
+\end{equation}
+
+This is a second-order linear homogeneous differential equation describing \textit{simple harmonic motion}. The physical meaning of $\omega_0$ will become clear when we solve this equation and examine the resulting motion.
+
+
+
+\subsection{\label{sec:solution-simple-osc}Solution to the Equation of Motion}
+We know that the particle oscillates back and forth about the equilibrium position in a periodic way. We saw in Chapter 1 that the exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen as summarized in the following table:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        $\lambda$ & Behavior of $e^{\lambda t}$ \\
+        \hline
+        Real and positive ($\lambda > 0$) & Exponential growth \\
+        Real and negative ($\lambda < 0$) & Exponential decay \\
+        Purely imaginary ($\lambda = i$) & Sinusoidal oscillation \\
+        Complex, $\operatorname{Re}(\lambda) < 0$ & Oscillation with exponentially decaying amplitude \\
+        Complex, $\operatorname{Re}(\lambda) > 0$ & Oscillation with exponentially growing amplitude \\
+        \hline
+    \end{tabular}
+\end{table}
+
+We know that the solution to the differential equation in Eq.~\ref{eq:simple-osc-eq-of-motion} must be oscillatory according to our assumptions. Therefore, it is natural\footnote{I admit that this is a handwaving argument. For the complete description, we need to study Laplace transforms which is beyond the scope of this text.} to look for a solution of the form $x(t)=e^{\lambda t}$, where $\lambda$ will be determined by substituting this ansatz into the differential equation. This leads to the characteristic equation
+\begin{equation}
+    \lambda^2+\omega_0^2=0,
+\end{equation}
+which has the two purely imaginary roots
+\begin{equation}
+    \lambda=\pm i\omega_0.
+\end{equation}
+
+This leads to two different solutions
+$x_{1,2}(t)=e^{\pm i\omega_0 t}$. Not surprisingly, the both solutions have a pure complex factor of the time leading to oscillatory behavior.
+
+A second-order linear homogeneous differential equation requires two initial conditions to determine a unique solution; therefore, the linear combination of two linearly independent solutions, containing two arbitrary constants, is sufficient to describe all possible solutions. Thus, the general solution can be written as
+\begin{equation}
+    x(t)=Ae^{i\omega_0 t}+Be^{-i\omega_0 t},
+\end{equation}
+where $A$ and $B$ are arbitrary constants determined by the initial conditions. In general, these constants can be complex. However, since $x(t)$ represents the position of a particle, it must be a real-valued function. To express the solution in a real form, we use Euler's formula,
+\begin{equation}
+    e^{i\theta}=\cos\theta+i\sin\theta,
+\end{equation}
+which also implies
+\begin{equation}
+    e^{-i\theta}=\cos\theta-i\sin\theta.
+\end{equation}
+Substituting these expressions into the general solution gives
+\begin{align}
+    x(t)
+    &=A\left[\cos(\omega_0 t)+i\sin(\omega_0 t)\right]
+    +B\left[\cos(\omega_0 t)-i\sin(\omega_0 t)\right]
+    \nonumber\\
+    &=(A+B)\cos(\omega_0 t)
+    +i(A-B)\sin(\omega_0 t).
+\end{align}
+
+At first glance, the coefficients $A+B$ and $i(A-B)$ may appear to be complex. However, we can show that they must be real by considering the initial conditions. Suppose that the particle has an initial position $x(0)=x_0$ and an initial velocity $\dot{x}(0)=v_0$. Evaluating the position at $t=0$, we obtain
+\begin{equation}
+    x(0)=A+B=x_0.
+\end{equation}
+Differentiating the solution with respect to time gives
+\begin{equation}
+    \dot{x}(t)
+    =-\omega_0(A+B)\sin(\omega_0 t)
+    +i\omega_0(A-B)\cos(\omega_0 t).
+\end{equation}
+Evaluating the velocity at $t=0$, we find
+\begin{equation}
+    \dot{x}(0)=i\omega_0(A-B)=v_0,
+\end{equation}
+and therefore
+\begin{equation}
+    A+B=x_0,
+    \qquad
+    i(A-B)=\frac{v_0}{\omega_0}.
+\end{equation}
+
+Since both the initial position $x_0$ and the initial velocity $v_0$ are real physical quantities, the combinations $A+B$ and $i(A-B)$ must also be real. Substituting these expressions back into the general solution, we finally obtain
+\begin{equation}
+    x(t)=x_0\cos(\omega_0 t)
+    +\frac{v_0}{\omega_0}\sin(\omega_0 t).
+\end{equation}
+
+This expression describes the motion of the particle
+for any given initial position $x_0$ and initial
+velocity $v_0$. For convenience, we can introduce two real constants,
+$C=x_0$ and $D=v_0/\omega_0$, and write the general
+solution in the more compact form
+\begin{equation}
+    x(t)=C\cos(\omega_0 t)+D\sin(\omega_0 t).
+    \label{eq:general-solution}
+\end{equation}
+The constants $C$ and $D$ are determined by the
+initial conditions. This general solution can also be expressed in terms of the \emph{amplitude} and \emph{phase} of the oscillation. To see this, we start from Eq.~\ref{eq:general-solution} and use Euler's formula to rewrite the trigonometric functions in terms of complex exponentials:
+\begin{align}
+    x(t)
+    &=\operatorname{Re}\left[
+    Ce^{i\omega_0 t}-iDe^{i\omega_0 t}
+    \right]\nonumber\\
+    &=\operatorname{Re}\left[
+    (C-iD)e^{i\omega_0 t}
+    \right],
+\end{align}
+where $\operatorname{Re}$ denotes the real part of a complex number. We now introduce the complex number
+\begin{equation}
+    Z=C-iD,
+\end{equation}
+which is called a \emph{phasor} or \emph{complex amplitude}. Recall that any nonzero complex number can be expressed in polar form as
+\begin{equation}
+    Z=Re^{i\phi},
+\end{equation}
+where $R=|Z|$ is its magnitude and $\phi$ is its argument (the angle it makes with the positive real axis). Since $Z=C-iD$, its magnitude is
+\begin{equation}
+    \boxed{R=\sqrt{C^2+D^2},}
+\end{equation}
+and its argument $\phi$ is determined by
+\begin{equation}
+    \arctan\left(-\frac{D}{C}\right)=\phi.
+\end{equation}
+
+Substituting the polar form of $Z$ into the expression for the displacement gives
+\begin{align}
+    x(t)
+    &=\operatorname{Re}\left[Ze^{i\omega_0 t}\right]
+    \nonumber\\
+    &=\operatorname{Re}\left[Re^{i\phi}e^{i\omega_0 t}\right]
+    \nonumber\\
+    &=\operatorname{Re}\left[Re^{i(\omega_0 t+\phi)}\right].
+\end{align}
+Finally, using Euler's formula, we obtain
+\begin{equation}
+    \boxed{x(t)=R\cos(\omega_0 t+\phi).}
+\end{equation}
+
+This is called the \emph{amplitude-phase form} of the general solution. The constant $R\geq 0$ is the \emph{amplitude}, representing the maximum displacement of the particle from its equilibrium position, while $\phi$ is the \emph{initial phase} (or \emph{phase constant}), which determines the position of the particle within its oscillation cycle at $t=0$.
+
+The phasor representation also provides a geometric interpretation of the motion as shown in Fig.~\ref{fig:phasor-representation}. The complex quantity $Re^{i(\omega_0 t+\phi)}$ represents a vector of constant length $R$ rotating counterclockwise in the complex plane with angular velocity $\omega_0$. The projection of this rotating vector onto the real axis gives the physical displacement $x(t)$ of the particle.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/phasor-representation.png}
+    \caption{Phasor representation of simple harmonic motion. The complex vector $Re^{i(\omega_0 t+\phi)}$ rotates in the complex plane, and its projection onto the real axis gives the physical displacement $x(t)$.}
+    \label{fig:phasor-representation}
+\end{figure}
+
+Recalling that $C=x_0$ and $D=v_0/\omega_0$,
+the amplitude can be expressed in terms of the
+initial conditions as
+\begin{equation}
+    \boxed{
+    R=\sqrt{x_0^2+\frac{v_0^2}{\omega_0^2}}.
+    }
+\end{equation}
+Similarly, the initial phase is determined by
+\begin{equation}
+    \cos\phi=\frac{x_0}{R},
+    \qquad
+    \sin\phi=-\frac{v_0}{\omega_0 R}.
+\end{equation}
+Thus, both the amplitude and the initial phase are determined by the initial position and velocity. In the special case $R=0$, the particle remains at its equilibrium position, $x(t)=0$, and the phase $\phi$ is undefined.
+
+\subsection{Energy of Simple Oscillations}
+The mechanical energy of a particle undergoing simple oscillation
+\begin{equation}
+    E = K + U = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k x^2 
+\end{equation}
+
+Substituting the general solution $x(t)=R\cos(\omega_0 t+\phi)$ into the expressions for kinetic and potential energies, we find
+\begin{align}
+    K(t)&=\frac{1}{2}m\left[-R\omega_0\sin(\omega_0 t+\phi)\right]^2
+    =\frac{1}{2}mR^2\omega_0^2\sin^2(\omega_0 t+\phi),\\
+    U(t)&=\frac{1}{2}k\left[R\cos(\omega_0 t+\phi)\right]^2
+    =\frac{1}{2}kR^2\cos^2(\omega_0 t+\phi).
+\end{align}
+Using the relation $k=m\omega_0^2$, we can express the total energy as
+\begin{equation}
+    E=\frac{1}{2}mR^2\omega_0^2\left[\sin^2(\omega_0 t+\phi)+\cos^2(\omega_0 t+\phi)\right]
+    =\frac{1}{2}mR^2\omega_0^2.
+\end{equation}
+By substituting $\omega_0^2=k/m$, we can also express the total energy in terms of the force constant $k$ and the amplitude $R$:
+\begin{equation}
+    E=\frac{1}{2}kR^2.
+\end{equation}
+Hence, the mechanical energy of a simple oscillator is constant and proportional to the square of the amplitude. This is a characteristic feature of conservative systems, where energy is conserved and oscillates between kinetic and potential forms without any loss as shown in the Fig.~\ref{fig:energy-oscillations}, with the maximum kinetic energy occurring when the particle passes through the equilibrium position ($x=0$) and the maximum potential energy occurring at the turning points of the motion ($x=\pm R$).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/energy-oscillations.png}
+    \caption{Oscillations of kinetic energy $K(t)$, potential energy $U(t)$, and total energy $E$ for a particle undergoing simple harmonic motion. The total energy remains constant, while the kinetic and potential energies oscillate out of phase with each other.}
+    \label{fig:energy-oscillations}
+\end{figure}
+
+
+\subsection{Physical Interpretation of the Solution}
+We have obtained four equivalent forms of the general solution to the equation of motion for simple harmonic oscillations:
+\begin{align}
+    x(t)&=Ae^{i\omega_0 t}+Be^{-i\omega_0 t},\\
+    x(t)&=C\cos(\omega_0 t)+D\sin(\omega_0 t),\\
+    x(t)&=R\cos(\omega_0 t+\phi),\\
+    x(t)&=\operatorname{Re}\left[Re^{i(\omega_0 t+\phi)}\right].
+\end{align}
+
+
+\section{Damped Oscillations}  
+If the oscillating system is not isolated, it may experience a retarding force that dissipates mechanical energy. We will consider a model in which the retarding force is proportional to the velocity of the particle, which is a common situation in many physical systems. The retarding force can be expressed as
+\begin{equation}
+    F_\text{r}=-b\dot{x},
+\end{equation}
+where $b$ is a positive constant called the \textit{damping coefficient}. The negative sign indicates that the retarding force opposes the motion of the particle. The damping coefficient has units of force per unit velocity (N·s/m) and depends on the properties of the medium through which the particle moves, such as viscosity or air resistance. The total force acting on the particle is then the sum of the restoring force and the retarding force:
+\begin{equation}
+    F_\text{net}=F_\text{restoring}+F_\text{retarding}=-kx-b\dot{x}.
+\end{equation}
+
+This leads to the equation of motion for damped oscillations:
+\begin{equation}
+    m\ddot{x}+b\dot{x}+kx=0.
+\end{equation}
+Rearranging this equation gives
+\begin{equation}
+    \ddot{x}+2\gamma\dot{x}+\omega_0^2 x=0,
+    \label{eq:damped-osc-eq-of-motion}
+\end{equation}
+where we have introduced the positive parameters
+\begin{equation}
+    \gamma\coloneqq \frac{b}{2m},
+    \qquad
+    \omega_0\coloneqq \sqrt{\frac{k}{m}}.
+\end{equation}
+
+We would expect that the damping force would cause the amplitude of oscillations to decrease over time, eventually bringing the particle to rest at its equilibrium position. The parameter $\gamma$ characterizes the strength of the damping, with larger values corresponding to stronger damping effects. The parameter $\omega_0$ is the natural angular frequency of the undamped system, as we have seen in the previous section.
+
+We know thatthe exponential function $e^{\lambda t}$ exhibits a wide range of different types of behavior depending on how the parameter $\lambda$ is chosen. For the damped oscillation equation, we can look for a solution of the form $x(t)=e^{\lambda t}$, as we did it in Section \ref{sec:solution-simple-osc}, which leads to the characteristic equation
+\begin{equation}
+    \lambda^2+2\gamma\lambda+\omega_0^2=0
+\end{equation}
+with the roots
+\begin{equation}
+    \lambda_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\end{equation}
+
+\section{Phase Space Analysis}
+
+\section{Driven Oscillations}
+
+
+\section{Worked Examples}
+\subsection{Work done by the spring force}
+\subsection{Simple pendulum}
+
+\end{document}
