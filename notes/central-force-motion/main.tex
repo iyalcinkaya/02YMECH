@@ -3,8 +3,15 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75em}
@@ -207,10 +214,11 @@ It is not an additional physical interaction, but
 rather a consequence of describing the motion using
 a rotating coordinate basis. We can therefore define the \textit{effective radial force}
 as
-\[
+\begin{equation}
     f_{\mathrm{eff}}(r)
     = f(r) + \frac{L^2}{mr^3},
-\]
+    \label{eq:effective-radial-force}
+\end{equation}
 so that the radial equation of motion takes the familiar
 one-dimensional form
 \[
@@ -273,6 +281,7 @@ Thus, every position-dependent central force is conservative wherever the force 
 where the first term is the kinetic energy in the radial direction, the second term ($\frac{1}{2}I\omega^2$, with $I=mr^2$) is the kinetic energy in the angular direction, and the third term is the potential energy. Until now, we have only written the mechanical energy in terms of the radial and angular velocities. By plugging in $\dot{\theta} = \frac{L}{mr^2}$, we can incorporate the conservation of angular momentum into the expression and rewrite it as
 \begin{equation}
     E = \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} + U(r) \implies \dot{r}=\pm\sqrt{\frac{2}{m}\left(E - U(r) - \frac{L^2}{2mr^2}\right)}.
+    \label{eq:radial-motion-first-integral}
 \end{equation}
 This equation is the first integral of the radial equation of motion for a particle under a central force. Once $U(r)$ is known, it can be solved for $r(t)$. This equation can also be transformed into another form that is more useful for determining the trajectory of the particle. On an interval where $r$ changes monotonically,
 \[
@@ -302,23 +311,1015 @@ Note that since $L$ is constant, the time rate of change of $\theta$, $\dot{\the
 
 
 
-
-
-
-
-
-
-
 \section{Orbits in Central Force Motion}
 
-\section{Centrifugal Energy and Effective Potential Energy}
+We can define an \emph{effective potential} to simplify the analysis of central-force motion via integrating the effective force  as given in Eq.~\ref{eq:effective-radial-force}:
+\begin{equation}
+    U_{\mathrm{eff}}(r) = -\int f_{\mathrm{eff}}(r) dr = -\int \left(f(r) + \frac{L^2}{mr^3}\right) dr = U(r) + \frac{L^2}{2mr^2} + C,
+    \label{eq:effective-potential}
+\end{equation}
 
-\section{Two-Body Problem}
+
+where $U(r)$ is the actual potential energy, $\frac{L^2}{2mr^2}$ is the centrifugal potential energy, and $C$ is a constant of integration. We know that we can always choose the reference of potential arbitrarily; the value of $C$ does not affect the physical behavior of the system. Therefore, setting $C=0$, we obtain the effective potential
+\[
+    U_{\mathrm{eff}}(r)
+    \coloneqq U(r)+\frac{L^2}{2mr^2},
+\]
+so that the conservation of mechanical energy takes the form
+\[
+    \frac{1}{2}m\dot r^2+U_{\mathrm{eff}}(r)=E.
+\]
+Throughout this section, we assume that $L\neq0$. Since the radial kinetic energy cannot be negative, the particle
+can access only those radii for which
+\[
+    E\geq U_{\mathrm{eff}}(r).
+\]
+Thus, a plot of the effective potential together with the horizontal
+line representing the total energy provides a useful picture of
+the radial motion.
+
+\subsection{Turning Points and Bounded Motion}
+
+At a radial turning point, $\dot r=0$, and hence
+\[
+    E=U_{\mathrm{eff}}(r)
+    =U(r)+\frac{L^2}{2mr^2}.
+\]
+An ordinary turning point is a boundary of an allowed radial
+interval at which the radial motion reverses direction.
+The form and number of solutions of this equation depend on
+the potential $U(r)$; it is not generally a quadratic equation
+in $r$.
+
+If the allowed radial interval is bounded by two ordinary
+turning points, $r_{\min}$ and $r_{\max}$, the radial coordinate oscillates between these values, and the orbit is \emph{bounded}. Circular orbits and degenerate turning points require separate consideration. If the allowed radial interval extends to infinity, radially \emph{unbounded} motion is possible.
+
+The relevant interval is the one accessible from the initial
+conditions: different allowed intervals may be separated by
+forbidden regions where $E<U_{\mathrm{eff}}(r)$.
+
+Notice that $\dot r=0$ at a turning point does not mean that the
+particle is at rest. Its tangential speed is
+\[
+    v_\theta=r\dot\theta=\frac{L}{mr},
+\]
+which is nonzero for $L\neq0$. Also, bounded motion does not necessarily produce a closed orbit. A \emph{closed orbit} is one in which the particle returns to its initial position after a finite time. The radial coordinate may repeat its motion while the particle returns to a different angular position, producing a \emph{precessing orbit}.
+
+\subsection{Circular Orbits and Their Stability}
+
+A circular orbit has a constant radius $r_0$. Therefore,
+both $\dot r$ and $\ddot r$ must vanish. Using the radial equation
+\[
+    m\ddot r=-\frac{dU_{\mathrm{eff}}}{dr},
+\]
+the conditions for a circular orbit are
+\[
+    U_{\mathrm{eff}}'(r_0)=0,
+    \qquad
+    E=U_{\mathrm{eff}}(r_0).
+\]
+Equivalently,
+\[
+    U'(r_0)=\frac{L^2}{mr_0^3}.
+\]
+
+A strict local minimum of the effective potential corresponds
+to a stable circular orbit, whereas a strict local maximum
+corresponds to an unstable one. To see this, consider a small radial displacement $r=r_0+\delta r$ at fixed angular momentum. To first order,
+\[
+    m\ddot{\delta r}
+    =-U_{\mathrm{eff}}''(r_0)\delta r.
+\]
+If $U_{\mathrm{eff}}''(r_0)>0$, the displacement undergoes
+small oscillations with angular frequency
+\[
+    \omega_r
+    =\sqrt{\frac{U_{\mathrm{eff}}''(r_0)}{m}}.
+\]
+If $U_{\mathrm{eff}}''(r_0)<0$, a radial perturbation can grow, and the circular orbit is unstable. If the second derivative vanishes, higher-order terms must be examined.
+
+\section{Effective Potential for Inverse-Square Forces}
+
+The inverse-square force is of particular interest because it describes both the gravitational force and the electrostatic force. The potential energy for an attractive inverse-square force is
+\[
+    U(r)=-\frac{\alpha}{r},
+    \qquad \alpha>0.
+\]
+The corresponding effective potential is
+\begin{equation}
+    U_{\mathrm{eff}}(r)
+    =-\frac{\alpha}{r}+\frac{L^2}{2mr^2},
+    \label{eq:inverse-square-effective-potential}
+\end{equation}
+where $L$ is the conserved angular momentum of the particle about the center of force. The effective potential consists of two competing contributions: the attractive potential energy, which is negative and proportional to $1/r$, and the centrifugal potential energy, which is positive and proportional to $1/r^2$.
+
+For nonzero angular momentum, the centrifugal term dominates as $r\to 0$, causing the effective potential to approach positive infinity. Consequently, the particle cannot reach the center of force with finite total energy. On the other hand, at large distances, the attractive term dominates, and the effective potential approaches zero from below. The effective potential therefore has a minimum, which can be found by setting its derivative to zero:
+\[
+    \frac{dU_{\mathrm{eff}}}{dr}
+    =\frac{\alpha}{r^2}
+    -\frac{L^2}{mr^3}=0.
+\]
+Solving for $r$, we obtain
+\begin{equation}
+    r_0=\frac{L^2}{m\alpha}.
+    \label{eq:inverse-square-circular-radius}
+\end{equation}
+At this radius, the effective radial force vanishes, and the
+particle can move in a circular orbit. The corresponding
+total energy is
+\begin{equation}
+    E_{\min}
+    =U_{\mathrm{eff}}(r_0)
+    =-\frac{m\alpha^2}{2L^2}.
+    \label{eq:inverse-square-minimum-energy}
+\end{equation}
+Since the effective potential has a minimum at $r_0$,
+the circular orbit is stable against small radial perturbations. The radial motion is determined by conservation of energy:
+\begin{equation}
+    \frac{1}{2}m\dot{r}^{\,2}
+    +U_{\mathrm{eff}}(r)=E.
+    \label{eq:inverse-square-radial-energy}
+\end{equation}
+Because the radial kinetic energy cannot be negative, the
+particle can only occupy regions where
+\[
+    E\geq U_{\mathrm{eff}}(r).
+\]
+The turning points of the radial motion satisfy
+$E=U_{\mathrm{eff}}(r)$. Depending on the total energy, several types of motion are possible, as illustrated in Fig.~\ref{fig:inverse-square-effective}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]
+    {figures/inverse-square-effective-potential.png}
+    \caption{Effective potential for an attractive inverse-square
+    force with nonzero angular momentum (solid curve), together
+    with the attractive potential energy and the centrifugal
+    potential energy (dashed curves). The horizontal lines
+    represent different total energies. For $E_{\min}<E_1<0$,
+    the radial motion is confined between two turning points.
+    For $E_2=0$, the particle is at the escape threshold,
+    while for $E_3>0$, the motion is unbounded.}
+    \label{fig:inverse-square-effective}
+\end{figure}
+
+\paragraph{1. Energy at the minimum ($E=E_{\min}$):}
+
+When the total energy equals the minimum of the effective potential, the only possible radial position is $r=r_0$. Since the radial kinetic energy must vanish, we have $\dot{r}=0$. The particle therefore maintains a constant distance from the center of force and follows a circular orbit.
+
+\paragraph{2. Negative energy ($E_{\min}<E<0$):}
+
+For energies above the minimum but below zero, the horizontal energy line intersects the effective potential at two points, $r_{\min}$ and $r_{\max}$. At these turning points, the radial velocity vanishes: $\dot{r}=0$. The particle can move only within the interval
+\[
+    r_{\min}\leq r\leq r_{\max}.
+\]
+As the particle moves, its radial distance oscillates
+between these two values while its angular position
+continues to change. Since the particle cannot escape to infinity, the motion is bounded. Simply observing the effective potential, we cannot say anything about the trajectory of the particle; therefore, we need to solve the equations of motion to determine the actual path of the particle. This is what we will do in~Section~\ref{sec:solution-of-the-equations-of-motion} and we will see that the resulting orbit is an ellipse, with the center of force located at one of its foci.
+
+
+\paragraph{3. Zero energy ($E=0$):}
+
+When the total energy is exactly zero, the particle has
+just enough energy to escape to infinity. There is only one finite radial turning point, corresponding to the minimum distance from the center of force. Beyond this point, the particle can move to arbitrarily large distances. As $r\to\infty$, the effective potential approaches zero, so the radial velocity also approaches zero:
+\[
+    \dot{r}\to 0.
+\]
+As we will see in Section~\ref{sec:solution-of-the-equations-of-motion}, the resulting orbit is a parabola. This case represents the threshold between bounded and unbounded motion.
+
+\paragraph{4. Positive energy ($E>0$):}
+
+For positive total energy, the particle is no longer gravitationally or electrostatically bound to the center of force. The energy line intersects the effective potential at only one positive radius, corresponding to the distance of closest approach. The particle can approach the center up to this distance and then move away toward infinity. At large distances, as $r\to\infty$, the effective potential vanishes, and conservation of energy gives
+\[
+    \frac{1}{2}m\dot{r}^{\,2}\to E,
+\]
+so that
+\[
+    |\dot{r}|\to\sqrt{\frac{2E}{m}}.
+\]
+As we will see in Section~\ref{sec:solution-of-the-equations-of-motion}, the resulting orbit is a hyperbola, and the particle escapes to infinity with a nonzero asymptotic speed.
+
+Thus, the effective potential provides a simple way to
+classify the possible trajectories under an attractive
+inverse-square force: circular or elliptical orbits for
+negative total energy, parabolic orbits for zero energy,
+and hyperbolic orbits for positive total energy.
+
+
+
+\section{The Two-Body Problem}
+\label{sec:two-body-problem}
+
+In the preceding sections, we studied the motion of a particle
+of mass $m$ under a central force directed toward a fixed point.
+However, in many physical situations, such as the gravitational
+interaction between the Earth and the Sun, both interacting bodies
+are free to move. The Sun attracts the Earth, but the Earth also
+attracts the Sun with an equal and opposite force. Consequently,
+neither body is strictly stationary.
+
+This raises an important question: \emph{Can the motion of two
+interacting bodies be reduced to the central-force motion of a
+single particle?}
+
+As we shall see, the answer is yes. By introducing the
+\emph{center of mass} and the \emph{relative position}, the
+two-body problem can be separated into two independent problems:
+the uniform motion of the center of mass and the motion of a
+fictitious particle under a central force.
+
+\subsection{Equations of Motion}
+
+Consider two particles with masses $m_1$ and $m_2$, whose position vectors in an inertial reference frame are $\mathbf{r}_1$ and $\mathbf{r}_2$, respectively. Suppose that the particles interact through a central force that depends only on their separation. We assume that there are no external forces acting on the system.We define the relative position vector as
+\begin{equation}
+    \mathbf{r}=\mathbf{r}_1-\mathbf{r}_2,
+    \label{eq:two-body-relative-position}
+\end{equation}
+Thus, $\mathbf{r}$ points from particle 2 toward particle 1. Let $\mathbf{F}_{12}$ denote the force exerted on particle 1 by particle 2. Since the interaction is central,
+\begin{equation}
+    \mathbf{F}_{12}=f(r)\mathbf{e}_r,
+    \qquad
+    \mathbf{e}_r=\frac{\mathbf{r}}{r},
+    \label{eq:two-body-central-force}
+\end{equation}
+where $f(r)<0$ corresponds to an attractive force. According to Newton's third law, the force exerted on particle 2 by particle 1 is
+\[
+    \mathbf{F}_{21}=-\mathbf{F}_{12}.
+\]
+
+Newton's second law therefore gives
+\begin{align}
+    m_1\ddot{\mathbf{r}}_1
+        &=f(r)\mathbf{e}_r,
+        \label{eq:two-body-newton-1}\\
+    m_2\ddot{\mathbf{r}}_2
+        &=-f(r)\mathbf{e}_r.
+        \label{eq:two-body-newton-2}
+\end{align}
+
+Although these equations are coupled, we can transform them
+into two independent equations by introducing suitable
+coordinates.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/two-body-central-force.png}
+    \caption{Two particles interacting through a central force. The relative position vector $\mathbf{r}$ points from particle 2 toward particle 1, while $\mathbf{R}$ denotes the center-of-mass position. The interaction forces are equal and opposite.}
+    \label{fig:two-body-geometry}
+\end{figure}
+
+
+\subsection{Motion of the Center of Mass}
+
+The center of mass of the two particles is defined by
+\begin{equation}
+    \mathbf{R}
+    =\frac{m_1\mathbf{r}_1+m_2\mathbf{r}_2}{m_1+m_2}.
+    \label{eq:two-body-CM}
+\end{equation}
+
+Let us introduce the total mass
+\[
+    M=m_1+m_2.
+\]
+
+Differentiating Eq.~\eqref{eq:two-body-CM} twice with respect
+to time gives
+\[
+    M\ddot{\mathbf{R}}
+    =m_1\ddot{\mathbf{r}}_1
+    +m_2\ddot{\mathbf{r}}_2.
+\]
+
+Using Newton's equations, we obtain
+\[
+    M\ddot{\mathbf{R}}
+    =\mathbf{F}_{12}+\mathbf{F}_{21}=0.
+\]
+
+Hence,
+\begin{equation}
+    \boxed{\ddot{\mathbf{R}}=0.}
+    \label{eq:two-body-CM-motion}
+\end{equation}
+
+Therefore, the center of mass moves with constant velocity:
+\begin{equation}
+    \mathbf{R}(t)=\mathbf{R}_0+\mathbf{V}_{\mathrm{CM}}t.
+\end{equation}
+
+This is a direct consequence of conservation of total
+linear momentum. Indeed,
+\[
+    \mathbf{P}
+    =m_1\dot{\mathbf{r}}_1+m_2\dot{\mathbf{r}}_2
+    =M\dot{\mathbf{R}}
+\]
+is constant.
+
+Since the center of mass moves uniformly, we may choose
+an inertial reference frame moving with it. In this
+\emph{center-of-mass frame},
+\[
+    \mathbf{R}=0,
+    \qquad
+    \dot{\mathbf{R}}=0.
+\]
+
+The remaining problem is then to determine how the two
+particles move relative to one another.
+
+
+\subsection{Relative Motion and the Reduced Mass}
+
+We now subtract the equations of motion of the two particles.
+
+From Eqs.~\eqref{eq:two-body-newton-1} and
+\eqref{eq:two-body-newton-2}, we have
+\[
+    \ddot{\mathbf{r}}_1
+    =\frac{\mathbf{F}_{12}}{m_1},
+    \qquad
+    \ddot{\mathbf{r}}_2
+    =-\frac{\mathbf{F}_{12}}{m_2}.
+\]
+
+Since
+\[
+    \ddot{\mathbf{r}}
+    =\ddot{\mathbf{r}}_1-\ddot{\mathbf{r}}_2,
+\]
+we obtain
+\[
+    \ddot{\mathbf{r}}
+    =\left(\frac{1}{m_1}+\frac{1}{m_2}\right)
+      \mathbf{F}_{12}.
+\]
+
+We introduce the \emph{reduced mass}
+\begin{equation}
+    \boxed{
+    \mu=\frac{m_1m_2}{m_1+m_2}.
+    }
+    \label{eq:reduced-mass}
+\end{equation}
+
+Notice that
+\[
+    \frac{1}{\mu}
+    =\frac{1}{m_1}+\frac{1}{m_2}.
+\]
+
+The equation for the relative motion therefore becomes
+\begin{equation}
+    \boxed{
+    \mu\ddot{\mathbf{r}}=f(r)\mathbf{e}_r.
+    }
+    \label{eq:two-body-relative-motion}
+\end{equation}
+
+This equation has exactly the same form as Newton's second
+law for a single particle of mass $\mu$ moving under a
+central force.
+
+Thus, the original two-body problem is mathematically
+equivalent to the motion of a single fictitious particle
+with mass $\mu$ and position vector $\mathbf{r}$, subjected
+to the same central-force law.
+
+\medskip
+
+\noindent
+\textbf{Physical interpretation of the reduced mass.}
+
+The reduced mass takes into account the fact that both
+particles accelerate under their mutual interaction.
+
+For example, when the particles move toward one another,
+their relative acceleration is the sum of the magnitudes
+of their individual accelerations. The reduced mass is
+the mass that reproduces this relative acceleration
+when the interaction force acts on a single fictitious
+particle.
+
+It is important to emphasize that this fictitious
+particle describes the \emph{relative motion}, not the
+actual motion of either individual particle.
+
+Two limiting cases are particularly useful:
+
+\begin{itemize}
+\item If $m_2\gg m_1$, then
+\[
+    \mu=\frac{m_1}{1+m_1/m_2}\approx m_1.
+\]
+The heavier body moves very little, and the lighter body
+can approximately be treated as a particle orbiting a
+fixed center.
+
+\item If $m_1=m_2=m$, then
+\[
+    \mu=\frac{m}{2}.
+\]
+Both particles contribute equally to the relative
+acceleration.
+\end{itemize}
+
+
+\subsection{Recovering the Motion of Both Particles}
+
+After solving the equation for the relative position
+$\mathbf{r}(t)$, how do we determine the actual positions
+of the two particles?
+
+We have the two definitions
+\begin{align*}
+    \mathbf{r}&=\mathbf{r}_1-\mathbf{r}_2,\\
+    M\mathbf{R}&=m_1\mathbf{r}_1+m_2\mathbf{r}_2.
+\end{align*}
+
+Solving these equations for $\mathbf{r}_1$ and
+$\mathbf{r}_2$ gives
+\begin{align}
+    \boxed{
+    \mathbf{r}_1
+    =\mathbf{R}+\frac{m_2}{M}\mathbf{r},
+    }
+    \label{eq:two-body-r1}\\[4pt]
+    \boxed{
+    \mathbf{r}_2
+    =\mathbf{R}-\frac{m_1}{M}\mathbf{r}.
+    }
+    \label{eq:two-body-r2}
+\end{align}
+
+Therefore, once $\mathbf{R}(t)$ and $\mathbf{r}(t)$
+are known, the positions of both particles are
+completely determined.
+
+In the center-of-mass frame, where $\mathbf{R}=0$,
+these expressions simplify to
+\begin{align}
+    \mathbf{r}_1&=\frac{m_2}{M}\mathbf{r},\\
+    \mathbf{r}_2&=-\frac{m_1}{M}\mathbf{r}.
+\end{align}
+
+The particles therefore always lie on opposite sides
+of their common center of mass, with distances
+\begin{equation}
+    r_1=\frac{m_2}{M}r,
+    \qquad
+    r_2=\frac{m_1}{M}r.
+    \label{eq:two-body-distances}
+\end{equation}
+
+Consequently,
+\begin{equation}
+    \boxed{
+    \frac{r_1}{r_2}=\frac{m_2}{m_1}.
+    }
+\end{equation}
+
+The more massive particle always remains closer to the
+center of mass.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    >=Latex,
+    scale=1.0,
+    every node/.style={font=\small}
+]
+    % Circular trajectories about CM
+    \draw[dashed,blue!55!black,thick] (0,0) circle (2.0);
+    \draw[dashed,orange!80!black,thick] (0,0) circle (0.8);
+
+    % CM and particles
+    \fill (0,0) circle (0.055);
+    \node[below right] at (0,0) {CM};
+
+    \coordinate (A) at (40:2.0);
+    \coordinate (B) at (220:0.8);
+
+    \draw[thin,gray!80] (B) -- (A);
+
+    \draw[->,thick,blue!75!black] (0,0) -- (A)
+        node[pos=0.63,above left] {$\mathbf{r}_1$};
+
+    \draw[->,thick,orange!80!black] (0,0) -- (B)
+        node[pos=0.6,below right] {$\mathbf{r}_2$};
+
+    \filldraw[fill=blue!25,draw=blue!70!black]
+        (A) circle (0.14);
+    \filldraw[fill=orange!40,draw=orange!80!black]
+        (B) circle (0.24);
+
+    \node[above right] at (A) {$m_1$};
+    \node[below left] at (B) {$m_2$};
+
+    % Direction of orbital motion
+    \draw[->,thick,blue!75!black]
+        (85:2) arc[start angle=85,end angle=115,radius=2];
+
+    \draw[->,thick,orange!80!black]
+        (265:0.8) arc[start angle=265,end angle=295,radius=0.8];
+
+    \node[align=left,anchor=west] at (2.55,0.1)
+        {$m_2>m_1$};
+\end{tikzpicture}
+\caption{Two particles executing circular motion about their
+common center of mass. The more massive particle follows
+the smaller circle. The particles remain on opposite sides
+of the center of mass and have the same angular velocity.
+The dashed circles represent their trajectories in the
+center-of-mass frame.}
+\label{fig:two-body-CM-orbits}
+\end{figure}
+
+The circular trajectories shown in
+Fig.~\ref{fig:two-body-CM-orbits} represent a special case.
+For other allowed motions, the particles follow different
+trajectories. Nevertheless, their position vectors
+relative to the center of mass remain proportional to
+the same vector $\mathbf{r}(t)$.
+
+In particular, for an inverse-square attractive force,
+the relative trajectory can be an ellipse, parabola,
+or hyperbola, depending on the energy. The individual
+trajectories in the center-of-mass frame have the same
+geometrical shape as the relative trajectory, but are
+scaled according to Eqs.~\eqref{eq:two-body-r1} and
+\eqref{eq:two-body-r2}.
+
+
+\subsection{Conservation of Energy}
+
+Let us now investigate how the total mechanical energy
+of the two-body system is related to the energy of the
+fictitious particle.
+
+The total kinetic energy is
+\begin{equation}
+    T=\frac12 m_1\dot{\mathbf{r}}_1^2
+     +\frac12 m_2\dot{\mathbf{r}}_2^2.
+\end{equation}
+
+Differentiating Eqs.~\eqref{eq:two-body-r1} and
+\eqref{eq:two-body-r2}, we obtain
+\begin{align*}
+    \dot{\mathbf{r}}_1
+      &=\dot{\mathbf{R}}+\frac{m_2}{M}\dot{\mathbf{r}},\\
+    \dot{\mathbf{r}}_2
+      &=\dot{\mathbf{R}}-\frac{m_1}{M}\dot{\mathbf{r}}.
+\end{align*}
+
+Substituting these expressions into the kinetic energy
+and expanding the squares gives
+\begin{align*}
+T={}&
+\frac12 m_1
+\left(
+\dot{\mathbf{R}}^2
++2\frac{m_2}{M}\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}
++\frac{m_2^2}{M^2}\dot{\mathbf{r}}^2
+\right)\\
+&+
+\frac12 m_2
+\left(
+\dot{\mathbf{R}}^2
+-2\frac{m_1}{M}\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}
++\frac{m_1^2}{M^2}\dot{\mathbf{r}}^2
+\right).
+\end{align*}
+
+Notice that the terms involving
+$\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}$ cancel.
+Collecting the remaining terms, we find
+\begin{equation}
+    \boxed{
+    T=\frac12 M\dot{\mathbf{R}}^2
+      +\frac12\mu\dot{\mathbf{r}}^2.
+    }
+    \label{eq:two-body-kinetic-energy}
+\end{equation}
+
+Thus, the kinetic energy separates into two parts:
+the kinetic energy of the center of mass and the
+kinetic energy associated with relative motion.
+
+For a conservative central interaction, the potential
+energy depends only on the separation $r$:
+\[
+    U=U(r),
+    \qquad
+    f(r)=-\frac{dU}{dr}.
+\]
+
+The total mechanical energy is therefore
+\begin{equation}
+    E_{\mathrm{tot}}
+    =\frac12 M\dot{\mathbf{R}}^2
+    +\frac12\mu\dot{\mathbf{r}}^2+U(r).
+\end{equation}
+
+Since $\dot{\mathbf{R}}$ is constant, the energy
+associated with the relative motion is separately
+conserved:
+\begin{equation}
+    \boxed{
+    E=\frac12\mu\dot{\mathbf{r}}^2+U(r)
+    =\mathrm{constant}.
+    }
+    \label{eq:two-body-relative-energy}
+\end{equation}
+
+Here, $E$ denotes the energy of the relative motion.
+It equals the total mechanical energy in the
+center-of-mass frame.
+
+
+\subsection{Angular Momentum and the Effective Potential}
+
+Because the force acting on the fictitious particle
+is central, its torque about the origin of the relative
+coordinate system vanishes:
+\[
+    \boldsymbol{\tau}
+    =\mathbf{r}\times\mathbf{F}_{12}=0.
+\]
+
+Consequently, the angular momentum associated with
+relative motion,
+\begin{equation}
+    \boxed{
+    \mathbf{L}
+    =\mu\mathbf{r}\times\dot{\mathbf{r}},
+    }
+    \label{eq:two-body-angular-momentum}
+\end{equation}
+is conserved.
+
+The vector $\mathbf{r}$ therefore moves in a fixed
+plane perpendicular to $\mathbf{L}$, provided
+$\mathbf{L}\neq0$. We can describe the relative motion
+using polar coordinates $(r,\theta)$ in this plane.
+
+As derived previously for central-force motion,
+\[
+    L=\mu r^2\dot{\theta}.
+\]
+
+The relative kinetic energy can be written as
+\[
+    T_{\mathrm{rel}}
+    =\frac12\mu\dot r^2
+     +\frac12\mu r^2\dot{\theta}^2.
+\]
+
+Using the conservation of angular momentum, we obtain
+\[
+    \frac12\mu r^2\dot{\theta}^2
+    =\frac{L^2}{2\mu r^2}.
+\]
+
+The conservation of energy then takes the form
+\begin{equation}
+    \boxed{
+    E=\frac12\mu\dot r^2+U_{\mathrm{eff}}(r),
+    }
+    \label{eq:two-body-effective-energy}
+\end{equation}
+where
+\begin{equation}
+    \boxed{
+    U_{\mathrm{eff}}(r)
+    =U(r)+\frac{L^2}{2\mu r^2}.
+    }
+    \label{eq:two-body-effective-potential}
+\end{equation}
+
+This is exactly the effective-potential formalism
+developed in the preceding sections, with the ordinary
+particle mass replaced by the reduced mass $\mu$.
+
+The radial equation of motion is correspondingly
+\begin{equation}
+    \mu\ddot r
+    =-\frac{dU_{\mathrm{eff}}}{dr}
+    =f(r)+\frac{L^2}{\mu r^3}.
+    \label{eq:two-body-radial-equation}
+\end{equation}
+
+We can therefore use all the results obtained for
+central-force motion to analyze the relative motion
+of two interacting particles.
+
+In particular, the turning points of the separation
+between the particles satisfy
+\[
+    E=U_{\mathrm{eff}}(r),
+\]
+while circular relative motion occurs at a stationary
+point of the effective potential:
+\[
+    \frac{dU_{\mathrm{eff}}}{dr}=0.
+\]
+
+One important distinction should be kept in mind:
+the radial coordinate $r$ represents the
+\emph{distance between the two particles}, not
+the distance of either particle from the center
+of mass.
+
+
+\subsection{Example: The Gravitational Two-Body Problem}
+
+Consider two bodies with masses $m_1$ and $m_2$
+interacting through Newton's gravitational force.
+
+The force acting on particle 1 is
+\begin{equation}
+    \mathbf{F}_{12}
+    =-\frac{Gm_1m_2}{r^2}\mathbf{e}_r,
+\end{equation}
+where $G$ is the gravitational constant.
+
+The relative equation of motion is therefore
+\begin{equation}
+    \mu\ddot{\mathbf{r}}
+    =-\frac{Gm_1m_2}{r^2}\mathbf{e}_r.
+\end{equation}
+
+Dividing by the reduced mass gives
+\begin{equation}
+    \boxed{
+    \ddot{\mathbf{r}}
+    =-\frac{G(m_1+m_2)}{r^2}\mathbf{e}_r.
+    }
+    \label{eq:gravitational-relative-acceleration}
+\end{equation}
+
+Notice an interesting result: the relative acceleration
+depends on the \emph{sum of the two masses}.
+
+The gravitational potential energy is
+\[
+    U(r)=-\frac{Gm_1m_2}{r},
+\]
+and the effective potential becomes
+\begin{equation}
+    U_{\mathrm{eff}}(r)
+    =-\frac{Gm_1m_2}{r}
+     +\frac{L^2}{2\mu r^2}.
+    \label{eq:gravitational-two-body-effective}
+\end{equation}
+
+This has precisely the same mathematical form as
+the inverse-square effective potential studied
+in the previous section.
+
+For a circular orbit, the separation $r$ is constant,
+so the relative radial acceleration must satisfy
+\[
+    \mu r\omega^2
+    =\frac{Gm_1m_2}{r^2}.
+\]
+
+Using the definition of the reduced mass, we find
+\begin{equation}
+    \boxed{
+    \omega^2=\frac{G(m_1+m_2)}{r^3}.
+    }
+    \label{eq:two-body-circular-frequency}
+\end{equation}
+
+Since the orbital period is $T=2\pi/\omega$,
+\begin{equation}
+    \boxed{
+    T^2=\frac{4\pi^2}{G(m_1+m_2)}r^3.
+    }
+    \label{eq:two-body-kepler-third}
+\end{equation}
+
+This is the circular-orbit form of Kepler's third law
+for a genuine two-body system.
+
+The two bodies move along circles with radii
+\[
+    r_1=\frac{m_2}{m_1+m_2}r,
+    \qquad
+    r_2=\frac{m_1}{m_1+m_2}r,
+\]
+and both circles are traversed with the same
+angular velocity $\omega$.
+
+For a system such as the Sun and the Earth,
+$m_{\mathrm{Sun}}\gg m_{\mathrm{Earth}}$.
+Consequently, the center of mass lies very close
+to the center of the Sun, and the reduced mass is
+approximately equal to the mass of the Earth.
+
+This explains why treating the Sun as a fixed
+center of force is an excellent approximation in
+elementary orbital mechanics. Nevertheless, the
+exact two-body description shows that both bodies
+move around their common center of mass.
+
+
+\subsection{Summary}
+
+The essential result of the two-body problem is that
+the motion of two particles interacting through a
+central force can be separated into:
+
+\begin{enumerate}
+\item The uniform motion of their center of mass,
+\[
+    M\ddot{\mathbf{R}}=0;
+\]
+
+\item The relative motion of a fictitious particle
+with reduced mass $\mu$,
+\[
+    \mu\ddot{\mathbf{r}}
+    =f(r)\mathbf{e}_r.
+\]
+\end{enumerate}
+
+The original particle positions can then be recovered
+from the center-of-mass and relative coordinates:
+\[
+    \mathbf{r}_1
+    =\mathbf{R}+\frac{m_2}{M}\mathbf{r},
+    \qquad
+    \mathbf{r}_2
+    =\mathbf{R}-\frac{m_1}{M}\mathbf{r}.
+\]
+
+Therefore, the central-force problem studied so far
+is not restricted to a particle moving around a
+physically fixed center. It also provides an exact
+description of the relative motion of two interacting
+particles, provided their interaction is central and
+there are no external forces.
+
+In the next section, we will solve the equations of
+motion for the inverse-square force and determine
+the possible orbital trajectories.
+
+
+
 
 \section{\label{sec:solution-of-the-equations-of-motion}Solution of the Equations of Motion}
 
 
 \section{Worked Examples}
+
+\subsection{Attractive Inverse-Square Force}
+
+A particle moves in the potential
+\[
+    U(r)=-\frac{\alpha}{r},
+    \qquad \alpha>0.
+\]
+For a fixed nonzero angular momentum $L$, determine the circular
+orbit radius and classify the radial motion according to the
+total energy.
+
+\textbf{Solution:}
+
+The effective potential is
+\[
+    U_{\mathrm{eff}}(r)
+    =-\frac{\alpha}{r}+\frac{L^2}{2mr^2}.
+\]
+It tends to $+\infty$ as $r\to0$ and approaches zero from below
+as $r\to\infty$.
+
+Its stationary point satisfies
+\[
+    \frac{dU_{\mathrm{eff}}}{dr}
+    =\frac{\alpha}{r^2}-\frac{L^2}{mr^3}=0,
+\]
+giving
+\[
+    r_0=\frac{L^2}{m\alpha}.
+\]
+At this radius,
+\[
+    U_{\mathrm{eff}}''(r_0)
+    =\frac{\alpha}{r_0^3}>0,
+\]
+so the circular orbit is stable. Its energy is
+\[
+    E_{\mathrm{c}}
+    =U_{\mathrm{eff}}(r_0)
+    =-\frac{m\alpha^2}{2L^2}.
+\]
+
+The turning-point equation is
+\[
+    E=-\frac{\alpha}{r}+\frac{L^2}{2mr^2},
+\]
+or
+\[
+    Er^2+\alpha r-\frac{L^2}{2m}=0.
+\]
+For this particular potential, the equation is quadratic in $r$
+when $E\neq0$.
+
+The possible motions are:
+\begin{itemize}
+    \item $E<E_{\mathrm{c}}$: no motion is possible for the
+    specified angular momentum.
+
+    \item $E=E_{\mathrm{c}}$: the orbit is circular,
+    with $r=r_0$.
+
+    \item $E_{\mathrm{c}}<E<0$: there are two positive turning
+    points, and the motion is bounded.
+
+    \item $E\geq0$: there is one positive turning point,
+    corresponding to the minimum radius, and the allowed
+    region extends to infinity.
+\end{itemize}
+
+For $E=0$, the minimum radius is
+\[
+    r_{\min}=\frac{L^2}{2m\alpha}.
+\]
+This is the threshold between bounded and unbounded motion:
+the speed tends to zero as the particle moves to infinity.
+
+\subsection{Isotropic Harmonic Force}
+
+A particle moves under the central force
+\[
+    \mathbf{F}=-kr\,\mathbf{e}_r,
+    \qquad k>0.
+\]
+For a fixed nonzero angular momentum $L$, find the turning
+radii and determine whether the motion can be unbounded.
+
+\textbf{Solution:}
+
+Choosing the potential energy to vanish at the origin gives
+\[
+    U(r)=\frac{1}{2}kr^2.
+\]
+Thus,
+\[
+    U_{\mathrm{eff}}(r)
+    =\frac{1}{2}kr^2+\frac{L^2}{2mr^2}.
+\]
+The effective potential tends to $+\infty$ both as $r\to0$
+and as $r\to\infty$. Consequently, every allowed motion
+with finite energy is bounded.
+
+The turning-point equation is
+\[
+    E=\frac{1}{2}kr^2+\frac{L^2}{2mr^2},
+\]
+or
+\[
+    kr^4-2Er^2+\frac{L^2}{m}=0.
+\]
+This equation is quartic in $r$, but quadratic in $r^2$.
+Solving for $r^2$ gives
+\[
+    r_{\min}^2
+    =\frac{E-\sqrt{E^2-kL^2/m}}{k},
+    \qquad
+    r_{\max}^2
+    =\frac{E+\sqrt{E^2-kL^2/m}}{k}.
+\]
+Allowed motion requires
+\[
+    E\geq |L|\sqrt{\frac{k}{m}}.
+\]
+At equality, the two radii coincide and the orbit is circular:
+\[
+    r_0=\left(\frac{L^2}{mk}\right)^{1/4}.
+\]
+Above this energy, the radius oscillates between two distinct
+turning points.
+
+Unlike the inverse-square potential, the harmonic potential
+does not allow escape to infinity at any finite energy.
+Thus, the sign of the total energy alone is not a universal
+criterion for bounded motion; the shape and chosen zero
+of the potential must be taken into account.
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Attractive and Repulsive Forces}
 Decide if the following forces are attractive or repulsive for $k > 0$.
 \begin{enumerate}

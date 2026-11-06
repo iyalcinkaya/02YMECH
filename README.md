@@ -5,7 +5,7 @@
 Welcome to the repository for **02YMECH: Mechanics**. Here you can find all the material related with the course.
 
 * If you are taking the course for the first time, reading the [SYLLABUS](./syllabus/main.pdf) is strongly recommended.
-* The handwritten lecture notes are derived from different sources but mostly from the textbook by Thornton, Marion, *Classical Dynamics of Particles and Systems* (5th edition). These notes are experimental; there can be mistakes and inconsistencies. Students are encouraged to read the reference books in the syllabus for a more detailed explanation of the topics covered in the course.
+* The lecture notes are not complete; it is an ongoing project. There are also some handwritten lecture notes which are derived from different sources but mostly from the textbook by Thornton, Marion, *Classical Dynamics of Particles and Systems* (5th edition). These notes are experimental; there can be mistakes and inconsistencies. Students are encouraged to read the reference books in the syllabus for a more detailed explanation of the topics covered in the course.
 * The homework is provided for self study. Students are not required to return their solutions, but they are encouraged to work on them to better understand the material.
 * You can also find the midterm and final exam questions from previous years in the repository. (The solutions are incomplete, as this is still ongoing work.)
 

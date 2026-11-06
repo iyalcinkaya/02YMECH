@@ -1280,41 +1280,64 @@ Consider two masses $m_1$ and $m_2$ connected by a spring with spring constant $
 
 \textbf{Solution:}
 
-By Newton's second law, the equations of motion are
-\begin{align}
+We choose the positive $x$-direction to be to the right. The key observation is that the force exerted by the spring depends only on the relative displacement of the two masses, not on their individual positions. Suppose that mass $m_1$ moves to the right by $x_1$, while mass $m_2$ moves to the right by $x_2$. The change in the length of the spring is then
+\[
+    \Delta L=x_2-x_1.
+\]
+Indeed, if $x_2>x_1$, the separation between the masses increases and the spring is stretched. If $x_2<x_1$, the separation decreases and the spring is compressed. If $x_2=x_1$, both masses have moved by the same amount, so the length of the spring remains unchanged.
+
+To determine the forces, first suppose that the spring is stretched, so that $x_2-x_1>0$. Since the spring tends to return to its natural length, it pulls $m_1$ to the right and $m_2$ to the left. According to Hooke's law, the forces acting on the two masses are therefore
+\[
+    F_1=k(x_2-x_1), \qquad
+    F_2=-k(x_2-x_1).
+\]
+These expressions also apply when the spring is compressed, since $x_2-x_1<0$ automatically reverses the directions of both forces. Note that $F_1=-F_2$, in agreement with Newton's third law. Applying Newton's second law to each mass, we obtain the coupled equations of motion:
+\begin{align*}
     m_1\ddot{x}_1 &= k(x_2-x_1),\\
     m_2\ddot{x}_2 &= -k(x_2-x_1).
-\end{align}
+\end{align*}
 
-Introducing the relative displacement $x=x_2-x_1$,
-we obtain
-\begin{equation}
-    \ddot{x}=\ddot{x}_2-\ddot{x}_1
-    =-k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)x.
-\end{equation}
-
-Rearranging,
-\begin{equation}
+We now introduce the relative displacement
+\[
+    x=x_2-x_1.
+\]
+Differentiating twice with respect to time gives
+\[
+    \ddot{x}=\ddot{x}_2-\ddot{x}_1.
+\]
+Using the equations of motion, we find
+\[
+    \ddot{x}_1=\frac{k}{m_1}x,
+    \qquad
+    \ddot{x}_2=-\frac{k}{m_2}x.
+\]
+Substituting these expressions into the equation for the relative acceleration yields
+\[
     \ddot{x}
-    +k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)x=0.
-\end{equation}
+    =-\frac{k}{m_2}x-\frac{k}{m_1}x,
+\]
+or
+\[
+    \boxed{
+    \ddot{x}+k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)x=0.
+    }
+\]
+This has the standard form of the simple harmonic oscillator equation,
+\[
+    \ddot{x}+\omega^2x=0.
+\]
+Therefore, the relative displacement undergoes simple harmonic motion with angular frequency
+\[
+    \boxed{
+    \omega=\sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}.
+    }
+\]
 
-Comparing with the equation of a simple harmonic oscillator,
-$\ddot{x}+\omega^2x=0$, we find
-\begin{equation}
-    \boxed{\omega=
-    \sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}}.
-\end{equation}
+\textbf{Physical interpretation:}
 
-Thus, although both masses are free to move, their
-relative displacement undergoes simple harmonic motion with angular frequency $\omega$. We define the reduced mass $\mu$ as
-\begin{equation}
-    \frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2} \implies \mu=\frac{m_1 m_2}{m_1+m_2}.
-\end{equation}
-Therefore, the angular frequency can also be expressed as
-\begin{equation}
-    \omega=\sqrt{\frac{k}{\mu}}.
-\end{equation}
+The spring does not respond to the absolute positions of the masses, but only to their separation. When the spring is stretched, it pulls the masses toward each other; when compressed, it pushes them apart. In either case, the spring produces a restoring force that tends to bring the relative displacement back to zero. Since this force is proportional to the relative displacement, the resulting relative motion is simple harmonic.
+
+Notice also that if both masses move by the same amount, $x_1=x_2$, the spring is neither stretched nor compressed, and hence exerts no force. Thus, the two masses can move together with constant velocity without oscillating. More generally, the motion of the system can be separated into two independent parts: uniform motion of the center of mass and oscillatory motion of the masses relative to each other.
 
 \subsection{Determining the damping constant from amplitude decay}
 
@@ -1531,35 +1554,27 @@ Also, the general amplitude expression for driven oscillations is given by
     supplies energy to the oscillator.
 \end{enumerate}
 
-\subsection{Driven Pendulum with Small Angle Approximation}
-
-A pendulum of mass $m$ and length $L$ is hung from a pivot point and the pivot point is oscillating horizontally as $d(t)=d_0\cos(\omega t)$ as shown in the figure. Assuming small angles, derive the equation of motion for the pendulum and find the steady-state solution for the angular displacement $\theta(t)$.
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/driven-pendulum.png}
-    \caption{A pendulum of mass $m$ and length $L$ is driven by a horizontal force $F(t)=F_0\cos(\omega t)$ from the pivot point.}
-    \label{fig:driven-pendulum}
-\end{figure}
 
 
-\textbf{Solution:} 
+
+
+
 
 
 \subsection{Simple pendulum with a horizontally oscillating pivot}
 
-\paragraph{Problem.}
-A simple pendulum consists of a point mass $m$ suspended from a
-massless, inextensible string of length $L$. Its pivot undergoes
-prescribed horizontal motion
+A simple pendulum consists of a point mass $m$ suspended from a massless, inextensible string of length $L$. Its pivot undergoes prescribed horizontal motion
 \[
 d(t)=d_0\cos(\omega t),
 \]
-where $d_0$ is the displacement amplitude and $\omega$ is the driving
-angular frequency. Neglect air resistance and friction at the pivot,
-and assume that the string remains taut. Let $\theta(t)$ denote the
-angular displacement from the downward vertical, positive toward the
-positive horizontal direction.
+where $d_0$ is the displacement amplitude and $\omega$ is the driving angular frequency. Neglect air resistance and friction at the pivot, and assume that the string remains taut. Let $\theta(t)$ denote the angular displacement from the downward vertical, positive toward the positive horizontal direction.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{figures/driven-pendulum.png}
+    \caption{A pendulum of mass $m$ and length $L$ is driven by a pivot that oscillates horizontally with displacement $d(t)=d_0\cos(\omega t)$.}
+    \label{fig:driven-pendulum}
+\end{figure}
 
 Derive the equation of motion in the small-angle approximation and
 find the periodic forced response for
@@ -1611,11 +1626,7 @@ a_{\theta}
 +L\dot{\theta}^{\,2}\cos\theta\sin\theta\\
 &=\ddot{d}\cos\theta+L\ddot{\theta}.
 \end{align*}
-Here the terms proportional to $\dot{\theta}^{\,2}$ cancel because
-the corresponding acceleration is radial.
-
-The string tension is radial and has no tangential component.
-The tangential component of gravity is
+Here the terms proportional to $\dot{\theta}^{\,2}$ cancel because the corresponding acceleration is radial. The string tension is radial and has no tangential component. The tangential component of gravity is
 \[
 F_{\theta}=(0,-mg)\cdot\mathbf{e}_{\theta}
 =-mg\sin\theta.
