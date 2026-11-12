@@ -48,7 +48,8 @@ where $f(r)$ is a scalar function of the distance $r$ from the center of force, 
 \end{figure}
 
 
-\section{Direct Consequences of the Definitions}
+
+\section{\label{sec:direct-consequences}Direct Consequences of the Definitions}
 From Eq.~\ref{eq:central-force}, we can draw $3$ direct important conclusions:
 
 \begin{enumerate}
@@ -289,7 +290,8 @@ d\theta = \frac{d\theta}{dt}\frac{dt}{dr}dr = \frac{L}{mr^2} \frac{dt}{dr}dr = \
 \]
 Therefore, the trajectory of the particle can be determined by integrating this equation:
 \begin{equation}
-    \theta (r) = \int \frac{\pm L/r^2}{\sqrt{2m\left[E - U(r) - \frac{L^2}{2mr^2}\right]}}dr.
+    \theta (r) = \int \frac{\pm L/r^2}{\sqrt{2m\left[E - U(r) - \frac{L^2}{2mr^2}\right]}}dr+C.
+    \label{eq:trajectory-of-particle}
 \end{equation}
 
 \begin{figure}[h!]
@@ -318,9 +320,7 @@ We can define an \emph{effective potential} to simplify the analysis of central-
     U_{\mathrm{eff}}(r) = -\int f_{\mathrm{eff}}(r) dr = -\int \left(f(r) + \frac{L^2}{mr^3}\right) dr = U(r) + \frac{L^2}{2mr^2} + C,
     \label{eq:effective-potential}
 \end{equation}
-
-
-where $U(r)$ is the actual potential energy, $\frac{L^2}{2mr^2}$ is the centrifugal potential energy, and $C$ is a constant of integration. We know that we can always choose the reference of potential arbitrarily; the value of $C$ does not affect the physical behavior of the system. Therefore, setting $C=0$, we obtain the effective potential
+where $U(r)$ is the actual potential energy, $\frac{L^2}{2mr^2}$ historically known as \emph{centrifugal potential energy}, and $C$ is a constant of integration. We know that we can always choose the reference of potential arbitrarily; the value of $C$ does not affect the physical behavior of the system. Therefore, setting $C=0$, we obtain the effective potential
 \[
     U_{\mathrm{eff}}(r)
     \coloneqq U(r)+\frac{L^2}{2mr^2},
@@ -348,18 +348,14 @@ At a radial turning point, $\dot r=0$, and hence
 An ordinary turning point is a boundary of an allowed radial
 interval at which the radial motion reverses direction.
 The form and number of solutions of this equation depend on
-the potential $U(r)$; it is not generally a quadratic equation
-in $r$.
+the potential $U(r)$; it is not generally a quadratic equation in $r$ as it looks in the form above.
 
 If the allowed radial interval is bounded by two ordinary
 turning points, $r_{\min}$ and $r_{\max}$, the radial coordinate oscillates between these values, and the orbit is \emph{bounded}. Circular orbits and degenerate turning points require separate consideration. If the allowed radial interval extends to infinity, radially \emph{unbounded} motion is possible.
 
-The relevant interval is the one accessible from the initial
-conditions: different allowed intervals may be separated by
-forbidden regions where $E<U_{\mathrm{eff}}(r)$.
+The relevant interval is the one accessible from the initial conditions: different allowed intervals may be separated by forbidden regions where $E<U_{\mathrm{eff}}(r)$.
 
-Notice that $\dot r=0$ at a turning point does not mean that the
-particle is at rest. Its tangential speed is
+Note that $\dot r=0$ at a turning point does not mean that the particle is at rest. Its tangential speed is
 \[
     v_\theta=r\dot\theta=\frac{L}{mr},
 \]
@@ -367,8 +363,8 @@ which is nonzero for $L\neq0$. Also, bounded motion does not necessarily produce
 
 \subsection{Circular Orbits and Their Stability}
 
-A circular orbit has a constant radius $r_0$. Therefore,
-both $\dot r$ and $\ddot r$ must vanish. Using the radial equation
+A \emph{circular orbit} has a constant radius $r_0$, so that
+$\dot r=\ddot r=0$. From the radial equation
 \[
     m\ddot r=-\frac{dU_{\mathrm{eff}}}{dr},
 \]
@@ -376,27 +372,45 @@ the conditions for a circular orbit are
 \[
     U_{\mathrm{eff}}'(r_0)=0,
     \qquad
-    E=U_{\mathrm{eff}}(r_0).
-\]
-Equivalently,
-\[
-    U'(r_0)=\frac{L^2}{mr_0^3}.
+    E=U_{\mathrm{eff}}(r_0) \implies U'(r_0)=\frac{L^2}{mr_0^3}.
 \]
 
-A strict local minimum of the effective potential corresponds
-to a stable circular orbit, whereas a strict local maximum
-corresponds to an unstable one. To see this, consider a small radial displacement $r=r_0+\delta r$ at fixed angular momentum. To first order,
+A local minimum of the effective potential corresponds to a
+stable circular orbit, whereas a local maximum corresponds to an unstable one. To investigate the motion near a circular orbit, let us give the particle a small radial velocity, either inward or outward, without changing its tangential velocity. This produces a slightly perturbed orbit
+\[
+    r(t)=r_0+\delta r(t),\qquad |\delta r|\ll r_0.
+\]
+Here, $\delta r(t)$ describes how far the particle is from its original radius $r_0$ at time $t$. Adding a radial velocity does not change the angular momentum since $L=mr^2\dot\theta$ depends only on the tangential component of velocity. Expanding the effective force to first order,
+\[
+    U_{\mathrm{eff}}'(r_0+\delta r)
+    \approx U_{\mathrm{eff}}'(r_0)
+    +U_{\mathrm{eff}}''(r_0)\delta r.
+\]
+Since $U_{\mathrm{eff}}'(r_0)=0$, the radial equation becomes
 \[
     m\ddot{\delta r}
-    =-U_{\mathrm{eff}}''(r_0)\delta r.
+    =-U_{\mathrm{eff}}''(r_0)\delta r \implies \ddot{\delta r}+\frac{U_{\mathrm{eff}}''(r_0)}{m}\delta r=0.
 \]
-If $U_{\mathrm{eff}}''(r_0)>0$, the displacement undergoes
-small oscillations with angular frequency
+For $U_{\mathrm{eff}}''(r_0)>0$, this describes small harmonic oscillations around the circular orbit, with frequency $\omega_r$ and period $T_r$ given by
 \[
-    \omega_r
-    =\sqrt{\frac{U_{\mathrm{eff}}''(r_0)}{m}}.
+    r(t)= r_0 + A\cos{}(\omega_r t),\qquad \omega_r=\sqrt{\frac{U_{\mathrm{eff}}''(r_0)}{m}}, \qquad T_r=\frac{2\pi}{\omega_r}.
 \]
-If $U_{\mathrm{eff}}''(r_0)<0$, a radial perturbation can grow, and the circular orbit is unstable. If the second derivative vanishes, higher-order terms must be examined.
+For $U_{\mathrm{eff}}''(r_0)<0$, the orbit is unstable. If the second derivative vanishes, higher-order terms must be examined. The particle also moves angularly, with angular frequency 
+\[
+    \dot{\phi} = \frac{L}{mr^2} \approx \frac{L}{mr_0^2}=\omega_\phi
+\]
+to leading order. During one radial oscillation, the particle sweeps an angle
+\[
+    \Delta \phi = \int_0^{T_r} \dot{\phi} dt \approx \omega_\phi T_r = \frac{2\pi\omega_\phi}{\omega_r}.
+\]
+Thus, the ratio of radial and angular frequencies determines whether a nearly circular orbit closes or exhibits \emph{apsidal precession} (see Figure \ref{fig:apsidal-precession}). For example, in the gravitational potential $U(r)=-GMm/r$, one finds $\omega_r=\omega_\phi$, so the orbit closes without precession.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/precessing-orbits.png}
+    \caption{(a) A nearly circular orbit with $\Delta\phi=2\pi$ closes after one radial oscillation. (b) A nearly circular orbit with $\Delta\phi<2\pi$ precesses in the direction of motion. (c) A nearly circular orbit with $\Delta\phi>2\pi$ precesses in the opposite direction of motion.}
+    \label{fig:apsidal-precession}
+\end{figure}
 
 \section{Effective Potential for Inverse-Square Forces}
 
@@ -510,17 +524,9 @@ and hyperbolic orbits for positive total energy.
 \section{The Two-Body Problem}
 \label{sec:two-body-problem}
 
-In the preceding sections, we studied the motion of a particle
-of mass $m$ under a central force directed toward a fixed point.
-However, in many physical situations, such as the gravitational
-interaction between the Earth and the Sun, both interacting bodies
-are free to move. The Sun attracts the Earth, but the Earth also
-attracts the Sun with an equal and opposite force. Consequently,
-neither body is strictly stationary.
+In the preceding sections, we studied the motion of a particle of mass $m$ under a central force directed toward a fixed point. However, in many physical situations, such as the gravitational interaction between the Earth and the Sun, both interacting bodies are free to move. The Sun attracts the Earth, but the Earth also attracts the Sun with an equal and opposite force. Consequently, neither body is strictly stationary.
 
-This raises an important question: \emph{Can the motion of two
-interacting bodies be reduced to the central-force motion of a
-single particle?}
+This raises an important question: \emph{Can the motion of two interacting bodies be reduced to the central-force motion of a single particle?}
 
 As we shall see, the answer is yes. By introducing the
 \emph{center of mass} and the \emph{relative position}, the
@@ -528,649 +534,250 @@ two-body problem can be separated into two independent problems:
 the uniform motion of the center of mass and the motion of a
 fictitious particle under a central force.
 
-\subsection{Equations of Motion}
-
-Consider two particles with masses $m_1$ and $m_2$, whose position vectors in an inertial reference frame are $\mathbf{r}_1$ and $\mathbf{r}_2$, respectively. Suppose that the particles interact through a central force that depends only on their separation. We assume that there are no external forces acting on the system.We define the relative position vector as
-\begin{equation}
-    \mathbf{r}=\mathbf{r}_1-\mathbf{r}_2,
-    \label{eq:two-body-relative-position}
-\end{equation}
-Thus, $\mathbf{r}$ points from particle 2 toward particle 1. Let $\mathbf{F}_{12}$ denote the force exerted on particle 1 by particle 2. Since the interaction is central,
-\begin{equation}
-    \mathbf{F}_{12}=f(r)\mathbf{e}_r,
-    \qquad
-    \mathbf{e}_r=\frac{\mathbf{r}}{r},
-    \label{eq:two-body-central-force}
-\end{equation}
-where $f(r)<0$ corresponds to an attractive force. According to Newton's third law, the force exerted on particle 2 by particle 1 is
-\[
-    \mathbf{F}_{21}=-\mathbf{F}_{12}.
-\]
-
-Newton's second law therefore gives
-\begin{align}
-    m_1\ddot{\mathbf{r}}_1
-        &=f(r)\mathbf{e}_r,
-        \label{eq:two-body-newton-1}\\
-    m_2\ddot{\mathbf{r}}_2
-        &=-f(r)\mathbf{e}_r.
-        \label{eq:two-body-newton-2}
-\end{align}
-
-Although these equations are coupled, we can transform them
-into two independent equations by introducing suitable
-coordinates.
-
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.45\textwidth]{figures/two-body-central-force.png}
-    \caption{Two particles interacting through a central force. The relative position vector $\mathbf{r}$ points from particle 2 toward particle 1, while $\mathbf{R}$ denotes the center-of-mass position. The interaction forces are equal and opposite.}
+    \includegraphics[width=0.9\textwidth]{figures/two-body-central-force.png}
+    \caption{(a) Two particles, their relative position vector $\mathbf{r}$ and their center of mass vector $\mathbf{R}$ with respect to an origin $O$. (b) Chosing the center of mass as the origin $\mathbf{R} = 0$.}
     \label{fig:two-body-geometry}
 \end{figure}
 
-
-\subsection{Motion of the Center of Mass}
-
-The center of mass of the two particles is defined by
-\begin{equation}
-    \mathbf{R}
-    =\frac{m_1\mathbf{r}_1+m_2\mathbf{r}_2}{m_1+m_2}.
-    \label{eq:two-body-CM}
-\end{equation}
-
-Let us introduce the total mass
+\subsection{Center of Mass and Relative Position}
+Let two particles of masses $m_1$ and $m_2$ be located at positions $\mathbf{r}_1$ and $\mathbf{r}_2$, respectively. The \emph{center of mass} is defined as
 \[
-    M=m_1+m_2.
+    \mathbf{R} = \frac{m_1\mathbf{r}_1 + m_2\mathbf{r}_2}{m_1 + m_2}.
+\]
+The center of mass is the weighted average of the positions of the two particles, with weights given by their respective masses. It represents the point at which the total mass of the system can be considered to be concentrated for the purpose of analyzing its motion. The relative position vector is defined as
+    \[
+        \mathbf{r} = \mathbf{r}_1 - \mathbf{r}_2.
+    \]
+By choosing the center of mass as the origin, 
+\[
+    \mathbf{R} = 0 \implies m_1\mathbf{r}_1 + m_2\mathbf{r}_2 = 0 \implies \mathbf{r}_1 = -\frac{m_2}{m_1}\mathbf{r}_2.
+\]
+we can express the positions of the two particles in terms of the relative position vector:
+\[
+    \mathbf{r}_1 = \frac{m_2}{m_1 + m_2}\mathbf{r}, \qquad
+    \mathbf{r}_2 = -\frac{m_1}{m_1 + m_2}\mathbf{r}. 
+\]
+Remember that the mechanical energy provides us with a first integral of the radial equation of motion, which can be used to determine the trajectory of the particle. The mechanical energy of the two-body system is given by
+\[
+    E = \frac{1}{2}m_1\dot{\mathbf{r}_1^2} + \frac{1}{2}m_2\dot{\mathbf{r}_2^2} + U(r) = \frac{1}{2}m_1\left(\frac{m_2}{m_1 + m_2}\right)^2\dot{\mathbf{r}}^2 + \frac{1}{2}m_2\left(\frac{m_1}{m_1 + m_2}\right)^2\dot{\mathbf{r}}^2 + U(r)
+\]
+By collecting the similar terms together, we can rewrite the energy as
+\[
+    E = \frac{1}{2}\left[\frac{m_2m_1^2+m_1m_2^2}{(m_1 + m_2)^2}\right]\dot{\mathbf{r}}^2 + U(r) = \frac{1}{2}\mu\dot{\mathbf{r}}^2 + U(r),
+\]
+where $\mu$ is the \emph{reduced mass} of the two-body system, defined as
+\[
+    \mu \coloneqq \frac{m_1m_2(m_1+m_2)}{(m_1 + m_2)^2} = \frac{m_1m_2}{m_1 + m_2}.
+\]
+The mechanical energy expresiion is identical to that of a single particle of mass $\mu$ moving under the influence of the central force $f(r)$. Therefore, the two-body problem can be reduced to an equivalent one-body problem with a reduced mass $\mu$. Once we solve this reduced problem for the reduced mass $\mu$ and the relative position $\mathbf{r}$, we can determine the positions of the two particles using the relations
+\[
+    \mathbf{r}_1 = \frac{m_2}{m_1 + m_2}\mathbf{r}, \qquad
+    \mathbf{r}_2 = -\frac{m_1}{m_1 + m_2}\mathbf{r}.   
 \]
 
-Differentiating Eq.~\eqref{eq:two-body-CM} twice with respect
-to time gives
+
+
+\section{\label{sec:solution-of-the-equations-of-motion}Planetary Motion and Kepler's Laws}
+When we consider the gravitational interaction between two bodies, such as the Earth and the Sun, we can apply the results of the two-body problem to analyze their motion. The gravitational force is an attractive inverse-square central force, given together with the corresponding potential energy by
 \[
-    M\ddot{\mathbf{R}}
-    =m_1\ddot{\mathbf{r}}_1
-    +m_2\ddot{\mathbf{r}}_2.
+    F_c \propto-\frac{k}{r^2}, \qquad U(r) = -\frac{k}{r},
 \]
-
-Using Newton's equations, we obtain
+We already examined how, in general, a particle moves under the efectice potential of an inverse-square force. Now, we will go back to the equation of motion for the trajectory of the particle as given in Eq.~\ref{eq:trajectory-of-particle} and solve it. Plugging this potential energy into the trajectory integral, we obtain
 \[
-    M\ddot{\mathbf{R}}
-    =\mathbf{F}_{12}+\mathbf{F}_{21}=0.
+    \theta(r) = \int \frac{\pm L/r^2}{\sqrt{2\mu \left[E + \frac{k}{r} - \frac{L^2}{2\mu r^2}\right]}}dr.
 \]
-
-Hence,
-\begin{equation}
-    \boxed{\ddot{\mathbf{R}}=0.}
-    \label{eq:two-body-CM-motion}
-\end{equation}
-
-Therefore, the center of mass moves with constant velocity:
-\begin{equation}
-    \mathbf{R}(t)=\mathbf{R}_0+\mathbf{V}_{\mathrm{CM}}t.
-\end{equation}
-
-This is a direct consequence of conservation of total
-linear momentum. Indeed,
+We omit the integration constant to not to carry it throughout the calculation; we will add it in the final result. To calculate this integral it is useful to change the variable of integration from $r$ to $u = L/r$. Then, 
 \[
-    \mathbf{P}
-    =m_1\dot{\mathbf{r}}_1+m_2\dot{\mathbf{r}}_2
-    =M\dot{\mathbf{R}}
+    \frac{du}{dr} = -\frac{L}{r^2} \implies dr = -\frac{du}{L/r^2} = -\frac{du}{u^2/L} = -\frac{L}{u^2}du.
 \]
-is constant.
-
-Since the center of mass moves uniformly, we may choose
-an inertial reference frame moving with it. In this
-\emph{center-of-mass frame},
+The integral becomes
 \[
-    \mathbf{R}=0,
-    \qquad
-    \dot{\mathbf{R}}=0.
+    \theta(u) = \int \frac{\pm L/r^2}{\sqrt{2\mu \left[E + \frac{ku}{L} - \frac{L^2}{2\mu}\frac{u^2}{L^2}\right]}} \left(-\frac{L}{u^2}du\right) = \int \frac{\mp du}{\sqrt{2\mu E + 2 \mu \frac{k}{L}u - \frac{1}{2\mu}u^2}}.
 \]
-
-The remaining problem is then to determine how the two
-particles move relative to one another.
-
-
-\subsection{Relative Motion and the Reduced Mass}
-
-We now subtract the equations of motion of the two particles.
-
-From Eqs.~\eqref{eq:two-body-newton-1} and
-\eqref{eq:two-body-newton-2}, we have
+This integral looks like
 \[
-    \ddot{\mathbf{r}}_1
-    =\frac{\mathbf{F}_{12}}{m_1},
-    \qquad
-    \ddot{\mathbf{r}}_2
-    =-\frac{\mathbf{F}_{12}}{m_2}.
+    \int \frac{dx}{\sqrt{-x^2 + bx + c}} = \int \frac{dx}{\sqrt{-\left(x-\frac{b}{2}\right)^2+\frac{b^2}{4}+c}}.
 \]
-
-Since
+By making the substitution $p=\frac{b^2}{4}+c$, we can rewrite the integral as
 \[
-    \ddot{\mathbf{r}}
-    =\ddot{\mathbf{r}}_1-\ddot{\mathbf{r}}_2,
+    \int \frac{dx}{\sqrt{-\left(x-\frac{b}{2}\right)^2+p}}= \int \frac{dx}{\sqrt{p\left[1-\left(\frac{x-\frac{b}{2}}{\sqrt{p}}\right)^2\right]}}.
 \]
-we obtain
+One more substitution 
 \[
-    \ddot{\mathbf{r}}
-    =\left(\frac{1}{m_1}+\frac{1}{m_2}\right)
-      \mathbf{F}_{12}.
+t=\frac{1}{\sqrt{p}}\left( x - \frac{b}{2} \right) \implies dt = \frac{dx}{\sqrt{p}} \implies dx = \sqrt{p}dt
 \]
-
-We introduce the \emph{reduced mass}
-\begin{equation}
-    \boxed{
-    \mu=\frac{m_1m_2}{m_1+m_2}.
-    }
-    \label{eq:reduced-mass}
-\end{equation}
-
-Notice that
-\[
-    \frac{1}{\mu}
-    =\frac{1}{m_1}+\frac{1}{m_2}.
-\]
-
-The equation for the relative motion therefore becomes
-\begin{equation}
-    \boxed{
-    \mu\ddot{\mathbf{r}}=f(r)\mathbf{e}_r.
-    }
-    \label{eq:two-body-relative-motion}
-\end{equation}
-
-This equation has exactly the same form as Newton's second
-law for a single particle of mass $\mu$ moving under a
-central force.
-
-Thus, the original two-body problem is mathematically
-equivalent to the motion of a single fictitious particle
-with mass $\mu$ and position vector $\mathbf{r}$, subjected
-to the same central-force law.
-
-\medskip
-
-\noindent
-\textbf{Physical interpretation of the reduced mass.}
-
-The reduced mass takes into account the fact that both
-particles accelerate under their mutual interaction.
-
-For example, when the particles move toward one another,
-their relative acceleration is the sum of the magnitudes
-of their individual accelerations. The reduced mass is
-the mass that reproduces this relative acceleration
-when the interaction force acts on a single fictitious
-particle.
-
-It is important to emphasize that this fictitious
-particle describes the \emph{relative motion}, not the
-actual motion of either individual particle.
-
-Two limiting cases are particularly useful:
-
-\begin{itemize}
-\item If $m_2\gg m_1$, then
-\[
-    \mu=\frac{m_1}{1+m_1/m_2}\approx m_1.
-\]
-The heavier body moves very little, and the lighter body
-can approximately be treated as a particle orbiting a
-fixed center.
-
-\item If $m_1=m_2=m$, then
-\[
-    \mu=\frac{m}{2}.
-\]
-Both particles contribute equally to the relative
-acceleration.
-\end{itemize}
-
-
-\subsection{Recovering the Motion of Both Particles}
-
-After solving the equation for the relative position
-$\mathbf{r}(t)$, how do we determine the actual positions
-of the two particles?
-
-We have the two definitions
+Therefore, the integral becomes
 \begin{align*}
-    \mathbf{r}&=\mathbf{r}_1-\mathbf{r}_2,\\
-    M\mathbf{R}&=m_1\mathbf{r}_1+m_2\mathbf{r}_2.
+    \int \frac{\sqrt{p}dt}{\sqrt{p}\sqrt{1-t^2}} = \int \frac{dt}{\sqrt{1-t^2}} = \arcsin(t) + D &= \arcsin\left(\frac{x-\frac{b}{2}}{\sqrt{p}}\right) + D \\ &= \arcsin{\left[\frac{1}{\sqrt{\frac{b^2}{4}+c}}\left(x-\frac{b}{2}\right)\right]}+D.
 \end{align*}
+In our case, $x=u$, $b=2\mu k/L$, and $c=2\mu E$. Therefore, the integral becomes
+\[
+    \theta(u) = \arcsin{\left[\frac{1}{\sqrt{\frac{4\mu^2 k^2}{4L^2}+2\mu E}}\left(u-\frac{2\mu k}{2L}\right)\right]} + D = \arcsin{\left[\frac{1}{\sqrt{\frac{\mu^2 k^2}{L^2}+2\mu E}}\left(u-\frac{\mu k}{L}\right)\right]} + D.
+\]
+We can arrange this equation by also resubstituting $u=L/r$ to get
+\[
+    \sin(\theta-D) = \frac{1}{\sqrt{\frac{\mu^2 k^2}{L^2}+2\mu E}}\left(\frac{L}{r}-\frac{\mu k}{L}\right) = 
+    \frac{\frac{\mu k}{L}\left(\frac{L}{\mu k}\frac{L}{r}-1\right)}{\sqrt{\frac{\mu^2 k^2}{L^2}+2\mu E}}=
+    \frac{\frac{L^2}{\mu kr}-1}{\sqrt{\frac{L^2}{\mu^2 k^2}\left(\frac{\mu^2k^2}{L^2}+2\mu E\right)}}=\frac{\frac{L^2}{\mu k}\frac{1}{r}-1}{\sqrt{1+ \frac{2EL^2}{\mu k^2}}}.
+\]
+Here, the quantity $\frac{L^2}{\mu k}\frac{1}{r}$ in the numerator is always positive, while the denominator is always greater than or equal to 1. Remember that according to our choice of the total energy $E$, the $r$ value can be either bounded or unbounded but it will always have a minimum value. When $r = r_{\min}$, the value $\frac{L^2}{\mu k}\frac{1}{r}$ is at its maximum. Also, consider the fact that as $r$ changes, $\theta$ and the function $\sin(\theta-D)$ also change. Therefore, the maximum value of $\sin(\theta-D)$ is 1, which occurs when $r=r_{\min}$. Therefore, just the get rid of the integration constant $D$ without losing any generality, we can choose the angle so that when $\theta=0$, $r=r_{\min}$. This amounts to choosing $D=-\frac{\pi}{2}$. Therefore, we can write the above solution as
+\[
+\sin\left(\theta + \frac{\pi}{2}\right) = \cos\theta \implies \boxed{\cos\theta = \frac{\frac{L^2}{\mu k}\frac{1}{r}-1}{\sqrt{1+ \frac{2EL^2}{\mu k^2}}}
+}
+\]
 
-Solving these equations for $\mathbf{r}_1$ and
-$\mathbf{r}_2$ gives
-\begin{align}
-    \boxed{
-    \mathbf{r}_1
-    =\mathbf{R}+\frac{m_2}{M}\mathbf{r},
-    }
-    \label{eq:two-body-r1}\\[4pt]
-    \boxed{
-    \mathbf{r}_2
-    =\mathbf{R}-\frac{m_1}{M}\mathbf{r}.
-    }
-    \label{eq:two-body-r2}
-\end{align}
-
-Therefore, once $\mathbf{R}(t)$ and $\mathbf{r}(t)$
-are known, the positions of both particles are
-completely determined.
-
-In the center-of-mass frame, where $\mathbf{R}=0$,
-these expressions simplify to
-\begin{align}
-    \mathbf{r}_1&=\frac{m_2}{M}\mathbf{r},\\
-    \mathbf{r}_2&=-\frac{m_1}{M}\mathbf{r}.
-\end{align}
-
-The particles therefore always lie on opposite sides
-of their common center of mass, with distances
-\begin{equation}
-    r_1=\frac{m_2}{M}r,
-    \qquad
-    r_2=\frac{m_1}{M}r.
-    \label{eq:two-body-distances}
-\end{equation}
-
-Consequently,
+Let us define two constants, the \emph{eccentricity} $\epsilon$ and the \emph{semi-latus rectum} $\alpha$, as
+\[
+    \epsilon \coloneqq \sqrt{1+\frac{2EL^2}{\mu k^2}}, \qquad \alpha \coloneqq \frac{L^2}{\mu k}.
+\]
+Then, the trajectory of the particle can be expressed in the form
 \begin{equation}
     \boxed{
-    \frac{r_1}{r_2}=\frac{m_2}{m_1}.
+    \frac{\alpha}{r} = 1 + \epsilon \cos\theta,
     }
+    \label{eq:conic-section-equation}
 \end{equation}
+This is the equation of a conic section in polar coordinates, with the center of force located at one focus. As seen in Fig.~\ref{fig:conic-sections}(a), the shape of the orbit depends on the value of the eccentricity $\epsilon$:
 
-The more massive particle always remains closer to the
-center of mass.
-
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[
-    >=Latex,
-    scale=1.0,
-    every node/.style={font=\small}
-]
-    % Circular trajectories about CM
-    \draw[dashed,blue!55!black,thick] (0,0) circle (2.0);
-    \draw[dashed,orange!80!black,thick] (0,0) circle (0.8);
-
-    % CM and particles
-    \fill (0,0) circle (0.055);
-    \node[below right] at (0,0) {CM};
-
-    \coordinate (A) at (40:2.0);
-    \coordinate (B) at (220:0.8);
-
-    \draw[thin,gray!80] (B) -- (A);
-
-    \draw[->,thick,blue!75!black] (0,0) -- (A)
-        node[pos=0.63,above left] {$\mathbf{r}_1$};
-
-    \draw[->,thick,orange!80!black] (0,0) -- (B)
-        node[pos=0.6,below right] {$\mathbf{r}_2$};
-
-    \filldraw[fill=blue!25,draw=blue!70!black]
-        (A) circle (0.14);
-    \filldraw[fill=orange!40,draw=orange!80!black]
-        (B) circle (0.24);
-
-    \node[above right] at (A) {$m_1$};
-    \node[below left] at (B) {$m_2$};
-
-    % Direction of orbital motion
-    \draw[->,thick,blue!75!black]
-        (85:2) arc[start angle=85,end angle=115,radius=2];
-
-    \draw[->,thick,orange!80!black]
-        (265:0.8) arc[start angle=265,end angle=295,radius=0.8];
-
-    \node[align=left,anchor=west] at (2.55,0.1)
-        {$m_2>m_1$};
-\end{tikzpicture}
-\caption{Two particles executing circular motion about their
-common center of mass. The more massive particle follows
-the smaller circle. The particles remain on opposite sides
-of the center of mass and have the same angular velocity.
-The dashed circles represent their trajectories in the
-center-of-mass frame.}
-\label{fig:two-body-CM-orbits}
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/conic-sections.png}
+    \caption{(a) The four types of conic sections: circle, ellipse, parabola, and hyperbola and their corresponding eccentricities. The central force is located at one focus of each conic section. (b) Two dimensional representation of the conic sections in polar coordinates.}
+    \label{fig:conic-sections}
 \end{figure}
 
-The circular trajectories shown in
-Fig.~\ref{fig:two-body-CM-orbits} represent a special case.
-For other allowed motions, the particles follow different
-trajectories. Nevertheless, their position vectors
-relative to the center of mass remain proportional to
-the same vector $\mathbf{r}(t)$.
+\subsubsection*{Circular orbit: $\epsilon = 0$}
+When the eccentricity is zero, the orbit is a circle. In this case, the mechanical energy is negative and equal to the minimum of the effective potential, $E = E_{\min}$. The radius of the circular orbit is given by $r = \alpha = \frac{L^2}{\mu k}$, which corresponds to the radius of the stable circular orbit we found earlier in Eq.~\ref{eq:inverse-square-circular-radius}. The particle moves at a constant distance from the center of force, and its speed is given by $v = \sqrt{\frac{k}{\alpha}}$.
 
-In particular, for an inverse-square attractive force,
-the relative trajectory can be an ellipse, parabola,
-or hyperbola, depending on the energy. The individual
-trajectories in the center-of-mass frame have the same
-geometrical shape as the relative trajectory, but are
-scaled according to Eqs.~\eqref{eq:two-body-r1} and
-\eqref{eq:two-body-r2}.
+What is $k$? Although we will cover it in more detail Chapter 7: Gravitation, for the gravitational force, $k = Gm_1m_2$, where $G$ is the gravitational constant and $m_1$ and $m_2$ are the masses of the two bodies. For the electrostatic force, $k = \frac{1}{4\pi\epsilon_0}q_1q_2$, where $\epsilon_0$ is the permittivity of free space and $q_1$ and $q_2$ are the charges of the two particles.
+
+\subsubsection*{Elliptical orbit: $0 < \epsilon < 1$ --- Planetary Motion}
+When the eccentricity is between 0 and 1, the orbit is an ellipse and center of force is at one focus as seen in Fig.~\ref{fig:ellipse}(a). The mechanical energy is negative, and the particle oscillates between a minimum distance $r_{\min}$ and a maximum distance $r_{\max}$ from the center of force.  The particle moves faster when it is closer to the center of force and slower when it is farther away, in accordance with equal areas in equal times consequence given in Sec.\ref{sec:direct-consequences}.
 
 
-\subsection{Conservation of Energy}
-
-Let us now investigate how the total mechanical energy
-of the two-body system is related to the energy of the
-fictitious particle.
-
-The total kinetic energy is
-\begin{equation}
-    T=\frac12 m_1\dot{\mathbf{r}}_1^2
-     +\frac12 m_2\dot{\mathbf{r}}_2^2.
-\end{equation}
-
-Differentiating Eqs.~\eqref{eq:two-body-r1} and
-\eqref{eq:two-body-r2}, we obtain
-\begin{align*}
-    \dot{\mathbf{r}}_1
-      &=\dot{\mathbf{R}}+\frac{m_2}{M}\dot{\mathbf{r}},\\
-    \dot{\mathbf{r}}_2
-      &=\dot{\mathbf{R}}-\frac{m_1}{M}\dot{\mathbf{r}}.
-\end{align*}
-
-Substituting these expressions into the kinetic energy
-and expanding the squares gives
-\begin{align*}
-T={}&
-\frac12 m_1
-\left(
-\dot{\mathbf{R}}^2
-+2\frac{m_2}{M}\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}
-+\frac{m_2^2}{M^2}\dot{\mathbf{r}}^2
-\right)\\
-&+
-\frac12 m_2
-\left(
-\dot{\mathbf{R}}^2
--2\frac{m_1}{M}\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}
-+\frac{m_1^2}{M^2}\dot{\mathbf{r}}^2
-\right).
-\end{align*}
-
-Notice that the terms involving
-$\dot{\mathbf{R}}\cdot\dot{\mathbf{r}}$ cancel.
-Collecting the remaining terms, we find
-\begin{equation}
-    \boxed{
-    T=\frac12 M\dot{\mathbf{R}}^2
-      +\frac12\mu\dot{\mathbf{r}}^2.
-    }
-    \label{eq:two-body-kinetic-energy}
-\end{equation}
-
-Thus, the kinetic energy separates into two parts:
-the kinetic energy of the center of mass and the
-kinetic energy associated with relative motion.
-
-For a conservative central interaction, the potential
-energy depends only on the separation $r$:
+Minimum and maximum distances occur at $\theta = 0$ and $\theta = \pi$:
 \[
-    U=U(r),
-    \qquad
-    f(r)=-\frac{dU}{dr}.
+r_\text{min} = \frac{\alpha}{1+\epsilon},\qquad r_\text{max} = \frac{\alpha}{1-\epsilon}.
+\]
+The \emph{semi-major axis} is defined as half of the major axis, and can be calculated as the average of the minimum and maximum distances:
+\[
+a = \frac{r_\text{min}+r_\text{max}}{2} = \frac{\alpha}{1-\epsilon^2}.
+\]
+The \emph{semi-minor axis} is defined as half of the minor axis, and as it can be seen in Fig.~\ref{fig:ellipse}(a), it is given by
+\[
+b = \sqrt{a^2-c^2}
+\]
+where $c$ is the distance from the center of the ellipse to one of its foci. By using Eq.~\ref{eq:conic-section-equation}, we can write eccentricity as
+\[
+c=\frac{r_\text{max}-r_\text{min}}{2} \implies \frac{c}{a} = \frac{r_\text{max}-r_\text{min}}{r_\text{max}+r_\text{min}}
+\]
+If we substitude the polar expressions for $r_\text{min}$ and $r_\text{max}$ from Eq.~\ref{eq:conic-section-equation}, we can write the eccentricity as
+\[
+\frac{c}{a} = \frac{\frac{\alpha}{1-\epsilon}-\frac{\alpha}{1+\epsilon}}{\frac{\alpha}{1-\epsilon}+\frac{\alpha}{1+\epsilon}} = \frac{(1+\epsilon)-(1-\epsilon)}{(1+\epsilon)+(1-\epsilon)} = \frac{2\epsilon}{2} = \epsilon.
+\]
+Plugging this into the expression for the semi-minor axis, we obtain
+\[b = \sqrt{a^2-c^2} = \sqrt{a^2-(\epsilon a)^2} = \sqrt{a^2(1-\epsilon^2)} = a\sqrt{1-\epsilon^2} = \frac{\alpha}{1-\epsilon^2}\sqrt{1-\epsilon^2} = \frac{\alpha}{\sqrt{1-\epsilon^2}}.\]
+Therefore, semi-major and semi-minor axes can be expressed in terms of the semi-latus rectum $\alpha$ and the eccentricity $\epsilon$ as
+\begin{equation}
+a = \frac{\alpha}{1-\epsilon^2}, \quad b = \frac{\alpha}{\sqrt{1-\epsilon^2}}.
+\label{eq:semi-axes}
+\end{equation}
+By replacing $\alpha$ and $\epsilon$ with their definitions in terms of $L$, $\mu$, $k$, and $E$, we can also express the semi-major and semi-minor axes as
+\[
+a = \frac{L^2}{\mu k}\frac{1}{1-\left(1+\frac{2EL^2}{\mu k^2}\right)} = -\frac{k}{2E}, \qquad b = \frac{L^2}{\mu k}\frac{1}{\sqrt{1-\left(1+\frac{2EL^2}{\mu k^2}\right)}} = \frac{L}{\sqrt{-2\mu E}}.
 \]
 
-The total mechanical energy is therefore
-\begin{equation}
-    E_{\mathrm{tot}}
-    =\frac12 M\dot{\mathbf{R}}^2
-    +\frac12\mu\dot{\mathbf{r}}^2+U(r).
-\end{equation}
 
-Since $\dot{\mathbf{R}}$ is constant, the energy
-associated with the relative motion is separately
-conserved:
-\begin{equation}
-    \boxed{
-    E=\frac12\mu\dot{\mathbf{r}}^2+U(r)
-    =\mathrm{constant}.
-    }
-    \label{eq:two-body-relative-energy}
-\end{equation}
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/ellipse.png}
+    \caption{An elliptical orbit with the center of force located at one focus. The semi-major axis $a$, semi-minor axis $b$ are shown.}
+    \label{fig:ellipse}
+\end{figure}
 
-Here, $E$ denotes the energy of the relative motion.
-It equals the total mechanical energy in the
-center-of-mass frame.
-
-
-\subsection{Angular Momentum and the Effective Potential}
-
-Because the force acting on the fictitious particle
-is central, its torque about the origin of the relative
-coordinate system vanishes:
+The period of elliptical orbits can be calculated as follows:
 \[
-    \boldsymbol{\tau}
-    =\mathbf{r}\times\mathbf{F}_{12}=0.
+\frac{dA}{dt} = \frac{L}{2\mu} \implies dt = \frac{2\mu}{L}dA
 \]
 
-Consequently, the angular momentum associated with
-relative motion,
-\begin{equation}
-    \boxed{
-    \mathbf{L}
-    =\mu\mathbf{r}\times\dot{\mathbf{r}},
-    }
-    \label{eq:two-body-angular-momentum}
-\end{equation}
-is conserved.
-
-The vector $\mathbf{r}$ therefore moves in a fixed
-plane perpendicular to $\mathbf{L}$, provided
-$\mathbf{L}\neq0$. We can describe the relative motion
-using polar coordinates $(r,\theta)$ in this plane.
-
-As derived previously for central-force motion,
+The entire area of the ellipse is swept in one period, so the period can be calculated as
 \[
-    L=\mu r^2\dot{\theta}.
+T = \int_0^T dt = \frac{2\mu}{L}\int_0^A dA = \frac{2\mu}{L}A
+\]
+We know that the area of an ellipse is $A = \pi ab$, so we can write the period as
+\[
+T = \frac{2\mu}{L}\pi ab
+\]
+By using the expressions for the semi-major and semi-minor axes in Eq.~\ref{eq:semi-axes}, we can write the period as
+\[
+\frac{\alpha}{a}=\frac{\alpha^2}{b^2} \implies b = \sqrt{\alpha a} \implies T = \frac{2\mu}{L}\pi ab = \frac{2\mu}{L}\pi a\sqrt{\alpha a} = \frac{2\pi\mu}{L}\sqrt{\alpha}a^{3/2}
+\]
+This expression can be written in a more familiar for by squaring both sides and replacing $\alpha$ with its definition in terms of $L$, $\mu$, and $k$:
+\begin{equation}
+T^2 = \frac{4\pi^2\mu^2}{L^2}\alpha a^3 = \frac{4\pi^2\mu^2}{L^2}\frac{L^2}{\mu k}a^3 = \frac{4\pi^2\mu}{k}a^3 \implies \boxed{T^2 = 4\pi^2\frac{\mu}{k}a^3}
+\label{eq:kepler-third-law}
+\end{equation}
+This expression reads as follows: the square of the period of an elliptical orbit is proportional to the cube of its semi-major axis. This is known as \emph{Kepler's Third Law of planetary motion}.
+
+
+\subsubsection*{Parabolic orbit: $\epsilon = 1$}
+When the eccentricity is equal to 1, the orbit is a parabola. The mechanical energy is zero, and the particle approaches the center of force from a finite distance and escapes to infinity. The trajectory is open, and the particle moves along a path that is symmetric with respect to the axis of the parabola. The speed of the particle decreases as it moves away from the center of force, approaching zero at infinity.
+
+\subsubsection*{Hyperbolic orbit: $\epsilon > 1$}
+When the eccentricity is greater than 1, the orbit is a hyperbola. The mechanical energy is positive, and the particle approaches the center of force from infinity, reaches a minimum distance $r_{\min}$, and then escapes back to infinity. The trajectory is open, and the particle moves along one branch of the hyperbola. The speed of the particle increases as it approaches the center of force and decreases as it moves away, but it never reaches zero.
+
+As we have set it previously, the angle $\theta=0$ corresponds to the point of closest approach, $r=r_{\min}$ as seen in Fig.~\ref{fig:conic-sections}(b). Geometrically, $r_{\min}$ is the minimum distance from the center of force to the particle and it is called \emph{pericenter}. The maximum distance from the center of force to the particle is called \emph{apocenter} and it is denoted by $r_{\max}$. For elliptical orbits, the pericenter and apocenter are also called \emph{perihelion} and \emph{aphelion}, respectively. The pericenter and apocenter can be calculated from the trajectory equation as
+\[
+    r_{\min} = \frac{\alpha}{1+\epsilon}, \qquad r_{\max} = \frac{\alpha}{1-\epsilon}.
 \]
 
-The relative kinetic energy can be written as
+\subsection{Eccentricity and Energy}
+The eccentricity $\epsilon$ is related to the total energy $E$ of the particle. For bound orbits, the total energy is negative, and the eccentricity satisfies $0 \leq \epsilon < 1$. For unbound orbits, the total energy is non-negative, and the eccentricity satisfies $\epsilon \geq 1$. The relationship between eccentricity and energy as we have defined it is given by
 \[
-    T_{\mathrm{rel}}
-    =\frac12\mu\dot r^2
-     +\frac12\mu r^2\dot{\theta}^2.
+    \epsilon = \sqrt{1+\frac{2EL^2}{\mu k^2}}.
 \]
-
-Using the conservation of angular momentum, we obtain
+This relattionship can also be expressed in terms of the minimum value of the effective potential. To find the minimum value of the effective potential, we can differentiate it with respect to $r$ and set it equal to zero:
 \[
-    \frac12\mu r^2\dot{\theta}^2
-    =\frac{L^2}{2\mu r^2}.
+    \frac{dU_{\mathrm{eff}}}{dr} =\frac{d}{dr} \left( -\frac{k}{r} + \frac{L^2}{2\mu r^2} \right) = \frac{k}{r^2} - \frac{L^2}{\mu r^3} = 0 \implies r_0 = \frac{L^2}{\mu k}.
 \]
-
-The conservation of energy then takes the form
-\begin{equation}
-    \boxed{
-    E=\frac12\mu\dot r^2+U_{\mathrm{eff}}(r),
-    }
-    \label{eq:two-body-effective-energy}
-\end{equation}
-where
-\begin{equation}
-    \boxed{
-    U_{\mathrm{eff}}(r)
-    =U(r)+\frac{L^2}{2\mu r^2}.
-    }
-    \label{eq:two-body-effective-potential}
-\end{equation}
-
-This is exactly the effective-potential formalism
-developed in the preceding sections, with the ordinary
-particle mass replaced by the reduced mass $\mu$.
-
-The radial equation of motion is correspondingly
-\begin{equation}
-    \mu\ddot r
-    =-\frac{dU_{\mathrm{eff}}}{dr}
-    =f(r)+\frac{L^2}{\mu r^3}.
-    \label{eq:two-body-radial-equation}
-\end{equation}
-
-We can therefore use all the results obtained for
-central-force motion to analyze the relative motion
-of two interacting particles.
-
-In particular, the turning points of the separation
-between the particles satisfy
+Plugging this value back into the effective potential, we find the minimum value:
 \[
-    E=U_{\mathrm{eff}}(r),
+    U_{\mathrm{eff}}(r_0) = -\frac{k}{\frac{L^2}{\mu k}} + \frac{L^2}{2\mu \left(\frac{L^2}{\mu k}\right)^2} = -\frac{\mu k^2}{L^2} + \frac{\mu k^2}{2L^2} = -\frac{\mu k^2}{2L^2} \coloneqq \min{(U_\mathrm{eff})}.
 \]
-while circular relative motion occurs at a stationary
-point of the effective potential:
+If we rearrange the denominator of the eccentricity expression, we can write it in terms of the minimum value of the effective potential:
 \[
-    \frac{dU_{\mathrm{eff}}}{dr}=0.
-\]
-
-One important distinction should be kept in mind:
-the radial coordinate $r$ represents the
-\emph{distance between the two particles}, not
-the distance of either particle from the center
-of mass.
+    \epsilon = \sqrt{1+\frac{E}{\frac{\mu k^2}{2L^2}}} = \sqrt{1-\frac{E}{\min{(U_\mathrm{eff})}}} .
+    \]
 
 
-\subsection{Example: The Gravitational Two-Body Problem}
-
-Consider two bodies with masses $m_1$ and $m_2$
-interacting through Newton's gravitational force.
-
-The force acting on particle 1 is
-\begin{equation}
-    \mathbf{F}_{12}
-    =-\frac{Gm_1m_2}{r^2}\mathbf{e}_r,
-\end{equation}
-where $G$ is the gravitational constant.
-
-The relative equation of motion is therefore
-\begin{equation}
-    \mu\ddot{\mathbf{r}}
-    =-\frac{Gm_1m_2}{r^2}\mathbf{e}_r.
-\end{equation}
-
-Dividing by the reduced mass gives
-\begin{equation}
-    \boxed{
-    \ddot{\mathbf{r}}
-    =-\frac{G(m_1+m_2)}{r^2}\mathbf{e}_r.
-    }
-    \label{eq:gravitational-relative-acceleration}
-\end{equation}
-
-Notice an interesting result: the relative acceleration
-depends on the \emph{sum of the two masses}.
-
-The gravitational potential energy is
-\[
-    U(r)=-\frac{Gm_1m_2}{r},
-\]
-and the effective potential becomes
-\begin{equation}
-    U_{\mathrm{eff}}(r)
-    =-\frac{Gm_1m_2}{r}
-     +\frac{L^2}{2\mu r^2}.
-    \label{eq:gravitational-two-body-effective}
-\end{equation}
-
-This has precisely the same mathematical form as
-the inverse-square effective potential studied
-in the previous section.
-
-For a circular orbit, the separation $r$ is constant,
-so the relative radial acceleration must satisfy
-\[
-    \mu r\omega^2
-    =\frac{Gm_1m_2}{r^2}.
-\]
-
-Using the definition of the reduced mass, we find
-\begin{equation}
-    \boxed{
-    \omega^2=\frac{G(m_1+m_2)}{r^3}.
-    }
-    \label{eq:two-body-circular-frequency}
-\end{equation}
-
-Since the orbital period is $T=2\pi/\omega$,
-\begin{equation}
-    \boxed{
-    T^2=\frac{4\pi^2}{G(m_1+m_2)}r^3.
-    }
-    \label{eq:two-body-kepler-third}
-\end{equation}
-
-This is the circular-orbit form of Kepler's third law
-for a genuine two-body system.
-
-The two bodies move along circles with radii
-\[
-    r_1=\frac{m_2}{m_1+m_2}r,
-    \qquad
-    r_2=\frac{m_1}{m_1+m_2}r,
-\]
-and both circles are traversed with the same
-angular velocity $\omega$.
-
-For a system such as the Sun and the Earth,
-$m_{\mathrm{Sun}}\gg m_{\mathrm{Earth}}$.
-Consequently, the center of mass lies very close
-to the center of the Sun, and the reduced mass is
-approximately equal to the mass of the Earth.
-
-This explains why treating the Sun as a fixed
-center of force is an excellent approximation in
-elementary orbital mechanics. Nevertheless, the
-exact two-body description shows that both bodies
-move around their common center of mass.
-
-
-\subsection{Summary}
-
-The essential result of the two-body problem is that
-the motion of two particles interacting through a
-central force can be separated into:
+\section{Kepler's Laws of Planetary Motion}
+In the early 17th century based on the meticulous astronomical observations of Tycho Brahe, Johannes Kepler formulated three laws that describe the motion of planets in our solar system. These laws are known as \emph{Kepler's Laws of Planetary Motion}, and as we have seen, they can be derived from Newton's laws of motion and the law of universal gravitation. The three laws are as follows:
 
 \begin{enumerate}
-\item The uniform motion of their center of mass,
-\[
-    M\ddot{\mathbf{R}}=0;
-\]
-
-\item The relative motion of a fictitious particle
-with reduced mass $\mu$,
-\[
-    \mu\ddot{\mathbf{r}}
-    =f(r)\mathbf{e}_r.
-\]
+    \item \textbf{First Law (Law of Ellipses):} The orbit of a planet around the Sun is an ellipse, with the Sun at one focus.
+    \item \textbf{Second Law (Law of Equal Areas):} A line segment joining a planet and the Sun sweeps out equal areas during equal intervals of time. This law is a consequence of the conservation of angular momentum.
+    \item \textbf{Third Law (Law of Harmonies):} The square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. Mathematically, \(T^2 \propto a^3\), where \(T\) is the orbital period and \(a\) is the semi-major axis.
 \end{enumerate}
 
-The original particle positions can then be recovered
-from the center-of-mass and relative coordinates:
+We derived the first law after solving the equations of motion for a particle under an attractive inverse-square central force. The second law is a direct consequence of the conservation of angular momentum, which we discussed in Section~\ref{sec:direct-consequences}. Finally, we derived the third law by calculating the period of elliptical orbits in Section~\ref{sec:solution-of-the-equations-of-motion}.
+
+In fact Kepler concluded from Brahe's observations that the square of the period of a planet's orbit is proportional to the cube of its average distance from the Sun with the same proportionality constant for all planets. However, what we have derived is a more general result: the square of the period of an elliptical orbit is proportional to the cube of its semi-major axis, with the proportionality constant depending on the masses of the two bodies and the gravitational constant:
 \[
-    \mathbf{r}_1
-    =\mathbf{R}+\frac{m_2}{M}\mathbf{r},
-    \qquad
-    \mathbf{r}_2
-    =\mathbf{R}-\frac{m_1}{M}\mathbf{r}.
+    T^2 = 4\pi^2\frac{\mu}{k}a^3 = 4\pi^2\frac{m_1m_2}{Gm_1m_2(m_1+m_2)}a^3 = \frac{4\pi^2}{G(m_1+m_2)}a^3.
 \]
+Therefore, the proportionality constant is not the same for all planets; it changes depending on the total mass of the planet-Sun system. Even though the mass of the Sun is much larger than that of any planet, the difference still would make sense when we consider the giant planets like Jupiter and Saturn. However, the difference is negligible for the inner planets, and the proportionality constant can be approximated as \(4\pi^2/(Gm_\odot)\), where \(m_\odot\) is the mass of the Sun.
 
-Therefore, the central-force problem studied so far
-is not restricted to a particle moving around a
-physically fixed center. It also provides an exact
-description of the relative motion of two interacting
-particles, provided their interaction is central and
-there are no external forces.
+\section{Final Remarks}
 
-In the next section, we will solve the equations of
-motion for the inverse-square force and determine
-the possible orbital trajectories.
+Now kick back and relax for a minute or more and remember how we have derived, without explicit usage of any empirical data, Kepler's laws of planetary motion from a few axioms made by Newton. No doubt, the axioms are inspired by the accumulated empirical data, they act like as if they were the distilled essence of the observations, so that by combining and mixing them together, we can explain a huge amount of phenomena in the universe.
+
+The author leaves the appreciation of the power of definitions to the reader.
 
 
 
 
-\section{\label{sec:solution-of-the-equations-of-motion}Solution of the Equations of Motion}
 
 
 \section{Worked Examples}
