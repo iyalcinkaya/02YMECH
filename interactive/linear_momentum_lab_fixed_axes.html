@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linear Momentum · Interactive Particle Laboratory</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07101b;
+    --panel: #101d2b;
+    --panel2: #0c1724;
+    --line: #25374b;
+    --line-soft: #1b2c3e;
+    --text: #e9f3f8;
+    --muted: #8ea4b7;
+    --muted2: #69859b;
+    --cyan: #76dce9;
+    --mint: #8ee7b6;
+    --amber: #f1af70;
+    --violet: #adb7ff;
+    --radius: 17px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-synthesis: none;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; min-height:100%; }
+  body { color:var(--text); background:
+    radial-gradient(ellipse 900px 500px at 70% -200px, #183146 0%, transparent 90%),
+    radial-gradient(ellipse 700px 350px at -250px 250px, #102538 0%, transparent 90%), var(--bg);
+  }
+  button, input { font:inherit; }
+  button { cursor:pointer; }
+  button:focus-visible, input:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+  .app { max-width:1520px; padding:28px clamp(16px,3vw,42px) 48px; margin:0 auto; }
+  .topline { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
+  .wordmark { letter-spacing:.19em; font-size:11px; font-weight:800; color:var(--cyan); text-transform:uppercase; display:flex; gap:10px; align-items:center; }
+  .wordmark .symbol { display:grid; place-items:center; width:28px; height:28px; border:1px solid #4d788c; border-radius:9px; color:#9af1f2; font-size:16px; letter-spacing:0; }
+  .badge { display:inline-flex; align-items:center; gap:8px; padding:7px 11px; font-size:11px; letter-spacing:.06em; border-radius:99px; color:#9fb6c6; border:1px solid var(--line); background:#122233; }
+  .badge .dot { width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 11px #5cddb8; }
+  header.hero { margin-bottom:23px; }
+  .hero h1 { margin:0 0 7px; font-size:clamp(27px,3vw,40px); line-height:1.12; letter-spacing:-.045em; font-weight:750; }
+  .hero h1 span { color:var(--cyan); }
+  .hero p { margin:0; line-height:1.65; color:var(--muted); font-size:13px; max-width:880px; }
+  .layout { display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:16px; align-items:start; }
+  .leftCol { min-width:0; display:grid; gap:16px; }
+  .panel { border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(155deg,#112132 0%,#0b1725 100%); min-width:0; box-shadow:0 12px 32px #00000015; overflow:hidden; }
+  .panelHead { min-height:58px; padding:14px 18px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  .panelTitle { margin:0; font-size:12px; font-weight:750; text-transform:uppercase; letter-spacing:.105em; color:#d0e3ed; }
+  .panelSub { font-size:11px; color:var(--muted2); font-weight:500; }
+  .smallpill { display:flex; align-items:center; gap:7px; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .smallpill .pulse { height:6px; width:6px; border-radius:100%; background:var(--mint); }
+  .canvasWrap { position:relative; padding:0 12px 9px; }
+  #sim { width:100%; display:block; aspect-ratio:900/510; border-radius:10px; background:#081421; cursor:crosshair; touch-action:manipulation; }
+  .stageHud { position:absolute; top:16px; left:28px; display:flex; gap:8px; pointer-events:none; }
+  .hudItem { background:#091522d9; border:1px solid #263c50; padding:9px 11px; border-radius:9px; backdrop-filter:blur(4px); }
+  .hudKey { display:block; color:var(--muted2); font-size:9px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:4px; }
+  .hudVal { display:block; font-size:13px; color:#edf7fa; font-variant-numeric:tabular-nums; font-weight:650; }
+  .hudVal.mint { color:var(--mint); }
+  .inspect { position:absolute; right:28px; top:16px; border:1px solid #325168; background:#081723e8; border-radius:10px; padding:10px 12px; color:#bdd4e0; font-size:11px; line-height:1.65; pointer-events:none; max-width:230px; }
+  .inspect strong { color:#e9f9fe; font-weight:700; }
+  .stageFooter { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:0 18px 15px; }
+  .key { font-size:10px; color:var(--muted2); }
+  .legend { display:flex; align-items:center; gap:15px; flex-wrap:wrap; font-size:10px; color:var(--muted); }
+  .legendPart { display:flex; align-items:center; gap:6px; }
+  .legendLine { width:15px; height:2px; background:var(--cyan); display:inline-block; position:relative; }
+  .legendLine:after { content:""; position:absolute; right:-1px; top:-3px; border-top:4px solid transparent; border-bottom:4px solid transparent; border-left:6px solid var(--cyan); }
+  .legendCircle { width:8px; height:8px; border-radius:50%; display:inline-block; background:var(--amber); }
+  .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .metric { background:#101e2c; border:1px solid var(--line); border-radius:12px; padding:13px 15px; min-width:0; }
+  .metricLabel { color:#7f98ab; font-size:10px; text-transform:uppercase; letter-spacing:.075em; margin-bottom:9px; white-space:nowrap; }
+  .metricNumber { font-variant-numeric:tabular-nums; font-size:clamp(15px,1.55vw,23px); color:#ebf6fc; font-weight:700; letter-spacing:-.04em; white-space:nowrap; }
+  .metricNumber.cyan { color:var(--cyan); }
+  .metricNumber.green { color:var(--mint); }
+  .metricNote { font-variant-numeric:tabular-nums; font-size:10px; color:var(--muted2); margin-top:5px; min-height:14px; }
+  .analyses { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .analysisBody { padding:2px 14px 9px; }
+  .chartCanvas { display:block; width:100%; height:240px; }
+  .analysisFoot { margin:0; border-top:1px solid var(--line-soft); color:#8ca3b5; font-size:11px; line-height:1.5; padding:12px 17px 14px; min-height:59px; }
+  .chartSwitch { display:flex; align-items:center; border:1px solid var(--line); border-radius:8px; padding:3px; background:#0a1725; }
+  .chartSwitch button { font-size:11px; color:#8099ab; border:none; background:transparent; min-width:28px; border-radius:5px; padding:5px 8px; }
+  .chartSwitch button.active { color:#e6f9fa; background:#284659; }
+  .controls { position:sticky; top:16px; padding-bottom:13px; }
+  .controls .panelHead { padding:19px 18px 14px; }
+  .controlInner { padding:0 18px; }
+  .group { border-top:1px solid var(--line-soft); padding:17px 0 15px; }
+  .group:first-child { padding-top:7px; border-top:none; }
+  .groupTitle { font-size:10px; color:#7d9bae; text-transform:uppercase; font-weight:750; letter-spacing:.12em; margin:0 0 14px; }
+  .modeSwitch { display:grid; grid-template-columns:1fr 1fr; gap:5px; border:1px solid var(--line); padding:4px; border-radius:11px; background:#091522; }
+  .modeSwitch button { border:0; background:transparent; border-radius:7px; color:#8ca2b5; padding:10px 5px; font-size:11px; font-weight:650; }
+  .modeSwitch button.active { color:#e9f8fa; background:#244154; box-shadow:inset 0 0 0 1px #3c6981; }
+  .modeText { font-size:11px; color:var(--muted); line-height:1.55; min-height:50px; margin:11px 0 0; }
+  .field { margin:0 0 15px; }
+  .field:last-child { margin-bottom:0; }
+  .fieldHead { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:8px; }
+  .fieldHead label { font-size:11px; color:#b8ccdb; }
+  .fieldHead output { font-size:11px; color:var(--cyan); font-weight:700; font-variant-numeric:tabular-nums; }
+  input[type=range] { appearance:none; -webkit-appearance:none; display:block; width:100%; height:5px; border-radius:4px; background:linear-gradient(to right,#398998,#2d5267); outline:none; margin:10px 0 6px; cursor:pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:14px; height:14px; background:#a3eff1; border:3px solid #152b3b; box-shadow:0 0 0 1px #478b9c; border-radius:50%; }
+  input[type=range]::-moz-range-thumb { width:11px; height:11px; background:#a3eff1; border:2px solid #152b3b; border-radius:50%; }
+  .toggleRow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:13px 0; }
+  .toggleRow span { font-size:11px; color:#b8ccdb; }
+  .toggle { appearance:none; position:relative; width:35px; height:19px; border:1px solid #41576a; border-radius:99px; background:#263647; cursor:pointer; flex:none; }
+  .toggle:checked { background:#2a777d; border-color:#5aa6a4; }
+  .toggle:before { content:""; position:absolute; width:13px; height:13px; left:2px; top:2px; border-radius:50%; background:#bed0db; transition:transform .15s; }
+  .toggle:checked:before { transform:translateX(15px); background:#e5ffff; }
+  .buttonRow { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:5px 0 12px; }
+  .btn { border:1px solid #345066; color:#d8e8f0; background:#192e40; border-radius:9px; padding:11px 10px; font-size:11px; font-weight:700; display:flex; justify-content:center; align-items:center; gap:8px; transition:background .15s,border-color .15s; }
+  .btn:hover { background:#244459; border-color:#53839a; }
+  .btn.primary { color:#082526; background:#8de5d8; border-color:#a9fff0; }
+  .btn.primary:hover { background:#b5fff3; }
+  .btn svg { width:13px; height:13px; fill:currentColor; }
+  .hint { margin:12px 0 2px; color:var(--muted2); font-size:10px; line-height:1.55; }
+  .formula { padding:19px 20px; background:#101f2c; border:1px solid var(--line); border-radius:14px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+  .formulaTitle { text-transform:uppercase; color:var(--muted2); font-size:10px; letter-spacing:.105em; margin-bottom:7px; }
+  .equation { color:#e3f1f6; font-size:clamp(14px,1.4vw,19px); font-family: "Cambria Math", "STIX Two Math", Georgia, serif; letter-spacing:.015em; }
+  .formulaCopy { max-width:400px; font-size:11px; line-height:1.65; color:var(--muted); }
+  .formulaCopy strong { color:#d5e8f2; font-weight:650; }
+  @media (max-width:1100px) { .layout { grid-template-columns:minmax(0,1fr) 286px; } .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .analyses { grid-template-columns:1fr; } }
+  @media (max-width:800px) { .layout { grid-template-columns:1fr; } .controls { position:static; } .controls .controlInner { display:grid; grid-template-columns:1fr 1fr; gap:0 22px; } .controls .group { border-top:1px solid var(--line-soft); padding-top:14px; } .controls .group:first-child { border-top:1px solid var(--line-soft); padding-top:14px; } }
+  @media (max-width:560px) { .app { padding:18px 12px 35px; } .controls .controlInner { display:block; } .hero h1 { font-size:29px; } .metrics { gap:8px; } .metric { padding:11px; } .metricNumber { font-size:18px; } .stageHud { top:13px; left:20px; gap:4px; } .hudItem { padding:5px 7px; } .hudVal { font-size:10px; } .hudKey { font-size:7px; } .inspect { top:auto; bottom:18px; left:20px; right:auto; max-width:180px; font-size:9px; padding:6px 8px; } .panelHead { padding:13px; } .canvasWrap { padding:0 7px 8px; } .formula { padding:15px; } .formulaCopy { font-size:10px; } }
+  @media (prefers-reduced-motion:reduce) { .btn,.toggle:before { transition:none; } }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="topline">
+    <div class="wordmark"><div class="symbol">∑</div> Mechanics / Interactive laboratory</div>
+    <div class="badge" id="globalStatus"><span class="dot"></span><span id="statusText">Isolated system · momentum conserved</span></div>
+  </div>
+  <header class="hero">
+    <h1>Conservation of <span>linear momentum.</span></h1>
+    <p>Explore a two-dimensional gas of interacting particles. Every arrow represents an individual momentum <i>m</i><b>v</b>; the total is recalculated from all particles and the box at every frame. Switch boundary conditions to see exactly when particle momentum is—and is not—conserved.</p>
+  </header>
+  <div class="layout">
+    <section class="leftCol">
+      <section class="panel" aria-label="Particle simulation">
+        <div class="panelHead">
+          <h2 class="panelTitle">Particle chamber <span class="panelSub">/ top view</span></h2>
+          <div class="smallpill"><span class="pulse"></span><span id="simClock">t = 0.00 s</span><span style="padding:0 3px;color:#45677b">·</span><span id="collisionsLabel">0 collisions</span></div>
+        </div>
+        <div class="canvasWrap">
+          <canvas id="sim" aria-label="Simulation of particles in a two-dimensional box, with real-time momentum arrows"></canvas>
+          <div class="stageHud" aria-live="off">
+            <div class="hudItem"><span class="hudKey">Σ particle momentum</span><span id="hudGas" class="hudVal">(0.0, 0.0)</span></div>
+            <div class="hudItem"><span class="hudKey" id="hudSecondName">Box momentum</span><span id="hudBox" class="hudVal">(0.0, 0.0)</span></div>
+          </div>
+          <div class="inspect" id="inspectBox" hidden></div>
+        </div>
+        <div class="stageFooter">
+          <div class="legend"><span class="legendPart"><span class="legendLine"></span> Individual momentum</span><span class="legendPart"><span class="legendCircle"></span> Collision event</span></div>
+          <span class="key">Click a particle to inspect · View follows the box</span>
+        </div>
+      </section>
+      <div class="metrics" aria-label="Conservation measurements">
+        <div class="metric"><div class="metricLabel" id="totalMetricLabel">Total |P|</div><div class="metricNumber green" id="totalMag">0.00</div><div class="metricNote" id="totalComponent">Px 0.0 · Py 0.0</div></div>
+        <div class="metric"><div class="metricLabel">Particles |Pₚ|</div><div class="metricNumber cyan" id="gasMag">0.00</div><div class="metricNote" id="gasComponent">Px 0.0 · Py 0.0</div></div>
+        <div class="metric"><div class="metricLabel" id="secondMetricLabel">Box |Pᵦ|</div><div class="metricNumber" id="boxMag">0.00</div><div class="metricNote" id="boxComponent">Px 0.0 · Py 0.0</div></div>
+        <div class="metric"><div class="metricLabel">Conservation error</div><div class="metricNumber" id="driftMag">0.000%</div><div class="metricNote" id="energyLabel">Energy Δ 0.000%</div></div>
+      </div>
+      <div class="analyses">
+        <section class="panel" aria-label="Real-time vector addition diagram">
+          <div class="panelHead"><h2 class="panelTitle">Momentum vector addition</h2><span class="panelSub">fixed axes · live components</span></div>
+          <div class="analysisBody"><canvas class="chartCanvas" id="vectorCanvas" aria-label="Momentum vector sum diagram"></canvas></div>
+          <p class="analysisFoot" id="vectorCaption">The particle and box momentum vectors add head-to-tail to give the conserved total.</p>
+        </section>
+        <section class="panel" aria-label="Momentum time series">
+          <div class="panelHead"><h2 class="panelTitle">Momentum over time</h2><div class="chartSwitch" role="group" aria-label="Momentum component"><button type="button" id="chartX" class="active">Pₓ</button><button type="button" id="chartY">Pᵧ</button></div></div>
+          <div class="analysisBody"><canvas class="chartCanvas" id="historyCanvas" aria-label="Graph of calculated momentum components over time"></canvas></div>
+          <p class="analysisFoot"><span style="color:var(--mint)">━━</span> total / balance &nbsp; <span style="color:var(--cyan)">━━</span> particles &nbsp; <span style="color:var(--amber)">━━</span> box / supports. <span id="chartNote">System total stays constant.</span></p>
+        </section>
+      </div>
+      <div class="formula">
+        <div><div class="formulaTitle" id="lawTitle">Isolated system · conservation law</div><div class="equation" id="lawEquation">P = Σᵢ mᵢ vᵢ + M V<sub>box</sub> = constant</div></div>
+        <div class="formulaCopy" id="lawText"><strong>Particle–particle collisions</strong> exchange equal and opposite impulses. Collisions with the freely translating box exchange momentum with the box, leaving their combined momentum unchanged.</div>
+      </div>
+    </section>
+    <aside class="panel controls" aria-label="Simulation controls">
+      <div class="panelHead"><h2 class="panelTitle">Experiment controls</h2><span class="panelSub">adjust &amp; observe</span></div>
+      <div class="controlInner">
+        <div class="group">
+          <div class="groupTitle">Boundary conditions</div>
+          <div class="modeSwitch"><button type="button" id="modeFree" class="active" aria-pressed="true">Free box</button><button type="button" id="modeFixed" aria-pressed="false">Fixed walls</button></div>
+          <p class="modeText" id="modeDescription">The box can recoil and translate without external forces. <strong style="color:#d2edf3">Particles + box</strong> form a closed system.</p>
+        </div>
+        <div class="group">
+          <div class="groupTitle">Initial conditions <span style="font-weight:500;text-transform:none;letter-spacing:0">(restart on change)</span></div>
+          <div class="field"><div class="fieldHead"><label for="count">Number of particles</label><output id="countValue">72</output></div><input id="count" type="range" min="12" max="160" step="4" value="72"></div>
+          <div class="field"><div class="fieldHead"><label for="mass">Typical particle mass</label><output id="massValue">1.0</output></div><input id="mass" type="range" min="0.5" max="3" step="0.1" value="1"></div>
+          <div class="field"><div class="fieldHead"><label for="speed">Random speed scale</label><output id="speedValue">115</output></div><input id="speed" type="range" min="30" max="220" step="5" value="115"></div>
+          <div class="field"><div class="fieldHead"><label for="flowX">Initial drift (x direction)</label><output id="flowXValue">+40</output></div><input id="flowX" type="range" min="-100" max="100" step="5" value="40"></div>
+          <div class="field"><div class="fieldHead"><label for="flowY">Initial drift (y direction)</label><output id="flowYValue">0</output></div><input id="flowY" type="range" min="-100" max="100" step="5" value="0"></div>
+          <div class="field"><div class="fieldHead"><label for="boxMass">Box mass</label><output id="boxMassValue">110</output></div><input id="boxMass" type="range" min="10" max="400" step="10" value="110"></div>
+        </div>
+        <div class="group">
+          <div class="groupTitle">Collision physics</div>
+          <div class="field"><div class="fieldHead"><label for="restitution">Coefficient of restitution</label><output id="restitutionValue">1.00 · elastic</output></div><input id="restitution" type="range" min="0.7" max="1" step="0.01" value="1"></div>
+          <div class="field"><div class="fieldHead"><label for="timeRate">Simulation speed</label><output id="timeRateValue">1.00×</output></div><input id="timeRate" type="range" min="0.25" max="2.5" step="0.25" value="1"></div>
+          <div class="field"><div class="fieldHead"><label for="arrowScale">Momentum arrow scale</label><output id="arrowScaleValue">1.0×</output></div><input id="arrowScale" type="range" min="0.25" max="2.5" step="0.25" value="1"></div>
+        </div>
+        <div class="group">
+          <div class="groupTitle">Display options</div>
+          <label class="toggleRow"><span>Individual momentum vectors</span><input class="toggle" type="checkbox" id="showArrows" checked></label>
+          <label class="toggleRow"><span>Particle motion trails</span><input class="toggle" type="checkbox" id="showTrails"></label>
+        </div>
+        <div class="group">
+          <div class="groupTitle">Playback</div>
+          <div class="buttonRow">
+            <button class="btn primary" id="playPause" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span id="playLabel">Pause</span></button>
+            <button class="btn" id="step" type="button">Step +1 frame</button>
+            <button class="btn" id="restart" type="button">↻ Restart</button>
+            <button class="btn" id="randomize" type="button">⤨ New state</button>
+          </div>
+          <p class="hint">Space = play/pause · R = restart. The dynamics are two-dimensional hard-disk collisions; no artificial momentum correction is applied. Units are arbitrary and consistent.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const CW = 900, CH = 510;
+  const BOX = {x:29, y:30, w:842, h:450};
+  const colors = {cyan:'#76dce9', amber:'#f1af70', mint:'#8ee7b6', text:'#d7eaf1', muted:'#638298'};
+  const simC = $('sim'), vecC = $('vectorCanvas'), histC = $('historyCanvas');
+  const simCtx = simC.getContext('2d'), vecCtx = vecC.getContext('2d'), histCtx = histC.getContext('2d');
+  let mode = 'free', chartComponent='x', playing = true, selectedId = -1;
+  let seed = 20261115, rng, particles = [], boxVelocity = {x:0,y:0}, boxMass = 110;
+  let simTime = 0, pairCollisions = 0, wallCollisions = 0, externalSupport = {x:0,y:0};
+  let initialBalance = {x:0,y:0}, initialEnergy = 1, peakEnergy = 1;
+  let history = [], lastSample=0, frameAccumulator=0, lastFrame=0, collisionFlashes=[];
+  let arrowScale = 1, showArrows=true, showTrails=false;
+  // Momentum diagram axes are calculated ONCE per initial state, not per frame.
+  let vectorViewport = {minX:-100,maxX:100,minY:-100,maxY:100};
+  const initialControls=['count','mass','speed','flowX','flowY','boxMass'];
+  const fixedTimestep = 1/180;
+
+  function randomSeeded(s) { let st = s>>>0; return function(){ st = (1664525 * st + 1013904223)>>>0; return st / 4294967296; }; }
+  function randomNormal() { const u=Math.max(1e-12,rng()), v=rng(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+  function num(id){ return Number($(id).value); }
+  function fmt(x, digits=1){ return (Math.abs(x)<0.5*10**(-digits)?0:x).toFixed(digits); }
+  function fmtSigned(x){ return (x>0?'+':'')+fmt(x,0); }
+  function magnitude(v){ return Math.hypot(v.x,v.y); }
+  function sumVectors(a,b){ return {x:a.x+b.x,y:a.y+b.y}; }
+  function gasMomentum(){ let x=0,y=0; for(const p of particles){ x+=p.m*p.vx; y+=p.m*p.vy; } return {x,y}; }
+  function auxMomentum(){ return mode==='free'?{x:boxMass*boxVelocity.x,y:boxMass*boxVelocity.y}:{...externalSupport}; }
+  function balances(){ const gas=gasMomentum(), aux=auxMomentum(); return {gas,aux,total:sumVectors(gas,aux)}; }
+  function kineticEnergy(){ let e= mode==='free' ? 0.5*boxMass*(boxVelocity.x**2+boxVelocity.y**2):0; for(const p of particles)e+=0.5*p.m*(p.vx**2+p.vy**2); return e; }
+
+  function initialize(){
+    rng = randomSeeded(seed);
+    particles=[]; collisionFlashes=[]; selectedId=-1; boxVelocity={x:0,y:0};
+    boxMass=num('boxMass'); simTime=0; pairCollisions=0; wallCollisions=0;
+    externalSupport={x:0,y:0}; history=[];lastSample=0;frameAccumulator=0;
+    const n=num('count'), massScale=num('mass'), thermal=num('speed'), fx=num('flowX'), fy=num('flowY');
+    // Small disks, with masses that are not all identical; no overlaps at initialization.
+    for(let i=0;i<n;i++){
+      const mass=massScale*(0.65+0.7*rng());
+      const radius=6.0+3.4*Math.sqrt(mass/massScale);
+      let x=BOX.w/2,y=BOX.h/2,found=false;
+      for(let attempt=0;attempt<1100;attempt++){
+        x=radius+2+rng()*(BOX.w-2*radius-4);
+        y=radius+2+rng()*(BOX.h-2*radius-4);
+        if(!particles.some(p=> (p.x-x)**2+(p.y-y)**2<(p.r+radius+2)**2)){found=true;break;}
+      }
+      if(!found){ // Extremely high density fallback: choose least-overlapping candidate.
+        let best=Infinity,bx=x,by=y;
+        for(let k=0;k<500;k++){
+          const tx=radius+2+rng()*(BOX.w-2*radius-4),ty=radius+2+rng()*(BOX.h-2*radius-4);
+          let overlap=0;
+          for(const p of particles){let d=Math.hypot(tx-p.x,ty-p.y);overlap+=Math.max(0,p.r+radius+1-d);}
+          if(overlap<best){best=overlap;bx=tx;by=ty;}
+          if(best===0)break;
+        }
+        x=bx;y=by;
+      }
+      let vx=randomNormal()*thermal*0.68+fx, vy=randomNormal()*thermal*0.68+fy;
+      const speed=Math.hypot(vx,vy), limit=thermal*2.8+Math.hypot(fx,fy);
+      if(speed>limit){vx*=limit/speed;vy*=limit/speed;}
+      particles.push({id:i,m:mass,r:radius,x,y,vx,vy,hit:0,trail:[]});
+    }
+    initialBalance=balances().total;
+    initialEnergy=kineticEnergy(); peakEnergy=initialEnergy;
+    setFixedVectorViewport();
+    recordHistory();updateModeText();updateMetrics(); drawAll();
+  }
+
+  function wallContact(p, side){
+    const n= side==='left'?{x:1,y:0}:side==='right'?{x:-1,y:0}:side==='top'?{x:0,y:1}:{x:0,y:-1};
+    const relx=p.vx-boxVelocity.x, rely=p.vy-boxVelocity.y;
+    const normalSpeed=relx*n.x+rely*n.y;
+    if(normalSpeed>=0)return;
+    const invBox=mode==='free'?1/boxMass:0;
+    const j=-(1+num('restitution'))*normalSpeed/(1/p.m+invBox);
+    const jx=j*n.x, jy=j*n.y;
+    p.vx+=jx/p.m; p.vy+=jy/p.m;
+    if(mode==='free'){
+      boxVelocity.x-=jx/boxMass;boxVelocity.y-=jy/boxMass;
+    }else{
+      // Opposite impulse transferred to the clamping supports.
+      externalSupport.x-=jx;externalSupport.y-=jy;
+    }
+    wallCollisions++; p.hit=Math.max(p.hit,0.13);
+    collisionFlashes.push({x:p.x,y:p.y,ttl:0.25,kind:'wall'});
+    if(collisionFlashes.length>80)collisionFlashes.shift();
+  }
+
+  function advance(dt){
+    for(const p of particles){
+      p.x+=(p.vx-boxVelocity.x)*dt;
+      p.y+=(p.vy-boxVelocity.y)*dt;
+      p.hit=Math.max(0,p.hit-dt);
+    }
+    // Equal-and-opposite collision impulses conserve particle-pair momentum.
+    for(let i=0;i<particles.length;i++){
+      const a=particles[i];
+      for(let j=i+1;j<particles.length;j++){
+        const b=particles[j],dx=b.x-a.x,dy=b.y-a.y,minD=a.r+b.r;
+        const dSq=dx*dx+dy*dy;
+        if(dSq>=minD*minD)continue;
+        const d=Math.sqrt(dSq),nx=d>1e-10?dx/d:1,ny=d>1e-10?dy/d:0;
+        const invA=1/a.m,invB=1/b.m,invSum=invA+invB;
+        // Mass-weighted overlap correction; positions only, not velocities.
+        const overlap=Math.max(0,minD-d)+0.0001;
+        a.x-=nx*overlap*invA/invSum; a.y-=ny*overlap*invA/invSum;
+        b.x+=nx*overlap*invB/invSum; b.y+=ny*overlap*invB/invSum;
+        const vn=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+        if(vn>=0)continue;
+        const impulse=-(1+num('restitution'))*vn/invSum;
+        a.vx-=impulse*invA*nx; a.vy-=impulse*invA*ny;
+        b.vx+=impulse*invB*nx; b.vy+=impulse*invB*ny;
+        a.hit=Math.max(a.hit,0.12);b.hit=Math.max(b.hit,0.12);
+        if(collisionFlashes.length<80)collisionFlashes.push({x:(a.x+b.x)*.5,y:(a.y+b.y)*.5,ttl:0.18,kind:'pair'});
+        pairCollisions++;
+      }
+    }
+    // The four walls of a rigid, non-rotating box share the same translational velocity.
+    for(const p of particles){
+      if(p.x<p.r){p.x=p.r;wallContact(p,'left');}
+      if(p.x>BOX.w-p.r){p.x=BOX.w-p.r;wallContact(p,'right');}
+      if(p.y<p.r){p.y=p.r;wallContact(p,'top');}
+      if(p.y>BOX.h-p.r){p.y=BOX.h-p.r;wallContact(p,'bottom');}
+    }
+    for(const f of collisionFlashes)f.ttl-=dt;
+    collisionFlashes=collisionFlashes.filter(f=>f.ttl>0);
+    simTime+=dt;
+    if(simTime-lastSample>0.1){recordHistory();lastSample=simTime;}
+  }
+
+  function recordHistory(){ const b=balances();history.push({t:simTime,gx:b.gas.x,gy:b.gas.y,ax:b.aux.x,ay:b.aux.y,tx:b.total.x,ty:b.total.y}); while(history.length>350 || (history.length>2 && simTime-history[0].t>28))history.shift(); }
+
+  function prepareCanvas(canvas,ctx){
+    const r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+    if(r.width<=0||r.height<=0)return {w:1,h:1};
+    const width=Math.round(r.width*dpr),height=Math.round(r.height*dpr);
+    if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {w:r.width,h:r.height};
+  }
+  function arrow(ctx,x1,y1,x2,y2,color,width=2,alpha=1,head=7){
+    const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy);
+    if(len<1e-6)return;
+    ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    const angle=Math.atan2(dy,dx),size=Math.min(head,Math.max(3,len*.35));
+    ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-size*Math.cos(angle-.48),y2-size*Math.sin(angle-.48));ctx.lineTo(x2-size*Math.cos(angle+.48),y2-size*Math.sin(angle+.48));ctx.closePath();ctx.fill();ctx.restore();
+  }
+  function drawSimulation(){
+    prepareCanvas(simC,simCtx);
+    const c=simCtx;c.save();c.setTransform(simC.width/CW,0,0,simC.height/CH,0,0);
+    c.clearRect(0,0,CW,CH);c.fillStyle='#091625';c.fillRect(0,0,CW,CH);
+    const grd=c.createRadialGradient(CW*.45,CH*.5,50,CW*.45,CH*.5,600);
+    grd.addColorStop(0,'#132638');grd.addColorStop(1,'#081421');c.fillStyle=grd;c.fillRect(0,0,CW,CH);
+    c.save(); c.beginPath();c.rect(BOX.x,BOX.y,BOX.w,BOX.h);c.clip();
+    c.strokeStyle='#284154';c.lineWidth=.55;c.globalAlpha=.5;
+    for(let x=BOX.x;x<BOX.x+BOX.w;x+=30){c.beginPath();c.moveTo(x,BOX.y);c.lineTo(x,BOX.y+BOX.h);c.stroke();}
+    for(let y=BOX.y;y<BOX.y+BOX.h;y+=30){c.beginPath();c.moveTo(BOX.x,y);c.lineTo(BOX.x+BOX.w,y);c.stroke();}
+    c.globalAlpha=1;
+    if(showTrails){
+      for(const p of particles){if(p.trail.length<2)continue;c.strokeStyle='#508d9b';c.lineWidth=1.1;c.beginPath();for(let i=0;i<p.trail.length;i++){const pt=p.trail[i];if(i===0)c.moveTo(BOX.x+pt.x,BOX.y+pt.y);else c.lineTo(BOX.x+pt.x,BOX.y+pt.y);}c.globalAlpha=.43;c.stroke();} c.globalAlpha=1;
+    }
+    for(const f of collisionFlashes){ const fade=Math.min(1,f.ttl/(f.kind==='wall'?.25:.18));
+      c.strokeStyle=f.kind==='wall'?`rgba(241,175,112,${.65*fade})`:`rgba(151,225,242,${.45*fade})`;
+      c.lineWidth=1.5;c.beginPath();c.arc(BOX.x+f.x,BOX.y+f.y,4+18*(1-fade),0,Math.PI*2);c.stroke();
+    }
+    for(const p of particles){
+      const x=BOX.x+p.x,y=BOX.y+p.y,ratio=p.m/num('mass');
+      const hue=190+(ratio-.65)/.7*39;
+      c.save();
+      if(p.hit>0){c.shadowBlur=18;c.shadowColor='#f6af6b';}
+      c.fillStyle=p.hit>0?'#eab27b':`hsl(${hue} 66% 62%)`;
+      c.beginPath();c.arc(x,y,p.r,0,Math.PI*2);c.fill();
+      c.shadowBlur=0;c.strokeStyle='#d5f9ff6f';c.lineWidth=1;c.stroke();
+      c.fillStyle='#e7ffffc0';c.beginPath();c.arc(x-p.r*.22,y-p.r*.24,Math.max(1.2,p.r*.17),0,Math.PI*2);c.fill();c.restore();
+      if(showArrows){
+        const scale=0.19*arrowScale;
+        const dx=p.m*p.vx*scale,dy=p.m*p.vy*scale;
+        arrow(c,x,y,x+dx,y+dy,p.id===selectedId?'#ffdfab':'#8ce4f0',p.id===selectedId?2.8:1.55,0.96,6.5);
+      }
+      if(p.id===selectedId){c.strokeStyle='#ffe1a5';c.lineWidth=1.2;c.setLineDash([4,4]);c.beginPath();c.arc(x,y,p.r+7,0,2*Math.PI);c.stroke();c.setLineDash([]);}
+    }
+    c.restore();
+    // Physical boundary of box; screen follows box translation in the free mode.
+    c.strokeStyle='#47738a';c.lineWidth=3;c.strokeRect(BOX.x,BOX.y,BOX.w,BOX.h);
+    c.strokeStyle='#7bd7df';c.lineWidth=3;
+    for(const side of [0,1])for(const top of [0,1]){
+      const x=BOX.x+side*BOX.w,y=BOX.y+top*BOX.h,sx=side?-1:1,sy=top?-1:1;
+      c.beginPath();c.moveTo(x+sx*24,y);c.lineTo(x,y);c.lineTo(x,y+sy*24);c.stroke();
+    }
+    c.fillStyle='#7795a8';c.font='10px ui-sans-serif,system-ui';
+    c.fillText(mode==='free'?'FREE-TRANSLATING BOX · CAMERA TRACKING':'FIXED WALLS · SUPPORTS CARRY IMPULSE',BOX.x+14,CH-11);
+    c.restore();
+    if(showTrails){for(const p of particles){p.trail.push({x:p.x,y:p.y});if(p.trail.length>18)p.trail.shift();}}
+  }
+
+  function setFixedVectorViewport(){
+    // Choose stable x/y limits using only the initial configuration.
+    // A cushion based on the initial momentum spread lets the gas/box arrows
+    // exchange momentum without zooming or moving the origin as time advances.
+    const total=initialBalance;
+    let sumMass=0, meanVx=0, meanVy=0;
+    for(const p of particles){sumMass+=p.m;meanVx+=p.m*p.vx;meanVy+=p.m*p.vy;}
+    meanVx/=Math.max(sumMass,1e-9);meanVy/=Math.max(sumMass,1e-9);
+    let spreadX=0,spreadY=0;
+    for(const p of particles){
+      spreadX+=(p.m*(p.vx-meanVx))**2;
+      spreadY+=(p.m*(p.vy-meanVy))**2;
+    }
+    // The fixed margins are visual allowances, not time-dependent normalization.
+    // Scale also with the initial total so nearly zero-drift states remain legible.
+    const minPadding=Math.max(120,0.14*Math.hypot(total.x,total.y));
+    const padX=Math.max(minPadding,3.2*Math.sqrt(spreadX));
+    const padY=Math.max(minPadding,3.2*Math.sqrt(spreadY));
+    const b=balances();
+    const ptsX=[0,b.gas.x,b.total.x],ptsY=[0,b.gas.y,b.total.y];
+    vectorViewport={
+      minX:Math.min(...ptsX)-padX,
+      maxX:Math.max(...ptsX)+padX,
+      minY:Math.min(...ptsY)-padY,
+      maxY:Math.max(...ptsY)+padY
+    };
+  }
+
+  function drawVectorDiagram(){
+    const {w,h}=prepareCanvas(vecC,vecCtx),c=vecCtx;
+    c.clearRect(0,0,w,h);
+    const b=balances();
+    const {minX,maxX,minY,maxY}=vectorViewport;
+    // Fixed momentum-coordinate limits for the whole run. The same numerical
+    // total vector therefore has EXACTLY the same start/end pixels every frame.
+    const left=47,right=w-17,top=13,bottom=h-34;
+    const pw=Math.max(1,right-left),ph=Math.max(1,bottom-top);
+    const scale=Math.min(pw/(maxX-minX),ph/(maxY-minY));
+    const viewW=(maxX-minX)*scale,viewH=(maxY-minY)*scale;
+    const mx=left+(pw-viewW)/2,my=top+(ph-viewH)/2;
+    const x=(v)=>mx+(v-minX)*scale;
+    const y=(v)=>my+(maxY-v)*scale;
+    const ox=x(0),oy=y(0);
+
+    c.save();
+    // Fixed coordinate frame with equal units per pixel on both axes.
+    c.font='9px ui-sans-serif,system-ui';
+    c.lineWidth=1;
+    const xStep=niceTick((maxX-minX)/4),yStep=niceTick((maxY-minY)/4);
+    const firstX=Math.ceil(minX/xStep)*xStep;
+    const firstY=Math.ceil(minY/yStep)*yStep;
+    c.textAlign='center';
+    for(let v=firstX;v<=maxX+1e-8;v+=xStep){
+      const px=x(v);
+      c.strokeStyle='#1c3346';c.setLineDash([2,5]);c.beginPath();c.moveTo(px,top);c.lineTo(px,bottom);c.stroke();c.setLineDash([]);
+      c.fillStyle='#69869a';c.fillText(fmtAxis(v),px,h-20);
+    }
+    c.textAlign='right';
+    for(let v=firstY;v<=maxY+1e-8;v+=yStep){
+      const py=y(v);
+      c.strokeStyle='#1c3346';c.setLineDash([2,5]);c.beginPath();c.moveTo(left,py);c.lineTo(right,py);c.stroke();c.setLineDash([]);
+      c.fillStyle='#69869a';c.fillText(fmtAxis(v),left-5,py+3);
+    }
+    c.strokeStyle='#4f7184';c.lineWidth=1.2;
+    c.beginPath();
+    if(oy>=top&&oy<=bottom){c.moveTo(left,oy);c.lineTo(right,oy);}
+    if(ox>=left&&ox<=right){c.moveTo(ox,top);c.lineTo(ox,bottom);}
+    c.stroke();
+    c.fillStyle='#829fb1';c.font='10px ui-sans-serif,system-ui';c.textAlign='left';
+    c.fillText('Pₓ',right-17,h-20);c.fillText('Pᵧ',left+6,top+10);
+
+    // Clip only the moving summand arrows when they leave the static viewport.
+    c.save();c.beginPath();c.rect(left,top,pw,ph);c.clip();
+    const gx=x(b.gas.x),gy=y(b.gas.y);
+    const tx=x(b.total.x),ty=y(b.total.y);
+    arrow(c,ox,oy,gx,gy,colors.cyan,2.3,.95,9);
+    arrow(c,gx,gy,tx,ty,colors.amber,2.3,.95,9);
+    arrow(c,ox,oy,tx,ty,colors.mint,3.1,1,11);
+    const dot=(px,py,color)=>{c.fillStyle=color;c.beginPath();c.arc(px,py,3.3,0,Math.PI*2);c.fill();};
+    dot(ox,oy,'#bcc8d0');dot(gx,gy,colors.cyan);dot(tx,ty,colors.mint);
+    c.restore();
+
+    const legY=h-7,parts=[[colors.cyan,'Σpᵢ'],[colors.amber,mode==='free'?'Pbox':'Jsupport'],[colors.mint,'Ptotal']];
+    c.font='10px ui-sans-serif,system-ui';c.textAlign='left';let xx=15;
+    for(const [color,label] of parts){c.fillStyle=color;c.fillRect(xx,legY-6,14,2);c.fillStyle='#a5bbca';c.fillText(label,xx+19,legY);xx+=c.measureText(label).width+40;}
+    c.restore();
+  }
+  function fmtAxis(n){
+    if(Math.abs(n)<1e-8)return '0';
+    return Math.abs(n)>=1000?fmt(n/1000,1)+'k':fmt(n,0);
+  }
+  function niceTick(step){ if(!isFinite(step)||step<=0)return 1;const e=Math.pow(10,Math.floor(Math.log10(step)));const m=step/e;return (m<=1?1:m<=2?2:m<=5?5:10)*e; }
+  function drawHistory(){
+    const {w,h}=prepareCanvas(histC,histCtx),c=histCtx;
+    c.clearRect(0,0,w,h);const left=48,right=w-15,top=13,bottom=h-30;
+    if(right-left<30||bottom-top<30)return;
+    const values=[];
+    const suf=chartComponent==='x'?'x':'y';
+    for(const row of history){values.push(row['g'+suf],row['a'+suf],row['t'+suf]);}
+    values.push(0);
+    let min=Math.min(...values),max=Math.max(...values);
+    let pad=Math.max(10,(max-min)*.22);min-=pad;max+=pad;
+    if(max-min<1){min-=10;max+=10;}
+    const start=Math.max(0,simTime-28),end=Math.max(10,simTime,start+2);
+    const x=(t)=>left+(t-start)/(end-start)*(right-left);
+    const y=(v)=>bottom-(v-min)/(max-min)*(bottom-top);
+    c.font='10px ui-sans-serif,system-ui';c.lineWidth=1;
+    const tick=niceTick((max-min)/4);const n0=Math.ceil(min/tick)*tick;
+    for(let v=n0;v<=max+tick*.001;v+=tick){let yy=y(v);c.strokeStyle='#23394a';c.setLineDash([2,4]);c.beginPath();c.moveTo(left,yy);c.lineTo(right,yy);c.stroke();c.setLineDash([]);c.fillStyle='#7290a3';c.textAlign='right';c.fillText(Math.abs(v)>=100?Math.round(v).toString():fmt(v,1),left-8,yy+3);}
+    c.textAlign='center';for(let t=Math.ceil(start/5)*5;t<=end;t+=5){const xx=x(t);c.fillStyle='#7290a3';c.fillText(t.toFixed(0)+'s',xx,bottom+19);}
+    c.save();c.beginPath();c.rect(left,top,right-left,bottom-top);c.clip();
+    function path(key,color,weight){if(history.length<2)return;c.beginPath();let began=false;for(const row of history){if(row.t<start)continue;const xx=x(row.t),yy=y(row[key]);if(!began){c.moveTo(xx,yy);began=true;}else c.lineTo(xx,yy);}c.strokeStyle=color;c.lineWidth=weight;c.stroke();}
+    path('a'+suf,colors.amber,1.8);path('g'+suf,colors.cyan,1.9);path('t'+suf,colors.mint,2.7);
+    c.restore();
+    c.fillStyle='#6a899e';c.font='10px ui-sans-serif,system-ui';c.textAlign='left';c.fillText(suf==='x'?'Pₓ':'Pᵧ',left+5,top+9);
+  }
+  function drawAll(){drawSimulation();drawVectorDiagram();drawHistory();}
+
+  function updateModeText(){
+    const free=mode==='free';
+    $('modeFree').classList.toggle('active',free);$('modeFixed').classList.toggle('active',!free);
+    $('modeFree').setAttribute('aria-pressed',free?'true':'false');$('modeFixed').setAttribute('aria-pressed',free?'false':'true');
+    $('modeDescription').innerHTML=free?'The box can recoil and translate without external forces. <strong style="color:#d2edf3">Particles + box</strong> form a closed system.':'The walls are held in place by external supports. <strong style="color:#d2edf3">Particles alone</strong> do not conserve momentum.';
+    $('statusText').textContent=free?'Isolated system · momentum conserved':'Anchored box · wall impulses are external';
+    $('totalMetricLabel').textContent=free?'Total |P|':'Balance |P + J|';
+    $('secondMetricLabel').textContent=free?'Box |Pᵦ|':'Support impulse |J|';
+    $('hudSecondName').textContent=free?'Box momentum':'Support impulse (cumulative)';
+    $('vectorCaption').textContent=free?'Fixed axes: particle momentum + box recoil = constant total. No automatic zoom or axis shifting.':'Fixed axes: particle momentum + cumulative support impulse = initial momentum. No automatic zoom.';
+    $('chartNote').textContent=free?'The total remains constant as gas and box exchange momentum.':'The particle momentum changes; including support impulse keeps the balance fixed.';
+    $('lawTitle').textContent=free?'Isolated system · conservation law':'Clamped system · momentum balance';
+    $('lawEquation').innerHTML=free?'P = Σᵢ mᵢ vᵢ + M V<sub>box</sub> = constant':'Σᵢ mᵢ vᵢ + J<sub>support</sub> = initial P';
+    $('lawText').innerHTML=free?'<strong>Particle–particle collisions</strong> exchange equal and opposite impulses. Collisions with the freely translating box exchange momentum with the box, leaving their combined momentum unchanged.':'<strong>Fixed walls exert external impulses on the particles.</strong> Particle momentum is therefore not conserved. J<sub>support</sub> is the accumulated opposite wall impulse, not the instantaneous momentum of an immovable wall.';
+  }
+  function updateMetrics(){
+    const b=balances(),error=Math.hypot(b.total.x-initialBalance.x,b.total.y-initialBalance.y);
+    const normalizedError=error/Math.max(1,magnitude(initialBalance))*100;
+    const energyChange=(kineticEnergy()-initialEnergy)/Math.max(initialEnergy,1)*100;
+    $('totalMag').textContent=fmt(magnitude(b.total),2);
+    $('totalComponent').textContent='Px '+fmt(b.total.x)+' · Py '+fmt(b.total.y);
+    $('gasMag').textContent=fmt(magnitude(b.gas),2);
+    $('gasComponent').textContent='Px '+fmt(b.gas.x)+' · Py '+fmt(b.gas.y);
+    $('boxMag').textContent=fmt(magnitude(b.aux),2);
+    $('boxComponent').textContent='Px '+fmt(b.aux.x)+' · Py '+fmt(b.aux.y);
+    $('driftMag').textContent=normalizedError<.0005?'<0.001%':fmt(normalizedError,3)+'%';
+    $('energyLabel').textContent='Kinetic energy Δ '+fmt(energyChange,2)+'%';
+    $('hudGas').textContent='('+fmt(b.gas.x)+', '+fmt(b.gas.y)+')';
+    $('hudBox').textContent='('+fmt(b.aux.x)+', '+fmt(b.aux.y)+')';
+    $('simClock').textContent='t = '+fmt(simTime,2)+' s';
+    $('collisionsLabel').textContent=(pairCollisions+wallCollisions).toLocaleString()+' collisions';
+    const p=particles.find(p=>p.id===selectedId);
+    $('inspectBox').hidden=!p;
+    if(p){ $('inspectBox').innerHTML='<strong>Particle #'+(p.id+1)+'</strong><div>Mass: '+fmt(p.m,2)+'</div><div>v = ('+fmt(p.vx)+', '+fmt(p.vy)+')</div><div>p = ('+fmt(p.m*p.vx)+', '+fmt(p.m*p.vy)+')</div>'; }
+  }
+  function frame(now){
+    if(!lastFrame)lastFrame=now;
+    const realDelta=Math.min(0.05,Math.max(0,(now-lastFrame)/1000));lastFrame=now;
+    if(playing){
+      frameAccumulator+=realDelta*num('timeRate');
+      let k=0;
+      while(frameAccumulator>=fixedTimestep&&k<24){advance(fixedTimestep);frameAccumulator-=fixedTimestep;k++;}
+      if(k===24)frameAccumulator=0;
+    }
+    updateMetrics();drawAll();requestAnimationFrame(frame);
+  }
+  function setPlaying(value){playing=value;$('playLabel').textContent=playing?'Pause':'Play';$('playPause').querySelector('svg').innerHTML=playing?'<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>':'<path d="M8 5v14l11-7z"/>';}
+  function setMode(m){if(mode===m)return;mode=m;initialize();}
+  $('modeFree').addEventListener('click',()=>setMode('free'));
+  $('modeFixed').addEventListener('click',()=>setMode('fixed'));
+  $('playPause').addEventListener('click',()=>setPlaying(!playing));
+  $('step').addEventListener('click',()=>{setPlaying(false);for(let i=0;i<3;i++)advance(fixedTimestep);updateMetrics();drawAll();});
+  $('restart').addEventListener('click',initialize);
+  $('randomize').addEventListener('click',()=>{seed=(Math.random()*0xffffffff)>>>0;initialize();});
+  $('chartX').addEventListener('click',()=>{chartComponent='x';$('chartX').classList.add('active');$('chartY').classList.remove('active');drawHistory();});
+  $('chartY').addEventListener('click',()=>{chartComponent='y';$('chartY').classList.add('active');$('chartX').classList.remove('active');drawHistory();});
+  const formatValue=(id)=>{
+    const v=num(id);
+    if(id==='mass')return fmt(v,1);
+    if(id==='restitution')return fmt(v,2)+(v===1?' · elastic':' · inelastic');
+    if(id==='timeRate'||id==='arrowScale')return fmt(v,id==='arrowScale'?2:2)+'×';
+    if(id==='flowX'||id==='flowY')return fmtSigned(v);
+    return fmt(v,0);
+  };
+  for(const id of [...initialControls,'restitution','timeRate','arrowScale']){
+    const el=$(id);$(id+'Value').textContent=formatValue(id);
+    el.addEventListener('input',()=>{$(id+'Value').textContent=formatValue(id);if(id==='arrowScale')arrowScale=num(id);});
+    if(initialControls.includes(id))el.addEventListener('change',initialize);
+  }
+  $('showArrows').addEventListener('change',()=>{showArrows=$('showArrows').checked;drawAll();});
+  $('showTrails').addEventListener('change',()=>{showTrails=$('showTrails').checked;for(const p of particles)p.trail=[];drawAll();});
+  simC.addEventListener('click',(ev)=>{
+    const r=simC.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*CW-BOX.x,y=(ev.clientY-r.top)/r.height*CH-BOX.y;
+    let closest=null,closestD=Infinity;
+    for(const p of particles){const d=Math.hypot(p.x-x,p.y-y);if(d<Math.max(16,p.r+6)&&d<closestD){closest=p;closestD=d;}}
+    selectedId=closest?(selectedId===closest.id?-1:closest.id):-1;
+    updateMetrics();drawSimulation();
+  });
+  document.addEventListener('keydown',(ev)=>{if(ev.target instanceof HTMLInputElement || ev.target instanceof HTMLButtonElement)return;if(ev.code==='Space'){ev.preventDefault();setPlaying(!playing);}if(ev.key.toLowerCase()==='r')initialize();});
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>drawAll()).observe(document.querySelector('.leftCol'));
+  // Exposed only for local automated testing / reproducibility; no dependencies or network.
+  window.__momentumLab={snapshot:()=>({mode,time:simTime,...balances(),initialBalance:{...initialBalance},energy:kineticEnergy(),initialEnergy,collisions:pairCollisions+wallCollisions}),step:(n=1)=>{for(let i=0;i<n;i++)advance(fixedTimestep);return balances();},pause:()=>setPlaying(false),mode:setMode,reset:initialize};
+  initialize();setPlaying(true);requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

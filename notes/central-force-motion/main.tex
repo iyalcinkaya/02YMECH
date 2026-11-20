@@ -550,7 +550,7 @@ The center of mass is the weighted average of the positions of the two particles
     \[
         \mathbf{r} = \mathbf{r}_1 - \mathbf{r}_2.
     \]
-By choosing the center of mass as the origin, 
+To describe the positions of these particles, we need to specify $\mathbf{r}_1 \text{ and } \mathbf{r}_2.$; $6$ real numbers in total. Alternatively, we can specify the center of mass $\mathbf{R}$ and the relative position $\mathbf{r}$; $6$ real numbers in total again. However, if we are not intereted in how the center of mass moves, we can choose it as the origin. In teo-body problems, it is common to choose the center of mass as the origin of the coordinate system since what matters is the relative motion of the two particles. In this case, we have
 \[
     \mathbf{R} = 0 \implies m_1\mathbf{r}_1 + m_2\mathbf{r}_2 = 0 \implies \mathbf{r}_1 = -\frac{m_2}{m_1}\mathbf{r}_2.
 \]
@@ -656,8 +656,7 @@ What is $k$? Although we will cover it in more detail Chapter 7: Gravitation, fo
 \subsubsection*{Elliptical orbit: $0 < \epsilon < 1$ --- Planetary Motion}
 When the eccentricity is between 0 and 1, the orbit is an ellipse and center of force is at one focus as seen in Fig.~\ref{fig:ellipse}(a). The mechanical energy is negative, and the particle oscillates between a minimum distance $r_{\min}$ and a maximum distance $r_{\max}$ from the center of force.  The particle moves faster when it is closer to the center of force and slower when it is farther away, in accordance with equal areas in equal times consequence given in Sec.\ref{sec:direct-consequences}.
 
-
-Minimum and maximum distances occur at $\theta = 0$ and $\theta = \pi$:
+As we have set it previously, the angle $\theta=0$ corresponds to the point of closest approach, $r=r_{\min}$. Geometrically, $r_{\min}$ is the minimum distance from the center of force to the particle and it is called \emph{pericenter}. The maximum distance from the center of force to the particle is called \emph{apocenter} and it is denoted by $r_{\max}$. For elliptical orbits, the pericenter and apocenter are also called \emph{perihelion} and \emph{aphelion}, respectively. Minimum and maximum distances occur at $\theta = 0$ and $\theta = \pi$:
 \[
 r_\text{min} = \frac{\alpha}{1+\epsilon},\qquad r_\text{max} = \frac{\alpha}{1-\epsilon}.
 \]
@@ -728,11 +727,6 @@ When the eccentricity is equal to 1, the orbit is a parabola. The mechanical ene
 \subsubsection*{Hyperbolic orbit: $\epsilon > 1$}
 When the eccentricity is greater than 1, the orbit is a hyperbola. The mechanical energy is positive, and the particle approaches the center of force from infinity, reaches a minimum distance $r_{\min}$, and then escapes back to infinity. The trajectory is open, and the particle moves along one branch of the hyperbola. The speed of the particle increases as it approaches the center of force and decreases as it moves away, but it never reaches zero.
 
-As we have set it previously, the angle $\theta=0$ corresponds to the point of closest approach, $r=r_{\min}$ as seen in Fig.~\ref{fig:conic-sections}(b). Geometrically, $r_{\min}$ is the minimum distance from the center of force to the particle and it is called \emph{pericenter}. The maximum distance from the center of force to the particle is called \emph{apocenter} and it is denoted by $r_{\max}$. For elliptical orbits, the pericenter and apocenter are also called \emph{perihelion} and \emph{aphelion}, respectively. The pericenter and apocenter can be calculated from the trajectory equation as
-\[
-    r_{\min} = \frac{\alpha}{1+\epsilon}, \qquad r_{\max} = \frac{\alpha}{1-\epsilon}.
-\]
-
 \subsection{Eccentricity and Energy}
 The eccentricity $\epsilon$ is related to the total energy $E$ of the particle. For bound orbits, the total energy is negative, and the eccentricity satisfies $0 \leq \epsilon < 1$. For unbound orbits, the total energy is non-negative, and the eccentricity satisfies $\epsilon \geq 1$. The relationship between eccentricity and energy as we have defined it is given by
 \[
@@ -771,7 +765,7 @@ Therefore, the proportionality constant is not the same for all planets; it chan
 
 \section{Final Remarks}
 
-Now kick back and relax for a minute or more and remember how we have derived, without explicit usage of any empirical data, Kepler's laws of planetary motion from a few axioms made by Newton. No doubt, the axioms are inspired by the accumulated empirical data, they act like as if they were the distilled essence of the observations, so that by combining and mixing them together, we can explain a huge amount of phenomena in the universe.
+Now kick back and relax for a minute or more and remember how we have derived, without explicit usage of any empirical data, Kepler's laws of planetary motion from a few axioms made by Newton. No doubt, the axioms \emph{might be} inspired by the accumulated empirical data such thatt they act like as if they were the distilled essence of the observations, so that by combining and mixing them together, we can explain a huge amount of phenomena in the universe.
 
 The author leaves the appreciation of the power of definitions to the reader.
 
@@ -781,6 +775,376 @@ The author leaves the appreciation of the power of definitions to the reader.
 
 
 \section{Worked Examples}
+
+\subsection{Attractive and Repulsive Forces}
+Decide if the following forces are attractive or repulsive for $k > 0$.
+
+ (a) \( \mathbf{F} = -\frac{3k}{\sqrt{r}} \mathbf{e}_r \) ~~(b) \( \mathbf{F} = 4kr^2\mathbf{e}_r \)
+~~(c) \( \mathbf{F} = r(r-2)\mathbf{e}_r \)
+
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item[(a)] The force is attractive because the negative sign indicates that the force is directed towards the origin, and the factor $\frac{3k}{\sqrt{r}}$ is positive for $k > 0$.
+    \item[(b)] The force is repulsive because the positive sign indicates that the force is directed away from the origin, and the factor $4kr^2$ is positive for $k > 0$.
+    \item[(c)] The force is attractive for $0 < r < 2$ and repulsive for $r > 2$. At $r = 0$, the force is undefined, and at $r = 2$, the force is zero.
+\end{enumerate}
+
+
+\subsection{Velocity and Acceleration in Polar Coordinates}
+
+A particle moves in a plane according to
+\[
+r(t) = t + \frac{1}{2}t^2,
+\qquad
+\theta(t) = \frac{1}{4}t^2,
+\]
+where $r$ is measured in meters, $\theta$ in radians,
+and $t$ in seconds. Find the velocity and acceleration vectors in polar coordinates
+at $t = 2\,\mathrm{s}$.
+
+\textbf{Solution:}
+
+The velocity and acceleration vectors in polar coordinates are
+\[
+\mathbf{v} = \dot{r}\,\hat{\mathbf{e}}_r
++ r\dot{\theta}\,\hat{\mathbf{e}}_\theta,
+\]
+\[
+\mathbf{a} =
+(\ddot{r} - r\dot{\theta}^2)\,\hat{\mathbf{e}}_r
++ (r\ddot{\theta} + 2\dot{r}\dot{\theta})
+\,\hat{\mathbf{e}}_\theta.
+\]
+
+Taking the derivatives, we obtain
+\[
+\dot{r} = 1+t, \qquad \ddot{r} = 1,
+\]
+\[
+\dot{\theta} = \frac{t}{2},
+\qquad
+\ddot{\theta} = \frac{1}{2}.
+\]
+
+At $t = 2\,\mathrm{s}$,
+\[
+r = 4\,\mathrm{m}, \qquad
+\dot{r} = 3\,\mathrm{m/s}, \qquad
+\ddot{r} = 1\,\mathrm{m/s^2},
+\]
+\[
+\dot{\theta} = 1\,\mathrm{rad/s}, \qquad
+\ddot{\theta} = \frac{1}{2}\,\mathrm{rad/s^2}.
+\]
+
+Therefore, the velocity is
+\[
+\mathbf{v}
+= 3\,\hat{\mathbf{e}}_r
++ 4\,\hat{\mathbf{e}}_\theta
+\quad (\mathrm{m/s}).
+\]
+
+The acceleration is
+\begin{align*}
+\mathbf{a}
+&= (1 - 4\cdot 1^2)\,\hat{\mathbf{e}}_r \\
+&\quad + \left(4\cdot\frac{1}{2}
++ 2\cdot 3\cdot 1\right)\hat{\mathbf{e}}_\theta.
+\end{align*}
+
+Hence,
+\[
+\boxed{
+\mathbf{v}
+= (3\,\hat{\mathbf{e}}_r
++ 4\,\hat{\mathbf{e}}_\theta)\,\mathrm{m/s}
+}
+\]
+\[
+\boxed{
+\mathbf{a}
+= (-3\,\hat{\mathbf{e}}_r
++ 8\,\hat{\mathbf{e}}_\theta)\,\mathrm{m/s^2}
+}
+\]
+
+
+
+\subsection{Center of Mass of the Sun--Earth System}
+
+Given that the mass of the Sun is
+\(m_\odot = 1.989 \times 10^{30}\,\mathrm{kg}\)
+and the mass of the Earth is
+\(m_\oplus = 5.972 \times 10^{24}\,\mathrm{kg}\),
+calculate the position of the center of mass of the Sun--Earth system.
+Assume that the distance between the Sun and Earth is
+\(d = 1.496 \times 10^{11}\,\mathrm{m}\).
+
+\textbf{Solution:}
+
+The center of mass is given by
+\[
+\vec{R}_{\mathrm{CM}} =
+\frac{m_\odot \vec{r}_\odot + m_\oplus \vec{r}_\oplus}
+{m_\odot + m_\oplus}.
+\]
+
+Taking the Sun as the origin and the positive direction toward
+the Earth, we have
+\[
+r_\odot = 0, \qquad r_\oplus = d.
+\]
+
+Thus,
+\[
+R_{\mathrm{CM}} =
+\frac{m_\oplus d}{m_\odot + m_\oplus}.
+\]
+
+Substituting the given values,
+\[
+R_{\mathrm{CM}} =
+\frac{(5.972 \times 10^{24})(1.496 \times 10^{11})}
+{1.989 \times 10^{30} + 5.972 \times 10^{24}}.
+\]
+
+Therefore,
+\[
+\boxed{
+R_{\mathrm{CM}} \approx 4.49 \times 10^5\,\mathrm{m}
+= 449\,\mathrm{km}.
+}
+\]
+
+The center of mass is located approximately \(449\,\mathrm{km}\)
+from the center of the Sun toward the Earth. Since the Sun's radius
+is approximately \(6.96 \times 10^5\,\mathrm{km}\), the center of
+mass lies well inside the Sun.
+
+\subsection{Virial Theorem}
+Show that for a particle moving under the influence of an attractive inverse-square central force, the time-averaged kinetic energy is equal to minus one-half of the time-averaged potential energy; that is, show that
+\[
+\langle T \rangle = -\frac{1}{2}\langle U \rangle.
+\]
+
+\textbf{Solution:}
+Consider that we have a collection of particles with momenta $\mathbf{p}_i$ and positions $\mathbf{r}_i$. Let us define a new quantity:
+\[
+S \coloneqq \sum_i \mathbf{p}_i \cdot \mathbf{r}_i
+\]
+Let us take the time derivative of this quantity:
+\[
+\dot{S} = \sum_i \left(\mathbf{p}_i \cdot \dot{\mathbf{r}}_i + \dot{\mathbf{p}}_i \cdot \mathbf{r}_i\right)
+\]
+The time average of $\dot{S}$ over a time interval $\tau$ is
+\[
+\langle \dot{S} \rangle = \frac{1}{\tau}\int_0^\tau \frac{dS}{dt}\,dt = \frac{1}{\tau}\left[S(\tau)-S(0)\right].
+\]
+If the system is periodic and $\tau$ is some integer multiple of the period, then $S(\tau)=S(0)$ and
+\[
+\langle \dot{S} \rangle = 0.
+\]
+If the system is not periodic, but the motion is bounded ($S$ is finite), then we can always keep $\tau$ as long as possible to make the difference $S(\tau)-S(0)$, and hence, $\langle \dot{S} \rangle$, negligible. Therefore, for a bounded system, we can write
+\[
+\lim_{\tau\to\infty}\frac{S(\tau)-S(0)}{\tau} = \lim_{\tau \to \infty} \langle \dot{S} \rangle  = 0.
+\]
+
+Therefore, we can write
+\[
+\langle \dot{S} \rangle = \left < \sum_i  \mathbf{p}_i \cdot \dot{\mathbf{r}}_i \right > + \left  <\sum_i \dot{\mathbf{p}}_i \cdot \mathbf{r}_i \right > = 0 \implies \left < \sum_i  \mathbf{p}_i \cdot \dot{\mathbf{r}}_i \right > = -\left  <\sum_i \dot{\mathbf{p}}_i \cdot \mathbf{r}_i \right >.
+\]
+
+\[
+\left < \sum_i  \mathbf{p}_i \cdot \dot{\mathbf{r}}_i \right > = \left < \sum_i  m_i \dot{\mathbf{r}}_i \cdot \dot{\mathbf{r}}_i \right > =  \left < 2 \sum_i  K_i \right >
+\]
+where $K_i$ is the kinetic energy of the $i$-th particle. Therefore,
+\[
+\langle K \rangle = -\frac{1}{2} \left  <\sum_i \mathbf{F}_i \cdot \mathbf{r}_i \right >.
+\]
+The expression in the right-hand side is called \emph{virial} of the system as coined by Clausius in 1870. Therefore, \emph{virial theorem} states that the time-averaged kinetic energy of a bounded system of particles is equal to its virial.
+
+If the potential energy is given in terms of a power law, $U(r) = \alpha r^n$, then the force is given by
+\[
+\mathbf{F} = -\frac{\partial U}{\partial r} = -\alpha n r^{n-1}\mathbf{e}_r.
+\]
+Then, the virial can be expressed as
+\[
+\sum_i \mathbf{F}_i \cdot \mathbf{r}_i = \sum_i -\alpha n r_i^{n-1}\mathbf{e}_{r,i} \cdot r_i\mathbf{e}_{r,i} = -\sum_i \alpha n r_i^n = -n \sum_i U_i = -n U.
+\]
+Therefore, the average kinetic energy can be expressed in terms of the average potential energy as
+\[
+\langle K \rangle = -\frac{1}{2} \left <\sum_i \mathbf{F}_i \cdot \mathbf{r}_i \right > = -\frac{1}{2} \left < -n U \right > = \frac{n}{2} \langle U \rangle.
+\]
+If a particle moves under the influence of an attractive inverse-square central force, then $n = -1$, and we can write
+\[
+\langle K \rangle = -\frac{1}{2} \langle U \rangle \implies \langle K \rangle = -\frac{1}{2} \langle U \rangle.
+\]
+
+\subsection{Optimal Orbital Maneuver (Oberth Effect)}
+
+A spacecraft moves along an elliptical orbit around a planet under
+the influence of gravity. The spacecraft is equipped with a thruster
+that can produce a single instantaneous change in its velocity of
+fixed magnitude $\Delta v$.
+
+At which point along the orbit should the thruster be fired, and
+in which direction, to maximize the increase in the spacecraft's
+mechanical energy? What should be done to maximize the decrease
+in energy?
+
+\textbf{Solution:}
+
+The mechanical energy of the spacecraft is
+\[
+E=\frac{1}{2}mv^2-\frac{GMm}{r},
+\]
+where $M$ is the mass of the planet, $m$ is the mass of the spacecraft, and $v$ is its orbital speed. Since the thruster fires instantaneously, the position of the
+spacecraft does not change during the maneuver. Therefore,
+the gravitational potential energy remains unchanged.
+
+The change in mechanical energy is thus
+\[
+\Delta E
+=\frac{1}{2}m\left|\mathbf{v}+\Delta\mathbf{v}\right|^2
+-\frac{1}{2}mv^2 = \frac{1}{2}m\left( (\mathbf{v}+\Delta\mathbf{v}) \cdot (\mathbf{v}+\Delta\mathbf{v}) - v^2\right) = \frac{1}{2}m (v^2 + 2\mathbf{v}\cdot\Delta\mathbf{v} + (\Delta v)^2 - v^2)
+\]
+Therefore, we can write
+\[
+\Delta E
+=m\mathbf{v}\cdot\Delta\mathbf{v}
++\frac{1}{2}m(\Delta v)^2.
+\]
+
+If $\theta$ is the angle between the initial velocity and the
+change in velocity, then
+\[
+\boxed{
+\Delta E=mv\Delta v\cos\theta
++\frac{1}{2}m(\Delta v)^2.
+}
+\]
+
+For a fixed $\Delta v$, the energy increase is maximized when
+$\cos\theta=1$, meaning that the thruster accelerates the
+spacecraft in the direction of its motion.
+
+In this case,
+\[
+\Delta E_{\max}
+=mv\Delta v+\frac{1}{2}m(\Delta v)^2.
+\]
+
+We see that the energy gain increases with the initial orbital
+speed $v$. Since the spacecraft reaches its maximum speed at
+periapsis (the point closest to the planet), the optimal maneuver
+is to fire the thruster at periapsis in the direction of motion.
+
+Similarly, to maximize the decrease in mechanical energy,
+the thruster should fire opposite to the direction of motion,
+also at periapsis. In this case,
+\[
+\Delta E=-mv\Delta v+\frac{1}{2}m(\Delta v)^2,
+\]
+which is negative provided $\Delta v<2v$.
+
+This phenomenon is known as the \emph{Oberth effect}: for the
+same change in velocity, a spacecraft gains more mechanical
+energy when the maneuver is performed at a higher orbital speed.
+
+\subsection{Maximum Radial Velocity in an Elliptical Orbit}
+
+An Earth satellite moves in an elliptical orbit under the influence
+of Earth's gravitational attraction. The orbit has period $\tau$,
+eccentricity $\epsilon$, and semi-major axis $a$.
+Show that the maximum radial velocity of the satellite is
+\[
+v_r^{\max}=\frac{2\pi a\epsilon}{\tau\sqrt{1-\epsilon^2}}.
+\]
+
+\textbf{Solution:}
+
+The equation of an elliptical orbit in polar coordinates is
+\[
+r(\theta)=\frac{a(1-\epsilon^2)}{1+\epsilon\cos\theta},
+\]
+where $\theta$ is the angle measured from periapsis.
+
+The radial velocity is
+\[
+v_r=\dot r=\frac{dr}{d\theta}\dot\theta.
+\]
+Differentiating the orbital equation gives
+\[
+\frac{dr}{d\theta}
+=\frac{a(1-\epsilon^2)\epsilon\sin\theta}
+{(1+\epsilon\cos\theta)^2}.
+\]
+
+From conservation of angular momentum,
+\[
+r^2\dot\theta=h,
+\]
+where $h=r^2\dot\theta$ is the specific angular momentum.
+Therefore,
+\[
+\dot\theta
+=\frac{h}{r^2}
+=\frac{h(1+\epsilon\cos\theta)^2}
+{a^2(1-\epsilon^2)^2}.
+\]
+
+Substituting into the expression for radial velocity, we obtain
+\[
+v_r
+=\frac{h\epsilon\sin\theta}{a(1-\epsilon^2)}.
+\]
+
+The radial velocity reaches its maximum positive value when
+$\sin\theta=1$, corresponding to $\theta=\pi/2$. Thus,
+\[
+v_r^{\max}
+=\frac{h\epsilon}{a(1-\epsilon^2)}.
+\]
+
+To express $h$ in terms of the orbital parameters, we use
+Kepler's second law, which states that the areal velocity is constant:
+\[
+\frac{dA}{dt}=\frac{h}{2}.
+\]
+
+Since the area of an ellipse is $A=\pi ab$, where
+$b=a\sqrt{1-\epsilon^2}$ is the semi-minor axis, the total
+area swept out during one orbital period is
+\[
+\frac{h}{2}\tau=\pi ab.
+\]
+Therefore,
+\[
+h=\frac{2\pi ab}{\tau}
+=\frac{2\pi a^2\sqrt{1-\epsilon^2}}{\tau}.
+\]
+
+Substituting this expression into the maximum radial velocity gives
+\[
+v_r^{\max}
+=\frac{2\pi a^2\sqrt{1-\epsilon^2}}{\tau}
+\frac{\epsilon}{a(1-\epsilon^2)}.
+\]
+
+Finally, simplifying, we obtain
+\[
+\boxed{
+v_r^{\max}
+=\frac{2\pi a\epsilon}{\tau\sqrt{1-\epsilon^2}}.
+}
+\]
+
+The maximum outward radial velocity occurs at $\theta=\pi/2$,
+while the maximum inward radial speed occurs at
+$\theta=3\pi/2$. At periapsis and apoapsis, the radial
+velocity vanishes.
 
 \subsection{Attractive Inverse-Square Force}
 
@@ -908,56 +1272,260 @@ At equality, the two radii coincide and the orbit is circular:
 \[
     r_0=\left(\frac{L^2}{mk}\right)^{1/4}.
 \]
-Above this energy, the radius oscillates between two distinct
-turning points.
+Above this energy, the radius oscillates between two distinct turning points.
 
-Unlike the inverse-square potential, the harmonic potential
-does not allow escape to infinity at any finite energy.
-Thus, the sign of the total energy alone is not a universal
-criterion for bounded motion; the shape and chosen zero
-of the potential must be taken into account.
+Unlike the inverse-square potential, the harmonic potential does not allow escape to infinity at any finite energy. Thus, the sign of the total energy alone is not a universal criterion for bounded motion; the shape and chosen zero of the potential must be taken into account.
 
 
 
 
 
 
+\subsection{Central Force Producing a Logarithmic Spiral}
 
-
-
-
-
-\subsection{Attractive and Repulsive Forces}
-Decide if the following forces are attractive or repulsive for $k > 0$.
-\begin{enumerate}
-    \item[(a)] \( \mathbf{F} = -\frac{3k}{\sqrt{r}} \mathbf{e}_r \)
-    \item[(b)] \( \mathbf{F} = 4kr^2\mathbf{e}_r \)
-    \item[(c)] \( \mathbf{F} = r(r-2)\mathbf{e}_r \)
-\end{enumerate}
-
-\textbf{Solution:}
-
-\begin{enumerate}
-    \item[(a)] The force is attractive because the negative sign indicates that the force is directed towards the origin, and the factor $\frac{3k}{\sqrt{r}}$ is positive for $k > 0$.
-    \item[(b)] The force is repulsive because the positive sign indicates that the force is directed away from the origin, and the factor $4kr^2$ is positive for $k > 0$.
-    \item[(c)] The force is attractive for $0 < r < 2$ and repulsive for $r > 2$. At $r = 0$, the force is undefined, and at $r = 2$, the force is zero.
-\end{enumerate}
-
-\subsection{}
-If a particle moves in a plane according to expressions 
+A particle of mass $m$ moves under the influence of a central force
+along a logarithmic spiral trajectory given by
 \[
-\theta(t) = 0.3t+0.2t^2, \quad r(t) = 0.5t+0.4t^2
+r=r_0e^{k\theta},
 \]
-Find its velocity and acceleration at $t = 2$ s.
+where $r_0>0$ and $k\neq 0$ are constants. The particle has a
+constant nonzero angular momentum $L=mr^2\dot{\theta}$ about the
+force center, and its initial conditions are $r(0)=r_0$ and
+$\theta(0)=0$.
+
+\begin{enumerate}
+    \item[(a)] Determine the central force law $F(r)$.
+    \item[(b)] Find the time dependence of the polar coordinates
+    $r(t)$ and $\theta(t)$.
+    \item[(c)] Determine the total mechanical energy, taking
+    $U(\infty)=0$, and discuss whether the motion is bounded
+    or unbounded.
+\end{enumerate}
 
 \textbf{Solution:}
 
+\textbf{(a)} We use Binet's equation for motion under a central force:
+\[
+\frac{d^2u}{d\theta^2}+u
+=-\frac{F(1/u)}{mh^2u^2},
+\]
+where
+\[
+u=\frac{1}{r},
+\qquad
+h=r^2\dot{\theta}=\frac{L}{m}
+\]
+is the specific angular momentum.
+
+From the given trajectory,
+\[
+r=r_0e^{k\theta},
+\]
+we obtain
+\[
+u=\frac{1}{r_0}e^{-k\theta}.
+\]
+Differentiating twice with respect to $\theta$ gives
+\[
+\frac{du}{d\theta}=-ku,
+\qquad
+\frac{d^2u}{d\theta^2}=k^2u.
+\]
+
+Substituting into Binet's equation,
+\[
+k^2u+u=-\frac{F(1/u)}{mh^2u^2}.
+\]
+Therefore,
+\[
+(1+k^2)u=-\frac{F(1/u)}{mh^2u^2},
+\]
+which gives
+\[
+F(1/u)=-mh^2(1+k^2)u^3.
+\]
+
+Since $u=1/r$, the central force law is
+\[
+\boxed{
+F(r)=-\frac{mh^2(1+k^2)}{r^3}
+=-\frac{L^2(1+k^2)}{mr^3}.
+}
+\]
+
+Thus, the logarithmic spiral trajectory is produced by an
+attractive inverse-cube central force.
+
+\textbf{(b)} To determine $r(t)$, we use conservation of
+angular momentum:
+\[
+L=mr^2\dot{\theta}.
+\]
+Therefore,
+\[
+\dot{\theta}=\frac{L}{mr^2}.
+\]
+
+Differentiating the trajectory equation with respect to time,
+\[
+\dot{r}=kr_0e^{k\theta}\dot{\theta}
+=kr\dot{\theta}.
+\]
+Substituting the expression for $\dot{\theta}$,
+we obtain
+\[
+\boxed{\dot{r}=\frac{kL}{mr}.}
+\]
+
+Separating variables gives
+\[
+r\,dr=\frac{kL}{m}\,dt.
+\]
+Integrating and applying the initial condition $r(0)=r_0$,
+\[
+\frac{r^2-r_0^2}{2}=\frac{kL}{m}t.
+\]
+Hence,
+\[
+\boxed{
+r(t)=\sqrt{r_0^2+\frac{2kL}{m}t}.
+}
+\]
+
+To find $\theta(t)$, we use the equation of the logarithmic spiral:
+\[
+r=r_0e^{k\theta}.
+\]
+Taking the logarithm,
+\[
+\theta=\frac{1}{k}\ln\left(\frac{r}{r_0}\right).
+\]
+Substituting $r(t)$ gives
+\[
+\boxed{
+\theta(t)=\frac{1}{2k}
+\ln\left(1+\frac{2kL}{mr_0^2}t\right).
+}
+\]
+
+These expressions are valid as long as
+$r_0^2+2kLt/m>0$.
+
+\textbf{(c)} The potential energy is related to the central
+force by
+\[
+F(r)=-\frac{dU}{dr}.
+\]
+Using the force law obtained in part (a),
+\[
+\frac{dU}{dr}=\frac{L^2(1+k^2)}{mr^3}.
+\]
+Integrating and choosing $U(\infty)=0$, we obtain
+\[
+\boxed{
+U(r)=-\frac{L^2(1+k^2)}{2mr^2}.
+}
+\]
+
+The kinetic energy in polar coordinates is
+\[
+T=\frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2).
+\]
+Substituting the expressions for $\dot{r}$ and $\dot{\theta}$,
+\[
+T=\frac{1}{2}m\left(
+\frac{k^2L^2}{m^2r^2}
++\frac{L^2}{m^2r^2}
+\right).
+\]
+Thus,
+\[
+T=\frac{L^2(1+k^2)}{2mr^2}.
+\]
+
+The total mechanical energy is therefore
+\[
+E=T+U
+=\frac{L^2(1+k^2)}{2mr^2}
+-\frac{L^2(1+k^2)}{2mr^2}.
+\]
+Hence,
+\[
+\boxed{E=0.}
+\]
+
+To understand the motion, we examine the effective potential:
+\[
+U_{\mathrm{eff}}(r)
+=U(r)+\frac{L^2}{2mr^2}.
+\]
+Substituting the potential energy,
+\[
+\boxed{
+U_{\mathrm{eff}}(r)
+=-\frac{k^2L^2}{2mr^2}.
+}
+\]
+
+An interesting feature of the inverse-cube central force is that
+its potential energy scales as $U(r)\propto -1/r^2$, with the
+same radial dependence as the centrifugal term $L^2/(2mr^2)$.
+Consequently, these two contributions partially cancel,
+leaving a negative effective potential proportional to $-1/r^2$.
+
+For the logarithmic spiral, the radial kinetic energy is
+\[
+\frac12 m\dot r^2=\frac{k^2L^2}{2mr^2},
+\]
+which exactly cancels the effective potential. Thus,
+\[
+E=\frac12 m\dot r^2+U_{\mathrm{eff}}(r)=0.
+\]
+The zero total energy therefore arises from this exact
+cancellation, rather than from a vanishing effective potential.
+
+Since
+\[
+\frac12 m\dot r^2
+=E-U_{\mathrm{eff}}(r)
+=\frac{k^2L^2}{2mr^2}>0,
+\]
+the radial velocity never vanishes at any finite $r>0$.
+Consequently, there are no radial turning points.
+
+The direction of radial motion depends on the sign of $kL$:
+\begin{itemize}
+    \item If $kL>0$, the particle spirals outward and
+    $r(t)\to\infty$ as $t\to\infty$. The motion is unbounded.
+    \item If $kL<0$, the particle spirals inward and reaches
+    the force center at the finite time
+    \[
+    t_c=-\frac{mr_0^2}{2kL}>0.
+    \]
+    The radius decreases monotonically until the particle
+    reaches the singularity at $r=0$.
+\end{itemize}
+
+Thus, the trajectory is not a bounded periodic orbit.
+The outward-moving particle escapes to infinity, while the
+inward-moving particle falls into the singular force center.
+
+It is important to note that zero total mechanical energy does
+not necessarily imply a parabolic orbit. For an attractive
+inverse-square force, such as Newtonian gravity, zero-energy
+trajectories are parabolas. This follows from the specific form
+of the gravitational potential, $U(r)\propto -1/r$.
+
+In the present problem, however, the central force follows an
+inverse-cube law, $F(r)\propto -1/r^3$, corresponding to a
+potential $U(r)\propto -1/r^2$. The resulting zero-energy
+trajectory is a logarithmic spiral rather than a parabola.
+
+Therefore, the shape of an orbit is determined not only by
+its total mechanical energy but also by the form of the
+central force acting on the particle.
 
 
-\subsection{Finding force-law from trajectory}
-Find the force law for the central force that allows a particle to move in a logaritmic spiral trajectory given by \( r = r_0 e^{k\theta} \), where \( r_0 \) and \( k \) are constants. Determine $r(t)$ and $\theta(t)$ for the particle.
-
-\textbf{Solution:}
 
 
 \subsection{Determining the Central Force from an Elliptical Orbit}
