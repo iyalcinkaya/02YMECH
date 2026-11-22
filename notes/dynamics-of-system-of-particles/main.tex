@@ -93,11 +93,12 @@ By using $m_{\text{tot}}\vb{v}_{\text{cm}} = \sum_i m_i\vb{v}_i$, we have
     \label{eq:total-momentum-center-of-mass}
 \end{equation}
 This result shows that the total linear momentum of a system of particles is equal to the momentum of a single particle having the total mass $m_{\text{tot}}$ and moving with the velocity of the center of mass. Or shortly, the total momentum of a system is the same as the momentum of its center of mass. The angular momentum of a system of particles about a fixed point is the vector sum of angular momenta of the individual particles:
-\[
+\begin{equation}
     \vb{L}_{\text{tot}} = \sum_i \vb{L}_i = \sum_{i}\vb{r}_i\times m_i\vb{v}_i.
-\]
+    \label{eq:angular-momentum-center-of-mass}
+\end{equation}
 
-\section{Motion of the Center of Mass}
+\section{Dynamics of the Center of Mass}
 From Eq.~\eqref{eq:velocity-acceleration-center-of-mass}, Newton's second law for system of particles can be expressed in terms of the center of mass as
 \[
     \vb{a}_{\text{cm}} = \frac{1}{m_{\text{tot}}}\sum_{i}m_i\vb{a}_i = \frac{1}{m_{\text{tot}}}\sum_{i}\vb{F}_i.
@@ -146,20 +147,159 @@ After summing over all particles, the total torque acting on the system is
 \[
     \bm{\tau}_{\text{tot}} = \sum_i \bm{\tau}_i = \sum_i \vb{r}_i \times \vb{F}_i^{\mathrm{ext}} + \sum_{ij}\vb{r}_i \times \vb{F}_{ij}.
 \]
-The term under the double sum can be written as
+Let us show the term under the double sum as a table. For example, if  we have three particles, the double sum can be written as
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & $j=1$ & $j=2$ & $j=3$ \\
+\hline
+$i=1$ & 0 & $\vb{r}_1 \times \vb{F}_{12}$ & $\vb{r}_1 \times \vb{F}_{13}$ \\
+$i=2$ & $\vb{r}_2 \times \vb{F}_{21}$ & 0 & $\vb{r}_2 \times \vb{F}_{23}$ \\
+$i=3$ & $\vb{r}_3 \times \vb{F}_{31}$ & $\vb{r}_3 \times \vb{F}_{32}$ & 0 \\
+\hline
+\end{tabular}
+\end{center}
+The diagonal elements are zero because a particle does not exert a force on itself. By grouping the off-diagonal elements into pairs and applying Newton's third law, the total internal torque can be written as
 \[
-\vb{r}_i \times \vb{F}_{ij} + \vb{r}_j \times \vb{F}_{ji} = (\vb{r}_i - \vb{r}_j) \times \vb{F}_{ij}.
+\sum_{ij}\vb{r}_i \times \vb{F}_{ij} = \sum_{i<j}\left(\vb{r}_i \times \vb{F}_{ij} + \vb{r}_j \times \vb{F}_{ji} \right) \xrightarrow{{\mathbf{F}_{ij} = -\mathbf{F}_{ji}}} \sum_{i<j}\left(\vb{r}_i - \vb{r}_j\right) \times \vb{F}_{ij}.
+\]
+If we assume that the internal forces are central, meaning that they act along the line connecting the particles, then $\vb{F}_{ij}$ is parallel to $\vb{r}_i - \vb{r}_j$, and hence their cross product vanishes. Therefore, the total torque acting on the system is simply the sum of the external torques:
+\begin{equation}
+    \bm{\tau}_{\text{tot}} = \sum_i \vb{r}_i \times \vb{F}_i^{\mathrm{ext}} = \bm{\tau}_{\mathrm{ext}}.
+    \label{eq:torque-center-of-mass}
+\end{equation}
+If the masses of the particles are constant, Eq.~\eqref{eq:torque-center-of-mass} can be rewritten as
+\[
+    \bm{\tau}_{\mathrm{ext}}= \sum_i \vb{r}_i \times m_i  \dv{ \vb{v}_i}{t}
+\]
+The time derivative of the velocity can be taken outside the summation because
+\[
+    \dv{t}\left(\vb{r}_i \times \vb{v}_i\right) = \vb{v}_i \times \vb{v}_i + \vb{r}_i \times \dv{\vb{v}_i}{t} = \vb{r}_i \times \dv{\vb{v}_i}{t}.
+\]
+Therefore, we can write by also using Eq.~\eqref{eq:angular-momentum-center-of-mass} that
+\[
+    \bm{\tau}_{\mathrm{ext}} = \sum_i m_i \dv{t}\left(\vb{r}_i \times \vb{v}_i\right) = \dv{t}\sum_i m_i\left(\vb{r}_i \times \vb{v}_i\right) = \dv{\vb{L}_{\text{tot}}}{t}.
 \]
 
-\section{Conservation Theorems}
-We revisit the conservation theorems for linear momentum, angular momentum, and energy in the context of a system of particles and confirm that they hold under the same conditions as for a single particle. 
+\section{Work and Energy}
+The total work done on a system of particles as the system moves from state 1 to state 2 (see Fig.~\ref{fig:work-energy-theorem}) is the sum of the work done on each particle by both internal and external forces. We have shown in the Dynamics Section that the work done by the net force acting on a particle is equal to the change in its kinetic energy. For particle $i$, we can therefore write
+\[
+    \dd{K_i} = \vb{F}_i \cdot \dd{\vb{r}_i}.
+\]
+Since the net force acting on particle $i$ is the sum of the external and internal forces,
+\[
+    \vb{F}_i
+    = \vb{F}_i^{\mathrm{ext}}
+    + \sum_{j\neq i}\vb{F}_{ij},
+\]
+we obtain
+\[
+    \dd{K_i}
+    = \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i}
+    + \sum_{j\neq i}\vb{F}_{ij}\cdot\dd{\vb{r}_i}.
+\]
+Summing over all particles gives
+\[
+    \dd{K}
+    = \sum_i \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i}
+    + \sum_i\sum_{j\neq i}
+    \vb{F}_{ij}\cdot\dd{\vb{r}_i},
+\]
+where $K=\sum_i K_i$ is the total kinetic energy of the system.
 
-\subsection{Conservation of Linear Momentum}
-If the system of particles is isolated, meaning that the net external force acting on it vanishes, then from Eq.~\eqref{eq:momentum-center-of-mass}, we have
+Integrating between states 1 and 2, we find
+\begin{align}
+    K_2-K_1
+    &= \sum_i \int_1^2
+    \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i} \notag\\
+    &\quad + \sum_i\sum_{j\neq i}\int_1^2
+    \vb{F}_{ij}\cdot\dd{\vb{r}_i}.
+\end{align}
+The first term represents the total work done by external forces, while the second represents the total work done by internal forces. Therefore,
+\[
+    \boxed{
+    W_{12}^{\mathrm{ext}}+W_{12}^{\mathrm{int}}
+    =K_2-K_1.
+    }
+\]
+
+This result is known as the \emph{work--energy theorem} for a system of particles. It states that the total work done by internal and external forces is equal to the change in the total kinetic energy of the system.
+
+It is important to note that although internal forces occur in equal and opposite pairs according to Newton's third law, \emph{the work done by these forces does not necessarily cancel}. To see this, consider the internal forces between two particles $i$ and $j$. Their combined infinitesimal work is
+\[
+    \dd{W}_{ij}^{\mathrm{int}}
+    = \vb{F}_{ij}\cdot\dd{\vb{r}_i}
+    + \vb{F}_{ji}\cdot\dd{\vb{r}_j}.
+\]
+Using Newton's third law, $\vb{F}_{ji}=-\vb{F}_{ij}$, we obtain
+\[
+    \boxed{
+    \dd{W}_{ij}^{\mathrm{int}}
+    = \vb{F}_{ij}\cdot
+    \left(\dd{\vb{r}_i}-\dd{\vb{r}_j}\right).
+    }
+\]
+Thus, even though the two forces cancel in their vector sum, their works generally do not, because the particles may undergo different displacements. The double sum over internal forces accounts for both contributions from each interacting pair, and each contribution represents the work done on a different particle.
+
+Consequently, internal forces can change the total kinetic energy of a system even when their resultant force is zero. The work done by internal forces vanishes only when the sum of their individual work contributions is zero, as in the case of ideal rigid-body constraints.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/work-energy-theorem.png}
+    \caption{A system of particles moving from state 1 to state 2: Each particle (red dots) follows a different path(blue curves) and experiences different external forces during the motion.}
+    \label{fig:work-energy-theorem}
+\end{figure}
+
+\section{Conservation Theorems} 
+We revisit the conservation theorems for linear momentum, angular momentum, and energy and reinterpret them in the context of a system of particles. 
+
+\paragraph{Conservation of Linear Momentum:} If the system of particles is isolated, meaning that the net external force acting on it vanishes, then from Eq.~\eqref{eq:momentum-center-of-mass}, we have
 \[
     \dot{\vb{p}}_{\text{tot}} = 0 \implies \vb{p}_{\text{tot}} = \text{constant}.
 \]
-This implies that if no net external force acts on a system of particle, the center of mass of the system moves with constant velocity, or it remains at rest.  
+This implies that if no net external force acts on a system of particle, its center of mass moves with constant velocity, or it remains at rest.  
+
+\paragraph{Conservation of Angular Momentum:} If the system of particles is isolated, meaning that the net external torque acting on it vanishes, then we have
+\[
+    \dot{\vb{L}}_{\text{tot}} = 0 \implies \vb{L}_{\text{tot}} = \text{constant}.
+\]
+This implies that if no net external torque acts on a system of particle, its total angular momentum remains constant.
+
+\paragraph{Conservation of Mechanical Energy:} If all internal and external forces acting on a system of particles are conservative and their potential energies have no explicit time dependence, then the total mechanical energy of the system is conserved. To show this, we start from the work--energy theorem for a system of particles:
+\begin{equation}
+    \frac{dK}{dt} = \sum_i \vb{F}_i \cdot \vb{v}_i,
+\end{equation}
+where $K = \sum_i \frac{1}{2}m_i v_i^2$ is the total kinetic energy of the system. Since all forces are conservative, they can be derived from a total potential energy $U = U_{\mathrm{int}} + U_{\mathrm{ext}}$, such that
+\begin{equation}
+    \vb{F}_i = -\grad_i U.
+\end{equation}
+Substituting this into the work--energy theorem gives
+\begin{equation}
+    \frac{dK}{dt} = -\sum_i \grad_i U \cdot \vb{v}_i.
+\end{equation}
+Since the potential energy has no explicit time dependence, the chain rule gives
+\begin{equation}
+    \frac{dU}{dt}
+    = \sum_i \grad_i U \cdot \frac{d\vb{r}_i}{dt}
+    = \sum_i \grad_i U \cdot \vb{v}_i.
+\end{equation}
+Therefore,
+\begin{equation}
+    \frac{dK}{dt} = -\frac{dU}{dt},
+\end{equation}
+or equivalently,
+\begin{equation}
+    \boxed{\frac{d}{dt}(K+U)=0.}
+\end{equation}
+Thus, the total mechanical energy of the system is conserved:
+\begin{equation}
+    \boxed{E_{\mathrm{mech}} = K + U_{\mathrm{int}} + U_{\mathrm{ext}}
+    = \text{constant}.}
+\end{equation}
+
+
+\section{Motion Relative to the Center of Mass}
+As we have already seen in the two-body problem, it is often convenient to describe the motion of a system of particles relative to its center of mass. Let $\vb{r}_i'$ be the position vector of particle $i$ relative to the center of mass:
 
 \section{Worked Examples}
 \subsection{Finding the Center of Mass of a System of Particles}
@@ -182,5 +322,118 @@ Calculating the components, we have
     &= (0.2, 0.6, 1.5)\,\mathrm{m}.
 \end{align}
 Thus, the center of mass of the system is located at $\vb{R} = (0.2, 0.6, 1.5)\,\mathrm{m}$.
+
+\subsection{Work Done by Internal and External Forces}
+
+\paragraph{Problem.}
+Two identical blocks, each of mass $m$, are connected by a light spring of spring constant $k$ and placed on a rough horizontal surface with a coefficient of kinetic friction $\mu_k$. Initially, the spring is compressed by a distance $x_0$ from its natural length, and both blocks are held at rest. The blocks are then released simultaneously and move away from each other.
+
+Assume that the blocks begin sliding upon release and that the spring reaches its natural length before either block stops.
+
+\begin{enumerate}
+    \item Determine the distance traveled by each block when the spring first reaches its natural length.
+    \item Calculate the total work done by the external forces on the system during this motion.
+    \item Calculate the total work done by the internal forces on the system during the same motion.
+    \item Using the work--energy theorem for a system of particles, determine the total kinetic energy of the system when the spring reaches its natural length.
+    \item Determine the speed of each block at that instant.
+    \item Explain how the total external force on the system can be zero even though the total work done by external forces is nonzero.
+\end{enumerate}
+
+\paragraph{Solution.}
+
+\begin{enumerate}
+    \item Since the blocks have equal masses and the forces acting on them are symmetric, they move equal distances in opposite directions. When the spring reaches its natural length, its length has increased by $x_0$. Therefore, each block travels a distance
+    \[
+        \boxed{d_1=d_2=\frac{x_0}{2}.}
+    \]
+
+    \item The external forces acting on the system are gravity, the normal forces, and kinetic friction. Since the motion is horizontal, gravity and the normal forces do no work.
+
+    The magnitude of the frictional force acting on each block is
+    \[
+        f_k=\mu_k mg.
+    \]
+    Since friction opposes the motion of both blocks, the total work done by the external forces is
+    \[
+        W_{12}^{\mathrm{ext}}
+        =-f_kd_1-f_kd_2.
+    \]
+    Substituting the distances traveled by the blocks gives
+    \[
+        \boxed{W_{12}^{\mathrm{ext}}=-\mu_k mgx_0.}
+    \]
+
+    \item The spring exerts internal conservative forces on the blocks. The work done by these forces is equal to the negative change in the elastic potential energy:
+    \[
+        W_{12}^{\mathrm{int}}=-\Delta U_{\mathrm{spring}}.
+    \]
+    Initially, the spring is compressed by $x_0$, while at the final instant it reaches its natural length. Thus,
+    \[
+        W_{12}^{\mathrm{int}}
+        =-\left(0-\frac{1}{2}kx_0^2\right).
+    \]
+    Therefore,
+    \[
+        \boxed{W_{12}^{\mathrm{int}}=\frac{1}{2}kx_0^2.}
+    \]
+
+    \item According to the work--energy theorem for a system of particles,
+    \[
+        W_{12}^{\mathrm{ext}}+W_{12}^{\mathrm{int}}
+        =K_2-K_1.
+    \]
+    Since both blocks are initially at rest, $K_1=0$. Substituting the expressions for the external and internal works gives
+    \[
+        -\mu_k mgx_0+\frac{1}{2}kx_0^2=K_2.
+    \]
+    Hence,
+    \[
+        \boxed{K_2=\frac{1}{2}kx_0^2-\mu_k mgx_0.}
+    \]
+    The spring performs positive work, increasing the kinetic energy of the blocks, while friction performs negative work, reducing it.
+
+    \item Due to the symmetry of the motion, the blocks have equal speeds $v$ in opposite directions. Their total kinetic energy is
+    \[
+        K_2=\frac{1}{2}mv^2+\frac{1}{2}mv^2=mv^2.
+    \]
+    Combining this with the previous result,
+    \[
+        mv^2=\frac{1}{2}kx_0^2-\mu_k mgx_0.
+    \]
+    Therefore,
+    \[
+        \boxed{v=\sqrt{\frac{kx_0^2}{2m}-\mu_k gx_0}.}
+    \]
+    For the blocks to reach the natural length with nonzero speed, the parameters must satisfy
+    \[
+        kx_0>2\mu_k mg.
+    \]
+
+    \item The frictional forces acting on the two blocks have equal magnitudes but opposite directions. Therefore,
+    \[
+        \vb{F}_{\mathrm{ext,tot}}
+        =\vb{f}_1+\vb{f}_2=0.
+    \]
+    However, the work done by the external forces is
+    \[
+        W_{12}^{\mathrm{ext}}
+        =\int_1^2\vb{f}_1\cdot\dd{\vb{r}_1}
+        +\int_1^2\vb{f}_2\cdot\dd{\vb{r}_2}.
+    \]
+    Since the blocks move in opposite directions, their displacements are also opposite. Consequently, both frictional forces perform negative work, and their contributions add rather than cancel.
+
+    Thus, although the net external force on the system is zero, the total external work is nonzero. This illustrates that zero net external force implies conservation of total linear momentum, but does not necessarily imply conservation of kinetic energy.
+\end{enumerate}
+
+The result illustrates the interplay between internal and external forces in determining the change in the total kinetic energy of a system:
+\[
+    \boxed{
+        \underbrace{-\mu_k mgx_0}_{W_{12}^{\mathrm{ext}}}
+        +
+        \underbrace{\frac{1}{2}kx_0^2}_{W_{12}^{\mathrm{int}}}
+        =
+        \underbrace{K_2-K_1}_{\Delta K}.
+    }
+\]
 \end{document}
     
