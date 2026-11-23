@@ -323,6 +323,162 @@ Calculating the components, we have
 \end{align}
 Thus, the center of mass of the system is located at $\vb{R} = (0.2, 0.6, 1.5)\,\mathrm{m}$.
 
+\subsection{Center of Mass of a non-uniform Rod}
+A rod of length $L$ and mass $M$ is placed along the $x$-axis with one end at the origin. Its linear mass density increases lineary with $x$ according to the expression
+\[
+    \lambda(x) = \lambda_0 \left(1 + \frac{x}{L}\right),
+\]
+where $\lambda_0$ is a constant. Find the position of the center of mass of the rod.
+
+\textbf{Solution:}
+The total mass of the rod is given by
+\begin{equation}
+    M = \int_0^L \lambda(x) dx = \int_0^L \lambda_0 \left(1 + \frac{x}{L}\right) dx
+    = \lambda_0 \left[ x + \frac{x^2}{2L} \right]_0^L
+    = \lambda_0 \left( L + \frac{L}{2} \right) = \frac{3}{2} \lambda_0 L.
+\end{equation}
+
+The position of the center of mass is given by
+\begin{equation}
+    \bar{x} = \frac{1}{M} \int_0^L x \lambda(x) dx = \frac{1}{\frac{3}{2} \lambda_0 L} \int_0^L x \lambda_0 \left(1 + \frac{x}{L}\right) dx.
+\end{equation}
+
+Evaluating the integral, we get
+\begin{equation}
+    \bar{x} = \frac{2}{3L} \int_0^L x \left(1 + \frac{x}{L}\right) dx = \frac{2}{3L} \left[ \frac{x^2}{2} + \frac{x^3}{3L} \right]_0^L = \frac{2}{3L} \left( \frac{L^2}{2} + \frac{L^2}{3} \right) = \frac{2}{3L} \cdot \frac{5L^2}{6} = \frac{5L}{9}.
+\end{equation}
+
+Thus, the center of mass of the rod is located at $\bar{x} = \frac{5L}{9}$.
+
+
+\subsection{Center of Mass of a Nonuniform Disk}
+A thin disk of radius $R$ and mass $M$ has a surface mass density
+that varies with the distance $r$ from its center according to
+\[
+    \sigma(r) = \sigma_0 \left(1-\frac{r}{R}\right),
+\]
+where $\sigma_0$ is a positive constant.
+
+\begin{enumerate}
+    \item Determine the total mass $M$ of the disk in terms of
+    $\sigma_0$ and $R$.
+    \item Find the position of the center of mass of the disk.
+    \item Calculate the average radial distance of the mass
+    elements from the center of the disk.
+\end{enumerate}
+
+\textbf{Solution.}
+
+\begin{enumerate}
+    \item \textbf{Total mass.}
+
+    Consider a thin circular ring of radius $r$ and thickness $dr$.
+    Its area is $dA=2\pi r\,dr$, so its mass is
+    \[
+        dm=\sigma(r)\,dA
+        =2\pi r\sigma_0\left(1-\frac{r}{R}\right)dr.
+    \]
+    Integrating over the entire disk gives
+    \begin{align*}
+        M
+        &=\int_0^R 2\pi r\sigma(r)\,dr\\
+        &=2\pi\sigma_0\int_0^R
+        \left(r-\frac{r^2}{R}\right)dr\\
+        &=2\pi\sigma_0
+        \left[\frac{r^2}{2}-\frac{r^3}{3R}\right]_0^R\\
+        &=2\pi\sigma_0
+        \left(\frac{R^2}{2}-\frac{R^2}{3}\right).
+    \end{align*}
+    Therefore,
+    \[
+        \boxed{M=\frac{\pi\sigma_0R^2}{3}}.
+    \]
+
+    \item \textbf{Center of mass.}
+
+    The center of mass is defined by
+    \[
+        \vb{r}_{\mathrm{CM}}
+        =\frac{1}{M}\int\vb{r}\,dm.
+    \]
+    Since the surface mass density depends only on the distance
+    from the center, the mass distribution is rotationally
+    symmetric. Consequently, the center of mass must coincide
+    with the geometric center of the disk.
+
+    We can verify this explicitly using polar coordinates,
+    \[
+        x=r\cos\theta,\qquad y=r\sin\theta,
+    \]
+    with the mass element
+    \[
+        dm=\sigma(r)\,r\,dr\,d\theta.
+    \]
+    The $x$-coordinate of the center of mass is
+    \begin{align*}
+        x_{\mathrm{CM}}
+        &=\frac{1}{M}\int x\,dm\\
+        &=\frac{1}{M}\int_0^R\int_0^{2\pi}
+        (r\cos\theta)\sigma(r)\,r\,d\theta\,dr\\
+        &=\frac{1}{M}
+        \left[\int_0^R r^2\sigma(r)\,dr\right]
+        \left[\int_0^{2\pi}\cos\theta\,d\theta\right]\\
+        &=0,
+    \end{align*}
+    because
+    \[
+        \int_0^{2\pi}\cos\theta\,d\theta=0.
+    \]
+    Similarly,
+    \begin{align*}
+        y_{\mathrm{CM}}
+        &=\frac{1}{M}
+        \left[\int_0^R r^2\sigma(r)\,dr\right]
+        \left[\int_0^{2\pi}\sin\theta\,d\theta\right]\\
+        &=0.
+    \end{align*}
+    Therefore,
+    \[
+        \boxed{\vb{r}_{\mathrm{CM}}=\vb{0}}.
+    \]
+
+    \item \textbf{Average radial distance.}
+
+    The average radial distance of the mass elements from the
+    center is defined as
+    \[
+        \langle r\rangle=\frac{1}{M}\int r\,dm.
+    \]
+    Using the mass element of a thin circular ring,
+    \begin{align*}
+        \langle r\rangle
+        &=\frac{1}{M}\int_0^R r\,\sigma(r)\,2\pi r\,dr\\
+        &=\frac{2\pi\sigma_0}{M}
+        \int_0^R r^2\left(1-\frac{r}{R}\right)dr\\
+        &=\frac{2\pi\sigma_0}{M}
+        \left[\frac{r^3}{3}-\frac{r^4}{4R}\right]_0^R\\
+        &=\frac{2\pi\sigma_0}{M}
+        \left(\frac{R^3}{3}-\frac{R^3}{4}\right)\\
+        &=\frac{\pi\sigma_0R^3}{6M}.
+    \end{align*}
+    Substituting $M=\pi\sigma_0R^2/3$, we obtain
+    \[
+        \boxed{\langle r\rangle=\frac{R}{2}}.
+    \]
+\end{enumerate}
+
+\noindent
+\textbf{Physical interpretation.}
+The center of mass and the average radial distance are different
+quantities. The center of mass is determined by the vector average
+of the positions of all mass elements, whereas the average radial
+distance is determined by the average of their distances from the
+origin. For every mass element at position $\vb{r}$, there is an
+equal mass element at position $-\vb{r}$. Their contributions to
+the center-of-mass vector cancel, but their positive radial
+distances add. Thus, although the center of mass is at the
+geometric center, the average radial distance is $R/2$.
+
 \subsection{Work Done by Internal and External Forces}
 
 \paragraph{Problem.}
