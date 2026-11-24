@@ -190,29 +190,27 @@ Since the net force acting on particle $i$ is the sum of the external and intern
 \[
     \vb{F}_i
     = \vb{F}_i^{\mathrm{ext}}
-    + \sum_{j\neq i}\vb{F}_{ij},
+    + \sum_{ij}\vb{F}_{ij},
 \]
 we obtain
 \[
     \dd{K_i}
     = \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i}
-    + \sum_{j\neq i}\vb{F}_{ij}\cdot\dd{\vb{r}_i}.
+    + \sum_{ij}\vb{F}_{ij}\cdot\dd{\vb{r}_i}.
 \]
 Summing over all particles gives
 \[
     \dd{K}
     = \sum_i \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i}
-    + \sum_i\sum_{j\neq i}
+    + \sum_i\sum_{ij}
     \vb{F}_{ij}\cdot\dd{\vb{r}_i},
 \]
-where $K=\sum_i K_i$ is the total kinetic energy of the system.
-
-Integrating between states 1 and 2, we find
+where $K=\sum_i K_i$ is the total kinetic energy of the system. Integrating between states 1 and 2, we find
 \begin{align}
     K_2-K_1
     &= \sum_i \int_1^2
     \vb{F}_i^{\mathrm{ext}}\cdot\dd{\vb{r}_i} \notag\\
-    &\quad + \sum_i\sum_{j\neq i}\int_1^2
+    &\quad + \sum_i\sum_{ij}\int_1^2
     \vb{F}_{ij}\cdot\dd{\vb{r}_i}.
 \end{align}
 The first term represents the total work done by external forces, while the second represents the total work done by internal forces. Therefore,
@@ -299,7 +297,147 @@ Thus, the total mechanical energy of the system is conserved:
 
 
 \section{Motion Relative to the Center of Mass}
-As we have already seen in the two-body problem, it is often convenient to describe the motion of a system of particles relative to its center of mass. Let $\vb{r}_i'$ be the position vector of particle $i$ relative to the center of mass:
+As we have already seen in the two-body problem, it is often convenient to describe the motion of a system of particles relative to its center of mass. If we do not need to examine the motion of the center of mass itself, this approach simplifies the analysis of the system's motion. Let $\vb{r}_i'$ be the position vector of particle $i$ relative to the center of mass (see Fig.~\ref{fig:motion-relative-to-center-of-mass}). Then, we have:
+\[
+    \vb{r}_i' = \vb{r}_i - \vb{r}_{\text{cm}}.
+\]
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.35\textwidth]{figures/center-of-mass-frame.png}
+    \caption{The position vector of particle $i$ relative to the center of mass is $\vb{r}_i' = \vb{r}_i - \vb{r}_{\text{cm}}$.}
+    \label{fig:motion-relative-to-center-of-mass}
+\end{figure}
+
+If we move the origin of our coordinate system to the center of mass, i.e., $\vb{r}_{\text{cm}} = \vb{0}$, then the position vector of particle $i$ is simply $\vb{r}_i'$. Moreover, by using the definition of the center of mass, we can show that
+\[
+    \vb{r}_{\text{cm}} = \frac{1}{M} \sum_i m_i \vb{r}_i = \frac{1}{M} \sum_i m_i (\vb{r}_i' + \vb{r}_{\text{cm}}) = \frac{1}{M} \sum_i m_i \vb{r}_i' = \vb{0} \implies \boxed{\sum_i m_i \vb{r}_i' = \vb{0}}.
+\]
+The weighted sum of the position vectors of a mass distribution relative to its center of mass is always zero. This result is useful in simplifying calculations involving the motion of a system of particles relative to its center of mass. For example, the total linear momentum of the system relative to its center of mass is zero because
+\[
+    \vb{p}_{\text{tot}}' = \sum_i m_i \vb{v}_i' = \sum_i m_i \dv{\vb{r}_i'}{t} = \dv{t} \sum_i m_i \vb{r}_i' = \dv{t} \vb{0} = \vb{0}.
+\]
+We can express the total angular momentum of the system as a summation of the angular momentum of the center of mass and the angular momentum relative to the center of mass as follows:
+\[
+\vb{r}_i= \vb{r}'_i + \vb{r}_\text{cm} \xlongrightarrow{\dd/\dd t} \vb{v}_i= \vb{v}'_i + \vb{v}_\text{cm}
+\]
+where
+\begin{itemize}
+    \item $\vb{v}_i$ is the velocity vector of particle $i$ relative to the origin,
+    \item $\vb{v}_i'$ is the velocity vector of particle $i$ relative to the center of mass, and
+    \item $\vb{v}_{\text{cm}}$ is the velocity vector of the center of mass relative to the origin.
+\end{itemize}
+Plugging these expressions into Eq.~\eqref{eq:angular-momentum-center-of-mass}, we can write the total angular momentum of the system as
+\[
+    \vb{L}_{\text{tot}} = \sum_i \vb{r}_i \times m_i \vb{v}_i = \sum_i (\vb{r}_i' + \vb{r}_{\text{cm}}) \times m_i (\vb{v}_i' + \vb{v}_{\text{cm}})
+\]
+Distributing the cross product
+\[
+    \vb{L}_{\text{tot}} = \sum_i m_i (\vb{r}_i' \times \vb{v}_i' + \vb{r}_i' \times \vb{v}_{\text{cm}} + \vb{r}_{\text{cm}} \times \vb{v}_i' + \vb{r}_{\text{cm}} \times \vb{v}_{\text{cm}})
+\]
+The second and third terms in the summation vanish because $\vb{v}_{\text{cm}}$ and $\vb{r}_{\text{cm}}$ are constants with respect to the summation over $i$, and we have already shown that $\sum_i m_i \vb{r}_i' = \vb{0}$ and $\sum_i m_i \vb{v}_i' = \vb{0}$. Therefore, we can write:
+\[
+    \left(\sum_i m_i \vb{r}_i'\right) \times \vb{v}_{\text{cm}} = \vb{0} \quad\text{and}\quad \vb{r}_{\text{cm}} \times \left(\sum_i m_i \vb{v}_i'\right) = \vb{0}
+\]
+Hence, the total angular momentum of the system can be expressed as
+\begin{equation}
+    \vb{L}_{\text{tot}} = \sum_i m_i \vb{r}_i' \times \vb{v}_i' + \sum_i m_i \vb{r}_{\text{cm}} \times \vb{v}_{\text{cm}} = \vb{L}_{\text{rel}} + \vb{L}_{\text{cm}} \rightarrow \boxed{\vb{L}_{\text{tot}} = \vb{L}_{\text{rel}} + \vb{L}_{\text{cm}}}
+\end{equation}
+where $\vb{L}_{\text{rel}}$ is the angular momentum of the system relative to the center of mass, and $\vb{L}_{\text{cm}}$ is the angular momentum of the center of mass. This decomposition is useful in analyzing the rotational motion of a system of particles, as it allows us to separate the contributions from the motion of the center of mass and the motion of the particles relative to the center of mass.
+
+It is also possible to express the total kinetic energy of the system as a sum of the kinetic energy of the center of mass and the kinetic energy relative to the center of mass. The total kinetic energy is given by
+\[
+    K_{\text{tot}} = \sum_i \frac{1}{2} m_i v_i^2 = \sum_i \frac{1}{2} m_i (\vb{v}_i' + \vb{v}_{\text{cm}})^2.
+\]
+Expanding the square, we have
+\[
+    K_{\text{tot}} = \sum_i \frac{1}{2} m_i (v_i'^2 + 2 \vb{v}_i' \cdot \vb{v}_{\text{cm}} + v_{\text{cm}}^2).
+\]
+The second term in the summation vanishes because $\sum_i m_i \vb{v}_i' = \vb{0}$. Therefore, we can write:
+\[
+    \sum_i m_i \vb{v}_i' \cdot \vb{v}_{\text{cm}} = \vb{v}_{\text{cm}} \cdot \sum_i m_i \vb{v}_i' = \vb{v}_{\text{cm}} \cdot \vb{0} = 0.
+\]
+Thus, the total kinetic energy of the system can be expressed as
+\begin{equation}
+    K_{\text{tot}} = \sum_i \frac{1}{2} m_i v_i'^2 + \sum_i \frac{1}{2} m_i v_{\text{cm}}^2 = K_{\text{rel}} + K_{\text{cm}}
+\end{equation}
+where $K_{\text{rel}}$ is the kinetic energy of the system relative to the center of mass, and $K_{\text{cm}}$ is the kinetic energy of the center of mass. This decomposition is useful in analyzing the energy of a system of particles, as it allows us to separate the contributions from the motion of the center of mass and the motion of the particles relative to the center of mass.
+
+\subsection{Center of mass frame for collisions}
+
+Consider two particles of masses $m_1$ and $m_2$ that collide. In the laboratory frame, both particles may be moving to the right before the collision, with the faster particle catching up with the slower one. An observer moving with the center of mass sees a simpler picture: the two particles approach each other from opposite directions. The motion of the system as a whole has been removed, and the observer can examine directly how the collision changes the motion of the particles relative to each other.
+
+To see why we can use the same center of mass frame throughout the collision, suppose that the net external force on the two-particle system is negligible during the collision. The total linear momentum is then conserved, so the velocity of the center of mass,
+\[
+    \vb{v}_{\text{cm}}
+    = \frac{m_1\vb{v}_1 + m_2\vb{v}_2}{m_1+m_2},
+\]
+remains constant. We can therefore subtract the same $\vb{v}_{\text{cm}}$ from the velocity of each particle, both before and after the collision. As we have already shown, the total linear momentum in this frame is zero. For two particles, this gives
+\[
+    m_1\vb{v}_1' + m_2\vb{v}_2' = \vb{0}
+    \quad \implies \quad
+    \boxed{\vb{p}_2' = -\vb{p}_1'}.
+\]
+This is the first simplification. Once we know the momentum of one particle, we immediately know the momentum of the other. Their momenta have equal magnitudes even when their masses are different.
+
+The second simplification concerns the kinetic energy. From the preceding subsection, we have
+\[
+    K_{\text{tot}} = K_{\text{rel}} + K_{\text{cm}},
+    \qquad
+    K_{\text{cm}} = \frac{1}{2}(m_1+m_2)v_{\text{cm}}^2.
+\]
+Since $\vb{v}_{\text{cm}}$ is constant, $K_{\text{cm}}$ is the same before and after the collision. Thus, if we want to find how much kinetic energy is lost in a collision, we only need to examine the motion relative to the center of mass,
+\[
+    \boxed{\Delta K_{\text{tot}} = \Delta K_{\text{rel}}}.
+\]
+Let us see when these two simplifications are particularly useful.
+
+\paragraph{Head-on elastic collisions.}
+Suppose that two particles collide elastically and rebound along the same straight line. In the laboratory frame, we would usually write down conservation of momentum and conservation of kinetic energy and solve two equations for the two final velocities. In the center of mass frame, we can obtain the final velocities simply by reversing the initial ones. Why does this work?
+
+Let $p'$ be the common magnitude of the two momenta in the center of mass frame. The kinetic energy in this frame is
+\[
+    K_{\text{rel}}
+    = \frac{p'^2}{2m_1} + \frac{p'^2}{2m_2}
+    = \frac{p'^2}{2}\left(\frac{1}{m_1}+\frac{1}{m_2}\right).
+\]
+In an elastic collision, $K_{\text{rel}}$ is conserved. Therefore, $p'$ has the same value before and after the collision, and each particle retains its own speed in this frame. Since the particles approach each other before impact and move apart afterwards along the same line, each velocity reverses direction. Denoting the initial and final velocities by the subscripts $\text{i}$ and $\text{f}$, we have
+\[
+    \vb{v}_{i,\text{f}}' = -\vb{v}_{i,\text{i}}'.
+\]
+Adding $\vb{v}_{\text{cm}}$ to return to the laboratory frame gives
+\[
+    \vb{v}_{i,\text{f}}
+    = \vb{v}_{\text{cm}} + \vb{v}_{i,\text{f}}'
+    = \vb{v}_{\text{cm}} - (\vb{v}_{i,\text{i}}-\vb{v}_{\text{cm}})
+    \quad \implies \quad
+    \boxed{\vb{v}_{i,\text{f}} = 2\vb{v}_{\text{cm}}-\vb{v}_{i,\text{i}}}.
+\]
+This result applies to either particle, including when their masses differ.
+
+For example, suppose that two carts have equal masses. In the laboratory frame, cart~1 moves to the right with speed $v$, and cart~2 is at rest. Taking the positive $x$-direction to the right, we have $v_{\text{cm}}=v/2$. The entire calculation can then be followed in three steps,
+\[
+\begin{array}{lcc}
+    & \text{Cart 1} & \text{Cart 2} \\[2pt]
+    \text{Before impact in the center of mass frame}
+        & v-v/2= v/2 & 0-v/2=-v/2 \\[2pt]
+    \text{After impact in the center of mass frame}
+        & -v/2 & v/2 \\[2pt]
+    \text{After impact in the laboratory frame}
+        & -v/2+v/2=0 & v/2+v/2=v
+\end{array}
+\]
+The observer moving with the center of mass sees both carts reverse direction. The laboratory observer sees cart~1 come to rest and cart~2 move away with the initial velocity of cart~1.
+
+\paragraph{Elastic collisions at an angle.}
+The center of mass frame is also useful when the particles move apart at an angle to their initial line of motion. The argument for conservation of $p'$ still holds, since it did not depend on the direction of either momentum. Thus, in the center of mass frame, an elastic collision can change only the directions of the two momenta. For example, if particle~1 leaves at $30^\circ$ to the positive $x$-axis, particle~2 must leave at $210^\circ$, with the same momentum magnitude. In a plane, a single angle therefore specifies both outgoing momenta. The value of this angle depends on the interaction and the geometry of the collision. Once it is known, adding $\vb{v}_{\text{cm}}$ to each outgoing velocity gives the motion seen in the laboratory.
+
+\paragraph{Perfectly inelastic collisions.}
+Suppose that the two particles stick together. If we only want their common final velocity in the laboratory frame, conservation of momentum gives the answer directly: it is $\vb{v}_{\text{cm}}$. The center of mass frame is particularly useful if we also want to know how much kinetic energy is lost. In this frame, the joined particles are at rest after the collision, so $K_{\text{rel,f}}=0$. Therefore,
+\[
+    \boxed{K_{\text{tot,i}}-K_{\text{tot,f}}=K_{\text{rel,i}}}.
+\]
+This is the greatest possible loss of kinetic energy for the given initial momenta. The system must retain $K_{\text{cm}}$ because its total momentum is conserved. For example, two carts moving rapidly to the right with nearly equal velocities may have a large total kinetic energy in the laboratory frame. If they stick together, very little of this energy is lost: their speeds relative to the center of mass were small to begin with.
+
 
 \section{Worked Examples}
 \subsection{Finding the Center of Mass of a System of Particles}
@@ -591,5 +729,117 @@ The result illustrates the interplay between internal and external forces in det
         \underbrace{K_2-K_1}_{\Delta K}.
     }
 \]
+
+\subsection{Head-on elastic collision between two moving carts}
+
+\textbf{Question.}
+Two carts of masses $2m$ and $m$ move to the right along a straight, frictionless track. The heavier cart moves with speed $4u$ and catches up with the lighter cart, which moves with speed $u$, where $u>0$. The carts undergo a head-on elastic collision. Find their final velocities using the center of mass frame. Does either cart reverse direction in the laboratory frame?
+
+\textbf{Solution.}
+Take the positive $x$-direction to the right, and label the heavier cart as cart~1. The velocity of the center of mass is
+\[
+    v_{\text{cm}}
+    = \frac{(2m)(4u)+m(u)}{2m+m}
+    = 3u.
+\]
+To an observer moving to the right with speed $3u$, the heavier cart approaches from the left and the lighter cart approaches from the right. Their initial velocities in this frame are
+\[
+    v_{1,\text{i}}' = 4u-3u = u,
+    \qquad
+    v_{2,\text{i}}' = u-3u = -2u.
+\]
+Their speeds are different, but their momenta are equal in magnitude and opposite in direction.
+
+Since the collision is elastic and the carts rebound along the same line, each cart reverses its velocity in the center of mass frame. Thus,
+\[
+    v_{1,\text{f}}' = -u,
+    \qquad
+    v_{2,\text{f}}' = 2u.
+\]
+Adding $v_{\text{cm}}=3u$ to each velocity gives the final velocities in the laboratory frame,
+\[
+    \boxed{v_{1,\text{f}} = -u+3u = 2u},
+    \qquad
+    \boxed{v_{2,\text{f}} = 2u+3u = 5u}.
+\]
+Both carts continue to the right. The heavier cart slows down, while the lighter cart moves ahead of it. Choosing the center of mass frame allowed us to obtain both final velocities by reversing two signs.
+
+
+\subsection{Elastic collision at an angle on a horizontal surface}
+
+\textbf{Question.}
+Two smooth pucks, each of mass $m$, move on a frictionless horizontal surface. Initially, puck~1 moves along the positive $x$-axis with speed $2u$, and puck~2 is at rest. They undergo an elastic collision. An observer in the center of mass frame sees puck~1 leave along the positive $y$-axis. Find the final velocity of each puck in the laboratory frame and the angle between their paths.
+
+\textbf{Solution.}
+The center of mass moves along the positive $x$-axis with velocity
+\[
+    \vb{v}_{\text{cm}}
+    = \frac{m(2u\,\hat{\vb{x}})+m\vb{0}}{2m}
+    = u\,\hat{\vb{x}}.
+\]
+Subtracting this velocity from the initial laboratory velocities gives
+\[
+    \vb{v}_{1,\text{i}}' = u\,\hat{\vb{x}},
+    \qquad
+    \vb{v}_{2,\text{i}}' = -u\,\hat{\vb{x}}.
+\]
+In the center of mass frame, the two momenta must remain equal in magnitude and opposite in direction. Since the masses are equal, the pucks also have equal speeds in this frame. Let $w$ be their common final speed. Conservation of kinetic energy gives
+\[
+    2\left(\frac{1}{2}mu^2\right)
+    = 2\left(\frac{1}{2}mw^2\right)
+    \quad\implies\quad w=u.
+\]
+We are told that puck~1 leaves along the positive $y$-axis. This one piece of information now fixes both final velocities in the center of mass frame,
+\[
+    \vb{v}_{1,\text{f}}' = u\,\hat{\vb{y}},
+    \qquad
+    \vb{v}_{2,\text{f}}' = -u\,\hat{\vb{y}}.
+\]
+To return to the laboratory frame, we add $u\,\hat{\vb{x}}$ to each velocity,
+\[
+    \boxed{\vb{v}_{1,\text{f}} = u\,\hat{\vb{x}}+u\,\hat{\vb{y}}},
+    \qquad
+    \boxed{\vb{v}_{2,\text{f}} = u\,\hat{\vb{x}}-u\,\hat{\vb{y}}}.
+\]
+Both pucks have speed $\sqrt{2}\,u$ in the laboratory frame. Puck~1 moves at $45^\circ$ above the positive $x$-axis, and puck~2 moves at $45^\circ$ below it. Thus, the angle between their paths is $\boxed{90^\circ}$ in the laboratory frame, although their velocities point in opposite directions in the center of mass frame.
+
+
+\subsection{Kinetic energy lost when two carts stick together}
+
+\textbf{Question.}
+Two carts of masses $m_1$ and $m_2$ move to the right on a frictionless track. Cart~1, initially behind cart~2, moves with speed $v_1>v_2$. It catches up with cart~2, and the carts stick together. Use the center of mass frame to find the kinetic energy lost in the collision. How would the energy loss change if both initial velocities were increased by the same amount $U$?
+
+\textbf{Solution.}
+Take the positive $x$-direction to the right and write $M=m_1+m_2$. The center of mass moves with velocity
+\[
+    v_{\text{cm}}=\frac{m_1v_1+m_2v_2}{M}.
+\]
+After the collision, the joined carts move with velocity $v_{\text{cm}}$, so they are at rest in the center of mass frame. Their final kinetic energy in this frame is therefore zero. Since $K_{\text{cm}}$ is unchanged, the kinetic energy lost in the laboratory frame is exactly the initial kinetic energy relative to the center of mass,
+\[
+    K_{\text{lost}}
+    \equiv K_{\text{tot,i}}-K_{\text{tot,f}}
+    = K_{\text{rel,i}}.
+\]
+
+To evaluate $K_{\text{rel,i}}$, let $u=v_1-v_2$ be the speed at which cart~1 approaches cart~2. Their initial velocities in the center of mass frame are
+\[
+    v_1' = v_1-v_{\text{cm}} = \frac{m_2}{M}u,
+    \qquad
+    v_2' = v_2-v_{\text{cm}} = -\frac{m_1}{M}u.
+\]
+Substituting these velocities into the kinetic energy gives
+\begin{align*}
+    K_{\text{lost}}
+    &= \frac{1}{2}m_1\left(\frac{m_2}{M}u\right)^2
+     + \frac{1}{2}m_2\left(-\frac{m_1}{M}u\right)^2 \\
+    &= \frac{1}{2}\frac{m_1m_2(m_1+m_2)}{M^2}u^2
+     = \frac{1}{2}\frac{m_1m_2}{m_1+m_2}u^2.
+\end{align*}
+Recognizing the reduced mass $\mu=m_1m_2/(m_1+m_2)$ from the two-body problem, we obtain
+\[
+    \boxed{K_{\text{lost}}=\frac{1}{2}\mu(v_1-v_2)^2}.
+\]
+
+If both initial velocities are increased by $U$, the center of mass velocity also increases by $U$. The approach speed remains $(v_1+U)-(v_2+U)=v_1-v_2$, so the kinetic energy lost is unchanged. The extra kinetic energy associated with the faster motion of the center of mass is still present after the carts stick together.
 \end{document}
     
